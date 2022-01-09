@@ -1,18 +1,18 @@
 import { useState, useEffect } from "react";
 import {
     SafeAreaView,
+    Image,
   View,
-  TouchableOpacity,
   FlatList,
   Text,
 } from "react-native";
 import styles from "../../styles";
-
+import imgSrc from './flower.jpg';
 const HomeList = (props) => {
   const [dataSource, setDataSource] = useState([]);
 
   useEffect(() => {
-    const items = Array.apply(null, Array(6)).map((item, index) => {
+    const items = Array.apply(null, Array(11)).map((item, index) => {
       return {
         id: index,
         name: `nazwa_${index}`,
@@ -25,12 +25,16 @@ const HomeList = (props) => {
     <SafeAreaView >
     <FlatList
       data={dataSource}
+      style={{marginBottom: 60}}
       renderItem={({ item }) => (
         <View
-          style={styles.homeListContainer}
+          style={styles.listItemContainer}
         >
-          <View style={styles.homeListItem}>
-            <Text>hej</Text>
+          <View style={styles.listItem}>
+            <Image  source={{ uri: imgSrc }} />
+            <Text style={{position: 'absolute'}}>
+            {item.name}
+             </Text>
           </View>
         </View>
       )}

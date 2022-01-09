@@ -3,7 +3,6 @@ import { useRoute } from "@react-navigation/native";
 
 import { Ionicons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
-import { Octicons } from '@expo/vector-icons';
 
 import styles from "../../styles";
 
@@ -48,7 +47,7 @@ const NavigationMenu = (props) => {
             props.navigation.navigate("Settings", { name: "Jane" })
           }
         >
-          <Octicons name="settings" size={20} color="grey" />
+          <Feather name="tool" size={20} color="grey" />
           <Text style={styles.menuNavigatorText}>Settings</Text>
         </TouchableOpacity>
       </View>

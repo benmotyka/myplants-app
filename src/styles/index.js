@@ -43,16 +43,20 @@ export default StyleSheet.create({
     fontSize: 12,
     fontFamily: "Inter_200ExtraLight",
   },
-  homeListContainer: {
-    flex: 1,
-    padding: 5
+  listItemContainer: {
+    flex: 1/2,
+    padding: 5,
+    display: 'flex'
   },
-  homeListItem: {
+  listItem: {
     backgroundColor: "#F0ECE3",
     justifyContent: 'center',
     alignItems: 'center',
     height: 200,
-    width: "100%",
-    borderRadius: 15
+    borderRadius: 15,
+    display: 'flex',
+  },
+  listItemImage: {
+    width: '100%',
   }
 });
