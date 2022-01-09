@@ -7,7 +7,6 @@ import {
   Text,
 } from "react-native";
 import styles from "../../styles";
-import imgSrc from './flower.jpg';
 const HomeList = (props) => {
   const [dataSource, setDataSource] = useState([]);
 
@@ -31,7 +30,7 @@ const HomeList = (props) => {
           style={styles.listItemContainer}
         >
           <View style={styles.listItem}>
-            <Image  source={{ uri: imgSrc }} />
+            <Image resizeMode='cover' style={styles.listItemImage} source={require('./flower.jpg')} />
             <Text style={{position: 'absolute'}}>
             {item.name}
              </Text>

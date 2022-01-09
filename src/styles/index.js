@@ -58,5 +58,10 @@ export default StyleSheet.create({
   },
   listItemImage: {
     width: '100%',
+    height: '60%',
+    position: 'absolute',
+    top: 0,
+    borderTopLeftRadius: 15,
+    borderTopRightRadius: 15,
   }
 });
