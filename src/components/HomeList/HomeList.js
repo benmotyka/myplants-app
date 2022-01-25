@@ -14,7 +14,7 @@ const HomeList = (props) => {
     const items = Array.apply(null, Array(11)).map((item, index) => {
       return {
         id: index,
-        name: `nazwa_${index}`,
+        name: `kwiatek_${index}`,
       };
     });
     setDataSource(items);

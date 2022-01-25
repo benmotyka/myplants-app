@@ -8,7 +8,7 @@ export default StyleSheet.create({
     fontFamily: "Inter_200ExtraLight",
   },
   menuNavigatorContainer: {
-    position: "absolute",
+    position: "fixed",
     bottom: 0,
     left: 0,
     right: 0,
@@ -63,5 +63,26 @@ export default StyleSheet.create({
     top: 0,
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
+  },
+  settingsAccountContainer: {
+    width: '100%',
+    height: '200px',
+    alignItems: 'center',
+    display: 'flex'
+  },
+  settingsAccountWrapper: {
+    width: '200px',
+    height: '100%',
+    backgroundColor: '#eee',
+    borderRadius: '50%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex'
+  },
+  settingsItem: {
+    backgroundColor: '#eee',
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
   }
 });

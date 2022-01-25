@@ -1,15 +1,16 @@
-
-  
-import { View, Text } from "react-native";
-import MenuNavigator from "../components/NavigationMenu/NavigationMenu";
 import styles from "../styles";
+import MenuNavigator from "../components/NavigationMenu/NavigationMenu";
+import { View } from "react-native";
+import SettingsList from "../components/SettingsList/SettingsList";
+
 
 const MyAccountScreen = ({ navigation, route }) => {
-    return (
-      <View style={styles.container}>
-        <Text>This is {route.params.name}'s settings</Text>
-        <MenuNavigator navigation={navigation} />
-      </View>
-    );
-  };
+  return (
+    <View style={styles.container}>
+    <SettingsList/>
+    <MenuNavigator navigation={navigation} />
+  </View>
+  )
+}
+
 export default MyAccountScreen
