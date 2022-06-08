@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "AwesomeProject",
-    "slug": "AwesomeProject",
+    "name": "Flowers",
+    "slug": "Flowers",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
     ]
   },
-  "name": "AwesomeProject"
+  "name": "Flowers"
 }
