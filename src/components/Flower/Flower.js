@@ -4,14 +4,17 @@ import { Image, View, Text } from "react-native";
 
 const Flower = ({ name, imgSrc }) => {
   return (
-    <View style={styles.listItemContainer}>
-      <View style={styles.listItem}>
+    <View style={styles.flowerContainer}>
+      <View style={styles.flowerWrapper}>
         <Image
           resizeMode="cover"
-          style={styles.listItemImage}
+          style={styles.flowerImage}
           source={imgSrc}
         />
-        <Text style={{ position: "absolute" }}>{name}</Text>
+        <View style={styles.flowerBody}>
+        <Text style={styles.flowerHeader}>{name}</Text>
+
+        </View>
       </View>
     </View>
   );

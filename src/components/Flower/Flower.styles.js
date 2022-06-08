@@ -1,25 +1,39 @@
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-  listItemContainer: {
+  flowerContainer: {
     flex: 1 / 2,
     padding: 5,
     display: "flex",
+    position: "relative",
   },
-  listItem: {
-    backgroundColor: "#F0ECE3",
+  flowerWrapper: {
+    backgroundColor: "#fff",
     justifyContent: "center",
     alignItems: "center",
-    height: 200,
-    borderRadius: 15,
+    height: 230,
+    borderRadius: 3,
     display: "flex",
+    borderStyle: "solid",
+    borderWidth: 1,
+    borderColor: "#000",
   },
-  listItemImage: {
+  flowerImage: {
     width: "100%",
     height: "60%",
     position: "absolute",
     top: 0,
-    borderTopLeftRadius: 15,
-    borderTopRightRadius: 15,
+    borderTopLeftRadius: 3,
+    borderTopRightRadius: 3,
   },
+  flowerBody: {
+    position: "absolute",
+    height: "40%",
+    top: "60%",
+    width: "100%",
+    padding: 5,
+  },
+  flowerHeader: {
+    fontSize: 16,
+  }
 });
