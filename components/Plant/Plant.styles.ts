@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 export const Container = styled.View`
   width: 50%;
   height: 250px;
-  padding: 3px;
+  padding: 5px;
 `;
 
 export const Wrapper = styled.View`
@@ -14,14 +14,19 @@ export const Wrapper = styled.View`
 
 export const Image = styled.Image`
   width: 100%;
-  height: 60%;
+  height: 70%;
   position: absolute;
 `;
 
+export const SmallImage = styled.Image`
+width: 15px;
+height: 15px;
+margin-right: 5px;
+`
 export const Body = styled.View`
   position: absolute;
-  height: 40%;
-  top: 60%;
+  height: 30%;
+  top: 70%;
   width: 100%;
   padding: 5px;
 `;
@@ -29,3 +34,10 @@ export const Body = styled.View`
 export const Header = styled.Text`
   fontsize: 16;
 `;
+
+export const ItemsWrapper = styled.View`
+display: flex;
+align-items: center;
+justify-content: space-between;
+flex-direction: row;
+`
