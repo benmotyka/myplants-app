@@ -1,32 +1,57 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { NavigationContainer } from "@react-navigation/native";
-const Stack = createNativeStackNavigator();
 import AppLoading from "expo-app-loading";
+import {
+  createNativeStackNavigator,
+  NativeStackScreenProps,
+} from "@react-navigation/native-stack";
+import { NavigationContainer } from "@react-navigation/native";
 import { useFonts, Inter_200ExtraLight } from "@expo-google-fonts/inter";
-import Home from "./screens/Home";
+
+import HomeScreen from "./screens/Home";
+import AddPlantScreen from "./screens/AddPlant";
+import EditPlant from "./screens/EditPlant";
+
+type RootStackParamList = {
+  Home: undefined;
+  AddPlant: { plantId: string };
+  EditPlant: { plantId: string };
+};
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
+
+export type HomeProps = NativeStackScreenProps<RootStackParamList, "Home">;
 
 export default function App() {
   let [fontsLoaded] = useFonts({
     Inter_200ExtraLight,
   });
+
   if (!fontsLoaded) {
     return <AppLoading />;
-  } else {
-    return (
-      <>
-        <StatusBar />
-        <NavigationContainer>
-          <Stack.Navigator
-            screenOptions={{
-              headerShown: false,
-            }}
-          >
-            <Stack.Screen name="Home" component={Home} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </>
-    );
   }
+
+  return (
+    <>
+      <StatusBar />
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen
+            name="AddPlant"
+            component={AddPlantScreen}
+            initialParams={{ plantId: "123" }}
+          />
+          <Stack.Screen
+            name="EditPlant"
+            component={EditPlant}
+            initialParams={{ plantId: "123" }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
+  );
 }
