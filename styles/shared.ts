@@ -8,3 +8,9 @@ export const Container = styled.View`
   flex: 1;
   align-items: center;
 `;
+
+export const ScreenContainer = styled.View`
+height: 100%;
+width: 100%;
+padding: 5px;
+`
