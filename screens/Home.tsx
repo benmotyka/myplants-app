@@ -83,6 +83,7 @@ const HomeScreen = ({ route, navigation }: HomeProps) => {
               )}
               numColumns={2}
               keyExtractor={(item, index) => index.toString()}
+              style={{paddingBottom: 80}}
             />
           </SafeAreaView>
         ) : null}
