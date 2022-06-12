@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import { colors } from "../../styles/colors";
 
 export const Container = styled.View`
   width: 50%;
@@ -7,9 +8,10 @@ export const Container = styled.View`
 `;
 
 export const Wrapper = styled.View`
-  border: 1px solid #000;
+  border: 1px solid ${colors.grey};
   height: 100%;
   position: relative;
+  box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
 `;
 
 export const Image = styled.Image`

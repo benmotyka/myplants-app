@@ -12,6 +12,7 @@ import {
 } from "./Plant.styles";
 import { PlantProps } from "./Plant.interface";
 import { Text, TouchableHighlight, View } from "react-native";
+import { colors } from "../../styles/colors";
 
 const MAX_SLIDER_VALUE = 1;
 const SLIDE_SUCCESS_THRESHOLD = 0.9;
@@ -40,7 +41,7 @@ const Plant = ({ name, imgSrc, navigation }: PlantProps) => {
           onLongPress={onLongPress}
           delayLongPress={750}
           underlayColor="white"
-          style={{ width: "100%", height: "100%" }}
+          style={{ width: "100%", height: "100%"}}
         >
           <View style={{ width: "100%", height: "100%" }}>
             <Image resizeMode="cover" source={imgSrc} />
@@ -60,12 +61,13 @@ const Plant = ({ name, imgSrc, navigation }: PlantProps) => {
                     value={sliderValue}
                     onSlidingComplete={submitPlant}
                     thumbStyle={{
-                      backgroundColor: "#444444",
-                      borderRadius: 5,
+                      backgroundColor: colors.thumbStyle,
+                      borderRadius: 3,
                       width: 35,
                       height: 25,
+                      
                     }}
-                    trackStyle={{ opacity: 0.3 }}
+                    trackStyle={{ opacity: 0.2 }}
                     maximumValue={MAX_SLIDER_VALUE}
                   />
                 )}

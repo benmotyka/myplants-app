@@ -5,7 +5,6 @@ export const Container = styled(PlantContainer)`
  display: flex;
  align-items: center;
  justify-content: center;
-}
 `;
 
 export const Wrapper = styled.View`

@@ -13,4 +13,5 @@ export const ScreenContainer = styled.View`
 height: 100%;
 width: 100%;
 padding: 5px;
+position: relative;
 `
