@@ -11,8 +11,10 @@ import HomeScreen from "./screens/home";
 import AddPlantScreen from "./screens/addPlant";
 import EditPlant from "./screens/editPlant";
 import SettingsScreen from "./screens/settings";
+import LoginScreen from "./screens/login";
 
 export type RootStackParamList = {
+  login: undefined;
   home: undefined;
   addPlant: undefined;
   settings: undefined;
@@ -39,6 +41,7 @@ export default function App() {
             headerShown: false,
           }}
         >
+          <Stack.Screen name="login" component={LoginScreen} />
           <Stack.Screen name="home" component={HomeScreen} />
           <Stack.Screen
             name="addPlant"
