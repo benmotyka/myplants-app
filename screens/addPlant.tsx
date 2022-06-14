@@ -5,7 +5,7 @@ const AddPlant: FunctionComponent = () => {
 
   return (
     <ScreenContainer>
-    edit
+    add
     </ScreenContainer>
   );
 };

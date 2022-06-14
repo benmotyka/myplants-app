@@ -1,46 +1,59 @@
 import React from "react";
-import { TouchableOpacity } from "react-native";
-import { Ionicons } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { IconContainer, MenuContainer } from "./HomeSettings.styles";
-import { MaterialIcons } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialIcons } from "@expo/vector-icons";
 import { colors } from "../../styles/colors";
+import { HomeSettingsProps } from "./HomeSettingsProps.interface";
+
+const ICON_SIZE_PX = 24;
+const ITEMS_MARGIN_PX = 60;
+const ITEMS_OFFSET_PX = 20;
 
 const settingsItems = [
   {
     name: "addPlant",
-    icon: <Entypo name="plus" size={24} color={colors.lightBlack} />,
+    icon: <Entypo name="plus" size={ICON_SIZE_PX} color={colors.lightBlack} />,
+    href: 'addPlant'
   },
   {
     name: "appSettings",
-    icon: <MaterialIcons name="app-settings-alt" size={24} color="black" />
+    icon: (
+      <MaterialIcons
+        name="app-settings-alt"
+        size={ICON_SIZE_PX}
+        color="black"
+      />
+    ),
+    href: 'general/settings'
   },
-  {
-    name: "account",
-    icon: <MaterialCommunityIcons name="account" size={24} color="black" />
-  }
+  // {
+  //   name: "account",
+  //   icon: <MaterialCommunityIcons name="account" size={ICON_SIZE_PX} color="black" />
+  // }
 ];
 
-const ITEMS_MARGIN_PX = 60
- 
-const HomeSettings = (): JSX.Element => {
+
+const HomeSettings = ({ navigation }: HomeSettingsProps): JSX.Element => {
   const [showMenu, setShowMenu] = React.useState(false);
   return (
     <>
-      <TouchableOpacity
-        onPress={() => setShowMenu(!showMenu)}
-        style={{ zIndex: 20 }}
-      >
-        <IconContainer>
-          <Ionicons name="settings-sharp" size={24} color={colors.lightBlack} />
-        </IconContainer>
-      </TouchableOpacity>
+      <IconContainer onPress={() => setShowMenu(!showMenu)}>
+        <MaterialIcons
+          style={{ transform: [{ rotate: showMenu ? "180deg" : "0deg" }] }}
+          name="keyboard-arrow-up"
+          size={ICON_SIZE_PX}
+          color={colors.lightBlack}
+        />
+      </IconContainer>
       {/* TODO: transition */}
       {showMenu ? (
-        <MenuContainer>
+        <MenuContainer onPress={() => setShowMenu(false)}>
           {settingsItems.map((item, index) => (
-            <IconContainer style={{ bottom: 20 + ((index + 1) * ITEMS_MARGIN_PX) }}>
+            <IconContainer
+              key={item.name}
+              style={{ bottom: ITEMS_OFFSET_PX + (index + 1) * ITEMS_MARGIN_PX }}
+              onPress={() => navigation.navigate(item.href)}
+            >
               {item.icon}
             </IconContainer>
           ))}

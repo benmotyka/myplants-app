@@ -34,7 +34,8 @@ export const Body = styled.View`
 `;
 
 export const Header = styled.Text`
-  fontsize: 16;
+  font-size: 15;
+  font-family: 'Inter_200ExtraLight';
 `;
 
 export const ItemsWrapper = styled.View`
@@ -42,4 +43,8 @@ display: flex;
 align-items: center;
 justify-content: space-between;
 flex-direction: row;
+`
+
+export const Text = styled.Text`
+font-family: 'Inter_200ExtraLight';
 `

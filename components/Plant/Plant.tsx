@@ -9,15 +9,16 @@ import {
   Container,
   ItemsWrapper,
   SmallImage,
+  Text
 } from "./Plant.styles";
 import { PlantProps } from "./Plant.interface";
-import { Text, TouchableHighlight, View } from "react-native";
+import { TouchableHighlight, View } from "react-native";
 import { colors } from "../../styles/colors";
 
 const MAX_SLIDER_VALUE = 1;
 const SLIDE_SUCCESS_THRESHOLD = 0.9;
 
-const Plant = ({ name, imgSrc, navigation }: PlantProps) => {
+const Plant = ({ name, imgSrc, navigation }: PlantProps): JSX.Element => {
   const [sliderValue, setSliderValue] = React.useState(0);
   const [watered, setWatered] = React.useState(false);
 

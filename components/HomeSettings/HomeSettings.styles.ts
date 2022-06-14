@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import { colors } from "../../styles/colors";
 
-export const IconContainer = styled.View`
+export const IconContainer = styled.TouchableOpacity`
   position: absolute;
   bottom: 20px;
   right: 20px;
@@ -13,11 +13,12 @@ export const IconContainer = styled.View`
   align-items: center;
   justify-content: center;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+  z-index: 2000;
 `;
 
-export const MenuContainer = styled.View`
+export const MenuContainer = styled.TouchableOpacity`
   inset: 0;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 10;
+  z-index: 1;
 `;

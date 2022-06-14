@@ -88,7 +88,7 @@ const HomeScreen = ({ route, navigation }: HomeProps) => {
           </SafeAreaView>
         ) : null}
         </ScrollView>
-        <HomeSettings/>
+        <HomeSettings navigation={navigation}/>
       </ScreenContainer>
   );
 };

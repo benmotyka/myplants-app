@@ -8,12 +8,12 @@ import { NavigationContainer } from "@react-navigation/native";
 import { useFonts, Inter_200ExtraLight } from "@expo-google-fonts/inter";
 
 import HomeScreen from "./screens/Home";
-import AddPlantScreen from "./screens/AddPlant";
+import AddPlantScreen from "./screens/addPlant";
 import EditPlant from "./screens/EditPlant";
 
 type RootStackParamList = {
   Home: undefined;
-  AddPlant: { plantId: string };
+  addPlant: { plantId: string };
   EditPlant: { plantId: string };
 };
 
@@ -41,7 +41,7 @@ export default function App() {
         >
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen
-            name="AddPlant"
+            name="addPlant"
             component={AddPlantScreen}
             initialParams={{ plantId: "123" }}
           />
