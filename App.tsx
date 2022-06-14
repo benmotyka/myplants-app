@@ -7,19 +7,19 @@ import {
 import { NavigationContainer } from "@react-navigation/native";
 import { useFonts, Inter_200ExtraLight } from "@expo-google-fonts/inter";
 
-import HomeScreen from "./screens/Home";
+import HomeScreen from "./screens/home";
 import AddPlantScreen from "./screens/addPlant";
-import EditPlant from "./screens/EditPlant";
+import EditPlant from "./screens/editPlant";
+import SettingsScreen from "./screens/settings";
 
-type RootStackParamList = {
-  Home: undefined;
-  addPlant: { plantId: string };
-  EditPlant: { plantId: string };
+export type RootStackParamList = {
+  home: undefined;
+  addPlant: undefined;
+  settings: undefined;
+  editPlant: { plantId: string };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
-
-export type HomeProps = NativeStackScreenProps<RootStackParamList, "Home">;
 
 export default function App() {
   let [fontsLoaded] = useFonts({
@@ -39,14 +39,17 @@ export default function App() {
             headerShown: false,
           }}
         >
-          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="home" component={HomeScreen} />
           <Stack.Screen
             name="addPlant"
             component={AddPlantScreen}
-            initialParams={{ plantId: "123" }}
           />
           <Stack.Screen
-            name="EditPlant"
+            name="settings"
+            component={SettingsScreen}
+          />
+          <Stack.Screen
+            name="editPlant"
             component={EditPlant}
             initialParams={{ plantId: "123" }}
           />

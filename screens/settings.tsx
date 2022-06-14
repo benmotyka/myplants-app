@@ -4,15 +4,15 @@ import { RootStackParamList } from "../App";
 import Back from "../components/Back/Back";
 import { ScreenContainer } from "../styles/shared";
 
-type AddPlantProps = NativeStackScreenProps<RootStackParamList, "addPlant">;
+type SettingsProps = NativeStackScreenProps<RootStackParamList, "settings">;
 
-const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
+const Settings = ({ navigation }: SettingsProps): JSX.Element => {
   return (
     <ScreenContainer>
-      add
+      Settings
       <Back navigation={navigation} />
     </ScreenContainer>
   );
 };
 
-export default AddPlant;
+export default Settings;
