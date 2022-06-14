@@ -3,8 +3,8 @@ import { colors } from "../../styles/colors";
 
 export const IconContainer = styled.TouchableOpacity`
   position: absolute;
-  bottom: 20px;
-  right: 20px;
+  top: 20px;
+  left: 20px;
   width: 50px;
   height: 50px;
   background-color: ${colors.lightGrey};
@@ -12,12 +12,6 @@ export const IconContainer = styled.TouchableOpacity`
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
-  z-index: 2;
-`;
-
-export const MenuContainer = styled.TouchableOpacity`
-  inset: 0;
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0.5);
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
 `;

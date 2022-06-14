@@ -3,7 +3,7 @@ import { Entypo } from "@expo/vector-icons";
 import { IconContainer, MenuContainer } from "./HomeSettings.styles";
 import { MaterialIcons } from "@expo/vector-icons";
 import { colors } from "../../styles/colors";
-import { HomeSettingsProps } from "./HomeSettingsProps.interface";
+import { HomeSettingsProps } from "./HomeSettings.interface";
 
 const ICON_SIZE_PX = 24;
 const ITEMS_MARGIN_PX = 60;
@@ -24,7 +24,7 @@ const settingsItems = [
         color="black"
       />
     ),
-    href: 'general/settings'
+    href: 'settings'
   },
   // {
   //   name: "account",
@@ -52,7 +52,10 @@ const HomeSettings = ({ navigation }: HomeSettingsProps): JSX.Element => {
             <IconContainer
               key={item.name}
               style={{ bottom: ITEMS_OFFSET_PX + (index + 1) * ITEMS_MARGIN_PX }}
-              onPress={() => navigation.navigate(item.href)}
+              onPress={() => {
+                navigation.navigate(item.href)
+                setShowMenu(false)
+              }}
             >
               {item.icon}
             </IconContainer>
