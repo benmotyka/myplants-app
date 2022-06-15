@@ -15,3 +15,10 @@ height: 100%;
 width: 100%;
 position: relative;
 `
+
+export const ColumnCenterWrapper = styled.View`
+dsplay: flex;
+align-items: center;
+justify-content: center;
+padding-top: 150px;
+`

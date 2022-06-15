@@ -66,7 +66,6 @@ const Plant = ({ name, imgSrc, navigation }: PlantProps): JSX.Element => {
                       borderRadius: 3,
                       width: 35,
                       height: 25,
-                      
                     }}
                     trackStyle={{ opacity: 0.2 }}
                     maximumValue={MAX_SLIDER_VALUE}
