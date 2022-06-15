@@ -41,12 +41,13 @@ export default function App() {
             headerShown: false,
           }}
         >
-          <Stack.Screen name="login" component={LoginScreen} />
           <Stack.Screen name="home" component={HomeScreen} />
-          <Stack.Screen
+                    <Stack.Screen
             name="addPlant"
             component={AddPlantScreen}
           />
+          <Stack.Screen name="login" component={LoginScreen} />
+
           <Stack.Screen
             name="settings"
             component={SettingsScreen}
