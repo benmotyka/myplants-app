@@ -4,7 +4,7 @@ import { RootStackParamList } from "../App";
 import Back from "../components/Back/Back";
 import { ScreenContainer, ColumnCenterWrapper } from "../styles/shared";
 import { Formik } from "formik";
-import { Button, TextInput, View } from "react-native";
+import { Button, View } from "react-native";
 import BasicTextInput from "../components/BasicTextInput/BasicTextInput";
 import BasicImageInput from "../components/BasicImageInput/BasicImageInput";
 
@@ -16,21 +16,28 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
       <ColumnCenterWrapper>
         <Back navigation={navigation} />
         <Formik
-          initialValues={{ email: "" }}
+          initialValues={{ name: "", description: "" }}
           onSubmit={(values) => console.log(values)}
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
-            <View
-            >
-              <TextInput
-                onChangeText={handleChange("email")}
-                onBlur={handleBlur("email")}
-                value={values.email}
-              />
-              <BasicImageInput/>
+            <View>
+
+              <BasicImageInput />
+              <BasicTextInput 
+              label="Name"
+              placeholder="Enter your plant name..."
+              onChangeText={handleChange("name")}
+              onBlur={handleBlur("name")}
+              value={values.name} 
+               />
               <BasicTextInput
-              placeholder='Enter flower name'
-              />
+              label="Description"
+              placeholder="Enter your plant description..."
+              onChangeText={handleChange("description")}
+              onBlur={handleBlur("description")}
+              value={values.description}
+              textarea={true}
+               />
               <Button
                 onPress={handleSubmit as (values: any) => void}
                 title="Submit"

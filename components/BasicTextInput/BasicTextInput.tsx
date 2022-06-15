@@ -1,11 +1,29 @@
 import React from "react";
-import { Input, InputWrapper } from "./BasicTextInput.styles";
+import { BasicTextInputProps } from "./BasicTextInput.interface";
+import { Input, InputWrapper, InputLabel } from "./BasicTextInput.styles";
 
-const BasicTextInput = ({ placeholder}: {placeholder?: string}): JSX.Element => {
+const TEXTAREA_NUMBER_OF_LINES = 4;
+
+const BasicTextInput = ({
+  placeholder,
+  value,
+  label,
+  onChangeText,
+  onBlur,
+  textarea,
+}: BasicTextInputProps): JSX.Element => {
   return (
-        <InputWrapper>
-        <Input placeholder={placeholder}/>
-        </InputWrapper>
+    <InputWrapper>
+    <InputLabel>{label}</InputLabel>
+      <Input
+        placeholder={placeholder}
+        value={value}
+        onChangeText={onChangeText}
+        onBlur={onBlur}
+        multiline={textarea}
+        numberOfLines={textarea ? TEXTAREA_NUMBER_OF_LINES : 1}
+      />
+    </InputWrapper>
   );
 };
 

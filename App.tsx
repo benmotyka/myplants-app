@@ -5,7 +5,7 @@ import {
   NativeStackScreenProps,
 } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
-import { useFonts, Inter_200ExtraLight } from "@expo-google-fonts/inter";
+import { useFonts, Inter_200ExtraLight, Inter_300Light} from "@expo-google-fonts/inter";
 
 import HomeScreen from "./screens/home";
 import AddPlantScreen from "./screens/addPlant";
@@ -26,6 +26,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function App() {
   let [fontsLoaded] = useFonts({
     Inter_200ExtraLight,
+    Inter_300Light,
   });
 
   if (!fontsLoaded) {
@@ -41,17 +42,11 @@ export default function App() {
             headerShown: false,
           }}
         >
+          <Stack.Screen name="addPlant" component={AddPlantScreen} />
           <Stack.Screen name="home" component={HomeScreen} />
-                    <Stack.Screen
-            name="addPlant"
-            component={AddPlantScreen}
-          />
           <Stack.Screen name="login" component={LoginScreen} />
 
-          <Stack.Screen
-            name="settings"
-            component={SettingsScreen}
-          />
+          <Stack.Screen name="settings" component={SettingsScreen} />
           <Stack.Screen
             name="editPlant"
             component={EditPlant}

@@ -36,7 +36,7 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
               renderItem={({ item }) => (
                 <Plant
                   name={item.name}
-                  imgSrc={require("../assets/flower.jpg")}
+                  imgSrc={require("../assets/plants/default_plant.webp")}
                   navigation={navigation}
                 />
               )}
