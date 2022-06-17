@@ -17,8 +17,15 @@ position: relative;
 `
 
 export const ColumnCenterWrapper = styled.View`
-dsplay: flex;
+display: flex;
 align-items: center;
 justify-content: center;
-padding-top: 150px;
+padding-top: 100px;
+`
+
+export const InputsWrapper = styled.View`
+display: flex;
+align-items: center;
+width: 100%;
+padding: 0 20px;
 `

@@ -13,7 +13,6 @@ const BasicImageInput = ({image, setImage}: BasicImageInputProps): JSX.Element =
       aspect: [4, 3],
       quality: 1,
     });
-
     if (!result.cancelled) {
       setImage(result.uri);
     }

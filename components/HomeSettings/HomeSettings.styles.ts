@@ -17,7 +17,10 @@ export const IconContainer = styled.TouchableOpacity`
 `;
 
 export const MenuContainer = styled.TouchableOpacity`
-  inset: 0;
+    top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 2;

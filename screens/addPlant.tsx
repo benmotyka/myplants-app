@@ -2,7 +2,7 @@ import React from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../App";
 import Back from "../components/Back/Back";
-import { ScreenContainer, ColumnCenterWrapper } from "../styles/shared";
+import { ScreenContainer, ColumnCenterWrapper, InputsWrapper } from "../styles/shared";
 import { Formik } from "formik";
 import { View } from "react-native";
 import BasicTextInput from "../components/BasicTextInput/BasicTextInput";
@@ -12,19 +12,20 @@ import BasicButton from "../components/BasicButton/BasicButton";
 type AddPlantProps = NativeStackScreenProps<RootStackParamList, "addPlant">;
 
 const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
-  const [image, setImage] = React.useState("");
 
   return (
     <ScreenContainer>
       <ColumnCenterWrapper>
         <Back navigation={navigation} />
         <Formik
-          initialValues={{ name: "", description: "" }}
-          onSubmit={(values) => console.log(values)}
+          initialValues={{ name: "", description: "", image: "" }}
+          onSubmit={(values) => {
+            console.log(values)
+          }}
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
-            <View style={{display: "flex", alignItems: "center"}}>
-              <BasicImageInput image={image} setImage={setImage} />
+            <InputsWrapper>
+              <BasicImageInput image={values.image} setImage={handleChange("image")} />
               <BasicTextInput
                 label="Name"
                 placeholder="Enter your plant name..."
@@ -46,7 +47,7 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
                 text="Submit"
               />
               </View>
-            </View>
+            </InputsWrapper>
           )}
         </Formik>
       </ColumnCenterWrapper>

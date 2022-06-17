@@ -9,7 +9,6 @@ type SettingsProps = NativeStackScreenProps<RootStackParamList, "settings">;
 const Settings = ({ navigation }: SettingsProps): JSX.Element => {
   return (
     <ScreenContainer>
-      Settings
       <Back navigation={navigation} />
     </ScreenContainer>
   );
