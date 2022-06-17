@@ -17,19 +17,9 @@ const settingsItems = [
   },
   {
     name: "appSettings",
-    icon: (
-      <MaterialIcons
-        name="app-settings-alt"
-        size={ICON_SIZE_PX}
-        color="black"
-      />
-    ),
+    icon: <MaterialIcons name="settings" size={ICON_SIZE_PX} color={colors.lightBlack} />,
     href: 'settings'
   },
-  // {
-  //   name: "account",
-  //   icon: <MaterialCommunityIcons name="account" size={ICON_SIZE_PX} color="black" />
-  // }
 ];
 
 

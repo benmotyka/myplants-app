@@ -5,6 +5,8 @@ export const Container = styled.View`
   width: 50%;
   height: 250px;
   padding: 5px;
+  min-width: 180px;
+  max-width: 240px;
 `;
 
 export const Wrapper = styled.View`
