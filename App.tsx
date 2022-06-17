@@ -50,7 +50,6 @@ export default function App() {
           <Stack.Screen
             name="editPlant"
             component={EditPlant}
-            initialParams={{ plantId: "123" }}
           />
         </Stack.Navigator>
       </NavigationContainer>
