@@ -16,23 +16,23 @@ import { TouchableHighlight, View } from "react-native";
 import { colors } from "../../styles/colors";
 
 const MAX_SLIDER_VALUE = 1;
-const SLIDE_SUCCESS_THRESHOLD = 0.9;
+const SLIDE_SUCCESS_VALUE_THRESHOLD = 0.9;
 
-const Plant = ({ name, imgSrc, navigation }: PlantProps): JSX.Element => {
+const Plant = ({ id, name, imgSrc, navigation }: PlantProps): JSX.Element => {
   const [sliderValue, setSliderValue] = React.useState(0);
   const [watered, setWatered] = React.useState(false);
 
   const submitPlant = (value: number | number[]): void => {
     const currentValue = typeof value !== "number" ? value[0] : value;
-    if (currentValue >= SLIDE_SUCCESS_THRESHOLD * MAX_SLIDER_VALUE) {
+    if (currentValue >= SLIDE_SUCCESS_VALUE_THRESHOLD * MAX_SLIDER_VALUE) {
       setWatered(true);
     }
   };
 
   const onLongPress = () => {
-    console.log("hejaaa");
-    //router.push(/config/plantId)
-    navigation.navigate("EditPlant");
+    navigation.navigate("editPlant", {
+      plantId: id,
+    });
   };
 
   return (

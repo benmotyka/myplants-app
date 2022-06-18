@@ -2,8 +2,9 @@ import styled from "styled-components/native";
 import { colors } from "../../styles/colors";
 
 export const ButtonWrapper = styled.TouchableOpacity`
-paddingVertical: 10;
-border-radius: 10;
+paddingVertical: 10px;
+paddingHorizontal: 10px;
+border-radius: 10px;
 background-color: ${colors.lightGrey};
 border: 1px solid ${colors.grey};
 display: flex;

@@ -44,7 +44,7 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
               <View style={{marginTop: 50}}>
               <BasicButton
                 onPress={handleSubmit as (values: any) => void}
-                text="Submit"
+                text="Add plant"
               />
               </View>
             </InputsWrapper>

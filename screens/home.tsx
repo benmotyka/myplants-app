@@ -1,26 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, SafeAreaView, ScrollView, View } from "react-native";
+import { FlatList, SafeAreaView, ScrollView } from "react-native";
 
 import Plant from "../components/Plant/Plant";
 import { RootStackParamList } from "../App";
 import { ScreenContainer } from "../styles/shared";
 import HomeSettings from "../components/HomeSettings/HomeSettings";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-
-interface Plant {
-  id: number;
-  name: string;
-}
+import { IPlant } from "../interfaces/IPlant";
 
 type HomeProps = NativeStackScreenProps<RootStackParamList, "home">;
 
 const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
-  const [dataSource, setDataSource] = useState<Plant[]>();
+  const [dataSource, setDataSource] = useState<IPlant[]>();
 
   useEffect(() => {
     const items = Array.apply(null, Array(16)).map((item, index) => {
       return {
-        id: index,
+        id: `${index}kw`,
         name: `kwiatek_${index}`,
       };
     });
@@ -35,6 +31,7 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
               data={dataSource}
               renderItem={({ item }) => (
                 <Plant
+                  id={item.id}
                   name={item.name}
                   imgSrc={require("../assets/plants/default_plant.webp")}
                   navigation={navigation}
