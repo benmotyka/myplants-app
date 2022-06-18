@@ -1,17 +1,7 @@
 import styled from "styled-components/native";
-import { colors } from "../../styles/colors";
+import { IconContainer } from "../../styles/shared";
 
-export const IconContainer = styled.TouchableOpacity`
-  position: absolute;
+export const IconWrapper = styled(IconContainer)`
   top: 20px;
   left: 20px;
-  width: 50px;
-  height: 50px;
-  background-color: ${colors.lightGrey};
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-  z-index: 2000;
 `;

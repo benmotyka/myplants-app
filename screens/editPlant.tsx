@@ -6,6 +6,7 @@ import {
   ScreenContainer,
   ColumnCenterWrapper,
   InputsWrapper,
+  IconContainer
 } from "../styles/shared";
 import { Formik } from "formik";
 import { ActivityIndicator, Text, View } from "react-native";
@@ -13,14 +14,16 @@ import BasicTextInput from "../components/BasicTextInput/BasicTextInput";
 import BasicImageInput from "../components/BasicImageInput/BasicImageInput";
 import BasicButton from "../components/BasicButton/BasicButton";
 import { IPlant } from "../interfaces/IPlant";
+import { MaterialIcons } from "@expo/vector-icons";
+import { colors } from "../styles/colors";
 
 type EditPlantProps = NativeStackScreenProps<RootStackParamList, "editPlant">;
 
 const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
+  const plantId = route.params.plantId
   const [fetchedPlant, setFetchedPlant] = React.useState<IPlant>();
 
   React.useEffect(() => {
-    const plantId = route.params.plantId
     // const plant = getPlantById(plantId)
     setFetchedPlant({
       id: plantId,
@@ -29,10 +32,21 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
     });
   }, []);
 
+  const handleDelete = () => {
+    console.log('delete', plantId)
+  }
+
   return (
     <ScreenContainer>
       <ColumnCenterWrapper>
         <Back navigation={navigation} />
+        <IconContainer style={{top: 20, right: 20}} onPress={handleDelete}>
+        <MaterialIcons
+          name="delete"
+          size={24}
+          color={colors.alert}
+        />
+        </IconContainer>
         {fetchedPlant ? (
           <Formik
             initialValues={{

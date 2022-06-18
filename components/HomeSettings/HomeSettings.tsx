@@ -1,6 +1,6 @@
 import React from "react";
 import { Entypo } from "@expo/vector-icons";
-import { IconContainer, MenuContainer } from "./HomeSettings.styles";
+import { IconWrapper, MenuContainer } from "./HomeSettings.styles";
 import { MaterialIcons } from "@expo/vector-icons";
 import { colors } from "../../styles/colors";
 import { HomeSettingsProps } from "./HomeSettings.interface";
@@ -27,19 +27,19 @@ const HomeSettings = ({ navigation }: HomeSettingsProps): JSX.Element => {
   const [showMenu, setShowMenu] = React.useState(false);
   return (
     <>
-      <IconContainer onPress={() => setShowMenu(!showMenu)}>
+      <IconWrapper onPress={() => setShowMenu(!showMenu)}>
         <MaterialIcons
           style={{ transform: [{ rotate: showMenu ? "180deg" : "0deg" }] }}
           name="keyboard-arrow-up"
           size={ICON_SIZE_PX}
           color={colors.lightBlack}
         />
-      </IconContainer>
+      </IconWrapper>
       {/* TODO: transition */}
       {showMenu ? (
         <MenuContainer onPress={() => setShowMenu(false)}>
           {settingsItems.map((item, index) => (
-            <IconContainer
+            <IconWrapper
               key={item.name}
               style={{ bottom: ITEMS_OFFSET_PX + (index + 1) * ITEMS_MARGIN_PX }}
               onPress={() => {
@@ -48,7 +48,7 @@ const HomeSettings = ({ navigation }: HomeSettingsProps): JSX.Element => {
               }}
             >
               {item.icon}
-            </IconContainer>
+            </IconWrapper>
           ))}
         </MenuContainer>
       ) : null}

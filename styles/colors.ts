@@ -4,5 +4,6 @@ export const colors = {
     lightBlack: "#413F42",
     grey: "#D0C9C0",
     lightGrey: "#EEEEEE",
-    thumbStyle: "#C4DDFF"
+    thumbStyle: "#C4DDFF",
+    alert: "#F94C66"
 }
