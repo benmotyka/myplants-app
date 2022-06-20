@@ -109,6 +109,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
               <BasicButton
                 onPress={handleDelete}
                 text="Delete"
+                warning={true}
               />
             </ModalItem>
             <ModalItem>

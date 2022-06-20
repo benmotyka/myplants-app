@@ -13,7 +13,8 @@ margin-bottom: 5px;
 padding: 0 5px;
 `
 
-export const ItemWrapper = styled.TouchableOpacity`
+export const ItemWrapper = styled.View`
+margin-top: 10px;
 `
 
 export const ItemText = styled.Text`

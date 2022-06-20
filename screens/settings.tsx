@@ -3,6 +3,7 @@ import React from "react";
 import { View } from "react-native";
 import { RootStackParamList } from "../App";
 import Back from "../components/Back/Back";
+import BasicButton from "../components/BasicButton/BasicButton";
 import SettingsHeader from "../components/Settings/SettingsHeader";
 import SettingsItem from "../components/Settings/SettingsItem";
 import { ColumnCenterWrapper, ScreenContainer } from "../styles/shared";
@@ -16,13 +17,42 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
       <ColumnCenterWrapper>
         <View style={{ width: "85%", marginBottom: 50 }}>
           <SettingsHeader text="Settings" />
-          <SettingsItem text="Application" link="account" />
-          <SettingsItem text="Notifications" link="account" />
+          <SettingsItem>
+          <BasicButton
+            onPress={() => {
+              console.log("");
+            }}
+            text="Application"
+          />
+          </SettingsItem>
+          <SettingsItem>
+          <BasicButton
+            onPress={() => {
+              console.log("");
+            }}
+            text="Notifications"
+          />
+          </SettingsItem>
         </View>
         <View style={{ width: "85%", marginBottom: 50 }}>
           <SettingsHeader text="Account" />
-          <SettingsItem text="My account" link="account" />
-          <SettingsItem text="Log out" link="account" />
+          <SettingsItem>
+          <BasicButton
+            onPress={() => {
+              console.log("");
+            }}
+            text="My account"
+          />
+          </SettingsItem>
+          <SettingsItem>
+          <BasicButton
+            onPress={() => {
+              console.log("");
+            }}
+            text="Log out"
+            warning={true}
+          />
+          </SettingsItem>
         </View>
       </ColumnCenterWrapper>
     </ScreenContainer>
