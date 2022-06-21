@@ -16,7 +16,7 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
   const [showModal, setShowModal] = React.useState(false);
 
   const handleLogOut = () => {
-    console.log('logout')
+    navigation.navigate("login");
   }
 
   return (

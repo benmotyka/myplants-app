@@ -21,6 +21,7 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
           initialValues={{ name: "", description: "", image: "" }}
           onSubmit={(values) => {
             console.log(values)
+            navigation.navigate("home");
           }}
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (

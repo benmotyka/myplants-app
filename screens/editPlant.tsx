@@ -40,6 +40,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
 
   const handleDelete = () => {
     console.log("delete", plantId);
+    navigation.navigate("home");
   };
 
   return (
@@ -63,6 +64,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
             }}
             onSubmit={(values) => {
               console.log(values);
+              navigation.navigate("home");
             }}
           >
             {({ handleChange, handleBlur, handleSubmit, values }) => (
