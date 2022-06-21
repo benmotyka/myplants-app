@@ -27,7 +27,7 @@ type EditPlantProps = NativeStackScreenProps<RootStackParamList, "editPlant">;
 const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
   const plantId = route.params.plantId;
   const [fetchedPlant, setFetchedPlant] = React.useState<IPlant>();
-  const [showDeleteModal, setShowDeleteModal] = React.useState(false);
+  const [showModal, setShowModal] = React.useState(false);
 
   React.useEffect(() => {
     // const plant = getPlantById(plantId)
@@ -49,7 +49,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
         <IconContainer
           style={{ top: 20, right: 20 }}
           onPress={() => {
-            setShowDeleteModal(true);
+            setShowModal(true);
           }}
         >
           <MaterialIcons name="delete" size={24} color={colors.alert} />
@@ -99,8 +99,8 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
           <ActivityIndicator size="large" color="black" />
         )}
       </ColumnCenterWrapper>
-      {showDeleteModal ? (
-        <BasicModal toggleModal={setShowDeleteModal}>
+      {showModal ? (
+        <BasicModal toggleModal={setShowModal}>
           <View style={{ display: "flex" }}>
             <ModalItem>
               <ModalHeader>Are you sure to delete your plant?</ModalHeader>
@@ -114,7 +114,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
             </ModalItem>
             <ModalItem>
               <BasicButton onPress={() => {
-                setShowDeleteModal(false)
+                setShowModal(false)
               }} text="Cancel" />
             </ModalItem>
           </View>
