@@ -5,4 +5,5 @@ export interface BasicTextInputProps {
     onBlur?: (...args: any[]) => void;
     placeholder?: string;
     textarea?: boolean;
+    hideInput?: boolean;
 }

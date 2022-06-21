@@ -24,9 +24,7 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
   }, []);
   return (
     <ScreenContainer>
-      <ScrollView>
         {dataSource ? (
-          <SafeAreaView>
             <FlatList
               data={dataSource}
               renderItem={({ item }) => (
@@ -41,9 +39,7 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
               keyExtractor={(item, index) => index.toString()}
               style={{ paddingBottom: 80 }}
             />
-          </SafeAreaView>
         ) : null}
-      </ScrollView>
       <HomeSettings navigation={navigation} />
     </ScreenContainer>
   );

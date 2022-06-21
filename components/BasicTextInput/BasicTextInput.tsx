@@ -11,6 +11,7 @@ const BasicTextInput = ({
   onChangeText,
   onBlur,
   textarea,
+  hideInput
 }: BasicTextInputProps): JSX.Element => {
   return (
     <InputWrapper>
@@ -22,6 +23,7 @@ const BasicTextInput = ({
         onBlur={onBlur}
         multiline={textarea}
         numberOfLines={textarea ? TEXTAREA_NUMBER_OF_LINES : 1}
+        secureTextEntry={hideInput}
       />
     </InputWrapper>
   );
