@@ -1,11 +1,11 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
-import { View } from "react-native";
 import { RootStackParamList } from "../App";
 import Back from "../components/Back/Back";
 import BasicButton from "../components/BasicButton/BasicButton";
 import BasicModal from "../components/BasicModal/BasicModal";
 import { ModalHeader, ModalItem } from "../components/BasicModal/BasicModal.styles";
+import { SettingsSection } from "../components/Settings/Settings.styles";
 import SettingsHeader from "../components/Settings/SettingsHeader";
 import SettingsItem from "../components/Settings/SettingsItem";
 import { ColumnCenterWrapper, ScreenContainer } from "../styles/shared";
@@ -23,7 +23,7 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
     <ScreenContainer>
       <Back navigation={navigation} />
       <ColumnCenterWrapper>
-        <View style={{ width: "85%", marginBottom: 50 }}>
+        <SettingsSection>
           <SettingsHeader text="Settings" />
           <SettingsItem>
           <BasicButton
@@ -50,8 +50,8 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
             important={true}
           />
           </SettingsItem>
-        </View>
-        <View style={{ width: "85%", marginBottom: 50 }}>
+        </SettingsSection>
+        <SettingsSection>
           <SettingsHeader text="Account" />
           <SettingsItem>
           <BasicButton
@@ -70,11 +70,10 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
             warning={true}
           />
           </SettingsItem>
-        </View>
+        </SettingsSection>
       </ColumnCenterWrapper>
       {showModal ? (
         <BasicModal toggleModal={setShowModal}>
-          <View style={{ display: "flex" }}>
             <ModalItem>
               <ModalHeader>Are you sure you want to log out?</ModalHeader>
             </ModalItem>
@@ -90,7 +89,6 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
                 setShowModal(false)
               }} text="Cancel" />
             </ModalItem>
-          </View>
         </BasicModal>
       ) : null}
     </ScreenContainer>

@@ -1,13 +1,13 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Formik } from "formik";
 import React from "react";
-import { View } from "react-native";
 import { RootStackParamList } from "../App";
 import BasicButton from "../components/BasicButton/BasicButton";
 import BasicTextInput from "../components/BasicTextInput/BasicTextInput";
 import {
   ColumnCenterWrapper,
   InputsWrapper,
+  MarginTopView,
   ScreenContainer,
 } from "../styles/shared";
 
@@ -19,9 +19,10 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
       <ColumnCenterWrapper>
         <Formik
           initialValues={{ name: "", password: "" }}
-          onSubmit={(values) => {
+          onSubmit={(values, {resetForm}) => {
             console.log(values);
             navigation.navigate("home");
+            resetForm()
           }}
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
@@ -41,12 +42,12 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
                 value={values.password}
                 hideInput={true}
               />
-              <View style={{marginTop: 50}}>
+              <MarginTopView>
               <BasicButton
                 onPress={handleSubmit as (values: any) => void}
                 text="Submit"
               />
-              </View>
+              </MarginTopView>
             </InputsWrapper>
           )}
         </Formik>

@@ -22,3 +22,8 @@ font-size: 20px;
 padding: 10px 5px;
 font-family: 'Inter_200ExtraLight';
 `
+
+export const SettingsSection = styled.View`
+width: 85%;
+margin-bottom: 50px;
+`

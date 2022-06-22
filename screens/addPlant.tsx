@@ -2,9 +2,8 @@ import React from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../App";
 import Back from "../components/Back/Back";
-import { ScreenContainer, ColumnCenterWrapper, InputsWrapper } from "../styles/shared";
+import { ScreenContainer, ColumnCenterWrapper, InputsWrapper, MarginTopView } from "../styles/shared";
 import { Formik } from "formik";
-import { View } from "react-native";
 import BasicTextInput from "../components/BasicTextInput/BasicTextInput";
 import BasicImageInput from "../components/BasicImageInput/BasicImageInput";
 import BasicButton from "../components/BasicButton/BasicButton";
@@ -19,9 +18,10 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
         <Back navigation={navigation} />
         <Formik
           initialValues={{ name: "", description: "", image: "" }}
-          onSubmit={(values) => {
+          onSubmit={(values, {resetForm}) => {
             console.log(values)
             navigation.navigate("home");
+            resetForm()
           }}
         >
           {({ handleChange, handleBlur, handleSubmit, values }) => (
@@ -42,12 +42,12 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
                 value={values.description}
                 textarea={true}
               />
-              <View style={{marginTop: 50}}>
+              <MarginTopView>
               <BasicButton
                 onPress={handleSubmit as (values: any) => void}
                 text="Add plant"
               />
-              </View>
+              </MarginTopView>
             </InputsWrapper>
           )}
         </Formik>

@@ -7,9 +7,10 @@ import {
   ColumnCenterWrapper,
   InputsWrapper,
   IconContainer,
+  MarginTopView,
 } from "../styles/shared";
 import { Formik } from "formik";
-import { ActivityIndicator, Text, View } from "react-native";
+import { ActivityIndicator } from "react-native";
 import BasicTextInput from "../components/BasicTextInput/BasicTextInput";
 import BasicImageInput from "../components/BasicImageInput/BasicImageInput";
 import BasicButton from "../components/BasicButton/BasicButton";
@@ -62,9 +63,10 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
               description: fetchedPlant.description || "",
               image: fetchedPlant.image || "",
             }}
-            onSubmit={(values) => {
+            onSubmit={(values, {resetForm}) => {
               console.log(values);
               navigation.navigate("home");
+              resetForm()
             }}
           >
             {({ handleChange, handleBlur, handleSubmit, values }) => (
@@ -88,12 +90,12 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
                   onBlur={handleBlur("description")}
                   textarea={true}
                 />
-                <View style={{ marginTop: 50 }}>
+                <MarginTopView>
                   <BasicButton
                     onPress={handleSubmit as (values: any) => void}
                     text="Submit changes"
                   />
-                </View>
+                </MarginTopView>
               </InputsWrapper>
             )}
           </Formik>
@@ -103,7 +105,6 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
       </ColumnCenterWrapper>
       {showModal ? (
         <BasicModal toggleModal={setShowModal}>
-          <View style={{ display: "flex" }}>
             <ModalItem>
               <ModalHeader>Are you sure to delete your plant?</ModalHeader>
             </ModalItem>
@@ -119,7 +120,6 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
                 setShowModal(false)
               }} text="Cancel" />
             </ModalItem>
-          </View>
         </BasicModal>
       ) : null}
     </ScreenContainer>
