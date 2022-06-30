@@ -24,6 +24,26 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
       <Back navigation={navigation} />
       <ColumnCenterWrapper>
         <SettingsSection>
+        <SettingsHeader text="Plants" />
+        <SettingsItem>
+          <BasicButton
+            onPress={() => {
+              console.log("");
+            }}
+            text="Share your plants"
+            important={true}
+          />
+          </SettingsItem>
+          <SettingsItem>
+          <BasicButton
+            onPress={() => {
+              console.log("");
+            }}
+            text="Import plants"
+          />
+          </SettingsItem>
+        </SettingsSection>
+        <SettingsSection>
           <SettingsHeader text="Settings" />
           <SettingsItem>
           <BasicButton
@@ -39,15 +59,6 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
               console.log("");
             }}
             text="Notifications"
-          />
-          </SettingsItem>
-          <SettingsItem>
-          <BasicButton
-            onPress={() => {
-              console.log("");
-            }}
-            text="Share your plants"
-            important={true}
           />
           </SettingsItem>
         </SettingsSection>
