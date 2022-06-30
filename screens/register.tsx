@@ -2,9 +2,9 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Formik } from "formik";
 import React from "react";
 import { RootStackParamList } from "../App";
+import Back from "../components/Back/Back";
 import BasicButton from "../components/BasicButton/BasicButton";
 import BasicTextInput from "../components/BasicTextInput/BasicTextInput";
-import { FooterText, FooterWrapper } from "../styles/screens/login.styles";
 import {
   ColumnCenterWrapper,
   Header,
@@ -13,21 +13,28 @@ import {
   ScreenContainer,
 } from "../styles/shared";
 
-type LoginProps = NativeStackScreenProps<RootStackParamList, "login">;
+type RegisterProps = NativeStackScreenProps<RootStackParamList, "register">;
 
-const Login = ({ navigation }: LoginProps): JSX.Element => {
+interface RegisterForm {
+  name: string;
+  password: string;
+}
+
+const Register = ({ navigation }: RegisterProps): JSX.Element => {
+  const onSubmit = (
+    values: RegisterForm,
+    { resetForm }: { resetForm: () => void }
+  ) => {
+    console.log(values);
+    navigation.navigate("home");
+    resetForm()
+  };
   return (
     <ScreenContainer>
       <ColumnCenterWrapper>
-      <Header>Login</Header>
-        <Formik
-          initialValues={{ name: "", password: "" }}
-          onSubmit={(values, {resetForm}) => {
-            console.log(values);
-            navigation.navigate("home");
-            resetForm()
-          }}
-        >
+        <Back navigation={navigation} />
+        <Header>Register</Header>
+        <Formik initialValues={{ name: "", password: "" }} onSubmit={onSubmit}>
           {({ handleChange, handleBlur, handleSubmit, values }) => (
             <InputsWrapper>
               <BasicTextInput
@@ -46,20 +53,17 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
                 hideInput={true}
               />
               <MarginTopView>
-              <BasicButton
-                onPress={handleSubmit as (values: any) => void}
-                text="Submit"
-              />
+                <BasicButton
+                  onPress={handleSubmit as (values: any) => void}
+                  text="Submit"
+                />
               </MarginTopView>
             </InputsWrapper>
           )}
         </Formik>
       </ColumnCenterWrapper>
-      <FooterWrapper>
-            <FooterText onPress={() => navigation.navigate('register')}>Register now</FooterText>
-      </FooterWrapper>
     </ScreenContainer>
   );
 };
 
-export default Login;
+export default Register;

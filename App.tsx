@@ -16,9 +16,11 @@ import EditPlant from "./screens/editPlant";
 import SettingsScreen from "./screens/settings";
 import LoginScreen from "./screens/login";
 import { SafeAreaView } from "react-native";
+import RegisterScreen from "./screens/register";
 
 export type RootStackParamList = {
   login: undefined;
+  register: undefined;
   home: undefined;
   addPlant: undefined;
   settings: undefined;
@@ -49,11 +51,13 @@ export default function App() {
           }}
         >
           <Stack.Screen name="login" component={LoginScreen} />
+          <Stack.Screen name="register" component={RegisterScreen} />
           <Stack.Screen name="home" component={HomeScreen} />
           <Stack.Screen name="addPlant" component={AddPlantScreen} />
 
           <Stack.Screen name="settings" component={SettingsScreen} />
           <Stack.Screen name="editPlant" component={EditPlant} />
+          
         </Stack.Navigator>
       </NavigationContainer>
     </>
