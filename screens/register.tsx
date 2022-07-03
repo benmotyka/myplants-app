@@ -1,11 +1,12 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { Formik } from "formik";
+import { Formik, FormikHelpers } from "formik";
 import React from "react";
 import { RootStackParamList } from "../App";
 import Back from "../components/Back/Back";
 import BasicButton from "../components/BasicButton/BasicButton";
 import BasicTextInput from "../components/BasicTextInput/BasicTextInput";
 import plantsApi from "../config/api/plants";
+import { RegisterSchema } from "../schemas/Register.schema";
 import {
   ColumnCenterWrapper,
   Header,
@@ -17,48 +18,54 @@ import {
 type RegisterProps = NativeStackScreenProps<RootStackParamList, "register">;
 
 interface RegisterForm {
-  name: string;
+  username: string;
   password: string;
 }
 
 const Register = ({ navigation }: RegisterProps): JSX.Element => {
 
-  const [apiError, setApiError] = React.useState('')
-
   const onSubmit = async (
     values: RegisterForm,
-    { resetForm }: { resetForm: () => void }
+    {
+      resetForm,
+      setFieldError,
+    }: {
+      resetForm: FormikHelpers<RegisterForm>["resetForm"];
+      setFieldError: FormikHelpers<RegisterForm>["setFieldError"];
+    }
   ) => {
     try {
-      setApiError('')
-      const result = await plantsApi.post('/auth/register', {
-        username: values.name,
-        password: values.password
-      })
-      console.log(result)
-      resetForm()
+      const result = await plantsApi.post("/auth/register", {
+        username: values.username,
+        password: values.password,
+      });
+      console.log(result);
+      resetForm();
       navigation.navigate("home");
     } catch (error) {
-      console.error(error)
-      setApiError('Invalid credentials')
+      console.error(error);
     }
-
   };
+
   return (
     <ScreenContainer>
       <ColumnCenterWrapper>
         <Back navigation={navigation} />
         <Header>Register</Header>
-        <Formik initialValues={{ name: "", password: "" }} onSubmit={onSubmit}>
-          {({ handleChange, handleBlur, handleSubmit, values }) => (
+        <Formik
+          initialValues={{ username: "", password: "" }}
+          onSubmit={onSubmit}
+          validationSchema={RegisterSchema}
+        >
+          {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
             <InputsWrapper>
               <BasicTextInput
                 label="Username"
                 placeholder="Enter your username..."
-                onChangeText={handleChange("name")}
-                onBlur={handleBlur("name")}
-                value={values.name}
-                error={apiError}
+                onChangeText={handleChange("username")}
+                onBlur={handleBlur("username")}
+                value={values.username}
+                error={errors.username}
               />
               <BasicTextInput
                 label="Password"
@@ -67,7 +74,7 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
                 onBlur={handleBlur("password")}
                 value={values.password}
                 hideInput={true}
-                error={apiError}
+                error={errors.password}
               />
               <MarginTopView>
                 <BasicButton
