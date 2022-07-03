@@ -5,6 +5,7 @@ import { RootStackParamList } from "../App";
 import Back from "../components/Back/Back";
 import BasicButton from "../components/BasicButton/BasicButton";
 import BasicTextInput from "../components/BasicTextInput/BasicTextInput";
+import plantsApi from "../config/api/plants";
 import {
   ColumnCenterWrapper,
   Header,
@@ -21,13 +22,27 @@ interface RegisterForm {
 }
 
 const Register = ({ navigation }: RegisterProps): JSX.Element => {
-  const onSubmit = (
+
+  const [apiError, setApiError] = React.useState('')
+
+  const onSubmit = async (
     values: RegisterForm,
     { resetForm }: { resetForm: () => void }
   ) => {
-    console.log(values);
-    navigation.navigate("home");
-    resetForm()
+    try {
+      setApiError('')
+      const result = await plantsApi.post('/auth/register', {
+        username: values.name,
+        password: values.password
+      })
+      console.log(result)
+      resetForm()
+      navigation.navigate("home");
+    } catch (error) {
+      console.error(error)
+      setApiError('Invalid credentials')
+    }
+
   };
   return (
     <ScreenContainer>
@@ -43,6 +58,7 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
                 onChangeText={handleChange("name")}
                 onBlur={handleBlur("name")}
                 value={values.name}
+                error={apiError}
               />
               <BasicTextInput
                 label="Password"
@@ -51,6 +67,7 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
                 onBlur={handleBlur("password")}
                 value={values.password}
                 hideInput={true}
+                error={apiError}
               />
               <MarginTopView>
                 <BasicButton

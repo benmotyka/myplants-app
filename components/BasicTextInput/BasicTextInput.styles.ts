@@ -2,8 +2,10 @@ import styled from "styled-components/native";
 import { colors } from "../../styles/colors";
 
 export const InputWrapper = styled.View`
-margin: 10px 0;
+margin-top: 10px;
 width: 100%;
+position: relative;
+padding-bottom: 20px;
 ` 
 
 export const Input = styled.TextInput<{errorBorder: boolean;}>`
@@ -29,4 +31,6 @@ font-size: 12px;
 font-family: 'Inter_300Light';
 color: ${colors.alert};
 margin-top: 3px;
+position: absolute;
+bottom: 0;
 `
