@@ -1,6 +1,6 @@
 import React from "react";
 import { BasicTextInputProps } from "./BasicTextInput.interface";
-import { Input, InputWrapper, InputLabel } from "./BasicTextInput.styles";
+import { Input, InputWrapper, InputLabel, ErrorWrapper } from "./BasicTextInput.styles";
 
 const TEXTAREA_NUMBER_OF_LINES = 4;
 
@@ -11,7 +11,8 @@ const BasicTextInput = ({
   onChangeText,
   onBlur,
   textarea,
-  hideInput
+  hideInput,
+  error
 }: BasicTextInputProps): JSX.Element => {
   return (
     <InputWrapper>
@@ -24,7 +25,9 @@ const BasicTextInput = ({
         multiline={textarea}
         numberOfLines={textarea ? TEXTAREA_NUMBER_OF_LINES : 1}
         secureTextEntry={hideInput}
+        errorBorder={!!error}
       />
+    <ErrorWrapper>{error}</ErrorWrapper>
     </InputWrapper>
   );
 };

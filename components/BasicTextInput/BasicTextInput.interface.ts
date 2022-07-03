@@ -6,4 +6,5 @@ export interface BasicTextInputProps {
     placeholder?: string;
     textarea?: boolean;
     hideInput?: boolean;
+    error?: string;
 }
