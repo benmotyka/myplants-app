@@ -22,6 +22,7 @@ import {
   ModalHeader,
   ModalItem,
 } from "../components/BasicModal/BasicModal.styles";
+import Loader from "../components/Loader/Loader";
 
 type EditPlantProps = NativeStackScreenProps<RootStackParamList, "editPlant">;
 
@@ -100,7 +101,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
             )}
           </Formik>
         ) : (
-          <ActivityIndicator size="large" color="black" />
+          <Loader/>
         )}
       </ColumnCenterWrapper>
       {showModal ? (

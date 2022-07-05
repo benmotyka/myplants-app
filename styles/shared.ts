@@ -53,3 +53,7 @@ export const Header = styled.Text`
   font-family: "Inter_300Light";
   margin-bottom: 20px;
 `;
+
+export const LoaderWrapper = styled.View`
+margin-top: 100px;
+`
