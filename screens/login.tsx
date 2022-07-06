@@ -18,12 +18,17 @@ import {
 import plantsApi from "../config/api/plants";
 import Loader from "../components/Loader/Loader";
 import fakeLoader from "../util/fakeLoader";
+import { setItem } from "../store/storage";
 
 type LoginProps = NativeStackScreenProps<RootStackParamList, "login">;
 
 interface LoginForm {
   username: string;
   password: string;
+}
+
+interface LoginResponse {
+  access_token: string;
 }
 
 const Login = ({ navigation }: LoginProps): JSX.Element => {
@@ -41,16 +46,15 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
     try {
       setLoading(true);
       await fakeLoader();
-      const result = await plantsApi.post("/auth/login", {
+      const result = await plantsApi.post<LoginResponse>("/auth/login", {
         username: values.username,
         password: values.password,
       });
-      console.log("===");
-      console.log(result);
-      console.log("===");
+      await setItem('jwt', result.data.access_token)
       resetForm();
       navigation.navigate("home");
     } catch (error) {
+      console.error(error)
       setFieldError("username", "Invalid username or password");
     } finally {
       setLoading(false);
