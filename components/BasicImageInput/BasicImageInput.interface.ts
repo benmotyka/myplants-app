@@ -1,4 +1,4 @@
 export interface BasicImageInputProps {
-    image: string;
+    image?: string;
     setImage: (...args: any[]) => void;
 }

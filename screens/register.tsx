@@ -22,6 +22,10 @@ interface RegisterForm {
   password: string;
 }
 
+interface RegisterResponse {
+  status: string;
+}
+
 const Register = ({ navigation }: RegisterProps): JSX.Element => {
 
   const onSubmit = async (
@@ -35,11 +39,10 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
     }
   ) => {
     try {
-      const result = await plantsApi.post("/auth/register", {
+      await plantsApi.post<RegisterResponse>("/auth/register", {
         username: values.username,
         password: values.password,
       });
-      console.log(result);
       resetForm();
       navigation.navigate("home");
     } catch (error) {
