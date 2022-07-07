@@ -2,18 +2,16 @@ import { Platform } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const WEB_PLATFORM = 'web'
+const isPlatformWeb = () => (Platform.OS ===  'web')
 
-export const setItem = async (key: string, value: string) => {
-    if (Platform.OS === WEB_PLATFORM) {
-        return await AsyncStorage.setItem(key, value)
-    } 
-    return await SecureStore.setItemAsync(key, value)
+export const setItem = (key: string, value: string) => {
+    return isPlatformWeb() ? AsyncStorage.setItem(key, value) : SecureStore.setItemAsync(key, value)
 }
 
-export const getItem = async (key: string) => {
-    if (Platform.OS === WEB_PLATFORM) {
-        return await AsyncStorage.getItem(key)
-    } 
-    return await SecureStore.getItemAsync(key)
+export const getItem = (key: string) => {
+    return isPlatformWeb() ? AsyncStorage.getItem(key) : SecureStore.getItemAsync(key)
+}
+
+export const removeItem = (key: string) => {
+    return isPlatformWeb() ? AsyncStorage.removeItem(key) : SecureStore.deleteItemAsync(key)
 }

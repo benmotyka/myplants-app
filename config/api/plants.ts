@@ -12,9 +12,7 @@ const plantsApi = axios.create({
 plantsApi.interceptors.response.use(
   (response) => response,
   (error) => {
-    console.log(error)
-    console.log('PP')
-    return Promise.reject(error);
+    return Promise.reject(error.response?.data?.message);
   }
 );
 export default plantsApi;

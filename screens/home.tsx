@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList, SafeAreaView, ScrollView } from "react-native";
+import { FlatList } from "react-native";
 
 import Plant from "../components/Plant/Plant";
 import { RootStackParamList } from "../App";
@@ -7,21 +7,24 @@ import { ScreenContainer } from "../styles/shared";
 import HomeSettings from "../components/HomeSettings/HomeSettings";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { IPlant } from "../interfaces/IPlant";
+import { getUserPlants } from "../services/plants/getUserPlants";
+import { useIsFocused } from "@react-navigation/native";
 
 type HomeProps = NativeStackScreenProps<RootStackParamList, "home">;
 
 const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
   const [dataSource, setDataSource] = useState<IPlant[]>();
+  
+  const isFocused = useIsFocused();
 
   useEffect(() => {
-    const items = Array.apply(null, Array(16)).map((item, index) => {
-      return {
-        id: `${index}kw`,
-        name: `kwiatek_${index}`,
-      };
-    });
-    setDataSource(items);
-  }, []);
+    if (!isFocused) return
+    (async() => {
+      const items = await getUserPlants({navigation})
+      setDataSource(items)
+    })()
+  }, [isFocused]);
+
   return (
     <ScreenContainer>
         {dataSource ? (
