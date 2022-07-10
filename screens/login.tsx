@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Formik, FormikHelpers } from "formik";
-import React from "react";
+import React, { useEffect } from "react";
 import { RootStackParamList } from "../App";
 import BasicButton from "../components/BasicButton/BasicButton";
 import BasicTextInput from "../components/BasicTextInput/BasicTextInput";
@@ -18,7 +18,8 @@ import {
 import plantsApi from "../config/api/plants";
 import Loader from "../components/Loader/Loader";
 import fakeLoader from "../util/fakeLoader";
-import { setItem } from "../store/storage";
+import { setItem, getItem } from "../store/storage";
+import { useIsFocused } from "@react-navigation/native";
 
 type LoginProps = NativeStackScreenProps<RootStackParamList, "login">;
 
@@ -33,6 +34,17 @@ interface LoginResponse {
 
 const Login = ({ navigation }: LoginProps): JSX.Element => {
   const [loading, setLoading] = React.useState(false);
+
+  const isFocused = useIsFocused();
+
+  useEffect(() => {
+    if (!isFocused) return
+    (async() => {
+      const jwt = await getItem('jwt');
+      if (jwt) return navigation.navigate("home");
+    })()
+  }, [isFocused])
+
   const onSubmit = async (
     values: LoginForm,
     {
