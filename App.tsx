@@ -1,8 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import AppLoading from "expo-app-loading";
-import {
-  createNativeStackNavigator,
-} from "@react-navigation/native-stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import {
   useFonts,
@@ -50,14 +48,21 @@ export default function App() {
             headerShown: false,
           }}
         >
-          <Stack.Screen name="login" component={LoginScreen} />
+          <Stack.Screen
+            name="login"
+            component={LoginScreen}
+            options={{ gestureEnabled: false }}
+          />
           <Stack.Screen name="register" component={RegisterScreen} />
-          <Stack.Screen name="home" component={HomeScreen} />
+          <Stack.Screen
+            name="home"
+            component={HomeScreen}
+            options={{ gestureEnabled: false }}
+          />
           <Stack.Screen name="addPlant" component={AddPlantScreen} />
 
           <Stack.Screen name="settings" component={SettingsScreen} />
           <Stack.Screen name="editPlant" component={EditPlant} />
-          
         </Stack.Navigator>
       </NavigationContainer>
     </>
