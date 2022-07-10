@@ -3,7 +3,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../App";
 import Back from "../components/Back/Back";
 import {
-  ScreenContainer,
+  KeyboardScreen,
   ColumnCenterWrapper,
   InputsWrapper,
   MarginTopView,
@@ -16,6 +16,7 @@ import BasicButton from "../components/BasicButton/BasicButton";
 import { getItem } from "../store/storage";
 import Loader from "../components/Loader/Loader";
 import plantsApi from "../config/api/plants";
+import { AddPlantSchema } from "../schemas/AddPlant.schema";
 
 type AddPlantProps = NativeStackScreenProps<RootStackParamList, "addPlant">;
 
@@ -41,34 +42,37 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
     try {
       setLoading(true);
       const jwt = await getItem("jwt");
-      console.log(values)
       const result = await plantsApi.post("/plants", {
-        name: values.name,
-        description: values.description,
+        name: values.name.trim(),
+        description: values.description?.trim(),
         imageSrc: values.image
       }, {
         headers: {
           Authorization: `Bearer ${jwt}`
         }
       });
-      console.log(jwt);
-      console.log(result);
       resetForm();
-      // navigation.navigate("home");
+      navigation.navigate("home");
     } catch (error) {
+      console.log(error)
     } finally {
       setLoading(false);
     }
   };
   return (
-    <ScreenContainer>
+    <KeyboardScreen
+    contentContainerStyle={{paddingBottom: 50}}
+    resetScrollToCoords={{ x: 0, y: 0 }}
+    scrollEnabled={true}
+    >
       <ColumnCenterWrapper>
         <Back navigation={navigation} />
         <Formik
           initialValues={{ name: "", description: "", image: "" }}
+          validationSchema={AddPlantSchema}
           onSubmit={onSubmit}
         >
-          {({ handleChange, handleBlur, handleSubmit, values }) =>
+          {({ handleChange, handleBlur, handleSubmit, values, errors }) =>
             loading ? (
               <LoaderWrapper>
                 <Loader />
@@ -85,6 +89,7 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
                   onChangeText={handleChange("name")}
                   onBlur={handleBlur("name")}
                   value={values.name}
+                  error={errors.name}
                 />
                 <BasicTextInput
                   label="Description"
@@ -93,6 +98,7 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
                   onBlur={handleBlur("description")}
                   value={values.description}
                   textarea={true}
+                  error={errors.description}
                 />
                 <MarginTopView>
                   <BasicButton
@@ -105,7 +111,7 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
           }
         </Formik>
       </ColumnCenterWrapper>
-    </ScreenContainer>
+    </KeyboardScreen>
   );
 };
 

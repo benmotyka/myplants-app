@@ -8,6 +8,7 @@ import { ModalHeader, ModalItem } from "../components/BasicModal/BasicModal.styl
 import { SettingsSection } from "../components/Settings/Settings.styles";
 import SettingsHeader from "../components/Settings/SettingsHeader";
 import SettingsItem from "../components/Settings/SettingsItem";
+import { removeItem } from "../store/storage";
 import { ColumnCenterWrapper, ScreenContainer } from "../styles/shared";
 
 type SettingsProps = NativeStackScreenProps<RootStackParamList, "settings">;
@@ -16,6 +17,7 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
   const [showModal, setShowModal] = React.useState(false);
 
   const handleLogOut = () => {
+    removeItem('jwt')
     navigation.navigate("login");
   }
 
@@ -23,7 +25,7 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
     <ScreenContainer>
       <Back navigation={navigation} />
       <ColumnCenterWrapper>
-        <SettingsSection>
+        {/* <SettingsSection>
         <SettingsHeader text="Plants" />
         <SettingsItem>
           <BasicButton
@@ -42,7 +44,7 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
             text="Import plants"
           />
           </SettingsItem>
-        </SettingsSection>
+        </SettingsSection> */}
         <SettingsSection>
           <SettingsHeader text="Settings" />
           <SettingsItem>

@@ -20,8 +20,8 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
   useEffect(() => {
     if (!isFocused) return
     (async() => {
-      const items = await getUserPlants({navigation})
-      setDataSource(items)
+      const { plants } = await getUserPlants({navigation})
+      setDataSource(plants)
     })()
   }, [isFocused]);
 
@@ -40,7 +40,7 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
               )}
               numColumns={2}
               keyExtractor={(item, index) => index.toString()}
-              style={{ paddingBottom: 80 }}
+              contentContainerStyle={{paddingBottom: 100}}
             />
         ) : null}
       <HomeSettings navigation={navigation} />

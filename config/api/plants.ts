@@ -2,7 +2,7 @@ import axios from "axios";
 
 const plantsApi = axios.create({
   // @TODO: add env
-  baseURL: "http://localhost:3000",
+  baseURL: "https://ben-plants-api.herokuapp.com",
   timeout: 4000,
   headers: {
     Accept: "application/json",

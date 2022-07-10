@@ -1,6 +1,7 @@
 import styled from "styled-components/native";
 import { colors } from "../styles/colors";
 import { Dimensions } from "react-native";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 export const screenWidth = Dimensions.get("screen").width;
 export const screenHeight = Dimensions.get("screen").height;
@@ -15,6 +16,9 @@ export const ScreenContainer = styled.View`
   width: 100%;
   position: relative;
 `;
+
+export const KeyboardScreen = styled(KeyboardAwareScrollView)`
+`
 
 export const ColumnCenterWrapper = styled.View`
   display: flex;
