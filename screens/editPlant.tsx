@@ -23,26 +23,24 @@ import {
   ModalItem,
 } from "../components/BasicModal/BasicModal.styles";
 import Loader from "../components/Loader/Loader";
-import { useSelector } from 'react-redux';
+import { useSelector } from "react-redux";
 import { State } from "../store/reducers";
 
 type EditPlantProps = NativeStackScreenProps<RootStackParamList, "editPlant">;
 
 const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
   const plantId = route.params.plantId;
-  const [fetchedPlant, setFetchedPlant] = React.useState<IPlant>();
+  const [selectedPlant, setSelectedPlant] = React.useState<IPlant>();
   const [showModal, setShowModal] = React.useState(false);
-  const userPlants = useSelector((state: State) => state.plants);
+  const { userPlants }: { userPlants: IPlant[] } = useSelector(
+    (state: State) => state.plants
+  );
 
-  console.log(userPlants)
+  const fetchedPlant = true;
   React.useEffect(() => {
-    // const plant = getPlantById(plantId)
-    setFetchedPlant({
-      id: plantId,
-      name: "kwiat",
-      description: "opis mojego kwiatka",
-    });
-  }, []);
+    const plant = userPlants.find((plant) => plant.id === plantId);
+    setSelectedPlant(plant)
+  }, [userPlants]);
 
   const handleDelete = () => {
     console.log("delete", plantId);
@@ -61,17 +59,17 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
         >
           <MaterialIcons name="delete" size={24} color={colors.alert} />
         </IconContainer>
-        {fetchedPlant ? (
+        {selectedPlant ? (
           <Formik
             initialValues={{
-              name: fetchedPlant.name,
-              description: fetchedPlant.description || "",
-              image: fetchedPlant.image || "",
+              name: selectedPlant.name,
+              description: selectedPlant.description,
+              image: selectedPlant.imgSrc,
             }}
-            onSubmit={(values, {resetForm}) => {
+            onSubmit={(values, { resetForm }) => {
               console.log(values);
               navigation.navigate("home");
-              resetForm()
+              resetForm();
             }}
           >
             {({ handleChange, handleBlur, handleSubmit, values }) => (
@@ -105,26 +103,25 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
             )}
           </Formik>
         ) : (
-          <Loader/>
+          <Loader />
         )}
       </ColumnCenterWrapper>
       {showModal ? (
         <BasicModal toggleModal={setShowModal}>
-            <ModalItem>
-              <ModalHeader>Are you sure to delete your plant?</ModalHeader>
-            </ModalItem>
-            <ModalItem>
-              <BasicButton
-                onPress={handleDelete}
-                text="Delete"
-                warning={true}
-              />
-            </ModalItem>
-            <ModalItem>
-              <BasicButton onPress={() => {
-                setShowModal(false)
-              }} text="Cancel" />
-            </ModalItem>
+          <ModalItem>
+            <ModalHeader>Are you sure to delete your plant?</ModalHeader>
+          </ModalItem>
+          <ModalItem>
+            <BasicButton onPress={handleDelete} text="Delete" warning={true} />
+          </ModalItem>
+          <ModalItem>
+            <BasicButton
+              onPress={() => {
+                setShowModal(false);
+              }}
+              text="Cancel"
+            />
+          </ModalItem>
         </BasicModal>
       ) : null}
     </ScreenContainer>

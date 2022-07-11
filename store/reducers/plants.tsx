@@ -1,3 +1,4 @@
+import { IPlant } from '../../interfaces/IPlant';
 import { USER_PLANTS } from '../types';
 
 const initialstate = {
@@ -6,11 +7,10 @@ const initialstate = {
 
 type Action = {
     type: string,
-    payload?: any
+    payload: IPlant[]
 }
 
 export default (state: any = initialstate, action: Action) => {
-    console.log('hejaa')
     switch (action.type) {
         case USER_PLANTS:
             return Object.assign({}, state, {
