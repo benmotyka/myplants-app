@@ -9,6 +9,8 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { IPlant } from "../interfaces/IPlant";
 import { getUserPlants } from "../services/plants/getUserPlants";
 import { useIsFocused } from "@react-navigation/native";
+import { useDispatch } from 'react-redux';
+import { plantsAction } from "../store/actions";
 
 type HomeProps = NativeStackScreenProps<RootStackParamList, "home">;
 
@@ -16,11 +18,15 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
   const [dataSource, setDataSource] = useState<IPlant[]>();
   
   const isFocused = useIsFocused();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!isFocused) return
     (async() => {
       const { plants } = await getUserPlants({navigation})
+      dispatch(plantsAction.setUserPlants(
+        plants
+      ));
       setDataSource(plants)
     })()
   }, [isFocused]);

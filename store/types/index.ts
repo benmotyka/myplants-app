@@ -1,0 +1,1 @@
+export const USER_PLANTS = 'USER_PLANTS';

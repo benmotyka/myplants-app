@@ -8,6 +8,8 @@ import {
   Inter_300Light,
 } from "@expo-google-fonts/inter";
 
+import { Provider } from "react-redux";
+
 import HomeScreen from "./screens/home";
 import AddPlantScreen from "./screens/addPlant";
 import EditPlant from "./screens/editPlant";
@@ -15,6 +17,7 @@ import SettingsScreen from "./screens/settings";
 import LoginScreen from "./screens/login";
 import { SafeAreaView } from "react-native";
 import RegisterScreen from "./screens/register";
+import store from "./store";
 
 export type RootStackParamList = {
   login: undefined;
@@ -38,7 +41,7 @@ export default function App() {
   }
 
   return (
-    <>
+    <Provider store={store}>
       <SafeAreaView>
         <StatusBar />
       </SafeAreaView>
@@ -65,6 +68,6 @@ export default function App() {
           <Stack.Screen name="editPlant" component={EditPlant} />
         </Stack.Navigator>
       </NavigationContainer>
-    </>
+    </Provider>
   );
 }

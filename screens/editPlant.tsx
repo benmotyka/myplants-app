@@ -23,6 +23,8 @@ import {
   ModalItem,
 } from "../components/BasicModal/BasicModal.styles";
 import Loader from "../components/Loader/Loader";
+import { useSelector } from 'react-redux';
+import { State } from "../store/reducers";
 
 type EditPlantProps = NativeStackScreenProps<RootStackParamList, "editPlant">;
 
@@ -30,7 +32,9 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
   const plantId = route.params.plantId;
   const [fetchedPlant, setFetchedPlant] = React.useState<IPlant>();
   const [showModal, setShowModal] = React.useState(false);
+  const userPlants = useSelector((state: State) => state.plants);
 
+  console.log(userPlants)
   React.useEffect(() => {
     // const plant = getPlantById(plantId)
     setFetchedPlant({
