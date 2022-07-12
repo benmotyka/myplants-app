@@ -17,7 +17,8 @@ import SettingsScreen from "./screens/settings";
 import LoginScreen from "./screens/login";
 import { SafeAreaView } from "react-native";
 import RegisterScreen from "./screens/register";
-import store from "./store";
+import { store, persistor } from "./store";
+import { PersistGate } from "redux-persist/integration/react";
 
 export type RootStackParamList = {
   login: undefined;
@@ -42,32 +43,34 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <SafeAreaView>
-        <StatusBar />
-      </SafeAreaView>
-      <NavigationContainer>
-        <Stack.Navigator
-          screenOptions={{
-            headerShown: false,
-          }}
-        >
-          <Stack.Screen
-            name="login"
-            component={LoginScreen}
-            options={{ gestureEnabled: false }}
-          />
-          <Stack.Screen name="register" component={RegisterScreen} />
-          <Stack.Screen
-            name="home"
-            component={HomeScreen}
-            options={{ gestureEnabled: false }}
-          />
-          <Stack.Screen name="addPlant" component={AddPlantScreen} />
+      <PersistGate loading={null} persistor={persistor}>
+        <SafeAreaView>
+          <StatusBar />
+        </SafeAreaView>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              headerShown: false,
+            }}
+          >
+            <Stack.Screen
+              name="login"
+              component={LoginScreen}
+              options={{ gestureEnabled: false }}
+            />
+            <Stack.Screen name="register" component={RegisterScreen} />
+            <Stack.Screen
+              name="home"
+              component={HomeScreen}
+              options={{ gestureEnabled: false }}
+            />
+            <Stack.Screen name="addPlant" component={AddPlantScreen} />
 
-          <Stack.Screen name="settings" component={SettingsScreen} />
-          <Stack.Screen name="editPlant" component={EditPlant} />
-        </Stack.Navigator>
-      </NavigationContainer>
+            <Stack.Screen name="settings" component={SettingsScreen} />
+            <Stack.Screen name="editPlant" component={EditPlant} />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </PersistGate>
     </Provider>
   );
 }
