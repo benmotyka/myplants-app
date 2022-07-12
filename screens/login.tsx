@@ -6,6 +6,7 @@ import BasicButton from "../components/BasicButton/BasicButton";
 import BasicTextInput from "../components/BasicTextInput/BasicTextInput";
 import { FooterText, FooterWrapper } from "../styles/screens/login.styles";
 import { LoginSchema } from "../schemas/Login.schema";
+import { useDispatch } from 'react-redux';
 
 import {
   ColumnCenterWrapper,
@@ -20,6 +21,7 @@ import Loader from "../components/Loader/Loader";
 import fakeLoader from "../util/fakeLoader";
 import { setItem, getItem } from "../store/storage";
 import { useIsFocused } from "@react-navigation/native";
+import { userAction } from "../store/actions";
 
 type LoginProps = NativeStackScreenProps<RootStackParamList, "login">;
 
@@ -36,6 +38,7 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
   const [loading, setLoading] = React.useState(false);
 
   const isFocused = useIsFocused();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!isFocused) return
@@ -62,6 +65,11 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
         username: values.username,
         password: values.password,
       });
+      dispatch(userAction.setUserDetails({
+        username: values.username,
+        jwt: result.data.access_token
+      }
+      ));
       await setItem('jwt', result.data.access_token)
       resetForm();
       navigation.navigate("home");

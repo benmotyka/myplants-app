@@ -36,7 +36,6 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
     (state: State) => state.plants
   );
 
-  const fetchedPlant = true;
   React.useEffect(() => {
     const plant = userPlants.find((plant) => plant.id === plantId);
     setSelectedPlant(plant)
