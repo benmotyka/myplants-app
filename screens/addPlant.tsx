@@ -60,7 +60,7 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
       resetForm();
       navigation.navigate("home");
     } catch (error) {
-      console.log(error)
+      console.error(error)
     } finally {
       setLoading(false);
     }
@@ -90,19 +90,19 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
                   setImage={handleChange("image")}
                 />
                 <BasicTextInput
+                  value={values.name}
                   label="Name"
                   placeholder="Enter your plant name..."
                   onChangeText={handleChange("name")}
                   onBlur={handleBlur("name")}
-                  value={values.name}
                   error={errors.name}
                 />
                 <BasicTextInput
+                  value={values.description}
                   label="Description"
                   placeholder="Enter your plant description..."
                   onChangeText={handleChange("description")}
                   onBlur={handleBlur("description")}
-                  value={values.description}
                   textarea={true}
                   error={errors.description}
                 />

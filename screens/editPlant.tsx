@@ -9,7 +9,7 @@ import {
   IconContainer,
   MarginTopView,
 } from "../styles/shared";
-import { Formik } from "formik";
+import { Formik, FormikHelpers } from "formik";
 import { ActivityIndicator } from "react-native";
 import BasicTextInput from "../components/BasicTextInput/BasicTextInput";
 import BasicImageInput from "../components/BasicImageInput/BasicImageInput";
@@ -25,25 +25,75 @@ import {
 import Loader from "../components/Loader/Loader";
 import { useSelector } from "react-redux";
 import { State } from "../store/reducers";
+import plantsApi from "../config/api/plants";
+import { IUserDetails } from "../interfaces/IUserDetails";
+import { EditPlantSchema } from "../schemas/EditPlant.schema";
 
 type EditPlantProps = NativeStackScreenProps<RootStackParamList, "editPlant">;
 
+interface EditPlantForm {
+  name: string;
+  description?: string;
+  image?: string;
+}
+
 const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
   const plantId = route.params.plantId;
+  const [loading, setLoading] = React.useState(false);
   const [selectedPlant, setSelectedPlant] = React.useState<IPlant>();
   const [showModal, setShowModal] = React.useState(false);
   const { userPlants }: { userPlants: IPlant[] } = useSelector(
     (state: State) => state.plants
   );
+  const { userDetails }: { userDetails: IUserDetails } = useSelector(
+    (state: State) => state.user
+  );
 
   React.useEffect(() => {
     const plant = userPlants.find((plant) => plant.id === plantId);
-    setSelectedPlant(plant)
+    setSelectedPlant(plant);
   }, [userPlants]);
 
-  const handleDelete = () => {
-    console.log("delete", plantId);
-    navigation.navigate("home");
+  const handleDelete = async () => {
+    try {
+      await plantsApi.delete(`/plants/${plantId}`, {
+        headers: {
+          Authorization: `Bearer ${userDetails.jwt}`,
+        },
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      navigation.navigate("home");
+    }
+  };
+
+  const handleEdit = async (
+    values: EditPlantForm,
+    {
+      setFieldError,
+    }: {
+      setFieldError: FormikHelpers<EditPlantForm>["setFieldError"];
+    }
+  ) =>{
+    try {
+      setLoading(true);
+      await plantsApi.put(`/plants`, {
+        id: plantId,
+        name: values.name,
+        description: values.description,
+        imageSrc: values.image,
+      },{
+        headers: {
+          Authorization: `Bearer ${userDetails.jwt}`,
+        },
+      });
+      navigation.navigate("home");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -65,24 +115,22 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
               description: selectedPlant.description,
               image: selectedPlant.imgSrc,
             }}
-            onSubmit={(values, { resetForm }) => {
-              console.log(values);
-              navigation.navigate("home");
-              resetForm();
-            }}
+            validationSchema={EditPlantSchema}
+            onSubmit={handleEdit}
           >
-            {({ handleChange, handleBlur, handleSubmit, values }) => (
+            {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
               <InputsWrapper>
                 <BasicImageInput
                   image={values.image}
                   setImage={handleChange("image")}
-                />
+                  />
                 <BasicTextInput
                   value={values.name}
                   label="Name"
                   placeholder="Enter your plant name..."
                   onChangeText={handleChange("name")}
                   onBlur={handleBlur("name")}
+                  error={errors.name}
                 />
                 <BasicTextInput
                   value={values.description}
@@ -91,6 +139,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
                   onChangeText={handleChange("description")}
                   onBlur={handleBlur("description")}
                   textarea={true}
+                  error={errors.description}
                 />
                 <MarginTopView>
                   <BasicButton

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { FlatList } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { useIsFocused } from "@react-navigation/native";
-import {  } from "react-redux";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import Plant from "../components/Plant/Plant";
@@ -36,7 +35,6 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
       });
       return data;
     } catch (error) {
-      console.log(error);
       throw new Error("error");
     }
   };
@@ -44,9 +42,14 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
   useEffect(() => {
     if (!isFocused) return;
     (async () => {
-      const { plants } = await getUserPlants();
-      dispatch(plantsAction.setUserPlants(plants));
-      setDataSource(plants);
+      try {
+        const { plants } = await getUserPlants();
+        dispatch(plantsAction.setUserPlants(plants));
+        setDataSource(plants);
+      } catch (error) {
+        console.error(error);
+        navigation.navigate("login");
+      }
     })();
   }, [isFocused]);
 

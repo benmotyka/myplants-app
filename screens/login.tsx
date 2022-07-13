@@ -44,8 +44,12 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!isFocused) return;
-    if (userDetails?.jwt) navigation.navigate("home");
+    try {
+      if (!isFocused) return;
+      if (userDetails?.jwt) navigation.navigate("home");
+    } catch (error) {
+      console.log(error);
+    }
   }, [isFocused]);
 
   const onSubmit = async (
