@@ -1,12 +1,18 @@
 import { IUserDetails } from '../../interfaces/IUserDetails';
-import { USER_DETAILS } from '../types';
+import { SET_USER_DETAILS, REMOVE_USER_DETAILS } from '../types';
 
 const setUserDetails = (payload: IUserDetails) => { 
   return({
-    type: USER_DETAILS,
+    type: SET_USER_DETAILS,
     payload,
   })};
+
+const removeUserDetails = () => { 
+  return({
+    type: REMOVE_USER_DETAILS,
+})};
   
   export default {
     setUserDetails,
+    removeUserDetails
   };

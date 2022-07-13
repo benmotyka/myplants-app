@@ -1,5 +1,5 @@
 import { IPlant } from "../../interfaces/IPlant";
-import { USER_PLANTS } from "../types";
+import { SET_USER_PLANTS } from "../types";
 
 interface IState {
   userPlants: IPlant[];
@@ -16,7 +16,7 @@ const initialstate: IState = {
   
 export default (state: IState = initialstate, action: Action) => {
   switch (action.type) {
-    case USER_PLANTS:
+    case SET_USER_PLANTS:
       return Object.assign({}, state, {
         userPlants: action.payload,
       });

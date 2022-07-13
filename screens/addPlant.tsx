@@ -1,5 +1,8 @@
 import React from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { Formik, FormikHelpers } from "formik";
+import { useSelector } from "react-redux";
+
 import { RootStackParamList } from "../App";
 import Back from "../components/Back/Back";
 import {
@@ -9,14 +12,14 @@ import {
   MarginTopView,
   LoaderWrapper,
 } from "../styles/shared";
-import { Formik, FormikHelpers } from "formik";
 import BasicTextInput from "../components/BasicTextInput/BasicTextInput";
 import BasicImageInput from "../components/BasicImageInput/BasicImageInput";
 import BasicButton from "../components/BasicButton/BasicButton";
-import { getItem } from "../store/storage";
 import Loader from "../components/Loader/Loader";
 import plantsApi from "../config/api/plants";
 import { AddPlantSchema } from "../schemas/AddPlant.schema";
+import { IUserDetails } from "../interfaces/IUserDetails";
+import { State } from "../store/reducers";
 
 type AddPlantProps = NativeStackScreenProps<RootStackParamList, "addPlant">;
 
@@ -28,6 +31,10 @@ interface AddPlantForm {
 
 const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
   const [loading, setLoading] = React.useState(false);
+
+  const { userDetails }: { userDetails: IUserDetails } = useSelector(
+    (state: State) => state.user
+  );
 
   const onSubmit = async (
     values: AddPlantForm,
@@ -41,14 +48,13 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
   ) => {
     try {
       setLoading(true);
-      const jwt = await getItem("jwt");
-      const result = await plantsApi.post("/plants", {
+      await plantsApi.post("/plants", {
         name: values.name.trim(),
         description: values.description?.trim(),
         imageSrc: values.image
       }, {
         headers: {
-          Authorization: `Bearer ${jwt}`
+          Authorization: `Bearer ${userDetails.jwt}`
         }
       });
       resetForm();

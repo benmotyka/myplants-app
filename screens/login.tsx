@@ -1,13 +1,13 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Formik, FormikHelpers } from "formik";
+import { useIsFocused } from "@react-navigation/native";
 import React, { useEffect } from "react";
-import { RootStackParamList } from "../App";
+import { useSelector, useDispatch } from "react-redux";
+
 import BasicButton from "../components/BasicButton/BasicButton";
 import BasicTextInput from "../components/BasicTextInput/BasicTextInput";
 import { FooterText, FooterWrapper } from "../styles/screens/login.styles";
 import { LoginSchema } from "../schemas/Login.schema";
-import { useDispatch } from 'react-redux';
-
 import {
   ColumnCenterWrapper,
   Header,
@@ -18,10 +18,10 @@ import {
 } from "../styles/shared";
 import plantsApi from "../config/api/plants";
 import Loader from "../components/Loader/Loader";
-import fakeLoader from "../util/fakeLoader";
-import { setItem, getItem } from "../store/storage";
-import { useIsFocused } from "@react-navigation/native";
 import { userAction } from "../store/actions";
+import { IUserDetails } from "../interfaces/IUserDetails";
+import { State } from "../store/reducers";
+import { RootStackParamList } from "../App";
 
 type LoginProps = NativeStackScreenProps<RootStackParamList, "login">;
 
@@ -36,17 +36,17 @@ interface LoginResponse {
 
 const Login = ({ navigation }: LoginProps): JSX.Element => {
   const [loading, setLoading] = React.useState(false);
+  const { userDetails }: { userDetails: IUserDetails } = useSelector(
+    (state: State) => state.user
+  );
 
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!isFocused) return
-    (async() => {
-      const jwt = await getItem('jwt');
-      if (jwt) return navigation.navigate("home");
-    })()
-  }, [isFocused])
+    if (!isFocused) return;
+    if (userDetails?.jwt) navigation.navigate("home");
+  }, [isFocused]);
 
   const onSubmit = async (
     values: LoginForm,
@@ -60,21 +60,20 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
   ) => {
     try {
       setLoading(true);
-      await fakeLoader();
       const result = await plantsApi.post<LoginResponse>("/auth/login", {
         username: values.username,
         password: values.password,
       });
-      dispatch(userAction.setUserDetails({
-        username: values.username,
-        jwt: result.data.access_token
-      }
-      ));
-      await setItem('jwt', result.data.access_token)
+      dispatch(
+        userAction.setUserDetails({
+          username: values.username,
+          jwt: result.data.access_token,
+        })
+      );
       resetForm();
       navigation.navigate("home");
     } catch (error) {
-      console.error(error)
+      console.error(error);
       setFieldError("username", "Invalid username or password");
     } finally {
       setLoading(false);

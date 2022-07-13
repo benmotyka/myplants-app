@@ -1,5 +1,5 @@
-export const USER_PLANTS = 'USER_PLANTS';
+export const SET_USER_PLANTS = 'SET_USER_PLANTS';
 
-export const USER_DETAILS = 'USER_DETAILS'
+export const SET_USER_DETAILS = 'SET_USER_DETAILS'
 
-export const JWT = 'JWT'
+export const REMOVE_USER_DETAILS = 'REMOVE_USER_DETAILS'
