@@ -8,6 +8,8 @@ import {
   Inter_300Light,
 } from "@expo-google-fonts/inter";
 
+import { AkayaKanadaka_400Regular } from '@expo-google-fonts/akaya-kanadaka';
+
 import { Provider } from "react-redux";
 
 import HomeScreen from "./screens/home";
@@ -35,6 +37,7 @@ export default function App() {
   let [fontsLoaded] = useFonts({
     Inter_200ExtraLight,
     Inter_300Light,
+    AkayaKanadaka_400Regular
   });
 
   if (!fontsLoaded) {

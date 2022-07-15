@@ -11,6 +11,7 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@expo-google-fonts/akaya-kanadaka": "^0.2.2",
     "@expo-google-fonts/dev": "^0.2.2",
     "@expo-google-fonts/inter": "^0.2.2",
     "@expo/vector-icons": "^13.0.0",
