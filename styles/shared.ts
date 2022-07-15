@@ -61,3 +61,10 @@ export const Header = styled.Text`
 export const LoaderWrapper = styled.View`
 margin-top: 100px;
 `
+
+export const Description = styled.Text`
+  font-size: 13px;
+  font-family: "Inter_300Light";
+  background-color: ${colors.lightGrey};
+  opacity: 0.6;
+`

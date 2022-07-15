@@ -7,8 +7,8 @@ justify-content: center;
 ` 
 
 export const InputImage = styled.Image`
-width: 150;
-height: 150;
-margin-bottom: 10;
+width: 150px;
+height: 150px;
+margin-bottom: 10px;
 border-radius: 5px;
 `

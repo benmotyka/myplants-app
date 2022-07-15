@@ -36,7 +36,7 @@ export const Body = styled.View`
 `;
 
 export const Header = styled.Text`
-  font-size: 15;
+  font-size: 15px;
   font-family: 'Inter_200ExtraLight';
 `;
 

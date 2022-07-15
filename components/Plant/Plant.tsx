@@ -17,12 +17,16 @@ import { colors } from "../../styles/colors";
 
 const MAX_SLIDER_VALUE = 1;
 const SLIDE_SUCCESS_VALUE_THRESHOLD = 0.9;
+const MAX_HEADER_CHARACTERS = 10;
 
-const Plant = ({ id, name, imgSrc, navigation }: PlantProps): JSX.Element => {
+const Plant = ({ id, name, imgSrc, navigation, onStartScroll, onFinishScroll }: PlantProps): JSX.Element => {
   const [sliderValue, setSliderValue] = React.useState(0);
   const [watered, setWatered] = React.useState(false);
 
   const submitPlant = (value: number | number[]): void => {
+    onFinishScroll()
+    setSliderValue(value as number)
+
     const currentValue = typeof value !== "number" ? value[0] : value;
     if (currentValue >= SLIDE_SUCCESS_VALUE_THRESHOLD * MAX_SLIDER_VALUE) {
       setWatered(true);
@@ -48,7 +52,7 @@ const Plant = ({ id, name, imgSrc, navigation }: PlantProps): JSX.Element => {
             <Image resizeMode="cover" source={imgSrc} />
             <Body>
               <ItemsWrapper>
-                <Header>{name}</Header>
+                <Header>{name.length > MAX_HEADER_CHARACTERS ? `${name.slice(0, MAX_HEADER_CHARACTERS)}...` : name}</Header>
                 <ItemsWrapper>
                   <SmallImage source={require("../../assets/water.svg")} />
                   <Header>00:32</Header>
@@ -68,7 +72,9 @@ const Plant = ({ id, name, imgSrc, navigation }: PlantProps): JSX.Element => {
                       height: 25,
                     }}
                     trackStyle={{ opacity: 0.2 }}
+                    trackClickable={false}
                     maximumValue={MAX_SLIDER_VALUE}
+                    onSlidingStart={onStartScroll}
                   />
                 )}
               </View>

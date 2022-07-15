@@ -18,7 +18,7 @@ type HomeProps = NativeStackScreenProps<RootStackParamList, "home">;
 
 const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
   const [dataSource, setDataSource] = useState<IPlant[]>();
-
+  const [allowScrolling, setAllowScrolling] = useState(true)
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
 
@@ -64,11 +64,14 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
               name={item.name}
               imgSrc={require("../assets/plants/default_plant.webp")}
               navigation={navigation}
+              onStartScroll={() => setAllowScrolling(false)}
+              onFinishScroll={() => setAllowScrolling(true)}
             />
           )}
           numColumns={2}
           keyExtractor={(item, index) => index.toString()}
           contentContainerStyle={{ paddingBottom: 100 }}
+          scrollEnabled={allowScrolling}
         />
       ) : null}
       <HomeSettings navigation={navigation} />
