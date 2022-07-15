@@ -16,6 +16,7 @@ export const ModalContainer = styled.TouchableOpacity`
 
 export const ModalWrapper = styled.View`
 width: 80%;
+max-width: 400px;
 border-radius: 10px;
 background-color: ${colors.lightGrey};
 padding: 15px;

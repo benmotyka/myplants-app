@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 import { colors } from "../../styles/colors";
 
 export const HeaderWrapper = styled.View`
-borderBottomWidth: 1;
+borderBottomWidth: 1px;
 borderBottomColor: ${colors.grey};
 `
 
@@ -26,4 +26,5 @@ font-family: 'Inter_200ExtraLight';
 export const SettingsSection = styled.View`
 width: 85%;
 margin-bottom: 50px;
+max-width: 400px;
 `

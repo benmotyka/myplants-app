@@ -13,6 +13,8 @@ import { plantsAction } from "../store/actions";
 import plantsApi from "../config/api/plants";
 import { IUserDetails } from "../interfaces/IUserDetails";
 import { State } from "../store/reducers";
+import PlantsTutorial from "../components/PlantsTutorial/PlantsTutorial";
+import { numberOfColumns } from "../components/Plant/Plant.styles";
 
 type HomeProps = NativeStackScreenProps<RootStackParamList, "home">;
 
@@ -56,6 +58,7 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
   return (
     <ScreenContainer>
       {dataSource ? (
+        <>
         <FlatList
           data={dataSource}
           renderItem={({ item }) => (
@@ -68,11 +71,13 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
               onFinishScroll={() => setAllowScrolling(true)}
             />
           )}
-          numColumns={2}
+          numColumns={numberOfColumns}
           keyExtractor={(item, index) => index.toString()}
           contentContainerStyle={{ paddingBottom: 100 }}
           scrollEnabled={allowScrolling}
         />
+        {!dataSource.length ? <PlantsTutorial/> : null }
+        </>
       ) : null}
       <HomeSettings navigation={navigation} />
     </ScreenContainer>

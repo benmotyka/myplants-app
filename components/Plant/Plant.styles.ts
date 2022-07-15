@@ -1,12 +1,16 @@
 import styled from "styled-components/native";
 import { colors } from "../../styles/colors";
+import { screenWidth } from "../../styles/shared";
+
+const MAX_PLANT_WIDTH = 240;
+export const numberOfColumns = Math.round(screenWidth / MAX_PLANT_WIDTH);
+
+const PLANT_WIDTH_PERCENTAGE = numberOfColumns === 2 ? '50%' : '33%'
 
 export const Container = styled.View`
-  width: 50%;
+  width: ${PLANT_WIDTH_PERCENTAGE};
   height: 250px;
   padding: 5px;
-  min-width: 180px;
-  max-width: 240px;
 `;
 
 export const Wrapper = styled.View`

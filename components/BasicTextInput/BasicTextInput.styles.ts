@@ -6,6 +6,7 @@ margin-top: 10px;
 width: 100%;
 position: relative;
 padding-bottom: 20px;
+max-width: 400px;
 ` 
 
 export const Input = styled.TextInput<{errorBorder: boolean;}>`

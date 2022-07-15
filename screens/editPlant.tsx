@@ -103,9 +103,10 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
 
   return (
     <KeyboardScreen
-      contentContainerStyle={{ paddingBottom: 50 }}
+      contentContainerStyle={{ paddingBottom: 50, height: '100%' }}
       resetScrollToCoords={{ x: 0, y: 0 }}
       scrollEnabled={true}
+      style={{height: '100%'}}
     >
       <ColumnCenterWrapper>
         <Back navigation={navigation} />
