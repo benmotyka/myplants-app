@@ -22,16 +22,13 @@ import { userAction } from "../store/actions";
 import { IUserDetails } from "../interfaces/IUserDetails";
 import { State } from "../store/reducers";
 import { RootStackParamList } from "../App";
+import { LoginResponse } from "../interfaces/ILoginResponse";
 
 type LoginProps = NativeStackScreenProps<RootStackParamList, "login">;
 
 interface LoginForm {
   username: string;
   password: string;
-}
-
-interface LoginResponse {
-  access_token: string;
 }
 
 const Login = ({ navigation }: LoginProps): JSX.Element => {

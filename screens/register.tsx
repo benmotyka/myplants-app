@@ -1,16 +1,21 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Formik, FormikHelpers } from "formik";
 import React from "react";
+import { useDispatch } from "react-redux";
 import { RootStackParamList } from "../App";
 import Back from "../components/Back/Back";
 import BasicButton from "../components/BasicButton/BasicButton";
 import BasicTextInput from "../components/BasicTextInput/BasicTextInput";
+import Loader from "../components/Loader/Loader";
 import plantsApi from "../config/api/plants";
+import { LoginResponse } from "../interfaces/ILoginResponse";
 import { RegisterSchema } from "../schemas/Register.schema";
+import { userAction } from "../store/actions";
 import {
   ColumnCenterWrapper,
   Header,
   InputsWrapper,
+  LoaderWrapper,
   MarginTopView,
   ScreenContainer,
 } from "../styles/shared";
@@ -27,6 +32,8 @@ interface RegisterResponse {
 }
 
 const Register = ({ navigation }: RegisterProps): JSX.Element => {
+  const [loading, setLoading] = React.useState(false);
+  const dispatch = useDispatch();
 
   const onSubmit = async (
     values: RegisterForm,
@@ -39,14 +46,27 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
     }
   ) => {
     try {
+      setLoading(true);
       await plantsApi.post<RegisterResponse>("/auth/register", {
         username: values.username,
         password: values.password,
       });
+      const result = await plantsApi.post<LoginResponse>("/auth/login", {
+        username: values.username,
+        password: values.password,
+      });
+      dispatch(
+        userAction.setUserDetails({
+          username: values.username,
+          jwt: result.data.access_token,
+        })
+      );
       resetForm();
       navigation.navigate("home");
     } catch (error) {
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -59,34 +79,42 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
           initialValues={{ username: "", password: "" }}
           onSubmit={onSubmit}
           validationSchema={RegisterSchema}
+          validateOnChange={false}
+          validateOnBlur={false}
         >
-          {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-            <InputsWrapper>
-              <BasicTextInput
-                label="Username"
-                placeholder="Enter your username..."
-                onChangeText={handleChange("username")}
-                onBlur={handleBlur("username")}
-                value={values.username}
-                error={errors.username}
-              />
-              <BasicTextInput
-                label="Password"
-                placeholder="Enter your password..."
-                onChangeText={handleChange("password")}
-                onBlur={handleBlur("password")}
-                value={values.password}
-                hideInput={true}
-                error={errors.password}
-              />
-              <MarginTopView>
-                <BasicButton
-                  onPress={handleSubmit as (values: any) => void}
-                  text="Submit"
+          {({ handleChange, handleBlur, handleSubmit, values, errors }) =>
+            loading ? (
+              <LoaderWrapper>
+                <Loader />
+              </LoaderWrapper>
+            ) : (
+              <InputsWrapper>
+                <BasicTextInput
+                  label="Username"
+                  placeholder="Enter your username..."
+                  onChangeText={handleChange("username")}
+                  onBlur={handleBlur("username")}
+                  value={values.username}
+                  error={errors.username}
                 />
-              </MarginTopView>
-            </InputsWrapper>
-          )}
+                <BasicTextInput
+                  label="Password"
+                  placeholder="Enter your password..."
+                  onChangeText={handleChange("password")}
+                  onBlur={handleBlur("password")}
+                  value={values.password}
+                  hideInput={true}
+                  error={errors.password}
+                />
+                <MarginTopView>
+                  <BasicButton
+                    onPress={handleSubmit as (values: any) => void}
+                    text="Submit"
+                  />
+                </MarginTopView>
+              </InputsWrapper>
+            )
+          }
         </Formik>
       </ColumnCenterWrapper>
     </ScreenContainer>

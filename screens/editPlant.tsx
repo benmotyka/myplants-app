@@ -3,14 +3,14 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../App";
 import Back from "../components/Back/Back";
 import {
-  ScreenContainer,
   ColumnCenterWrapper,
   InputsWrapper,
   IconContainer,
   MarginTopView,
+  Description,
+  KeyboardScreen,
 } from "../styles/shared";
 import { Formik, FormikHelpers } from "formik";
-import { ActivityIndicator } from "react-native";
 import BasicTextInput from "../components/BasicTextInput/BasicTextInput";
 import BasicImageInput from "../components/BasicImageInput/BasicImageInput";
 import BasicButton from "../components/BasicButton/BasicButton";
@@ -28,6 +28,7 @@ import { State } from "../store/reducers";
 import plantsApi from "../config/api/plants";
 import { IUserDetails } from "../interfaces/IUserDetails";
 import { EditPlantSchema } from "../schemas/EditPlant.schema";
+import { standardFormat } from "../util/formatDate";
 
 type EditPlantProps = NativeStackScreenProps<RootStackParamList, "editPlant">;
 
@@ -75,19 +76,23 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
     }: {
       setFieldError: FormikHelpers<EditPlantForm>["setFieldError"];
     }
-  ) =>{
+  ) => {
     try {
       setLoading(true);
-      await plantsApi.put(`/plants`, {
-        id: plantId,
-        name: values.name,
-        description: values.description,
-        imageSrc: values.image,
-      },{
-        headers: {
-          Authorization: `Bearer ${userDetails.jwt}`,
+      await plantsApi.put(
+        `/plants`,
+        {
+          id: plantId,
+          name: values.name,
+          description: values.description,
+          imageSrc: values.image,
         },
-      });
+        {
+          headers: {
+            Authorization: `Bearer ${userDetails.jwt}`,
+          },
+        }
+      );
       navigation.navigate("home");
     } catch (error) {
       console.error(error);
@@ -97,7 +102,11 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
   };
 
   return (
-    <ScreenContainer>
+    <KeyboardScreen
+      contentContainerStyle={{ paddingBottom: 50 }}
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      scrollEnabled={true}
+    >
       <ColumnCenterWrapper>
         <Back navigation={navigation} />
         <IconContainer
@@ -108,7 +117,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
         >
           <MaterialIcons name="delete" size={24} color={colors.alert} />
         </IconContainer>
-        {selectedPlant ? (
+        {selectedPlant && !loading ? (
           <Formik
             initialValues={{
               name: selectedPlant.name,
@@ -123,7 +132,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
                 <BasicImageInput
                   image={values.image}
                   setImage={handleChange("image")}
-                  />
+                />
                 <BasicTextInput
                   value={values.name}
                   label="Name"
@@ -141,6 +150,9 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
                   textarea={true}
                   error={errors.description}
                 />
+                <Description>
+                  Created at {standardFormat(selectedPlant.createdAt)}
+                </Description>
                 <MarginTopView>
                   <BasicButton
                     onPress={handleSubmit as (values: any) => void}
@@ -172,7 +184,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
           </ModalItem>
         </BasicModal>
       ) : null}
-    </ScreenContainer>
+    </KeyboardScreen>
   );
 };
 
