@@ -4,17 +4,17 @@ import { useSelector, useDispatch } from "react-redux";
 import { useIsFocused } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-import Plant from "../components/Plant/Plant";
 import { RootStackParamList } from "../App";
-import { ScreenContainer } from "../styles/shared";
-import HomeSettings from "../components/HomeSettings/HomeSettings";
-import { IPlant } from "../interfaces/IPlant";
-import { plantsAction } from "../store/actions";
-import plantsApi from "../config/api/plants";
-import { IUserDetails } from "../interfaces/IUserDetails";
-import { State } from "../store/reducers";
-import PlantsTutorial from "../components/PlantsTutorial/PlantsTutorial";
-import { numberOfColumns } from "../components/Plant/Plant.styles";
+import plantsApi from "config/api/plants";
+import Plant from "components/Plant/Plant";
+import { numberOfColumns } from "components/Plant/Plant.styles";
+import PlantsTutorial from "components/PlantsTutorial/PlantsTutorial";
+import HomeSettings from "components/HomeSettings/HomeSettings";
+import { IPlant } from "interfaces/IPlant";
+import { IUserDetails } from "interfaces/IUserDetails";
+import { plantsAction } from "store/actions";
+import { State } from "store/reducers";
+import { ScreenContainer } from "styles/shared";
 
 type HomeProps = NativeStackScreenProps<RootStackParamList, "home">;
 
@@ -67,8 +67,8 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
               name={item.name}
               imgSrc={require("../assets/plants/default_plant.webp")}
               navigation={navigation}
-              onStartScroll={() => setAllowScrolling(false)}
-              onFinishScroll={() => setAllowScrolling(true)}
+              onSlidingStart={() => setAllowScrolling(false)}
+              onSlidingFinish={() => setAllowScrolling(true)}
             />
           )}
           numColumns={numberOfColumns}

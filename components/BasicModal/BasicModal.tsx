@@ -1,6 +1,7 @@
 import React from "react";
-import { BasicModalProps } from "./BasicModal.interface";
-import { ModalWrapper, ModalContainer } from "./BasicModal.styles";
+
+import { BasicModalProps } from "components/BasicModal/BasicModal.interface";
+import { ModalWrapper, ModalContainer } from "components/BasicModal/BasicModal.styles";
 
 const BasicModal = ({
   children,

@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
-import { colors } from "../../styles/colors";
+
+import { colors } from "styles/colors";
 
 export const TutorialContainer = styled.View`
   position: absolute;
@@ -25,8 +26,8 @@ export const ImageWrapper = styled.View`
 
 export const TutorialText = styled.Text`
   position: absolute;
-  right: 15px;
-  bottom: 130px;
+  right: 10px;
+  bottom: 125px;
 
   font-family: 'AkayaKanadaka_400Regular'
   font-size: 26px;

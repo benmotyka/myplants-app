@@ -1,6 +1,7 @@
 import styled from "styled-components/native";
-import { colors } from "../../styles/colors";
-import { screenWidth } from "../../styles/shared";
+
+import { colors } from "styles/colors";
+import { screenWidth } from "styles/shared";
 
 const MAX_PLANT_WIDTH = 240;
 export const numberOfColumns = Math.round(screenWidth / MAX_PLANT_WIDTH);

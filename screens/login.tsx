@@ -4,10 +4,17 @@ import { useIsFocused } from "@react-navigation/native";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import BasicButton from "../components/BasicButton/BasicButton";
-import BasicTextInput from "../components/BasicTextInput/BasicTextInput";
-import { FooterText, FooterWrapper } from "../styles/screens/login.styles";
-import { LoginSchema } from "../schemas/Login.schema";
+import { RootStackParamList } from "../App";
+import plantsApi from "config/api/plants";
+import Loader from "components/Loader/Loader";
+import BasicButton from "components/BasicButton/BasicButton";
+import BasicTextInput from "components/BasicTextInput/BasicTextInput";
+import { IUserDetails } from "interfaces/IUserDetails";
+import { LoginResponse } from "interfaces/ILoginResponse";
+import { LoginSchema } from "schemas/Login.schema";
+import { userAction } from "store/actions";
+import { State } from "store/reducers";
+import { FooterText, FooterWrapper } from "styles/screens/login.styles";
 import {
   ColumnCenterWrapper,
   Header,
@@ -15,14 +22,7 @@ import {
   LoaderWrapper,
   MarginTopView,
   ScreenContainer,
-} from "../styles/shared";
-import plantsApi from "../config/api/plants";
-import Loader from "../components/Loader/Loader";
-import { userAction } from "../store/actions";
-import { IUserDetails } from "../interfaces/IUserDetails";
-import { State } from "../store/reducers";
-import { RootStackParamList } from "../App";
-import { LoginResponse } from "../interfaces/ILoginResponse";
+} from "styles/shared";
 
 type LoginProps = NativeStackScreenProps<RootStackParamList, "login">;
 

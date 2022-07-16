@@ -1,7 +1,8 @@
 import styled from "styled-components/native";
-import { colors } from "../styles/colors";
 import { Dimensions } from "react-native";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
+import { colors } from "styles/colors";
 
 export const screenWidth = Dimensions.get("screen").width;
 export const screenHeight = Dimensions.get("screen").height;

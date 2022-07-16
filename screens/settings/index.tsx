@@ -1,16 +1,16 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { RootStackParamList } from "../App";
-import Back from "../components/Back/Back";
-import BasicButton from "../components/BasicButton/BasicButton";
-import BasicModal from "../components/BasicModal/BasicModal";
-import { ModalHeader, ModalItem } from "../components/BasicModal/BasicModal.styles";
-import { SettingsSection } from "../components/Settings/Settings.styles";
-import SettingsHeader from "../components/Settings/SettingsHeader";
-import SettingsItem from "../components/Settings/SettingsItem";
-import { userAction } from "../store/actions";
-import { ColumnCenterWrapper, ScreenContainer } from "../styles/shared";
+import { RootStackParamList } from "../../App";
+import Back from "../../components/Back/Back";
+import BasicButton from "../../components/BasicButton/BasicButton";
+import BasicModal from "../../components/BasicModal/BasicModal";
+import { ModalHeader, ModalItem } from "../../components/BasicModal/BasicModal.styles";
+import { SettingsSection } from "../../components/Settings/Settings.styles";
+import SettingsHeader from "../../components/Settings/SettingsHeader";
+import SettingsItem from "../../components/Settings/SettingsItem";
+import { userAction } from "../../store/actions";
+import { ColumnCenterWrapper, ScreenContainer } from "../../styles/shared";
 
 type SettingsProps = NativeStackScreenProps<RootStackParamList, "settings">;
 

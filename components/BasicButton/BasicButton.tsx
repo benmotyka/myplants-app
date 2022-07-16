@@ -1,6 +1,7 @@
 import React from "react";
-import { BasicButtonProps } from "./BasicButton.interface";
-import { ButtonWrapper, ButtonText } from "./BasicButton.styles";
+
+import { BasicButtonProps } from "components/BasicButton/BasicButton.interface";
+import { ButtonWrapper, ButtonText } from "components/BasicButton/BasicButton.styles";
 
 const BasicButton = ({ text, onPress, warning, important }: BasicButtonProps): JSX.Element => {
   return (

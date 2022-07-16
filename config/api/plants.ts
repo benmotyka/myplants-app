@@ -1,6 +1,6 @@
 import axios from "axios";
-import { store } from "../../store";
-import { userAction } from "../../store/actions";
+import { store } from "store";
+import { userAction } from "store/actions";
 
 const plantsApi = axios.create({
   // @TODO: add env

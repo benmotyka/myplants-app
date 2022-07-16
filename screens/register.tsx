@@ -2,15 +2,16 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Formik, FormikHelpers } from "formik";
 import React from "react";
 import { useDispatch } from "react-redux";
+
 import { RootStackParamList } from "../App";
-import Back from "../components/Back/Back";
-import BasicButton from "../components/BasicButton/BasicButton";
-import BasicTextInput from "../components/BasicTextInput/BasicTextInput";
-import Loader from "../components/Loader/Loader";
-import plantsApi from "../config/api/plants";
-import { LoginResponse } from "../interfaces/ILoginResponse";
-import { RegisterSchema } from "../schemas/Register.schema";
-import { userAction } from "../store/actions";
+import plantsApi from "config/api/plants";
+import Back from "components/Back/Back";
+import BasicButton from "components/BasicButton/BasicButton";
+import BasicTextInput from "components/BasicTextInput/BasicTextInput";
+import Loader from "components/Loader/Loader";
+import { LoginResponse } from "interfaces/ILoginResponse";
+import { RegisterSchema } from "schemas/Register.schema";
+import { userAction } from "store/actions";
 import {
   ColumnCenterWrapper,
   Header,
@@ -18,7 +19,7 @@ import {
   LoaderWrapper,
   MarginTopView,
   ScreenContainer,
-} from "../styles/shared";
+} from "styles/shared";
 
 type RegisterProps = NativeStackScreenProps<RootStackParamList, "register">;
 

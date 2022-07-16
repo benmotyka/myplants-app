@@ -13,8 +13,8 @@ import { AkayaKanadaka_400Regular } from '@expo-google-fonts/akaya-kanadaka';
 import { Provider } from "react-redux";
 
 import HomeScreen from "./screens/home";
-import AddPlantScreen from "./screens/addPlant";
-import EditPlant from "./screens/editPlant";
+import AddPlantScreen from "./screens/plants/add";
+import EditPlant from "./screens/plants/edit";
 import SettingsScreen from "./screens/settings";
 import LoginScreen from "./screens/login";
 import { SafeAreaView } from "react-native";

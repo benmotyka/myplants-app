@@ -1,7 +1,25 @@
 import React from "react";
+import { Formik, FormikHelpers } from "formik";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../App";
-import Back from "../components/Back/Back";
+import { MaterialIcons } from "@expo/vector-icons";
+import { useSelector } from "react-redux";
+
+import { RootStackParamList } from "../../App";
+import plantsApi from "config/api/plants";
+import Back from "components/Back/Back";
+import BasicModal from "components/BasicModal/BasicModal";
+import BasicTextInput from "components/BasicTextInput/BasicTextInput";
+import BasicImageInput from "components/BasicImageInput/BasicImageInput";
+import BasicButton from "components/BasicButton/BasicButton";
+import Loader from "components/Loader/Loader";
+import {
+  ModalHeader,
+  ModalItem,
+} from "components/BasicModal/BasicModal.styles";
+import { IPlant } from "interfaces/IPlant";
+import { IUserDetails } from "interfaces/IUserDetails";
+import { EditPlantSchema } from "schemas/EditPlant.schema";
+import { State } from "store/reducers";
 import {
   ColumnCenterWrapper,
   InputsWrapper,
@@ -9,26 +27,9 @@ import {
   MarginTopView,
   Description,
   KeyboardScreen,
-} from "../styles/shared";
-import { Formik, FormikHelpers } from "formik";
-import BasicTextInput from "../components/BasicTextInput/BasicTextInput";
-import BasicImageInput from "../components/BasicImageInput/BasicImageInput";
-import BasicButton from "../components/BasicButton/BasicButton";
-import { IPlant } from "../interfaces/IPlant";
-import { MaterialIcons } from "@expo/vector-icons";
-import { colors } from "../styles/colors";
-import BasicModal from "../components/BasicModal/BasicModal";
-import {
-  ModalHeader,
-  ModalItem,
-} from "../components/BasicModal/BasicModal.styles";
-import Loader from "../components/Loader/Loader";
-import { useSelector } from "react-redux";
-import { State } from "../store/reducers";
-import plantsApi from "../config/api/plants";
-import { IUserDetails } from "../interfaces/IUserDetails";
-import { EditPlantSchema } from "../schemas/EditPlant.schema";
-import { standardFormat } from "../util/formatDate";
+} from "styles/shared";
+import { colors } from "styles/colors";
+import { standardFormat } from "util/formatDate";
 
 type EditPlantProps = NativeStackScreenProps<RootStackParamList, "editPlant">;
 

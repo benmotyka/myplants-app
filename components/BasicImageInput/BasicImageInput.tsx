@@ -1,8 +1,9 @@
 import React from "react";
 import * as ImagePicker from "expo-image-picker";
-import { InputWrapper, InputImage } from "./BasicImageInput.styles";
-import BasicButton from "../BasicButton/BasicButton";
-import { BasicImageInputProps } from "./BasicImageInput.interface";
+
+import BasicButton from "components/BasicButton/BasicButton";
+import { InputWrapper, InputImage } from "components/BasicImageInput/BasicImageInput.styles";
+import { BasicImageInputProps } from "components/BasicImageInput/BasicImageInput.interface";
 
 const BasicImageInput = ({image, setImage}: BasicImageInputProps): JSX.Element => {
 

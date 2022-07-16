@@ -5,6 +5,6 @@ export interface PlantProps {
   name: string;
   imgSrc: ImageSourcePropType;
   navigation: any;
-  onStartScroll: () => void;
-  onFinishScroll: () => void;
+  onSlidingStart: () => void;
+  onSlidingFinish: () => void;
 }

@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { colors } from "../../styles/colors";
+import { colors } from "styles/colors";
 
 export const FooterWrapper = styled.View`
 margin: auto 0 50px 0;

@@ -1,9 +1,10 @@
 import React from "react";
 import { Text } from "react-native";
+
 import {
   Wrapper,
   Container,
-} from "./AddNewPlant.styles";
+} from "components/AddNewPlant/AddNewPlant.styles";
 
 const AddNewPlant = () => {
   return (

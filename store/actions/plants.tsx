@@ -1,5 +1,5 @@
-import { IPlant } from '../../interfaces/IPlant';
-import { SET_USER_PLANTS } from '../types';
+import { IPlant } from 'interfaces/IPlant';
+import { SET_USER_PLANTS } from 'store/types';
 
 const setUserPlants = (payload: IPlant[]) => { 
   return({

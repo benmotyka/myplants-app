@@ -1,8 +1,9 @@
 import React from "react";
-import { IconWrapper } from "./Back.styles";
 import { MaterialIcons } from "@expo/vector-icons";
-import { colors } from "../../styles/colors";
-import { BackProps } from "./Back.interface";
+
+import { IconWrapper } from "components/Back/Back.styles";
+import { BackProps } from "components/Back/Back.interface";
+import { colors } from "styles/colors";
 
 const ICON_SIZE_PX = 24;
 

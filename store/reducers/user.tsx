@@ -1,5 +1,5 @@
-import { IUserDetails } from "../../interfaces/IUserDetails";
-import { SET_USER_DETAILS, REMOVE_USER_DETAILS } from "../types";
+import { IUserDetails } from "interfaces/IUserDetails";
+import { SET_USER_DETAILS, REMOVE_USER_DETAILS } from "store/types";
 
 interface IState {
   userDetails: IUserDetails;

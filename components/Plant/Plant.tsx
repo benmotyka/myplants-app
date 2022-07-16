@@ -1,4 +1,5 @@
 import React from "react";
+import { TouchableHighlight, View } from "react-native";
 import { Slider } from "@miblanchard/react-native-slider";
 
 import {
@@ -10,21 +11,20 @@ import {
   ItemsWrapper,
   SmallImage,
   Text
-} from "./Plant.styles";
-import { PlantProps } from "./Plant.interface";
-import { TouchableHighlight, View } from "react-native";
-import { colors } from "../../styles/colors";
+} from "components/Plant/Plant.styles";
+import { PlantProps } from "components/Plant/Plant.interface";
+import { colors } from "styles/colors";
 
 const MAX_SLIDER_VALUE = 1;
 const SLIDE_SUCCESS_VALUE_THRESHOLD = 0.9;
 const MAX_HEADER_CHARACTERS = 10;
 
-const Plant = ({ id, name, imgSrc, navigation, onStartScroll, onFinishScroll }: PlantProps): JSX.Element => {
+const Plant = ({ id, name, imgSrc, navigation, onSlidingStart, onSlidingFinish }: PlantProps): JSX.Element => {
   const [sliderValue, setSliderValue] = React.useState(0);
   const [watered, setWatered] = React.useState(false);
 
   const submitPlant = (value: number | number[]): void => {
-    onFinishScroll()
+    onSlidingFinish()
     setSliderValue(value as number)
 
     const currentValue = typeof value !== "number" ? value[0] : value;
@@ -74,7 +74,7 @@ const Plant = ({ id, name, imgSrc, navigation, onStartScroll, onFinishScroll }: 
                     trackStyle={{ opacity: 0.2 }}
                     trackClickable={false}
                     maximumValue={MAX_SLIDER_VALUE}
-                    onSlidingStart={onStartScroll}
+                    onSlidingStart={onSlidingStart}
                   />
                 )}
               </View>

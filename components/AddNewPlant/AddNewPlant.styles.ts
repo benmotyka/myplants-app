@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import { Container as PlantContainer } from "../Plant/Plant.styles";
+import { Container as PlantContainer } from "components/Plant/Plant.styles";
 
 export const Container = styled(PlantContainer)`
  display: flex;

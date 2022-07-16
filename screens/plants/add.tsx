@@ -3,23 +3,23 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Formik, FormikHelpers } from "formik";
 import { useSelector } from "react-redux";
 
-import { RootStackParamList } from "../App";
-import Back from "../components/Back/Back";
+import { RootStackParamList } from "../../App";
+import plantsApi from "config/api/plants";
+import Back from "components/Back/Back";
+import BasicTextInput from "components/BasicTextInput/BasicTextInput";
+import BasicImageInput from "components/BasicImageInput/BasicImageInput";
+import BasicButton from "components/BasicButton/BasicButton";
+import Loader from "components/Loader/Loader";
+import { IUserDetails } from "interfaces/IUserDetails";
+import { AddPlantSchema } from "schemas/AddPlant.schema";
 import {
   KeyboardScreen,
   ColumnCenterWrapper,
   InputsWrapper,
   MarginTopView,
   LoaderWrapper,
-} from "../styles/shared";
-import BasicTextInput from "../components/BasicTextInput/BasicTextInput";
-import BasicImageInput from "../components/BasicImageInput/BasicImageInput";
-import BasicButton from "../components/BasicButton/BasicButton";
-import Loader from "../components/Loader/Loader";
-import plantsApi from "../config/api/plants";
-import { AddPlantSchema } from "../schemas/AddPlant.schema";
-import { IUserDetails } from "../interfaces/IUserDetails";
-import { State } from "../store/reducers";
+} from "styles/shared";
+import { State } from "store/reducers";
 
 type AddPlantProps = NativeStackScreenProps<RootStackParamList, "addPlant">;
 

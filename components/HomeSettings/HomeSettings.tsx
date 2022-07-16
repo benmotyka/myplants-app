@@ -1,9 +1,10 @@
 import React from "react";
 import { Entypo } from "@expo/vector-icons";
-import { IconWrapper, MenuContainer } from "./HomeSettings.styles";
 import { MaterialIcons } from "@expo/vector-icons";
-import { colors } from "../../styles/colors";
-import { HomeSettingsProps } from "./HomeSettings.interface";
+
+import { colors } from "styles/colors";
+import { IconWrapper, MenuContainer } from "components/HomeSettings/HomeSettings.styles";
+import { HomeSettingsProps } from "components/HomeSettings/HomeSettings.interface";
 
 const ICON_SIZE_PX = 24;
 const ITEMS_MARGIN_PX = 60;
@@ -35,7 +36,6 @@ const HomeSettings = ({ navigation }: HomeSettingsProps): JSX.Element => {
           color={colors.lightBlack}
         />
       </IconWrapper>
-      {/* TODO: transition */}
       {showMenu ? (
         <MenuContainer onPress={() => setShowMenu(false)}>
           {settingsItems.map((item, index) => (

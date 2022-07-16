@@ -1,6 +1,6 @@
 import React from "react";
-import { SettingsItemProps } from "./Settings.interface";
-import { ItemWrapper } from "./Settings.styles";
+import { SettingsItemProps } from "components/Settings/Settings.interface";
+import { ItemWrapper } from "components/Settings/Settings.styles";
 
 const SettingsItem = ({ children }: SettingsItemProps): JSX.Element => {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import { TutorialContainer, Image, ImageWrapper, TutorialText } from "./PlantsTutorial.styles";
+import { TutorialContainer, Image, ImageWrapper, TutorialText } from "components/PlantsTutorial/PlantsTutorial.styles";
 
 const PlantsTutorial = (): JSX.Element => {
   return (

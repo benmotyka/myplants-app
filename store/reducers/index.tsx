@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
-import plants from './plants'
-import user from './user'
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { persistReducer } from 'redux-persist';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import plants from 'store/reducers/plants'
+import user from 'store/reducers/user'
 
 const persistConfig = {
     key: 'userDetails',

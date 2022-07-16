@@ -1,12 +1,13 @@
 import React from "react";
 import { Platform } from "react-native";
-import { BasicTextInputProps } from "./BasicTextInput.interface";
+
+import { BasicTextInputProps } from "components/BasicTextInput/BasicTextInput.interface";
 import {
   Input,
   InputWrapper,
   InputLabel,
   ErrorWrapper,
-} from "./BasicTextInput.styles";
+} from "components/BasicTextInput/BasicTextInput.styles";
 
 const TEXTAREA_NUMBER_OF_LINES = 4;
 const IOS_LINE_HEIGHT_PX = 20;
