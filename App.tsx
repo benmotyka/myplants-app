@@ -1,5 +1,8 @@
 import { StatusBar } from "expo-status-bar";
+import { SafeAreaView } from "react-native";
+import { PersistGate } from "redux-persist/integration/react";
 import AppLoading from "expo-app-loading";
+import { Provider } from "react-redux";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import {
@@ -7,20 +10,16 @@ import {
   Inter_200ExtraLight,
   Inter_300Light,
 } from "@expo-google-fonts/inter";
-
 import { AkayaKanadaka_400Regular } from '@expo-google-fonts/akaya-kanadaka';
 
-import { Provider } from "react-redux";
 
-import HomeScreen from "./screens/home";
-import AddPlantScreen from "./screens/plants/add";
-import EditPlant from "./screens/plants/edit";
-import SettingsScreen from "./screens/settings";
-import LoginScreen from "./screens/login";
-import { SafeAreaView } from "react-native";
-import RegisterScreen from "./screens/register";
-import { store, persistor } from "./store";
-import { PersistGate } from "redux-persist/integration/react";
+import HomeScreen from "screens/home";
+import AddPlantScreen from "screens/plants/add";
+import EditPlant from "screens/plants/edit";
+import SettingsScreen from "screens/settings";
+import LoginScreen from "screens/login";
+import RegisterScreen from "screens/register";
+import { store, persistor } from "store";
 
 export type RootStackParamList = {
   login: undefined;
