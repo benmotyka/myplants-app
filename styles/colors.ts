@@ -6,5 +6,6 @@ export const colors = {
     lightGrey: "#EEEEEE",
     thumbStyle: "#C4DDFF",
     alert: "#F94C66",
-    important: '#3AB0FF'
+    important: '#3AB0FF',
+    success: '#C4DFAA'
 }

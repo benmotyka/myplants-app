@@ -12,7 +12,8 @@
       "screens/*": ["screens/*"],
       "store/*": ["store/*"],
       "styles/*": ["styles/*"],
-      "util/*": ["util/*"]
+      "util/*": ["util/*"],
+      "enums/*": ["enums/*"]
   },
   }
 }

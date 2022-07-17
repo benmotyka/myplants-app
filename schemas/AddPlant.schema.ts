@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-const PLANT_NAME_MAX = 15;
+const PLANT_NAME_MAX = 25;
 const DESCRIPTION_MAX = 100;
 
 export const AddPlantSchema = Yup.object().shape({

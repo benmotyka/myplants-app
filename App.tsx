@@ -10,8 +10,8 @@ import {
   Inter_200ExtraLight,
   Inter_300Light,
 } from "@expo-google-fonts/inter";
-import { AkayaKanadaka_400Regular } from '@expo-google-fonts/akaya-kanadaka';
-
+import { AkayaKanadaka_400Regular } from "@expo-google-fonts/akaya-kanadaka";
+import { RootSiblingParent } from "react-native-root-siblings";
 
 import HomeScreen from "screens/home";
 import AddPlantScreen from "screens/plants/add";
@@ -36,7 +36,7 @@ export default function App() {
   let [fontsLoaded] = useFonts({
     Inter_200ExtraLight,
     Inter_300Light,
-    AkayaKanadaka_400Regular
+    AkayaKanadaka_400Regular,
   });
 
   if (!fontsLoaded) {
@@ -46,32 +46,34 @@ export default function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <SafeAreaView>
-          <StatusBar />
-        </SafeAreaView>
-        <NavigationContainer>
-          <Stack.Navigator
-            screenOptions={{
-              headerShown: false,
-            }}
-          >
-            <Stack.Screen
-              name="login"
-              component={LoginScreen}
-              options={{ gestureEnabled: false }}
-            />
-            <Stack.Screen name="register" component={RegisterScreen} />
-            <Stack.Screen
-              name="home"
-              component={HomeScreen}
-              options={{ gestureEnabled: false }}
-            />
-            <Stack.Screen name="addPlant" component={AddPlantScreen} />
+        <RootSiblingParent>
+          <SafeAreaView>
+            <StatusBar />
+          </SafeAreaView>
+          <NavigationContainer>
+            <Stack.Navigator
+              screenOptions={{
+                headerShown: false,
+              }}
+            >
+              <Stack.Screen
+                name="login"
+                component={LoginScreen}
+                options={{ gestureEnabled: false }}
+              />
+              <Stack.Screen name="register" component={RegisterScreen} />
+              <Stack.Screen
+                name="home"
+                component={HomeScreen}
+                options={{ gestureEnabled: false }}
+              />
+              <Stack.Screen name="addPlant" component={AddPlantScreen} />
 
-            <Stack.Screen name="settings" component={SettingsScreen} />
-            <Stack.Screen name="editPlant" component={EditPlant} />
-          </Stack.Navigator>
-        </NavigationContainer>
+              <Stack.Screen name="settings" component={SettingsScreen} />
+              <Stack.Screen name="editPlant" component={EditPlant} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </RootSiblingParent>
       </PersistGate>
     </Provider>
   );
