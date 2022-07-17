@@ -20,6 +20,7 @@ import {
   LoaderWrapper,
 } from "styles/shared";
 import { State } from "store/reducers";
+import showToast from "util/showToast";
 
 type AddPlantProps = NativeStackScreenProps<RootStackParamList, "addPlant">;
 
@@ -59,6 +60,7 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
       });
       resetForm();
       navigation.navigate("home");
+      showToast("Plant added", "success")
     } catch (error) {
       console.error(error)
     } finally {

@@ -7,5 +7,5 @@ export const colors = {
     thumbStyle: "#C4DDFF",
     alert: "#F94C66",
     important: '#3AB0FF',
-    success: '#C4DFAA'
+    success: '#76BA99'
 }

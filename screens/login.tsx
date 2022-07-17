@@ -9,6 +9,7 @@ import plantsApi from "config/api/plants";
 import Loader from "components/Loader/Loader";
 import BasicButton from "components/BasicButton/BasicButton";
 import BasicTextInput from "components/BasicTextInput/BasicTextInput";
+import { ApiErrors } from "enums/api-errors";
 import { IUserDetails } from "interfaces/IUserDetails";
 import { LoginResponse } from "interfaces/ILoginResponse";
 import { LoginSchema } from "schemas/Login.schema";
@@ -23,6 +24,7 @@ import {
   MarginTopView,
   ScreenContainer,
 } from "styles/shared";
+import showToast from "util/showToast";
 
 type LoginProps = NativeStackScreenProps<RootStackParamList, "login">;
 
@@ -74,8 +76,13 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
       resetForm();
       navigation.navigate("home");
     } catch (error) {
-      console.error(error);
-      setFieldError("username", "Invalid username or password");
+      console.log(error) 
+      switch (error) {
+        case ApiErrors.invalidCredentials:
+          return showToast("Invalid username or password", "error")
+        default:
+          return showToast("Invalid username or password", "error")
+      }
     } finally {
       setLoading(false);
     }

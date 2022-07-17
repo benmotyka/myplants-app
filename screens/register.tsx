@@ -9,6 +9,7 @@ import Back from "components/Back/Back";
 import BasicButton from "components/BasicButton/BasicButton";
 import BasicTextInput from "components/BasicTextInput/BasicTextInput";
 import Loader from "components/Loader/Loader";
+import { ApiErrors } from "enums/api-errors";
 import { LoginResponse } from "interfaces/ILoginResponse";
 import { RegisterSchema } from "schemas/Register.schema";
 import { userAction } from "store/actions";
@@ -20,6 +21,7 @@ import {
   MarginTopView,
   ScreenContainer,
 } from "styles/shared";
+import showToast from "util/showToast";
 
 type RegisterProps = NativeStackScreenProps<RootStackParamList, "register">;
 
@@ -65,7 +67,13 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
       resetForm();
       navigation.navigate("home");
     } catch (error) {
-      console.error(error);
+      console.log(error);
+      switch (error) {
+        case ApiErrors.usernameExists: 
+          return showToast("Username exists", "error")
+        default: 
+          return showToast("Something went wrong. Please try again later.", "error")
+      }
     } finally {
       setLoading(false);
     }
