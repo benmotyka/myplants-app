@@ -19,18 +19,21 @@ export const Wrapper = styled.View`
   height: 100%;
   position: relative;
   box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+  border-radius: 10px;
 `;
 
 export const Image = styled.Image`
   width: 100%;
   height: 70%;
   position: absolute;
+  borderTopLeftRadius: 10px;
+  borderTopRightRadius: 10px;
 `;
 
 export const SmallImage = styled.Image`
-width: 15px;
+width: 10px;
 height: 15px;
-margin-right: 5px;
+margin-right: 3px;
 `
 export const Body = styled.View`
   position: absolute;

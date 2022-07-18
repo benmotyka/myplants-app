@@ -30,6 +30,7 @@ import {
 } from "styles/shared";
 import { colors } from "styles/colors";
 import { standardFormat } from "util/formatDate";
+import showToast from "util/showToast";
 
 type EditPlantProps = NativeStackScreenProps<RootStackParamList, "editPlant">;
 
@@ -63,8 +64,10 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
           Authorization: `Bearer ${userDetails.jwt}`,
         },
       });
+      showToast("Plant deleted", "success");
     } catch (error) {
       console.error(error);
+      showToast("Something went wrong. Please try again later", "error");
     } finally {
       navigation.navigate("home");
     }
@@ -94,80 +97,88 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
           },
         }
       );
-      navigation.navigate("home");
+      showToast("Plant edited", "success");
     } catch (error) {
       console.error(error);
+      showToast("Something went wrong. Please try again later", "error");
     } finally {
       setLoading(false);
+      navigation.navigate("home");
     }
   };
 
   return (
-    <KeyboardScreen
-      contentContainerStyle={{ paddingBottom: 50, height: '100%' }}
-      resetScrollToCoords={{ x: 0, y: 0 }}
-      scrollEnabled={true}
-      style={{height: '100%'}}
-    >
-      <ColumnCenterWrapper>
-        <Back navigation={navigation} />
-        <IconContainer
-          style={{ top: 20, right: 20 }}
-          onPress={() => {
-            setShowModal(true);
-          }}
-        >
-          <MaterialIcons name="delete" size={24} color={colors.alert} />
-        </IconContainer>
-        {selectedPlant && !loading ? (
-          <Formik
-            initialValues={{
-              name: selectedPlant.name,
-              description: selectedPlant.description,
-              image: selectedPlant.imgSrc,
+    <>
+      <KeyboardScreen
+        contentContainerStyle={{ paddingBottom: 50 }}
+        resetScrollToCoords={{ x: 0, y: 0 }}
+        scrollEnabled={true}
+        bounces={false}
+      >
+        <ColumnCenterWrapper>
+          <Back navigation={navigation} />
+          <IconContainer
+            style={{ top: 20, right: 20 }}
+            onPress={() => {
+              setShowModal(true);
             }}
-            validationSchema={EditPlantSchema}
-            onSubmit={handleEdit}
           >
-            {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-              <InputsWrapper>
-                <BasicImageInput
-                  image={values.image}
-                  setImage={handleChange("image")}
-                />
-                <BasicTextInput
-                  value={values.name}
-                  label="Name"
-                  placeholder="Enter your plant name..."
-                  onChangeText={handleChange("name")}
-                  onBlur={handleBlur("name")}
-                  error={errors.name}
-                />
-                <BasicTextInput
-                  value={values.description}
-                  label="Description"
-                  placeholder="Enter your plant description..."
-                  onChangeText={handleChange("description")}
-                  onBlur={handleBlur("description")}
-                  textarea={true}
-                  error={errors.description}
-                />
-                <Description>
-                  Created at {standardFormat(selectedPlant.createdAt)}
-                </Description>
-                <MarginTopView>
-                  <BasicButton
-                    onPress={handleSubmit as (values: any) => void}
-                    text="Submit changes"
+            <MaterialIcons name="delete" size={24} color={colors.alert} />
+          </IconContainer>
+          {selectedPlant && !loading ? (
+            <Formik
+              initialValues={{
+                name: selectedPlant.name,
+                description: selectedPlant.description,
+                image: selectedPlant.imgSrc,
+              }}
+              validationSchema={EditPlantSchema}
+              onSubmit={handleEdit}
+            >
+              {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
+                <InputsWrapper>
+                  <BasicImageInput
+                    image={values.image}
+                    setImage={handleChange("image")}
                   />
-                </MarginTopView>
-              </InputsWrapper>
-            )}
-          </Formik>
-        ) : (
-          <Loader />
-        )}
-      </ColumnCenterWrapper>
+                  <BasicTextInput
+                    value={values.name}
+                    label="Name"
+                    placeholder="Enter your plant name..."
+                    onChangeText={handleChange("name")}
+                    onBlur={handleBlur("name")}
+                    error={errors.name}
+                  />
+                  <BasicTextInput
+                    value={values.description}
+                    label="Description"
+                    placeholder="Enter your plant description..."
+                    onChangeText={handleChange("description")}
+                    onBlur={handleBlur("description")}
+                    textarea={true}
+                    error={errors.description}
+                  />
+                  <Description>
+                    Created at {standardFormat(selectedPlant.createdAt)}
+                  </Description>
+                  <MarginTopView>
+                    <BasicButton
+                      onPress={handleSubmit as (values: any) => void}
+                      text="Submit changes"
+                      disabled={
+                        selectedPlant.name === values.name &&
+                        selectedPlant.description === values.description
+                      }
+                    />
+                  </MarginTopView>
+                </InputsWrapper>
+              )}
+            </Formik>
+          ) : (
+            <Loader />
+          )}
+        </ColumnCenterWrapper>
+      </KeyboardScreen>
       {showModal ? (
         <BasicModal toggleModal={setShowModal}>
           <ModalItem>
@@ -186,7 +197,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
           </ModalItem>
         </BasicModal>
       ) : null}
-    </KeyboardScreen>
+    </>
   );
 };
 

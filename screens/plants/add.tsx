@@ -63,6 +63,7 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
       showToast("Plant added", "success")
     } catch (error) {
       console.error(error)
+      showToast("Something went wrong. Please try again later", "error")
     } finally {
       setLoading(false);
     }
@@ -72,6 +73,7 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
     contentContainerStyle={{paddingBottom: 50}}
     resetScrollToCoords={{ x: 0, y: 0 }}
     scrollEnabled={true}
+    bounces={false}
     >
       <ColumnCenterWrapper>
         <Back navigation={navigation} />
