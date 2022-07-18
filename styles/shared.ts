@@ -25,7 +25,7 @@ export const ColumnCenterWrapper = styled.View`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 100px;
+  padding: 100px 0 50px;
 `;
 
 export const InputsWrapper = styled.View`
@@ -57,6 +57,10 @@ export const Header = styled.Text`
   text-align: left;
   font-family: "Inter_300Light";
   margin-bottom: 20px;
+`;
+
+export const SmallHeader = styled(Header)`
+  font-size: 20px;
 `;
 
 export const LoaderWrapper = styled.View`

@@ -16,6 +16,7 @@ import { RootSiblingParent } from "react-native-root-siblings";
 import HomeScreen from "screens/home";
 import AddPlantScreen from "screens/plants/add";
 import EditPlant from "screens/plants/edit";
+import PlantHistory from "screens/plants/history";
 import SettingsScreen from "screens/settings";
 import LoginScreen from "screens/login";
 import RegisterScreen from "screens/register";
@@ -28,6 +29,7 @@ export type RootStackParamList = {
   addPlant: undefined;
   settings: undefined;
   editPlant: { plantId: string };
+  plantHistory: { plantId: string };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -67,10 +69,12 @@ export default function App() {
                 component={HomeScreen}
                 options={{ gestureEnabled: false }}
               />
-              <Stack.Screen name="addPlant" component={AddPlantScreen} />
 
-              <Stack.Screen name="settings" component={SettingsScreen} />
+              <Stack.Screen name="addPlant" component={AddPlantScreen} />
               <Stack.Screen name="editPlant" component={EditPlant} />
+              <Stack.Screen name="plantHistory" component={PlantHistory} />
+              
+              <Stack.Screen name="settings" component={SettingsScreen} />
             </Stack.Navigator>
           </NavigationContainer>
         </RootSiblingParent>
