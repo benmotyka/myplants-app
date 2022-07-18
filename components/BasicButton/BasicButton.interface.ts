@@ -3,4 +3,5 @@ export interface BasicButtonProps {
     onPress: (...args: any[]) => void;
     warning?: boolean;
     important?: boolean;
+    disabled?: boolean;
 }

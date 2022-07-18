@@ -25,6 +25,7 @@ export const ButtonWrapper = styled.TouchableOpacity<{
 export const ButtonText = styled.Text<{
   warning?: boolean;
   important?: boolean;
+  disabled?: boolean;
 }>`
   font-family: "Inter_300Light";
   font-size: 18px;
@@ -34,4 +35,5 @@ export const ButtonText = styled.Text<{
       : props.important
       ? colors.important
       : colors.black};
+  opacity: ${(props) => props.disabled ? 0.2 : 1};
 `;
