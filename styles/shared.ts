@@ -21,11 +21,12 @@ export const ScreenContainer = styled.View`
 export const KeyboardScreen = styled(KeyboardAwareScrollView)`
 `
 
-export const ColumnCenterWrapper = styled.View`
+export const ColumnCenterWrapper = styled.View<{fullHeight?: boolean;}>`
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 100px 0 50px;
+  height: ${(props) => props.fullHeight ? '100%' : ''};
 `;
 
 export const InputsWrapper = styled.View`

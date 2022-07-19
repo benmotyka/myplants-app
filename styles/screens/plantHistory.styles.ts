@@ -7,7 +7,6 @@ width: 100%;
 `
 
 export const ItemDateHeader = styled.Text`
-width: 100%;
 background-color: ${colors.lightGrey};
 padding: 10px 25px;
 font-size: 18px;
@@ -23,7 +22,6 @@ export const ItemWrapper = styled.View`
 display: flex;
 flex-direction: row;
 align-items: center;
-width: 100%;
 padding: 10px 40px;
 `
 
@@ -31,4 +29,14 @@ export const HistoryIcon = styled.Image`
 width: 10px;
 height: 15px;
 margin-right: 5px;
+`
+
+export const ItemContainer = styled.View`
+`
+
+export const HistoryContainer = styled.View`
+width: 100%;
+display: flex;
+overflow-y: auto;
+height: 90%;
 `

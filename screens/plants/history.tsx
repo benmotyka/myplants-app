@@ -17,9 +17,14 @@ import {
   ActionText,
   ItemWrapper,
   HistoryIcon,
+  ItemContainer,
+  HistoryContainer,
 } from "styles/screens/plantHistory.styles";
 
-type PlantHistoryProps = NativeStackScreenProps<RootStackParamList, "plantHistory">;
+type PlantHistoryProps = NativeStackScreenProps<
+  RootStackParamList,
+  "plantHistory"
+>;
 
 const temporaryWateringHistoryItems = [
   {
@@ -49,6 +54,78 @@ const temporaryWateringHistoryItems = [
       },
     ],
   },
+  {
+    date: "2022-06-15",
+    actions: [
+      {
+        type: "watering",
+        hour: "12:35",
+      },
+    ],
+  },
+  {
+    date: "2022-06-14",
+    actions: [
+      {
+        type: "watering",
+        hour: "12:35",
+      },
+    ],
+  },
+  {
+    date: "2022-06-13",
+    actions: [
+      {
+        type: "watering",
+        hour: "12:35",
+      },
+    ],
+  },
+  {
+    date: "2022-06-12",
+    actions: [
+      {
+        type: "watering",
+        hour: "12:35",
+      },
+    ],
+  },
+  {
+    date: "2022-06-11",
+    actions: [
+      {
+        type: "watering",
+        hour: "12:35",
+      },
+    ],
+  },
+  {
+    date: "2022-06-10",
+    actions: [
+      {
+        type: "watering",
+        hour: "12:35",
+      },
+    ],
+  },
+  {
+    date: "2022-06-09",
+    actions: [
+      {
+        type: "watering",
+        hour: "12:35",
+      },
+    ],
+  },
+  {
+    date: "2022-06-08",
+    actions: [
+      {
+        type: "watering",
+        hour: "12:35",
+      },
+    ],
+  },
 ];
 
 const PlantHistory = ({ navigation }: PlantHistoryProps): JSX.Element => {
@@ -61,23 +138,26 @@ const PlantHistory = ({ navigation }: PlantHistoryProps): JSX.Element => {
   return (
     <ScreenContainer>
       <Back navigation={navigation} />
-      <ColumnCenterWrapper>
+      <ColumnCenterWrapper fullHeight>
         <HeaderWrapper>
           <SmallHeader>Watering history</SmallHeader>
         </HeaderWrapper>
+        <HistoryContainer>
         {temporaryWateringHistoryItems.map((item) => (
-          <>
+          <ItemContainer key={item.date}>
             <ItemDateHeader>{item.date}</ItemDateHeader>
-            {item.actions.map(action => (
-                <ItemWrapper>
-                <HistoryIcon 
-                resizeMode="contain"
-                source={require("../../assets/water-drop.png")}/>
+            {item.actions.map((action) => (
+              <ItemWrapper key={action.hour}>
+                <HistoryIcon
+                  resizeMode="contain"
+                  source={require("../../assets/water-drop.png")}
+                />
                 <ActionText>{action.hour}</ActionText>
-                </ItemWrapper>
+              </ItemWrapper>
             ))}
-          </>
+          </ItemContainer>
         ))}
+        </HistoryContainer>
       </ColumnCenterWrapper>
     </ScreenContainer>
   );
