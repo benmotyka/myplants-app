@@ -29,7 +29,7 @@ import {
   KeyboardScreen,
 } from "styles/shared";
 import { colors } from "styles/colors";
-import { standardFormat } from "util/formatDate";
+import { standardFormat } from "util/date";
 import showToast from "util/showToast";
 
 type EditPlantProps = NativeStackScreenProps<RootStackParamList, "editPlant">;

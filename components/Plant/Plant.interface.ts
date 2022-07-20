@@ -1,3 +1,4 @@
+import { IWatering } from "interfaces/IWatering";
 import { ImageSourcePropType } from "react-native";
 
 export interface PlantProps {
@@ -7,4 +8,5 @@ export interface PlantProps {
   navigation: any;
   onSlidingStart: () => void;
   onSlidingFinish: () => void;
+  latestWatering?: IWatering;
 }

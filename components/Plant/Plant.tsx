@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { TouchableHighlight, View } from "react-native";
 import { Slider } from "@miblanchard/react-native-slider";
+import { useIsFocused } from "@react-navigation/native";
 
 import {
   Body,
@@ -14,6 +15,11 @@ import {
 import { PlantProps } from "components/Plant/Plant.interface";
 import { colors } from "styles/colors";
 import showToast from "util/showToast";
+import plantsApi from "config/api/plants";
+import { IUserDetails } from "interfaces/IUserDetails";
+import { useSelector } from "react-redux";
+import { State } from "store/reducers";
+import { calculateDateDiff } from "util/date";
 
 const MAX_SLIDER_VALUE = 1;
 const SLIDE_SUCCESS_VALUE_THRESHOLD = 0.9;
@@ -26,18 +32,48 @@ const Plant = ({
   navigation,
   onSlidingStart,
   onSlidingFinish,
+  latestWatering,
 }: PlantProps): JSX.Element => {
   const [sliderValue, setSliderValue] = React.useState(0);
   const [watered, setWatered] = React.useState(false);
+  const isFocused = useIsFocused();
 
-  const onSlidingComplete = (value: number | number[]): void => {
+  const { userDetails }: { userDetails: IUserDetails } = useSelector(
+    (state: State) => state.user
+  );
+
+  useEffect(() => {
+    if (watered) {
+    setWatered(false)
+    setSliderValue(0)
+  }
+
+  }, [isFocused]);
+
+  const onSlidingComplete = async (value: number | number[]): Promise<void> => {
     const currentValue = typeof value !== "number" ? value[0] : value;
     onSlidingFinish();
     setSliderValue(currentValue as number);
     if (currentValue < SLIDE_SUCCESS_VALUE_THRESHOLD * MAX_SLIDER_VALUE) return;
 
-    showToast("Plant watered", "success");
-    setWatered(true);
+    try {
+      await plantsApi.post(
+        `/watering`,
+        {
+          plantId: id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${userDetails.jwt}`,
+          },
+        }
+      );
+      showToast("Plant watered", "success");
+      setWatered(true);
+    } catch (error) {
+      console.log(error);
+      showToast("Something went wrong. Please try again later.", "error");
+    }
   };
 
   const onLongPress = () => {
@@ -50,7 +86,7 @@ const Plant = ({
     navigation.navigate("plantHistory", {
       plantId: id,
     });
-  }
+  };
 
   return (
     <Container>
@@ -72,10 +108,15 @@ const Plant = ({
                     : name}
                 </Header>
                 <ItemsWrapper>
-                  <SmallImage 
-                  resizeMode="contain"
-                  source={require("../../assets/hourglass.png")} />
-                  <Header>00:32</Header>
+                  {latestWatering ? (
+                    <>
+                      <SmallImage
+                        resizeMode="contain"
+                        source={require("../../assets/hourglass.png")}
+                      />
+                      <Header>{calculateDateDiff(latestWatering.created_at)}</Header>
+                    </>
+                  ) : null}
                 </ItemsWrapper>
               </ItemsWrapper>
               <View style={{ marginTop: "auto" }}>

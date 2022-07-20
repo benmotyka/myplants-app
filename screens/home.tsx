@@ -12,7 +12,7 @@ import PlantsTutorial from "components/PlantsTutorial/PlantsTutorial";
 import HomeSettings from "components/HomeSettings/HomeSettings";
 import { IPlant } from "interfaces/IPlant";
 import { IUserDetails } from "interfaces/IUserDetails";
-import { plantsAction } from "store/actions";
+import { plantsAction, userAction } from "store/actions";
 import { State } from "store/reducers";
 import { ScreenContainer } from "styles/shared";
 
@@ -49,6 +49,7 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
         dispatch(plantsAction.setUserPlants(plants));
         setDataSource(plants);
       } catch (error) {
+        dispatch(userAction.removeUserDetails());
         console.error(error);
         navigation.navigate("login");
       }
@@ -69,6 +70,7 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
               navigation={navigation}
               onSlidingStart={() => setAllowScrolling(false)}
               onSlidingFinish={() => setAllowScrolling(true)}
+              latestWatering={item.latestWatering}
             />
           )}
           numColumns={numberOfColumns}

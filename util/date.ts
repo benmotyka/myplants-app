@@ -9,3 +9,11 @@ export const standardFormat = (date: string) => {
     newDate.getMinutes()
   )}`;
 };
+
+export const calculateDateDiff = (date: string) => {
+  const currentDate = new Date()
+  const givenDate = new Date(date)
+
+  // @TODO: add dayjs
+  return '123'
+}
