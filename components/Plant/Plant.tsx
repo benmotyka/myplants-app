@@ -19,11 +19,12 @@ import plantsApi from "config/api/plants";
 import { IUserDetails } from "interfaces/IUserDetails";
 import { useSelector } from "react-redux";
 import { State } from "store/reducers";
-import { calculateDateDiff } from "util/date";
+import { calculateDifferenceFromNow } from "util/date";
 
 const MAX_SLIDER_VALUE = 1;
 const SLIDE_SUCCESS_VALUE_THRESHOLD = 0.9;
 const MAX_HEADER_CHARACTERS = 10;
+const REFRESH_TIME_MS = 10000;
 
 const Plant = ({
   id,
@@ -36,18 +37,51 @@ const Plant = ({
 }: PlantProps): JSX.Element => {
   const [sliderValue, setSliderValue] = React.useState(0);
   const [watered, setWatered] = React.useState(false);
-  const isFocused = useIsFocused();
+  // If there was any watering, set time to last watering.
+  const [timeFromLastWatering, setTimeFromLastWatering] = React.useState(
+    latestWatering
+      ? calculateDifferenceFromNow(latestWatering.created_at)
+      : null
+  );
 
+  const isFocused = useIsFocused();
   const { userDetails }: { userDetails: IUserDetails } = useSelector(
     (state: State) => state.user
   );
 
+  // This useEffect sets and clears intervals for changing Plant time. If plant was ever watered,
+  // simply create a new interval, and destory old on return. If user waters this plant, this code
+  // will be ran, previous interval will be cleared and new one will be created with fallbackDate
+  // as date of watering. However, if user hasn't ever watered plant, interval will not be created.
+  // If new plant will be watered for the first time, interval will be created to the fallback date.
   useEffect(() => {
-    if (watered) {
-    setWatered(false)
-    setSliderValue(0)
-  }
+    if (!latestWatering && !watered) return;
+    const fallbackDate = new Date();
 
+    let interval = setInterval(() => {
+      setTimeFromLastWatering(
+        calculateDifferenceFromNow(
+          latestWatering ? latestWatering.created_at : fallbackDate
+        )
+      );
+    }, REFRESH_TIME_MS);
+
+    if (watered) {
+      clearInterval(interval);
+      interval = setInterval(() => {
+        setTimeFromLastWatering(calculateDifferenceFromNow(fallbackDate));
+      }, REFRESH_TIME_MS);
+    }
+    return () => clearInterval(interval);
+  }, [latestWatering, watered]);
+
+  // This useEffect clears watered status of plant after changing focuses, as well as sets slider to
+  // the default value.
+  useEffect(() => {
+    if (!watered) return;
+
+    setWatered(false);
+    setSliderValue(0);
   }, [isFocused]);
 
   const onSlidingComplete = async (value: number | number[]): Promise<void> => {
@@ -69,6 +103,7 @@ const Plant = ({
         }
       );
       showToast("Plant watered", "success");
+      setTimeFromLastWatering(calculateDifferenceFromNow(new Date()));
       setWatered(true);
     } catch (error) {
       console.log(error);
@@ -76,13 +111,13 @@ const Plant = ({
     }
   };
 
-  const onLongPress = () => {
+  const onLongPress = (): void => {
     navigation.navigate("editPlant", {
       plantId: id,
     });
   };
 
-  const onPress = () => {
+  const onPress = (): void => {
     navigation.navigate("plantHistory", {
       plantId: id,
     });
@@ -108,13 +143,13 @@ const Plant = ({
                     : name}
                 </Header>
                 <ItemsWrapper>
-                  {latestWatering ? (
+                  {latestWatering || watered ? (
                     <>
                       <SmallImage
                         resizeMode="contain"
                         source={require("../../assets/hourglass.png")}
                       />
-                      <Header>{calculateDateDiff(latestWatering.created_at)}</Header>
+                      <Header>{timeFromLastWatering}</Header>
                     </>
                   ) : null}
                 </ItemsWrapper>

@@ -18,7 +18,7 @@ export const Wrapper = styled.View`
   border: 1px solid ${colors.grey};
   height: 100%;
   position: relative;
-  box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+  box-shadow: 3px 3px 15px rgba(0,0,0,0.2);
   border-radius: 10px;
 `;
 
