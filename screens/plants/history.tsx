@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useSelector } from "react-redux";
 
@@ -20,120 +20,56 @@ import {
   ItemContainer,
   HistoryContainer,
 } from "styles/screens/plantHistory.styles";
+import { useIsFocused } from "@react-navigation/core";
+import plantsApi from "config/api/plants";
+import { WateringData } from "interfaces/IWateringData";
+import Loader from "components/Loader/Loader";
 
 type PlantHistoryProps = NativeStackScreenProps<
   RootStackParamList,
   "plantHistory"
 >;
 
-const temporaryWateringHistoryItems = [
-  {
-    date: "2022-06-18",
-    actions: [
-      {
-        type: "watering",
-        hour: "12:35",
-      },
-    ],
-  },
-  {
-    date: "2022-06-17",
-    actions: [
-      {
-        type: "watering",
-        hour: "12:35",
-      },
-    ],
-  },
-  {
-    date: "2022-06-16",
-    actions: [
-      {
-        type: "watering",
-        hour: "12:35",
-      },
-    ],
-  },
-  {
-    date: "2022-06-15",
-    actions: [
-      {
-        type: "watering",
-        hour: "12:35",
-      },
-    ],
-  },
-  {
-    date: "2022-06-14",
-    actions: [
-      {
-        type: "watering",
-        hour: "12:35",
-      },
-    ],
-  },
-  {
-    date: "2022-06-13",
-    actions: [
-      {
-        type: "watering",
-        hour: "12:35",
-      },
-    ],
-  },
-  {
-    date: "2022-06-12",
-    actions: [
-      {
-        type: "watering",
-        hour: "12:35",
-      },
-    ],
-  },
-  {
-    date: "2022-06-11",
-    actions: [
-      {
-        type: "watering",
-        hour: "12:35",
-      },
-    ],
-  },
-  {
-    date: "2022-06-10",
-    actions: [
-      {
-        type: "watering",
-        hour: "12:35",
-      },
-    ],
-  },
-  {
-    date: "2022-06-09",
-    actions: [
-      {
-        type: "watering",
-        hour: "12:35",
-      },
-    ],
-  },
-  {
-    date: "2022-06-08",
-    actions: [
-      {
-        type: "watering",
-        hour: "12:35",
-      },
-    ],
-  },
-];
-
-const PlantHistory = ({ navigation }: PlantHistoryProps): JSX.Element => {
-  const [loading, setLoading] = React.useState(false);
+const PlantHistory = ({
+  route,
+  navigation,
+}: PlantHistoryProps): JSX.Element => {
+  const plantId = route.params.plantId;
+  const [wateringData, setWateringData] = React.useState<WateringData>();
+  const isFocused = useIsFocused();
 
   const { userDetails }: { userDetails: IUserDetails } = useSelector(
     (state: State) => state.user
   );
+
+  const getPlantWateringHistory = async () => {
+    try {
+      const { data } = await plantsApi.get<{ waterings: WateringData }>(
+        `watering/${plantId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${userDetails.jwt}`,
+          },
+        }
+      );
+      return data;
+    } catch (error) {
+      throw new Error("error");
+    }
+  };
+
+  useEffect(() => {
+    if (!isFocused) return;
+    (async () => {
+      try {
+        const { waterings } = await getPlantWateringHistory();
+        setWateringData(waterings);
+      } catch (error) {
+        console.error(error);
+        navigation.navigate("login");
+      }
+    })();
+  }, [isFocused]);
 
   return (
     <ScreenContainer>
@@ -143,20 +79,24 @@ const PlantHistory = ({ navigation }: PlantHistoryProps): JSX.Element => {
           <SmallHeader>Watering history</SmallHeader>
         </HeaderWrapper>
         <HistoryContainer>
-        {temporaryWateringHistoryItems.map((item) => (
-          <ItemContainer key={item.date}>
-            <ItemDateHeader>{item.date}</ItemDateHeader>
-            {item.actions.map((action) => (
-              <ItemWrapper key={action.hour}>
-                <HistoryIcon
-                  resizeMode="contain"
-                  source={require("../../assets/water-drop.png")}
-                />
-                <ActionText>{action.hour}</ActionText>
-              </ItemWrapper>
-            ))}
-          </ItemContainer>
-        ))}
+          {!wateringData ? (
+            <Loader />
+          ) : (
+            Object.entries(wateringData).map(([day, hours]) => (
+              <ItemContainer key={day}>
+                <ItemDateHeader>{day}</ItemDateHeader>
+                {hours.map((hour, index) => (
+                  <ItemWrapper key={hour + index}>
+                    <HistoryIcon
+                      resizeMode="contain"
+                      source={require("../../assets/water-drop.png")}
+                    />
+                    <ActionText>{hour}</ActionText>
+                  </ItemWrapper>
+                ))}
+              </ItemContainer>
+            ))
+          )}
         </HistoryContainer>
       </ColumnCenterWrapper>
     </ScreenContainer>
