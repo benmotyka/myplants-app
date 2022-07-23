@@ -26,7 +26,7 @@ export const ColumnCenterWrapper = styled.View<{fullHeight?: boolean;}>`
   align-items: center;
   justify-content: center;
   padding: 100px 0 50px;
-  height: ${(props) => props.fullHeight ? '100%' : ''};
+  height: ${(props) => props.fullHeight ? '100%' : 'auto'};
 `;
 
 export const InputsWrapper = styled.View`

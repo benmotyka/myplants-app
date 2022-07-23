@@ -11,17 +11,15 @@ export const TutorialContainer = styled.View`
 
 export const Image = styled.Image`
   width: 100px;
-  height: 150px;
+  height: 60px;
 
   opacity: 0.1;
 `;
 
 export const ImageWrapper = styled.View`
   position: absolute;
-  right: 10px;
-  bottom: 35px;
-
-  transform: rotate(200deg);
+  right: 5px;
+  bottom: 70px;
 `;
 
 export const TutorialText = styled.Text`

@@ -8,7 +8,7 @@ import { RootStackParamList } from "../App";
 import plantsApi from "config/api/plants";
 import PlantPreview from "components/Plant/Plant";
 import { numberOfColumns } from "components/Plant/Plant.styles";
-import PlantsTutorial from "components/PlantsTutorial/PlantsTutorial";
+import AddPlantSuggestion from "components/AddPlantSuggestion/AddPlantSuggestion";
 import HomeSettings from "components/HomeSettings/HomeSettings";
 import { Plant } from "interfaces/Plant";
 import { UserDetails } from "interfaces/UserDetails";
@@ -78,7 +78,7 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
             contentContainerStyle={{ paddingBottom: 100 }}
             scrollEnabled={allowScrolling}
           />
-          {!dataSource.length ? <PlantsTutorial /> : null}
+          {!dataSource.length ? <AddPlantSuggestion /> : null}
         </>
       ) : null}
       <HomeSettings navigation={navigation} />

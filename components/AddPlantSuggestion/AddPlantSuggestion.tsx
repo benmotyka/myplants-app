@@ -1,8 +1,8 @@
 import React from "react";
 
-import { TutorialContainer, Image, ImageWrapper, TutorialText } from "components/PlantsTutorial/PlantsTutorial.styles";
+import { TutorialContainer, Image, ImageWrapper, TutorialText } from "components/AddPlantSuggestion/AddPlantSuggestion.styles";
 
-const PlantsTutorial = (): JSX.Element => {
+const AddPlantSuggestion = (): JSX.Element => {
   return (
     <TutorialContainer>
       <TutorialText>Add your first plant here</TutorialText>
@@ -13,4 +13,4 @@ const PlantsTutorial = (): JSX.Element => {
   );
 };
 
-export default PlantsTutorial;
+export default AddPlantSuggestion;
