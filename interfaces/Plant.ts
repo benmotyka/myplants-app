@@ -1,10 +1,10 @@
-import { IWatering } from "./IWatering";
+import { Watering } from "./Watering";
 
-export interface IPlant {
+export interface Plant {
     id: string;
     name: string;
     description?: string;
     imgSrc?: string;    
     createdAt: string;
-    latestWatering: IWatering
+    latestWatering: Watering
 }

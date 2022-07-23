@@ -1,23 +1,23 @@
-import { IUserDetails } from "interfaces/IUserDetails";
+import { UserDetails } from "interfaces/UserDetails";
 import { SET_USER_DETAILS, REMOVE_USER_DETAILS } from "store/types";
 
-interface IState {
-  userDetails: IUserDetails;
+interface State {
+  userDetails: UserDetails;
 }
 
 interface Action {
   type: string;
-  payload: IUserDetails;
+  payload: UserDetails;
 }
 
-const initialstate: IState = {
+const initialstate: State = {
   userDetails: {
     jwt: null,
     username: null,
   },
 };
 
-export default (state: IState = initialstate, action: Action) => {
+export default (state: State = initialstate, action: Action) => {
   switch (action.type) {
     case SET_USER_DETAILS:
       return Object.assign({}, state, {

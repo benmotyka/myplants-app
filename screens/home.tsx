@@ -6,12 +6,12 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { RootStackParamList } from "../App";
 import plantsApi from "config/api/plants";
-import Plant from "components/Plant/Plant";
+import PlantPreview from "components/Plant/Plant";
 import { numberOfColumns } from "components/Plant/Plant.styles";
 import PlantsTutorial from "components/PlantsTutorial/PlantsTutorial";
 import HomeSettings from "components/HomeSettings/HomeSettings";
-import { IPlant } from "interfaces/IPlant";
-import { IUserDetails } from "interfaces/IUserDetails";
+import { Plant } from "interfaces/Plant";
+import { UserDetails } from "interfaces/UserDetails";
 import { plantsAction, userAction } from "store/actions";
 import { State } from "store/reducers";
 import { ScreenContainer } from "styles/shared";
@@ -19,18 +19,18 @@ import { ScreenContainer } from "styles/shared";
 type HomeProps = NativeStackScreenProps<RootStackParamList, "home">;
 
 const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
-  const [dataSource, setDataSource] = useState<IPlant[]>();
-  const [allowScrolling, setAllowScrolling] = useState(true)
+  const [dataSource, setDataSource] = useState<Plant[]>();
+  const [allowScrolling, setAllowScrolling] = useState(true);
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
 
-  const { userDetails }: { userDetails: IUserDetails } = useSelector(
+  const { userDetails }: { userDetails: UserDetails } = useSelector(
     (state: State) => state.user
   );
 
   const getUserPlants = async () => {
     try {
-      const { data } = await plantsApi.get<{ plants: IPlant[] }>("plants", {
+      const { data } = await plantsApi.get<{ plants: Plant[] }>("plants", {
         headers: {
           Authorization: `Bearer ${userDetails.jwt}`,
         },
@@ -60,25 +60,25 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
     <ScreenContainer>
       {dataSource ? (
         <>
-        <FlatList
-          data={dataSource}
-          renderItem={({ item }) => (
-            <Plant
-              id={item.id}
-              name={item.name}
-              imgSrc={require("../assets/plants/default_plant.webp")}
-              navigation={navigation}
-              onSlidingStart={() => setAllowScrolling(false)}
-              onSlidingFinish={() => setAllowScrolling(true)}
-              latestWatering={item.latestWatering}
-            />
-          )}
-          numColumns={numberOfColumns}
-          keyExtractor={(item, index) => index.toString()}
-          contentContainerStyle={{ paddingBottom: 100 }}
-          scrollEnabled={allowScrolling}
-        />
-        {!dataSource.length ? <PlantsTutorial/> : null }
+          <FlatList
+            data={dataSource}
+            renderItem={({ item }) => (
+              <PlantPreview
+                id={item.id}
+                name={item.name}
+                imgSrc={require("../assets/plants/default_plant.webp")}
+                navigation={navigation}
+                onSlidingStart={() => setAllowScrolling(false)}
+                onSlidingFinish={() => setAllowScrolling(true)}
+                latestWatering={item.latestWatering}
+              />
+            )}
+            numColumns={numberOfColumns}
+            keyExtractor={(item, index) => index.toString()}
+            contentContainerStyle={{ paddingBottom: 100 }}
+            scrollEnabled={allowScrolling}
+          />
+          {!dataSource.length ? <PlantsTutorial /> : null}
         </>
       ) : null}
       <HomeSettings navigation={navigation} />

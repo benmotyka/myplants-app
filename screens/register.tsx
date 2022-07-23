@@ -10,7 +10,7 @@ import BasicButton from "components/BasicButton/BasicButton";
 import BasicTextInput from "components/BasicTextInput/BasicTextInput";
 import Loader from "components/Loader/Loader";
 import { ApiErrors } from "enums/api-errors";
-import { LoginResponse } from "interfaces/ILoginResponse";
+import { LoginResponse } from "interfaces/LoginResponse";
 import { RegisterSchema } from "schemas/Register.schema";
 import { userAction } from "store/actions";
 import {

@@ -1,7 +1,7 @@
-import { IPlant } from 'interfaces/IPlant';
+import { Plant } from 'interfaces/Plant';
 import { SET_USER_PLANTS } from 'store/types';
 
-const setUserPlants = (payload: IPlant[]) => { 
+const setUserPlants = (payload: Plant[]) => { 
   return({
     type: SET_USER_PLANTS,
     payload,

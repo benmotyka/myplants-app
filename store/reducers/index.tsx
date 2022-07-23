@@ -8,7 +8,6 @@ import user from 'store/reducers/user'
 const persistConfig = {
     key: 'userDetails',
     storage: AsyncStorage,
-    // whitelist: ['bookmarks']
   };
 
 

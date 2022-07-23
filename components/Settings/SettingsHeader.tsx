@@ -1,4 +1,5 @@
 import React from "react";
+
 import { SettingsHeaderProps } from "components/Settings/Settings.interface";
 import { HeaderWrapper, HeaderText } from "components/Settings/Settings.styles";
 

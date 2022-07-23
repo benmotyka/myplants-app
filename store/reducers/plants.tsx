@@ -1,20 +1,20 @@
-import { IPlant } from "interfaces/IPlant";
+import { Plant } from "interfaces/Plant";
 import { SET_USER_PLANTS } from "store//types";
 
-interface IState {
-  userPlants: IPlant[];
+interface State {
+  userPlants: Plant[];
 }
 
 interface Action {
   type: string;
-  payload: IPlant[];
+  payload: Plant[];
 };
 
-const initialstate: IState = {
+const initialstate: State = {
     userPlants: [],
   };
   
-export default (state: IState = initialstate, action: Action) => {
+export default (state: State = initialstate, action: Action) => {
   switch (action.type) {
     case SET_USER_PLANTS:
       return Object.assign({}, state, {

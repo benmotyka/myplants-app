@@ -1,4 +1,4 @@
-export interface IWatering {
+export interface Watering {
     id: string;
     plantId: string;
     created_at: string;

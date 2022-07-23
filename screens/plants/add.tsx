@@ -10,7 +10,7 @@ import BasicTextInput from "components/BasicTextInput/BasicTextInput";
 import BasicImageInput from "components/BasicImageInput/BasicImageInput";
 import BasicButton from "components/BasicButton/BasicButton";
 import Loader from "components/Loader/Loader";
-import { IUserDetails } from "interfaces/IUserDetails";
+import { UserDetails } from "interfaces/UserDetails";
 import { AddPlantSchema } from "schemas/AddPlant.schema";
 import {
   KeyboardScreen,
@@ -33,7 +33,7 @@ interface AddPlantForm {
 const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
   const [loading, setLoading] = React.useState(false);
 
-  const { userDetails }: { userDetails: IUserDetails } = useSelector(
+  const { userDetails }: { userDetails: UserDetails } = useSelector(
     (state: State) => state.user
   );
 

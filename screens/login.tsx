@@ -10,8 +10,8 @@ import Loader from "components/Loader/Loader";
 import BasicButton from "components/BasicButton/BasicButton";
 import BasicTextInput from "components/BasicTextInput/BasicTextInput";
 import { ApiErrors } from "enums/api-errors";
-import { IUserDetails } from "interfaces/IUserDetails";
-import { LoginResponse } from "interfaces/ILoginResponse";
+import { UserDetails } from "interfaces/UserDetails";
+import { LoginResponse } from "interfaces/LoginResponse";
 import { LoginSchema } from "schemas/Login.schema";
 import { userAction } from "store/actions";
 import { State } from "store/reducers";
@@ -35,7 +35,7 @@ interface LoginForm {
 
 const Login = ({ navigation }: LoginProps): JSX.Element => {
   const [loading, setLoading] = React.useState(false);
-  const { userDetails }: { userDetails: IUserDetails } = useSelector(
+  const { userDetails }: { userDetails: UserDetails } = useSelector(
     (state: State) => state.user
   );
 

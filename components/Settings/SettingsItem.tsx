@@ -1,4 +1,5 @@
 import React from "react";
+
 import { SettingsItemProps } from "components/Settings/Settings.interface";
 import { ItemWrapper } from "components/Settings/Settings.styles";
 

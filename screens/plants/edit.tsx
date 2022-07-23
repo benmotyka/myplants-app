@@ -16,8 +16,8 @@ import {
   ModalHeader,
   ModalItem,
 } from "components/BasicModal/BasicModal.styles";
-import { IPlant } from "interfaces/IPlant";
-import { IUserDetails } from "interfaces/IUserDetails";
+import { Plant } from "interfaces/Plant";
+import { UserDetails } from "interfaces/UserDetails";
 import { EditPlantSchema } from "schemas/EditPlant.schema";
 import { State } from "store/reducers";
 import {
@@ -29,7 +29,7 @@ import {
   KeyboardScreen,
 } from "styles/shared";
 import { colors } from "styles/colors";
-import { standardFormat } from "util/date";
+import { formatToHourAndDate } from "util/date";
 import showToast from "util/showToast";
 
 type EditPlantProps = NativeStackScreenProps<RootStackParamList, "editPlant">;
@@ -43,12 +43,12 @@ interface EditPlantForm {
 const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
   const plantId = route.params.plantId;
   const [loading, setLoading] = React.useState(false);
-  const [selectedPlant, setSelectedPlant] = React.useState<IPlant>();
+  const [selectedPlant, setSelectedPlant] = React.useState<Plant>();
   const [showModal, setShowModal] = React.useState(false);
-  const { userPlants }: { userPlants: IPlant[] } = useSelector(
+  const { userPlants }: { userPlants: Plant[] } = useSelector(
     (state: State) => state.plants
   );
-  const { userDetails }: { userDetails: IUserDetails } = useSelector(
+  const { userDetails }: { userDetails: UserDetails } = useSelector(
     (state: State) => state.user
   );
 
@@ -159,7 +159,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
                     error={errors.description}
                   />
                   <Description>
-                    Created at {standardFormat(selectedPlant.createdAt)}
+                    Created at {formatToHourAndDate(selectedPlant.createdAt)}
                   </Description>
                   <MarginTopView>
                     <BasicButton

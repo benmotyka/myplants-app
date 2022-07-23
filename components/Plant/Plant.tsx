@@ -16,7 +16,7 @@ import { PlantProps } from "components/Plant/Plant.interface";
 import { colors } from "styles/colors";
 import showToast from "util/showToast";
 import plantsApi from "config/api/plants";
-import { IUserDetails } from "interfaces/IUserDetails";
+import { UserDetails } from "interfaces/UserDetails";
 import { useSelector } from "react-redux";
 import { State } from "store/reducers";
 import { calculateDifferenceFromNow } from "util/date";
@@ -45,7 +45,7 @@ const Plant = ({
   );
 
   const isFocused = useIsFocused();
-  const { userDetails }: { userDetails: IUserDetails } = useSelector(
+  const { userDetails }: { userDetails: UserDetails } = useSelector(
     (state: State) => state.user
   );
 
@@ -126,55 +126,54 @@ const Plant = ({
   return (
     <Container>
       <Wrapper>
-        <TouchableHighlight
-          onLongPress={onLongPress}
-          onPress={onPress}
-          delayLongPress={750}
-          underlayColor="white"
-          style={{ width: "100%", height: "100%", borderRadius: 10 }}
-        >
-          <View style={{ width: "100%", height: "100%" }}>
+          <TouchableHighlight
+            onLongPress={onLongPress}
+            onPress={onPress}
+            delayLongPress={750}
+            underlayColor="white"
+            style={{ width: "100%", height: "100%", borderRadius: 10 }}
+          >
             <Image resizeMode="cover" source={imgSrc} />
-            <Body>
+          </TouchableHighlight>
+
+          <Body>
+            <ItemsWrapper>
+              <Header>
+                {name.length > MAX_HEADER_CHARACTERS
+                  ? `${name.slice(0, MAX_HEADER_CHARACTERS)}...`
+                  : name}
+              </Header>
               <ItemsWrapper>
-                <Header>
-                  {name.length > MAX_HEADER_CHARACTERS
-                    ? `${name.slice(0, MAX_HEADER_CHARACTERS)}...`
-                    : name}
-                </Header>
-                <ItemsWrapper>
-                  {latestWatering || watered ? (
-                    <>
-                      <SmallImage
-                        resizeMode="contain"
-                        source={require("../../assets/hourglass.png")}
-                      />
-                      <Header>{timeFromLastWatering}</Header>
-                    </>
-                  ) : null}
-                </ItemsWrapper>
+                {latestWatering || watered ? (
+                  <>
+                    <SmallImage
+                      resizeMode="contain"
+                      source={require("../../assets/hourglass.png")}
+                    />
+                    <Header>{timeFromLastWatering}</Header>
+                  </>
+                ) : null}
               </ItemsWrapper>
-              <View style={{ marginTop: "auto" }}>
-                {watered ? null : (
-                  <Slider
-                    value={sliderValue}
-                    onSlidingComplete={onSlidingComplete}
-                    thumbStyle={{
-                      backgroundColor: colors.thumbStyle,
-                      borderRadius: 3,
-                      width: 35,
-                      height: 25,
-                    }}
-                    trackStyle={{ opacity: 0.2 }}
-                    trackClickable={false}
-                    maximumValue={MAX_SLIDER_VALUE}
-                    onSlidingStart={onSlidingStart}
-                  />
-                )}
-              </View>
-            </Body>
-          </View>
-        </TouchableHighlight>
+            </ItemsWrapper>
+            <View style={{ marginTop: "auto" }}>
+              {watered ? null : (
+                <Slider
+                  value={sliderValue}
+                  onSlidingComplete={onSlidingComplete}
+                  thumbStyle={{
+                    backgroundColor: colors.thumbStyle,
+                    borderRadius: 3,
+                    width: 35,
+                    height: 25,
+                  }}
+                  trackStyle={{ opacity: 0.2 }}
+                  trackClickable={false}
+                  maximumValue={MAX_SLIDER_VALUE}
+                  onSlidingStart={onSlidingStart}
+                />
+              )}
+            </View>
+          </Body>
       </Wrapper>
     </Container>
   );

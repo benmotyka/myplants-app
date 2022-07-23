@@ -1,7 +1,7 @@
-import { IUserDetails } from 'interfaces/IUserDetails';
+import { UserDetails } from 'interfaces/UserDetails';
 import { SET_USER_DETAILS, REMOVE_USER_DETAILS } from 'store/types';
 
-const setUserDetails = (payload: IUserDetails) => { 
+const setUserDetails = (payload: UserDetails) => { 
   return({
     type: SET_USER_DETAILS,
     payload,

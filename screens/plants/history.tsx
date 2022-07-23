@@ -1,13 +1,15 @@
 import React, { useEffect } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useSelector } from "react-redux";
+import { useIsFocused } from "@react-navigation/core";
 
 import { RootStackParamList } from "../../App";
 import Back from "components/Back/Back";
-import { IUserDetails } from "interfaces/IUserDetails";
+import { UserDetails } from "interfaces/UserDetails";
 import { State } from "store/reducers";
 import {
   ColumnCenterWrapper,
+  Description,
   ScreenContainer,
   SmallHeader,
 } from "styles/shared";
@@ -20,10 +22,10 @@ import {
   ItemContainer,
   HistoryContainer,
 } from "styles/screens/plantHistory.styles";
-import { useIsFocused } from "@react-navigation/core";
 import plantsApi from "config/api/plants";
-import { WateringData } from "interfaces/IWateringData";
+import { WateringData } from "interfaces/WateringData";
 import Loader from "components/Loader/Loader";
+import { formatToHour } from "util/date";
 
 type PlantHistoryProps = NativeStackScreenProps<
   RootStackParamList,
@@ -38,7 +40,7 @@ const PlantHistory = ({
   const [wateringData, setWateringData] = React.useState<WateringData>();
   const isFocused = useIsFocused();
 
-  const { userDetails }: { userDetails: IUserDetails } = useSelector(
+  const { userDetails }: { userDetails: UserDetails } = useSelector(
     (state: State) => state.user
   );
 
@@ -81,6 +83,10 @@ const PlantHistory = ({
         <HistoryContainer>
           {!wateringData ? (
             <Loader />
+          ) : !Object.keys(wateringData).length ? (
+            <Description style={{ textAlign: "center" }}>
+              This plant has not been watered yet.
+            </Description>
           ) : (
             Object.entries(wateringData).map(([day, hours]) => (
               <ItemContainer key={day}>
@@ -91,7 +97,7 @@ const PlantHistory = ({
                       resizeMode="contain"
                       source={require("../../assets/water-drop.png")}
                     />
-                    <ActionText>{hour}</ActionText>
+                    <ActionText>{formatToHour(hour)}</ActionText>
                   </ItemWrapper>
                 ))}
               </ItemContainer>
