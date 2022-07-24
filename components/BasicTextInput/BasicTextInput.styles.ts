@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import { MotiView } from "moti";
 
 import { colors } from "styles/colors";
 
@@ -28,11 +29,15 @@ font-family: 'Inter_300Light';
 margin-bottom: 5px;
 `
 
-export const ErrorWrapper = styled.Text`
+export const ErrorWrapper = styled(MotiView)`
+position: absolute;
+bottom: 0;
+`
+
+export const ErrorText = styled.Text`
 font-size: 12px;
 font-family: 'Inter_300Light';
 color: ${colors.alert};
 margin-top: 3px;
-position: absolute;
-bottom: 0;
+
 `

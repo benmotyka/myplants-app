@@ -7,7 +7,9 @@ import {
   InputWrapper,
   InputLabel,
   ErrorWrapper,
+  ErrorText,
 } from "components/BasicTextInput/BasicTextInput.styles";
+import { AnimatePresence } from "moti";
 
 const TEXTAREA_NUMBER_OF_LINES = 4;
 const IOS_LINE_HEIGHT_PX = 20;
@@ -41,7 +43,26 @@ const BasicTextInput = ({
             : null
         }
       />
-      <ErrorWrapper>{error}</ErrorWrapper>
+      <AnimatePresence>
+        {error ? (
+          <ErrorWrapper
+            from={{
+              opacity: 0,
+              scale: 0,
+            }}
+            animate={{
+              opacity: 1,
+              scale: 1,
+            }}
+            exit={{
+              scale: 0,
+              opacity: 0,
+            }}
+          >
+            <ErrorText>{error}</ErrorText>
+          </ErrorWrapper>
+        ) : null}
+      </AnimatePresence>
     </InputWrapper>
   );
 };
