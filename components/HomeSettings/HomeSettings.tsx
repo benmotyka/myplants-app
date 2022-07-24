@@ -3,8 +3,13 @@ import { Entypo } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 
 import { colors } from "styles/colors";
-import { IconWrapper, MenuContainer } from "components/HomeSettings/HomeSettings.styles";
+import {
+  IconWrapper,
+  MenuContainer,
+} from "components/HomeSettings/HomeSettings.styles";
 import { HomeSettingsProps } from "components/HomeSettings/HomeSettings.interface";
+import { AnimatePresence } from "moti";
+import { ModalAnimationWrapper } from "styles/shared";
 
 const ICON_SIZE_PX = 24;
 const ITEMS_MARGIN_PX = 60;
@@ -14,15 +19,20 @@ const settingsItems = [
   {
     name: "addPlant",
     icon: <Entypo name="plus" size={ICON_SIZE_PX} color={colors.lightBlack} />,
-    href: 'addPlant'
+    href: "addPlant",
   },
   {
     name: "appSettings",
-    icon: <MaterialIcons name="settings" size={ICON_SIZE_PX} color={colors.lightBlack} />,
-    href: 'settings'
+    icon: (
+      <MaterialIcons
+        name="settings"
+        size={ICON_SIZE_PX}
+        color={colors.lightBlack}
+      />
+    ),
+    href: "settings",
   },
 ];
-
 
 const HomeSettings = ({ navigation }: HomeSettingsProps): JSX.Element => {
   const [showMenu, setShowMenu] = React.useState(false);
@@ -36,22 +46,38 @@ const HomeSettings = ({ navigation }: HomeSettingsProps): JSX.Element => {
           color={colors.lightBlack}
         />
       </IconWrapper>
-      {showMenu ? (
-        <MenuContainer onPress={() => setShowMenu(false)}>
-          {settingsItems.map((item, index) => (
-            <IconWrapper
-              key={item.name}
-              style={{ bottom: ITEMS_OFFSET_PX + (index + 1) * ITEMS_MARGIN_PX }}
-              onPress={() => {
-                navigation.navigate(item.href)
-                setShowMenu(false)
-              }}
-            >
-              {item.icon}
-            </IconWrapper>
-          ))}
-        </MenuContainer>
-      ) : null}
+      <AnimatePresence>
+        {showMenu ? (
+          <ModalAnimationWrapper
+            from={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 1,
+            }}
+            exit={{
+              opacity: 0,
+            }}
+          >
+            <MenuContainer onPress={() => setShowMenu(false)} activeOpacity={1}>
+              {settingsItems.map((item, index) => (
+                <IconWrapper
+                  key={item.name}
+                  style={{
+                    bottom: ITEMS_OFFSET_PX + (index + 1) * ITEMS_MARGIN_PX,
+                  }}
+                  onPress={() => {
+                    navigation.navigate(item.href);
+                    setShowMenu(false);
+                  }}
+                >
+                  {item.icon}
+                </IconWrapper>
+              ))}
+            </MenuContainer>
+          </ModalAnimationWrapper>
+        ) : null}
+      </AnimatePresence>
     </>
   );
 };

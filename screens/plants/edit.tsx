@@ -179,24 +179,22 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
           )}
         </ColumnCenterWrapper>
       </KeyboardScreen>
-      {showModal ? (
-        <BasicModal toggleModal={setShowModal}>
-          <ModalItem>
-            <ModalHeader>Are you sure to delete your plant?</ModalHeader>
-          </ModalItem>
-          <ModalItem>
-            <BasicButton onPress={handleDelete} text="Delete" warning={true} />
-          </ModalItem>
-          <ModalItem>
-            <BasicButton
-              onPress={() => {
-                setShowModal(false);
-              }}
-              text="Cancel"
-            />
-          </ModalItem>
-        </BasicModal>
-      ) : null}
+      <BasicModal showModal={showModal} toggleModal={setShowModal}>
+        <ModalItem>
+          <ModalHeader>Are you sure to delete your plant?</ModalHeader>
+        </ModalItem>
+        <ModalItem>
+          <BasicButton onPress={handleDelete} text="Delete" warning={true} />
+        </ModalItem>
+        <ModalItem>
+          <BasicButton
+            onPress={() => {
+              setShowModal(false);
+            }}
+            text="Cancel"
+          />
+        </ModalItem>
+      </BasicModal>
     </>
   );
 };

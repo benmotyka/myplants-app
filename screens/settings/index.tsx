@@ -71,24 +71,22 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
           </SettingsItem>
         </SettingsSection>
       </ColumnCenterWrapper>
-      {showModal ? (
-        <BasicModal toggleModal={setShowModal}>
-          <ModalItem>
-            <ModalHeader>Are you sure you want to log out?</ModalHeader>
-          </ModalItem>
-          <ModalItem>
-            <BasicButton onPress={handleLogOut} text="Log out" warning={true} />
-          </ModalItem>
-          <ModalItem>
-            <BasicButton
-              onPress={() => {
-                setShowModal(false);
-              }}
-              text="Cancel"
-            />
-          </ModalItem>
-        </BasicModal>
-      ) : null}
+      <BasicModal showModal={showModal} toggleModal={setShowModal}>
+        <ModalItem>
+          <ModalHeader>Are you sure you want to log out?</ModalHeader>
+        </ModalItem>
+        <ModalItem>
+          <BasicButton onPress={handleLogOut} text="Log out" warning={true} />
+        </ModalItem>
+        <ModalItem>
+          <BasicButton
+            onPress={() => {
+              setShowModal(false);
+            }}
+            text="Cancel"
+          />
+        </ModalItem>
+      </BasicModal>
     </ScreenContainer>
   );
 };

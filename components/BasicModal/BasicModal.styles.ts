@@ -8,7 +8,6 @@ export const ModalContainer = styled.TouchableOpacity`
   right: 0;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,6 +1,7 @@
 import styled from "styled-components/native";
 import { Dimensions } from "react-native";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { MotiView } from "moti";
 
 import { colors } from "styles/colors";
 
@@ -71,6 +72,12 @@ margin-top: 100px;
 export const Description = styled.Text`
   font-size: 13px;
   font-family: "Inter_300Light";
-  background-color: ${colors.lightGrey};
   opacity: 0.6;
+`
+
+export const ModalAnimationWrapper = styled(MotiView)`
+width: 100%;
+height: 100%;
+position: absolute;
+z-index: 10;
 `

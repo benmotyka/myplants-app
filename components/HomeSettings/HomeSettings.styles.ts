@@ -5,6 +5,7 @@ import { IconContainer } from "styles/shared";
 export const IconWrapper = styled(IconContainer)`
   bottom: 20px;
   right: 20px;
+  z-index: 20;
 `;
 
 export const MenuContainer = styled.TouchableOpacity`
@@ -14,5 +15,4 @@ export const MenuContainer = styled.TouchableOpacity`
   right: 0;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 2;
 `;
