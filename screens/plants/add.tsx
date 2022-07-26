@@ -21,6 +21,7 @@ import {
 } from "styles/shared";
 import { State } from "store/reducers";
 import showToast from "util/showToast";
+import { ApiErrors } from "enums/api-errors";
 
 type AddPlantProps = NativeStackScreenProps<RootStackParamList, "addPlant">;
 
@@ -49,31 +50,44 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
   ) => {
     try {
       setLoading(true);
-      await plantsApi.post("/plants", {
-        name: values.name.trim(),
-        description: values.description?.trim(),
-        imageSrc: values.image
-      }, {
-        headers: {
-          Authorization: `Bearer ${userDetails.jwt}`
+      await plantsApi.post(
+        "/plants",
+        {
+          name: values.name.trim(),
+          description: values.description?.trim(),
+          imageSrc: values.image,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${userDetails.jwt}`,
+          },
         }
-      });
+      );
       resetForm();
       navigation.navigate("home");
-      showToast("Plant added", "success")
+      showToast("Plant added", "success");
     } catch (error) {
-      console.error(error)
-      showToast("Something went wrong. Please try again later", "error")
+      switch (error) {
+        case ApiErrors.errorUploadingFile:
+          return showToast(
+            "Invalid file type", "error"
+          );
+        default:
+          return showToast(
+            "Something went wrong. Please try again later",
+            "error"
+          );
+      }
     } finally {
       setLoading(false);
     }
   };
   return (
     <KeyboardScreen
-    contentContainerStyle={{paddingBottom: 50}}
-    resetScrollToCoords={{ x: 0, y: 0 }}
-    scrollEnabled={true}
-    bounces={false}
+      contentContainerStyle={{ paddingBottom: 50 }}
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      scrollEnabled={true}
+      bounces={false}
     >
       <ColumnCenterWrapper>
         <Back navigation={navigation} />

@@ -62,17 +62,23 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
         <>
           <FlatList
             data={dataSource}
-            renderItem={({ item }) => (
-              <PlantPreview
-                id={item.id}
-                name={item.name}
-                imgSrc={require("../assets/plants/default_plant.webp")}
-                navigation={navigation}
-                onSlidingStart={() => setAllowScrolling(false)}
-                onSlidingFinish={() => setAllowScrolling(true)}
-                latestWatering={item.latestWatering}
-              />
-            )}
+            renderItem={({ item }) => {
+              return (
+                <PlantPreview
+                  id={item.id}
+                  name={item.name}
+                  imgSrc={
+                    item.imgSrc
+                      ? item.imgSrc
+                      : require("../assets/plants/default_plant.webp")
+                  }
+                  navigation={navigation}
+                  onSlidingStart={() => setAllowScrolling(false)}
+                  onSlidingFinish={() => setAllowScrolling(true)}
+                  latestWatering={item.latestWatering}
+                />
+              );
+            }}
             numColumns={numberOfColumns}
             keyExtractor={(item, index) => index.toString()}
             contentContainerStyle={{ paddingBottom: 100 }}

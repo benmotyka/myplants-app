@@ -6,7 +6,7 @@ const plantsApi = axios.create({
   // @TODO: add env
   // baseURL: "http://0.0.0.0:3000",
   baseURL: "https://ben-plants-api.herokuapp.com",
-  timeout: 4000,
+  timeout: 10000,
   headers: {
     Accept: "application/json",
   },
