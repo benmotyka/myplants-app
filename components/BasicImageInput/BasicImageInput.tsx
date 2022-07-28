@@ -13,9 +13,12 @@ const BasicImageInput = ({image, setImage}: BasicImageInputProps): JSX.Element =
       allowsEditing: true,
       aspect: [4, 3],
       quality: 1,
+      base64: true
     });
     if (!result.cancelled) {
-      setImage(result.uri);
+      //@TODO: add checking if its mobile/web, if web then result.uri otherwise result.base64 + prepare string
+      // setImage(result.uri);
+      setImage(`data:image/jpeg;base64${result.base64}`);
     }
   };
 
