@@ -31,6 +31,8 @@ import {
 import { colors } from "styles/colors";
 import { formatToHourAndDate } from "util/date";
 import showToast from "util/showToast";
+import { ApiErrors } from "enums/api-errors";
+import { base64EncodeImage } from "util/images";
 
 type EditPlantProps = NativeStackScreenProps<RootStackParamList, "editPlant">;
 
@@ -43,6 +45,8 @@ interface EditPlantForm {
 const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
   const plantId = route.params.plantId;
   const [loading, setLoading] = React.useState(false);
+  // @TODO: add type
+  const [image, setImage] = React.useState<any>()
   const [selectedPlant, setSelectedPlant] = React.useState<Plant>();
   const [showModal, setShowModal] = React.useState(false);
   const { userPlants }: { userPlants: Plant[] } = useSelector(
@@ -83,13 +87,15 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
   ) => {
     try {
       setLoading(true);
+      const base64EncodedImage = image ? base64EncodeImage(image) : null;
+
       await plantsApi.put(
         `/plants`,
         {
           id: plantId,
           name: values.name,
           description: values.description,
-          ...(selectedPlant?.imgSrc !== values.image && { imageSrc: values.image }),
+          ...(image && { imageSrc: base64EncodedImage }),
         },
         {
           headers: {
@@ -97,13 +103,23 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
           },
         }
       );
+      navigation.navigate("home");
       showToast("Plant edited", "success");
     } catch (error) {
-      console.error(error);
-      showToast("Something went wrong. Please try again later", "error");
+      console.log(error)
+      switch (error) {
+        case ApiErrors.errorUploadingFile:
+          return showToast(
+            "Invalid file type", "error"
+          );
+        default:
+          return showToast(
+            "Something went wrong. Please try again later",
+            "error"
+          );
+      }
     } finally {
       setLoading(false);
-      navigation.navigate("home");
     }
   };
 
@@ -139,8 +155,8 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
                 <InputsWrapper>
                   <BasicImageInput
                   buttonText="Edit picture"
-                    image={values.image}
-                    setImage={handleChange("image")}
+                  image={image ?? {uri: values.image}}
+                  setImage={setImage}
                   />
                   <BasicTextInput
                     value={values.name}
@@ -169,7 +185,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
                       disabled={
                         selectedPlant.name === values.name &&
                         selectedPlant.description === values.description &&
-                        selectedPlant.imgSrc === values.image
+                        !image
                       }
                     />
                   </MarginTopView>

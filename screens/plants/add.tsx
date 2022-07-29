@@ -22,6 +22,7 @@ import {
 import { State } from "store/reducers";
 import showToast from "util/showToast";
 import { ApiErrors } from "enums/api-errors";
+import { base64EncodeImage } from "util/images";
 
 type AddPlantProps = NativeStackScreenProps<RootStackParamList, "addPlant">;
 
@@ -33,7 +34,8 @@ interface AddPlantForm {
 
 const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
   const [loading, setLoading] = React.useState(false);
-
+  // @TODO: add type
+  const [image, setImage] = React.useState<any>()
   const { userDetails }: { userDetails: UserDetails } = useSelector(
     (state: State) => state.user
   );
@@ -50,12 +52,14 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
   ) => {
     try {
       setLoading(true);
+      const base64EncodedImage = image ? base64EncodeImage(image) : null;
+
       await plantsApi.post(
         "/plants",
         {
           name: values.name.trim(),
           description: values.description?.trim(),
-          imageSrc: values.image,
+          imageSrc: base64EncodedImage,
         },
         {
           headers: {
@@ -67,6 +71,7 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
       navigation.navigate("home");
       showToast("Plant added", "success");
     } catch (error) {
+      console.log(error)
       switch (error) {
         case ApiErrors.errorUploadingFile:
           return showToast(
@@ -92,9 +97,11 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
       <ColumnCenterWrapper>
         <Back navigation={navigation} />
         <Formik
-          initialValues={{ name: "", description: "", image: "" }}
+          initialValues={{ name: "", description: ""}}
           validationSchema={AddPlantSchema}
           onSubmit={onSubmit}
+          validateOnBlur={false}
+          validateOnChange={false}
         >
           {({ handleChange, handleBlur, handleSubmit, values, errors }) =>
             loading ? (
@@ -105,15 +112,15 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
               <InputsWrapper>
                 <BasicImageInput
                   buttonText="Upload picture"
-                  image={values.image}
-                  setImage={handleChange("image")}
+                  image={image}
+                  setImage={setImage}
                 />
                 <BasicTextInput
                   value={values.name}
                   label="Name"
                   placeholder="Enter your plant name..."
                   onChangeText={handleChange("name")}
-                  onBlur={handleBlur("name")}
+                  onBlur={handleBlur("name")} 
                   error={errors.name}
                 />
                 <BasicTextInput

@@ -14,5 +14,4 @@ export const AddPlantSchema = Yup.object().shape({
     DESCRIPTION_MAX,
     `Description too long. Maximum ${DESCRIPTION_MAX} characters.`
   ),
-  image: Yup.string().nullable()
 });

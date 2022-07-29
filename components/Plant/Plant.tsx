@@ -126,54 +126,61 @@ const Plant = ({
   return (
     <Container>
       <Wrapper>
-          <TouchableHighlight
-            onLongPress={onLongPress}
-            onPress={onPress}
-            delayLongPress={750}
-            underlayColor="white"
-            style={{ width: "100%", height: "100%", borderRadius: 10 }}
-          >
-            <Image resizeMode="cover" source={imgSrc} />
-          </TouchableHighlight>
+        <TouchableHighlight
+          onLongPress={onLongPress}
+          onPress={onPress}
+          delayLongPress={750}
+          underlayColor="white"
+          style={{ width: "100%", height: "100%", borderRadius: 10 }}
+        >
+          <Image
+            resizeMode="cover"
+            source={
+              imgSrc
+                ? { uri: imgSrc as string }
+                : require("../../assets/plants/default_plant.jpg")
+            }
+          />
+        </TouchableHighlight>
 
-          <Body>
+        <Body>
+          <ItemsWrapper>
+            <Header>
+              {name.length > MAX_HEADER_CHARACTERS
+                ? `${name.slice(0, MAX_HEADER_CHARACTERS)}...`
+                : name}
+            </Header>
             <ItemsWrapper>
-              <Header>
-                {name.length > MAX_HEADER_CHARACTERS
-                  ? `${name.slice(0, MAX_HEADER_CHARACTERS)}...`
-                  : name}
-              </Header>
-              <ItemsWrapper>
-                {latestWatering || watered ? (
-                  <>
-                    <SmallImage
-                      resizeMode="contain"
-                      source={require("../../assets/hourglass.png")}
-                    />
-                    <Header>{timeFromLastWatering}</Header>
-                  </>
-                ) : null}
-              </ItemsWrapper>
+              {latestWatering || watered ? (
+                <>
+                  <SmallImage
+                    resizeMode="contain"
+                    source={require("../../assets/hourglass.png")}
+                  />
+                  <Header>{timeFromLastWatering}</Header>
+                </>
+              ) : null}
             </ItemsWrapper>
-            <View style={{ marginTop: "auto" }}>
-              {watered ? null : (
-                <Slider
-                  value={sliderValue}
-                  onSlidingComplete={onSlidingComplete}
-                  thumbStyle={{
-                    backgroundColor: colors.thumbStyle,
-                    borderRadius: 3,
-                    width: 35,
-                    height: 25,
-                  }}
-                  trackStyle={{ opacity: 0.2 }}
-                  trackClickable={false}
-                  maximumValue={MAX_SLIDER_VALUE}
-                  onSlidingStart={onSlidingStart}
-                />
-              )}
-            </View>
-          </Body>
+          </ItemsWrapper>
+          <View style={{ marginTop: "auto" }}>
+            {watered ? null : (
+              <Slider
+                value={sliderValue}
+                onSlidingComplete={onSlidingComplete}
+                thumbStyle={{
+                  backgroundColor: colors.thumbStyle,
+                  borderRadius: 3,
+                  width: 35,
+                  height: 25,
+                }}
+                trackStyle={{ opacity: 0.2 }}
+                trackClickable={false}
+                maximumValue={MAX_SLIDER_VALUE}
+                onSlidingStart={onSlidingStart}
+              />
+            )}
+          </View>
+        </Body>
       </Wrapper>
     </Container>
   );

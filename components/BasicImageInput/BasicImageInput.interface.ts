@@ -1,5 +1,5 @@
 export interface BasicImageInputProps {
     buttonText: string;
-    image?: string;
+    image?: any;
     setImage: (...args: any[]) => void;
 }

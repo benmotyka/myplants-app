@@ -69,8 +69,6 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
                   name={item.name}
                   imgSrc={
                     item.imgSrc
-                      ? item.imgSrc
-                      : require("../assets/plants/default_plant.webp")
                   }
                   navigation={navigation}
                   onSlidingStart={() => setAllowScrolling(false)}

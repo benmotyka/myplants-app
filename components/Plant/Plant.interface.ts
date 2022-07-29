@@ -1,12 +1,11 @@
-import { IWatering } from "interfaces/IWatering";
-import { ImageSourcePropType } from "react-native";
+import { Watering } from "interfaces/Watering";
 
 export interface PlantProps {
   id: string;
   name: string;
-  imgSrc: ImageSourcePropType;
+  imgSrc?: string;
   navigation: any;
   onSlidingStart: () => void;
   onSlidingFinish: () => void;
-  latestWatering?: IWatering;
+  latestWatering?: Watering;
 }
