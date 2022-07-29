@@ -5,7 +5,7 @@ import BasicButton from "components/BasicButton/BasicButton";
 import { InputWrapper, InputImage } from "components/BasicImageInput/BasicImageInput.styles";
 import { BasicImageInputProps } from "components/BasicImageInput/BasicImageInput.interface";
 
-const BasicImageInput = ({image, setImage}: BasicImageInputProps): JSX.Element => {
+const BasicImageInput = ({image, setImage, buttonText}: BasicImageInputProps): JSX.Element => {
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -17,8 +17,8 @@ const BasicImageInput = ({image, setImage}: BasicImageInputProps): JSX.Element =
     });
     if (!result.cancelled) {
       //@TODO: add checking if its mobile/web, if web then result.uri otherwise result.base64 + prepare string
-      // setImage(result.uri);
-      setImage(`data:image/jpeg;base64${result.base64}`);
+      // setImage(`data:image/jpeg;base64${result.base64}`);
+      setImage(result.uri);
     }
   };
 
@@ -33,7 +33,7 @@ const BasicImageInput = ({image, setImage}: BasicImageInputProps): JSX.Element =
           source={require("../../assets/plants/default_plant.webp")}
         />
       )}
-      <BasicButton onPress={pickImage as (values: any) => void} text="Upload picture" />
+      <BasicButton onPress={pickImage as (values: any) => void} text={buttonText} />
     </InputWrapper>
   );
 };

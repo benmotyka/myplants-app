@@ -104,6 +104,7 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
             ) : (
               <InputsWrapper>
                 <BasicImageInput
+                  buttonText="Upload picture"
                   image={values.image}
                   setImage={handleChange("image")}
                 />

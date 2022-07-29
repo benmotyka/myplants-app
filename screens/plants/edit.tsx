@@ -89,7 +89,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
           id: plantId,
           name: values.name,
           description: values.description,
-          imageSrc: values.image,
+          ...(selectedPlant?.imgSrc !== values.image && { imageSrc: values.image }),
         },
         {
           headers: {
@@ -138,6 +138,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
               {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
                 <InputsWrapper>
                   <BasicImageInput
+                  buttonText="Edit picture"
                     image={values.image}
                     setImage={handleChange("image")}
                   />
@@ -167,7 +168,8 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
                       text="Submit changes"
                       disabled={
                         selectedPlant.name === values.name &&
-                        selectedPlant.description === values.description
+                        selectedPlant.description === values.description &&
+                        selectedPlant.imgSrc === values.image
                       }
                     />
                   </MarginTopView>
