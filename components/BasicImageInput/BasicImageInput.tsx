@@ -37,7 +37,7 @@ const BasicImageInput = ({
         }
       />
       <BasicButton
-        onPress={pickImage as (values: any) => void}
+        onPress={pickImage}
         text={buttonText}
       />
     </InputWrapper>

@@ -1,8 +1,10 @@
 {
   "expo": {
-    "name": "flowersv2",
-    "slug": "flowersv2",
+    "name": "My Plants",
+    "slug": "myplants",
     "version": "1.0.0",
+    "privacy": "public",
+    "description": "My plants is an application that allows you to track watering of your plants.",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -22,12 +24,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/icon.png"
     }
   }
 }

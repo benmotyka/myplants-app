@@ -20,9 +20,9 @@ import {
   ColumnCenterWrapper,
   Header,
   InputsWrapper,
+  KeyboardScreen,
   LoaderWrapper,
   MarginTopView,
-  ScreenContainer,
 } from "styles/shared";
 import showToast from "util/showToast";
 
@@ -76,12 +76,12 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
       resetForm();
       navigation.navigate("home");
     } catch (error) {
-      console.log(error) 
+      console.log(error);
       switch (error) {
         case ApiErrors.invalidCredentials:
-          return showToast("Invalid username or password", "error")
+          return showToast("Invalid username or password", "error");
         default:
-          return showToast("Invalid username or password", "error")
+          return showToast("Invalid username or password", "error");
       }
     } finally {
       setLoading(false);
@@ -89,7 +89,12 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
   };
 
   return (
-    <ScreenContainer>
+    <KeyboardScreen
+      contentContainerStyle={{ paddingBottom: 50 }}
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      scrollEnabled={true}
+      bounces={false}
+    >
       <ColumnCenterWrapper>
         <Header>Login</Header>
         <Formik
@@ -139,7 +144,7 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
           Register now
         </FooterText>
       </FooterWrapper>
-    </ScreenContainer>
+    </KeyboardScreen>
   );
 };
 

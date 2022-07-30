@@ -17,9 +17,9 @@ import {
   ColumnCenterWrapper,
   Header,
   InputsWrapper,
+  KeyboardScreen,
   LoaderWrapper,
   MarginTopView,
-  ScreenContainer,
 } from "styles/shared";
 import showToast from "util/showToast";
 
@@ -80,7 +80,12 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
   };
 
   return (
-    <ScreenContainer>
+    <KeyboardScreen
+      contentContainerStyle={{ paddingBottom: 50 }}
+      resetScrollToCoords={{ x: 0, y: 0 }}
+      scrollEnabled={true}
+      bounces={false}
+    >
       <ColumnCenterWrapper>
         <Back navigation={navigation} />
         <Header>Register</Header>
@@ -126,7 +131,7 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
           }
         </Formik>
       </ColumnCenterWrapper>
-    </ScreenContainer>
+    </KeyboardScreen>
   );
 };
 
