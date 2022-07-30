@@ -36,7 +36,7 @@ export type RootStackParamList = {
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
-  let [fontsLoaded] = useFonts({
+  const [fontsLoaded] = useFonts({
     Inter_200ExtraLight,
     Inter_300Light,
     AkayaKanadaka_400Regular,

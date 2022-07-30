@@ -41,13 +41,20 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
     }
   };
 
+  const sortPlantsByCreatedAt = (plants: Plant[]): Plant[] =>
+    plants.sort(
+      (a, b) =>
+        new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+    );
+
   useEffect(() => {
     if (!isFocused) return;
     (async () => {
       try {
         const { plants } = await getUserPlants();
-        dispatch(plantsAction.setUserPlants(plants));
-        setDataSource(plants);
+        const sortedPlants = sortPlantsByCreatedAt(plants);
+        dispatch(plantsAction.setUserPlants(sortedPlants));
+        setDataSource(sortedPlants);
       } catch (error) {
         dispatch(userAction.removeUserDetails());
         console.error(error);
@@ -67,9 +74,7 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
                 <PlantPreview
                   id={item.id}
                   name={item.name}
-                  imgSrc={
-                    item.imgSrc
-                  }
+                  imgSrc={item.imgSrc}
                   navigation={navigation}
                   onSlidingStart={() => setAllowScrolling(false)}
                   onSlidingFinish={() => setAllowScrolling(true)}

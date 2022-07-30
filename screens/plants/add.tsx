@@ -2,6 +2,7 @@ import React from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Formik, FormikHelpers } from "formik";
 import { useSelector } from "react-redux";
+import { ImageInfo } from "expo-image-picker";
 
 import { RootStackParamList } from "../../App";
 import plantsApi from "config/api/plants";
@@ -34,8 +35,7 @@ interface AddPlantForm {
 
 const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
   const [loading, setLoading] = React.useState(false);
-  // @TODO: add type
-  const [image, setImage] = React.useState<any>()
+  const [image, setImage] = React.useState<ImageInfo>()
   const { userDetails }: { userDetails: UserDetails } = useSelector(
     (state: State) => state.user
   );

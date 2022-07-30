@@ -3,6 +3,7 @@ import { Formik, FormikHelpers } from "formik";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
+import { ImageInfo } from "expo-image-picker";
 
 import { RootStackParamList } from "../../App";
 import plantsApi from "config/api/plants";
@@ -45,8 +46,7 @@ interface EditPlantForm {
 const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
   const plantId = route.params.plantId;
   const [loading, setLoading] = React.useState(false);
-  // @TODO: add type
-  const [image, setImage] = React.useState<any>()
+  const [image, setImage] = React.useState<ImageInfo>()
   const [selectedPlant, setSelectedPlant] = React.useState<Plant>();
   const [showModal, setShowModal] = React.useState(false);
   const { userPlants }: { userPlants: Plant[] } = useSelector(
