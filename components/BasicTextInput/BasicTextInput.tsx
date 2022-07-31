@@ -33,6 +33,7 @@ const BasicTextInput = ({
         onChangeText={onChangeText}
         onBlur={onBlur}
         multiline={textarea}
+        textAlignVertical="top" //in order to make multiline work correctny on android
         secureTextEntry={hideInput}
         errorBorder={!!error}
         numberOfLines={textarea ? TEXTAREA_NUMBER_OF_LINES : 1}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { FlatList } from "react-native";
+import { FlatList, BackHandler } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import { useIsFocused } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
@@ -61,6 +61,10 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
         navigation.navigate("login");
       }
     })();
+
+    // Workaround for devices with hardware back button
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => true)
+    return () => backHandler.remove()
   }, [isFocused]);
 
   return (

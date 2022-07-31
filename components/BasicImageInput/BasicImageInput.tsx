@@ -33,7 +33,7 @@ const BasicImageInput = ({
         source={
           image?.uri
             ? { uri: image.uri }
-            : require("../../assets/plants/default_plant.webp")
+            : require("../../assets/plants/default_plant.jpg")
         }
       />
       <BasicButton

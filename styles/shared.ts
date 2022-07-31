@@ -42,7 +42,7 @@ export const IconContainer = styled.TouchableOpacity`
   width: 50px;
   height: 50px;
   background-color: ${colors.lightGrey};
-  border-radius: 50%;
+  border-radius: 25px;
   display: flex;
   align-items: center;
   justify-content: center;

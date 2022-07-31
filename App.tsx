@@ -1,5 +1,9 @@
 import { StatusBar } from "expo-status-bar";
-import { SafeAreaView } from "react-native";
+import {
+  SafeAreaView,
+  View,
+  StatusBar as NativeStatusBar,
+} from "react-native";
 import { PersistGate } from "redux-persist/integration/react";
 import AppLoading from "expo-app-loading";
 import { Provider } from "react-redux";
@@ -51,7 +55,10 @@ export default function App() {
       <PersistGate loading={null} persistor={persistor}>
         <RootSiblingParent>
           <SafeAreaView>
-            <StatusBar />
+            {/* Workaround for devices with native StatusBar */}
+            <View style={{ paddingTop: NativeStatusBar.currentHeight }}>
+              <StatusBar />
+            </View>
           </SafeAreaView>
           <NavigationContainer>
             <Stack.Navigator
@@ -74,7 +81,7 @@ export default function App() {
               <Stack.Screen name="addPlant" component={AddPlantScreen} />
               <Stack.Screen name="editPlant" component={EditPlant} />
               <Stack.Screen name="plantHistory" component={PlantHistory} />
-              
+
               <Stack.Screen name="settings" component={SettingsScreen} />
             </Stack.Navigator>
           </NavigationContainer>

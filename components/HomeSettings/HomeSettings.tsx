@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { Entypo } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 
@@ -10,12 +10,19 @@ import {
 import { HomeSettingsProps } from "components/HomeSettings/HomeSettings.interface";
 import { AnimatePresence } from "moti";
 import { ModalAnimationWrapper } from "styles/shared";
+import { RootStackParamList } from "App";
 
 const ICON_SIZE_PX = 24;
 const ITEMS_MARGIN_PX = 60;
 const ITEMS_OFFSET_PX = 20;
 
-const settingsItems = [
+interface SettingsItem {
+  name: string;
+  icon: ReactElement;
+  href: keyof RootStackParamList
+}
+
+const settingsItems: SettingsItem[] = [
   {
     name: "addPlant",
     icon: <Entypo name="plus" size={ICON_SIZE_PX} color={colors.lightBlack} />,
