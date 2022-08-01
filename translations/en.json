@@ -1,0 +1,26 @@
+{
+    "common": {
+        "login": "Login",
+        "register": "Register",
+        "username": "Username",
+        "password": "Password",
+        "submit": "Submit"
+    },
+    "pages": {
+        "login": {
+            "usernameLabel": "Enter your username...",
+            "passwordLabel": "Enter your password...",
+            "registerNow": "Register now"
+        },
+        "register": {
+            "usernameLabel": "Enter your username...",
+            "passwordLabel": "Enter your password..."
+        }
+    },
+    "errors": {
+        "required": "Required",
+        "invalidUsernameOrPassword": "Invalid username or password",
+        "general": "Something went wrong. Please try again later.",
+        "usernameExists": "Username exists"
+    }
+}

@@ -1,0 +1,26 @@
+{
+    "common": {
+        "login": "Logowanie",
+        "register": "Rejestracja",
+        "username": "Login",
+        "password": "Hasło",
+        "submit": "Prześlij"
+    },
+    "pages": {
+        "login": {
+            "usernameLabel": "Wprowadź login...",
+            "passwordLabel": "Wprowadź hasło...",
+            "registerNow": "Zarejestruj się"
+        },
+        "register": {
+            "usernameLabel": "Wprowadź login...",
+            "passwordLabel": "Wprowadź hasło..."
+        }
+    },
+    "errors": {
+        "required": "Pole wymagane",
+        "invalidUsernameOrPassword": "Błędny login lub hasło",
+        "general": "Coś poszło nie tak. Spróbuj ponownie później.",
+        "usernameExists": "Użytkownik istnieje"
+    }
+}
