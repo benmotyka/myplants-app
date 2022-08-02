@@ -4,7 +4,11 @@
         "register": "Register",
         "username": "Username",
         "password": "Password",
-        "submit": "Submit"
+        "submit": "Submit",
+        "name": "Name",
+        "description": "Description",
+        "delete": "Delete",
+        "cancel": "Cancel"
     },
     "pages": {
         "login": {
@@ -15,12 +19,36 @@
         "register": {
             "usernameLabel": "Enter your username...",
             "passwordLabel": "Enter your password..."
+        },
+        "plants": {
+            "add": {
+                "plantNamePlaceholder": "Enter your plant name...",
+                "plantDescriptionPlaceholder": "Enter your plant description...",
+                "uploadPicture": "Upload picture",
+                "submit": "Add plant",
+                "success": "Plant added"
+            },
+            "edit": {
+                "editPicture": "Edit picture",
+                "plantNamePlaceholder": "Enter your plant name...",
+                "plantDescriptionPlaceholder": "Enter your plant description...",
+                "submit": "Submit changes",
+                "success": "Plant edited",
+                "plantDeletedSuccess": "Plant deleted",
+                "createdAt": "Created at {{date}}",
+                "deletePlantConfirmation": "Are you sure to delete your plant?"
+            },
+            "history": {
+                "header": "Watering history",
+                "plantNotWatered": "This plant has not been watered yet."
+            }
         }
     },
     "errors": {
         "required": "Required",
         "invalidUsernameOrPassword": "Invalid username or password",
         "general": "Something went wrong. Please try again later.",
-        "usernameExists": "Username exists"
+        "usernameExists": "Username exists",
+        "invalidFileType": "Invalid file type"
     }
 }

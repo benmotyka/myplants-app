@@ -15,8 +15,11 @@ import SettingsHeader from "components/Settings/SettingsHeader";
 import SettingsItem from "components/Settings/SettingsItem";
 import { userAction } from "store/actions";
 import { ColumnCenterWrapper, ScreenContainer } from "styles/shared";
+import i18n from "../../i18n";
 
 type SettingsProps = NativeStackScreenProps<RootStackParamList, "settings">;
+
+const { t } = i18n;
 
 const Settings = ({ navigation }: SettingsProps): JSX.Element => {
   const [showModal, setShowModal] = React.useState(false);

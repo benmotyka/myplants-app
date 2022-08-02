@@ -4,9 +4,9 @@ import { userAction } from "store/actions";
 
 const plantsApi = axios.create({
   // @TODO: add env
-  baseURL: "http://192.168.50.202:3000", // for mobile use
+  // baseURL: "http://192.168.50.202:3000", // for mobile use
   // baseURL: "http://0.0.0.0:3000", // for desktop use
-  // baseURL: "https://ben-plants-api.herokuapp.com", // for api
+  baseURL: "https://ben-plants-api.herokuapp.com", // for api
   timeout: 10000,
   headers: {
     Accept: "application/json",

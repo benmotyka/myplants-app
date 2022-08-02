@@ -24,6 +24,7 @@ import { State } from "store/reducers";
 import showToast from "util/showToast";
 import { ApiErrors } from "enums/api-errors";
 import { base64EncodeImage } from "util/images";
+import i18n from "../../i18n";
 
 type AddPlantProps = NativeStackScreenProps<RootStackParamList, "addPlant">;
 
@@ -33,9 +34,11 @@ interface AddPlantForm {
   image?: string;
 }
 
+const { t } = i18n;
+
 const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
   const [loading, setLoading] = React.useState(false);
-  const [image, setImage] = React.useState<ImageInfo>()
+  const [image, setImage] = React.useState<ImageInfo>();
   const { userDetails }: { userDetails: UserDetails } = useSelector(
     (state: State) => state.user
   );
@@ -44,7 +47,6 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
     values: AddPlantForm,
     {
       resetForm,
-      setFieldError,
     }: {
       resetForm: FormikHelpers<AddPlantForm>["resetForm"];
       setFieldError: FormikHelpers<AddPlantForm>["setFieldError"];
@@ -69,19 +71,14 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
       );
       resetForm();
       navigation.navigate("home");
-      showToast("Plant added", "success");
+      showToast(t("pages.plants.add.success"), "success");
     } catch (error) {
-      console.log(error)
+      console.log(error);
       switch (error) {
         case ApiErrors.errorUploadingFile:
-          return showToast(
-            "Invalid file type", "error"
-          );
+          return showToast(t("errors.invalidFileType"), "error");
         default:
-          return showToast(
-            "Something went wrong. Please try again later",
-            "error"
-          );
+          return showToast(t("errors.general"), "error");
       }
     } finally {
       setLoading(false);
@@ -97,7 +94,7 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
       <ColumnCenterWrapper>
         <Back navigation={navigation} />
         <Formik
-          initialValues={{ name: "", description: ""}}
+          initialValues={{ name: "", description: "" }}
           validationSchema={AddPlantSchema}
           onSubmit={onSubmit}
           validateOnBlur={false}
@@ -111,22 +108,24 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
             ) : (
               <InputsWrapper>
                 <BasicImageInput
-                  buttonText="Upload picture"
+                  buttonText={t("pages.plants.add.uploadPicture")}
                   image={image}
                   setImage={setImage}
                 />
                 <BasicTextInput
                   value={values.name}
-                  label="Name"
-                  placeholder="Enter your plant name..."
+                  label={t("common.name")}
+                  placeholder={t("pages.plants.add.plantNamePlaceholder")}
                   onChangeText={handleChange("name")}
-                  onBlur={handleBlur("name")} 
+                  onBlur={handleBlur("name")}
                   error={errors.name}
                 />
                 <BasicTextInput
                   value={values.description}
-                  label="Description"
-                  placeholder="Enter your plant description..."
+                  label={t("common.description")}
+                  placeholder={t(
+                    "pages.plants.add.plantDescriptionPlaceholder"
+                  )}
                   onChangeText={handleChange("description")}
                   onBlur={handleBlur("description")}
                   textarea={true}
@@ -135,7 +134,7 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
                 <MarginTopView>
                   <BasicButton
                     onPress={handleSubmit as (values: any) => void}
-                    text="Add plant"
+                    text={t("pages.plants.add.submit")}
                   />
                 </MarginTopView>
               </InputsWrapper>

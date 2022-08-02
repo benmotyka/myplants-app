@@ -34,6 +34,7 @@ import { formatToHourAndDate } from "util/date";
 import showToast from "util/showToast";
 import { ApiErrors } from "enums/api-errors";
 import { base64EncodeImage } from "util/images";
+import i18n from "../../i18n";
 
 type EditPlantProps = NativeStackScreenProps<RootStackParamList, "editPlant">;
 
@@ -42,6 +43,8 @@ interface EditPlantForm {
   description?: string;
   image?: string;
 }
+
+const { t } = i18n;
 
 const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
   const plantId = route.params.plantId;
@@ -68,10 +71,10 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
           Authorization: `Bearer ${userDetails.jwt}`,
         },
       });
-      showToast("Plant deleted", "success");
+      showToast(t("pages.plants.edit.plantDeletedSuccess"), "success");
     } catch (error) {
       console.error(error);
-      showToast("Something went wrong. Please try again later", "error");
+      showToast(t("errors.general"));
     } finally {
       navigation.navigate("home");
     }
@@ -104,17 +107,17 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
         }
       );
       navigation.navigate("home");
-      showToast("Plant edited", "success");
+      showToast(t("pages.plants.edit.success"), "success");
     } catch (error) {
       console.log(error)
       switch (error) {
         case ApiErrors.errorUploadingFile:
           return showToast(
-            "Invalid file type", "error"
+            t("errors.invalidFileType"), "error"
           );
         default:
           return showToast(
-            "Something went wrong. Please try again later",
+            t("errors.general"),
             "error"
           );
       }
@@ -154,34 +157,36 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
               {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
                 <InputsWrapper>
                   <BasicImageInput
-                  buttonText="Edit picture"
+                  buttonText={t("pages.plants.edit.editPicture")}
                   image={image ?? {uri: values.image}}
                   setImage={setImage}
                   />
                   <BasicTextInput
                     value={values.name}
-                    label="Name"
-                    placeholder="Enter your plant name..."
+                    label={t("common.name")}
+                    placeholder={t("pages.plants.edit.plantNamePlaceholder")}
                     onChangeText={handleChange("name")}
                     onBlur={handleBlur("name")}
                     error={errors.name}
                   />
                   <BasicTextInput
                     value={values.description}
-                    label="Description"
-                    placeholder="Enter your plant description..."
+                    label={t("common.description")}
+                    placeholder={t("pages.plants.edit.plantDescriptionPlaceholder")}
                     onChangeText={handleChange("description")}
                     onBlur={handleBlur("description")}
                     textarea={true}
                     error={errors.description}
                   />
                   <Description>
-                    Created at {formatToHourAndDate(selectedPlant.createdAt)}
+                    {t('pages.plants.edit.createdAt', {
+                      date: formatToHourAndDate(selectedPlant.createdAt)
+                    })}
                   </Description>
                   <MarginTopView>
                     <BasicButton
                       onPress={handleSubmit as (values: any) => void}
-                      text="Submit changes"
+                      text={t("pages.plants.edit.submit")}
                       disabled={
                         selectedPlant.name === values.name &&
                         selectedPlant.description === values.description &&
@@ -199,17 +204,17 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
       </KeyboardScreen>
       <BasicModal showModal={showModal} toggleModal={setShowModal}>
         <ModalItem>
-          <ModalHeader>Are you sure to delete your plant?</ModalHeader>
+          <ModalHeader>{t("pages.plants.edit.deletePlantConfirmation")}</ModalHeader>
         </ModalItem>
         <ModalItem>
-          <BasicButton onPress={handleDelete} text="Delete" warning={true} />
+          <BasicButton onPress={handleDelete} text={t('common.delete')} warning={true} />
         </ModalItem>
         <ModalItem>
           <BasicButton
             onPress={() => {
               setShowModal(false);
             }}
-            text="Cancel"
+            text={t('common.cancel')} 
           />
         </ModalItem>
       </BasicModal>
