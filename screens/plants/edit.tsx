@@ -30,7 +30,7 @@ import {
   KeyboardScreen,
 } from "styles/shared";
 import { colors } from "styles/colors";
-import { formatToHourAndDate } from "util/date";
+import { formatToHourDateAndYear } from "util/date";
 import showToast from "util/showToast";
 import { ApiErrors } from "enums/api-errors";
 import { base64EncodeImage } from "util/images";
@@ -180,7 +180,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
                   />
                   <Description>
                     {t('pages.plants.edit.createdAt', {
-                      date: formatToHourAndDate(selectedPlant.createdAt)
+                      date: formatToHourDateAndYear(selectedPlant.createdAt)
                     })}
                   </Description>
                   <MarginTopView>

@@ -45,7 +45,6 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
     values: RegisterForm,
     {
       resetForm,
-      setFieldError,
     }: {
       resetForm: FormikHelpers<RegisterForm>["resetForm"];
       setFieldError: FormikHelpers<RegisterForm>["setFieldError"];

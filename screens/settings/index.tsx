@@ -35,13 +35,13 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
       <Back navigation={navigation} />
       <ColumnCenterWrapper>
         <SettingsSection>
-          <SettingsHeader text="Settings" />
+          <SettingsHeader text={t('pages.settings.header')} />
           <SettingsItem>
             <BasicButton
               onPress={() => {
                 console.log("");
               }}
-              text="Application"
+              text={t('pages.settings.application')}
             />
           </SettingsItem>
           <SettingsItem>
@@ -49,18 +49,18 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
               onPress={() => {
                 console.log("");
               }}
-              text="Notifications"
+              text={t('pages.settings.notifications')}
             />
           </SettingsItem>
         </SettingsSection>
         <SettingsSection>
-          <SettingsHeader text="Account" />
+          <SettingsHeader text={t('pages.settings.account')} />
           <SettingsItem>
             <BasicButton
               onPress={() => {
                 console.log("");
               }}
-              text="My account"
+              text={t('pages.settings.myAccount')}
             />
           </SettingsItem>
           <SettingsItem>
@@ -68,7 +68,7 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
               onPress={() => {
                 setShowModal(true);
               }}
-              text="Log out"
+              text={t('pages.settings.logout')}
               warning={true}
             />
           </SettingsItem>
@@ -76,17 +76,17 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
       </ColumnCenterWrapper>
       <BasicModal showModal={showModal} toggleModal={setShowModal}>
         <ModalItem>
-          <ModalHeader>Are you sure you want to log out?</ModalHeader>
+          <ModalHeader>{t('pages.settings.logoutConfirmation')}</ModalHeader>
         </ModalItem>
         <ModalItem>
-          <BasicButton onPress={handleLogOut} text="Log out" warning={true} />
+          <BasicButton onPress={handleLogOut} text={t('pages.settings.logout')} warning={true} />
         </ModalItem>
         <ModalItem>
           <BasicButton
             onPress={() => {
               setShowModal(false);
             }}
-            text="Cancel"
+            text={t('common.cancel')}
           />
         </ModalItem>
       </BasicModal>
