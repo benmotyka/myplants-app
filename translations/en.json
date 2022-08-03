@@ -1,0 +1,72 @@
+{
+    "common": {
+        "login": "Login",
+        "register": "Register",
+        "username": "Username",
+        "password": "Password",
+        "submit": "Submit",
+        "name": "Name",
+        "description": "Description",
+        "delete": "Delete",
+        "cancel": "Cancel",
+        "plantName": "Plant name"
+    },
+    "pages": {
+        "login": {
+            "usernameLabel": "Enter your username...",
+            "passwordLabel": "Enter your password...",
+            "registerNow": "Register now"
+        },
+        "register": {
+            "usernameLabel": "Enter your username...",
+            "passwordLabel": "Enter your password..."
+        },
+        "plants": {
+            "add": {
+                "plantNamePlaceholder": "Enter your plant name...",
+                "plantDescriptionPlaceholder": "Enter your plant description...",
+                "uploadPicture": "Upload picture",
+                "submit": "Add plant",
+                "success": "Plant added"
+            },
+            "edit": {
+                "editPicture": "Edit picture",
+                "plantNamePlaceholder": "Enter your plant name...",
+                "plantDescriptionPlaceholder": "Enter your plant description...",
+                "submit": "Submit changes",
+                "success": "Plant edited",
+                "plantDeletedSuccess": "Plant deleted",
+                "createdAt": "Created at {{date}}",
+                "deletePlantConfirmation": "Are you sure to delete your plant?"
+            },
+            "history": {
+                "header": "Watering history",
+                "plantNotWatered": "This plant has not been watered yet."
+            }
+        },
+        "settings": {
+            "header": "Settings",
+            "application": "Application",
+            "notifications": "Notifications",
+            "account": "Account",
+            "myAccount": "My account",
+            "logout": "Log out",
+            "logoutConfirmation": "Are you sure you want to log out?"
+        }
+    },
+    "errors": {
+        "required": "Required",
+        "invalidUsernameOrPassword": "Invalid username or password",
+        "general": "Something went wrong. Please try again later.",
+        "usernameExists": "Username exists",
+        "invalidFileType": "Invalid file type",
+        "fieldTooShort": "{{field}} too short. Minimum {{number}} characters.",
+        "fieldTooLong": "{{field}} too long. Maximum {{number}} characters."
+    },
+    "components": {
+        "addPlantSuggestion": "Add your first plant here",
+        "plant": {
+            "success": "Plant watered"
+        }
+    }
+}

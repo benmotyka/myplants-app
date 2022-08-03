@@ -20,6 +20,7 @@ import { UserDetails } from "interfaces/UserDetails";
 import { useSelector } from "react-redux";
 import { State } from "store/reducers";
 import { calculateDifferenceFromNow } from "util/date";
+import i18n from "../../i18n";
 
 const MAX_SLIDER_VALUE = 1;
 const SLIDE_SUCCESS_VALUE_THRESHOLD = 0.9;
@@ -44,6 +45,7 @@ const Plant = ({
       : null
   );
 
+  const { t } = i18n
   const isFocused = useIsFocused();
   const { userDetails }: { userDetails: UserDetails } = useSelector(
     (state: State) => state.user
@@ -102,12 +104,12 @@ const Plant = ({
           },
         }
       );
-      showToast("Plant watered", "success");
+      showToast(t('components.plant.success'), "success");
       setTimeFromLastWatering(calculateDifferenceFromNow(new Date()));
       setWatered(true);
     } catch (error) {
       console.log(error);
-      showToast("Something went wrong. Please try again later.", "error");
+      showToast(t('errors.general'), "error");
     }
   };
 

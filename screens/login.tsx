@@ -5,6 +5,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { RootStackParamList } from "../App";
+import i18n from '../i18n'
 import plantsApi from "config/api/plants";
 import Loader from "components/Loader/Loader";
 import BasicButton from "components/BasicButton/BasicButton";
@@ -33,6 +34,8 @@ interface LoginForm {
   password: string;
 }
 
+const { t } = i18n
+
 const Login = ({ navigation }: LoginProps): JSX.Element => {
   const [loading, setLoading] = React.useState(false);
   const { userDetails }: { userDetails: UserDetails } = useSelector(
@@ -55,7 +58,6 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
     values: LoginForm,
     {
       resetForm,
-      setFieldError,
     }: {
       resetForm: FormikHelpers<LoginForm>["resetForm"];
       setFieldError: FormikHelpers<LoginForm>["setFieldError"];
@@ -79,9 +81,9 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
       console.log(error);
       switch (error) {
         case ApiErrors.invalidCredentials:
-          return showToast("Invalid username or password", "error");
+          return showToast(t('errors.invalidUsernameOrPassword'), "error");
         default:
-          return showToast("Invalid username or password", "error");
+          return showToast(t('errors.invalidUsernameOrPassword'), "error");
       }
     } finally {
       setLoading(false);
@@ -96,7 +98,7 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
       bounces={false}
     >
       <ColumnCenterWrapper>
-        <Header>Login</Header>
+        <Header>{t('common.login')}</Header>
         <Formik
           initialValues={{ username: "", password: "" }}
           onSubmit={onSubmit}
@@ -112,16 +114,16 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
             ) : (
               <InputsWrapper>
                 <BasicTextInput
-                  label="Username"
-                  placeholder="Enter your username..."
+                  label={t('common.username')}
+                  placeholder={t('pages.login.usernameLabel')}
                   onChangeText={handleChange("username")}
                   onBlur={handleBlur("username")}
                   value={values.username}
                   error={errors.username}
                 />
                 <BasicTextInput
-                  label="Password"
-                  placeholder="Enter your password..."
+                  label={t('common.password')}
+                  placeholder={t('pages.login.passwordLabel')}
                   onChangeText={handleChange("password")}
                   onBlur={handleBlur("password")}
                   value={values.password}
@@ -131,7 +133,7 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
                 <MarginTopView>
                   <BasicButton
                     onPress={handleSubmit as (values: any) => void}
-                    text="Submit"
+                    text={t('common.submit')}
                   />
                 </MarginTopView>
               </InputsWrapper>
@@ -141,7 +143,7 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
       </ColumnCenterWrapper>
       <FooterWrapper>
         <FooterText onPress={() => navigation.navigate("register")}>
-          Register now
+          {t('pages.login.registerNow')}
         </FooterText>
       </FooterWrapper>
     </KeyboardScreen>

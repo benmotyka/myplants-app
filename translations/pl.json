@@ -1,0 +1,72 @@
+{
+    "common": {
+        "login": "Logowanie",
+        "register": "Rejestracja",
+        "username": "Nazwa użytkownika",
+        "password": "Hasło",
+        "submit": "Prześlij",
+        "name": "Nazwa",
+        "description": "Opis",
+        "delete": "Usuń",
+        "cancel": "Anuluj",
+        "plantName": "Nazwa rośliny"
+    },
+    "pages": {
+        "login": {
+            "usernameLabel": "Wpisz nazwę użytkownika...",
+            "passwordLabel": "Wpisz hasło...",
+            "registerNow": "Zarejestruj się"
+        },
+        "register": {
+            "usernameLabel": "Wpisz nazwę użytkownika...",
+            "passwordLabel": "Wpisz hasło..."
+        },
+        "plants": {
+            "add": {
+                "plantNamePlaceholder": "Wpisz nazwę rośliny...",
+                "plantDescriptionPlaceholder": "Wpisz opis rośliny...",
+                "uploadPicture": "Dodaj zdjęcie",
+                "submit": "Dodaj roślinę",
+                "success": "Roślina dodana"
+            },
+            "edit": {
+                "editPicture": "Edytuj zdjęcie",
+                "plantNamePlaceholder": "Wpisz nazwę rośliny...",
+                "plantDescriptionPlaceholder": "Wpisz opis rośliny...",
+                "submit": "Prześlij zmiany",
+                "success": "Roślina zmieniona",
+                "plantDeletedSuccess": "Roślina usunięta",
+                "createdAt": "Utworzona {{date}}",
+                "deletePlantConfirmation": "Czy na pewno chcesz usunąć roślinę?"
+            },
+            "history": {
+                "header": "Historia podlewania",
+                "plantNotWatered": "Ta roślina nie została jeszcze podlana."
+            }
+        },
+        "settings": {
+            "header": "Ustawienia",
+            "application": "Aplikacja",
+            "notifications": "Powiadomienia",
+            "account": "Konto",
+            "myAccount": "Moje konto",
+            "logout": "Wyloguj się",
+            "logoutConfirmation": "Czy na pewno chcesz się wylogować?"
+        }
+    },
+    "errors": {
+        "required": "Pole wymagane",
+        "invalidUsernameOrPassword": "Błędny login lub hasło",
+        "general": "Coś poszło nie tak. Spróbuj ponownie później",
+        "usernameExists": "Użytkownik istnieje",
+        "invalidFileType": "Błędny plik",
+        "fieldTooShort": "{{field}} musi mieć przynajmniej {{number}} liter.",
+        "fieldTooLong": "{{field}} musi mieć maksymalnie {{number}} liter."
+    },
+    "components": {
+        "addPlantSuggestion": "Dodaj swoją pierwszą roślinę",
+        "plant": {
+            "success": "Roślina podlana"
+        }
+    }
+}

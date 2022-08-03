@@ -26,11 +26,14 @@ import plantsApi from "config/api/plants";
 import { WateringData } from "interfaces/WateringData";
 import Loader from "components/Loader/Loader";
 import { formatToHour } from "util/date";
+import i18n from "../../i18n";
 
 type PlantHistoryProps = NativeStackScreenProps<
   RootStackParamList,
   "plantHistory"
 >;
+
+const { t } = i18n;
 
 const PlantHistory = ({
   route,
@@ -78,14 +81,14 @@ const PlantHistory = ({
       <Back navigation={navigation} />
       <ColumnCenterWrapper fullHeight>
         <HeaderWrapper>
-          <SmallHeader>Watering history</SmallHeader>
+          <SmallHeader>{t('pages.plants.history.header')}</SmallHeader>
         </HeaderWrapper>
         <HistoryContainer>
           {!wateringData ? (
             <Loader />
           ) : !Object.keys(wateringData).length ? (
             <Description style={{ textAlign: "center" }}>
-              This plant has not been watered yet.
+              {t('pages.plants.history.plantNotWatered')}
             </Description>
           ) : (
             Object.entries(wateringData).map(([day, hours]) => (

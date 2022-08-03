@@ -4,6 +4,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 
 import { RootStackParamList } from "../App";
+import i18n from '../i18n'
 import plantsApi from "config/api/plants";
 import Back from "components/Back/Back";
 import BasicButton from "components/BasicButton/BasicButton";
@@ -34,6 +35,8 @@ interface RegisterResponse {
   status: string;
 }
 
+const { t } = i18n
+
 const Register = ({ navigation }: RegisterProps): JSX.Element => {
   const [loading, setLoading] = React.useState(false);
   const dispatch = useDispatch();
@@ -42,7 +45,6 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
     values: RegisterForm,
     {
       resetForm,
-      setFieldError,
     }: {
       resetForm: FormikHelpers<RegisterForm>["resetForm"];
       setFieldError: FormikHelpers<RegisterForm>["setFieldError"];
@@ -70,9 +72,9 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
       console.log(error);
       switch (error) {
         case ApiErrors.usernameExists: 
-          return showToast("Username exists", "error")
+          return showToast(t('errors.usernameExists'), "error")
         default: 
-          return showToast("Something went wrong. Please try again later.", "error")
+          return showToast(t('errors.general'), "error")
       }
     } finally {
       setLoading(false);
@@ -88,7 +90,7 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
     >
       <ColumnCenterWrapper>
         <Back navigation={navigation} />
-        <Header>Register</Header>
+        <Header>{t('common.register')}</Header>
         <Formik
           initialValues={{ username: "", password: "" }}
           onSubmit={onSubmit}
@@ -104,16 +106,16 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
             ) : (
               <InputsWrapper>
                 <BasicTextInput
-                  label="Username"
-                  placeholder="Enter your username..."
+                  label={t('common.username')}
+                  placeholder={t('pages.register.usernameLabel')}
                   onChangeText={handleChange("username")}
                   onBlur={handleBlur("username")}
                   value={values.username}
                   error={errors.username}
                 />
                 <BasicTextInput
-                  label="Password"
-                  placeholder="Enter your password..."
+                  label={t('common.password')}
+                  placeholder={t('pages.register.passwordLabel')}
                   onChangeText={handleChange("password")}
                   onBlur={handleBlur("password")}
                   value={values.password}
@@ -123,7 +125,7 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
                 <MarginTopView>
                   <BasicButton
                     onPress={handleSubmit as (values: any) => void}
-                    text="Submit"
+                    text={t('common.submit')}
                   />
                 </MarginTopView>
               </InputsWrapper>
