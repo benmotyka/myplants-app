@@ -3,6 +3,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Formik, FormikHelpers } from "formik";
 import { useSelector } from "react-redux";
 import { ImageInfo } from "expo-image-picker";
+import { AnimatePresence, MotiView } from "moti";
 
 import { RootStackParamList } from "../../App";
 import plantsApi from "config/api/plants";
@@ -25,6 +26,7 @@ import showToast from "util/showToast";
 import { ApiErrors } from "enums/api-errors";
 import { base64EncodeImage } from "util/images";
 import i18n from "../../i18n";
+import BasicCheckbox from "components/BasicCheckbox/BasicCheckbox";
 
 type AddPlantProps = NativeStackScreenProps<RootStackParamList, "addPlant">;
 
@@ -38,6 +40,7 @@ const { t } = i18n;
 
 const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
   const [loading, setLoading] = React.useState(false);
+  const [isRemindersChecked, setIsRemindersChecked] = React.useState(false);
   const [image, setImage] = React.useState<ImageInfo>();
   const { userDetails }: { userDetails: UserDetails } = useSelector(
     (state: State) => state.user
@@ -131,6 +134,29 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
                   textarea={true}
                   error={errors.description}
                 />
+                <BasicCheckbox
+                  label="Remind me of watering"
+                  isChecked={isRemindersChecked}
+                  setChecked={setIsRemindersChecked}
+                />
+                <AnimatePresence>
+                  {isRemindersChecked ? (
+                    <MotiView
+                      style={{paddingVertical: 20}}
+                      from={{
+                        opacity: 0,
+                      }}
+                      animate={{
+                        opacity: 1,
+                      }}
+                      exit={{
+                        opacity: 0,
+                      }}
+                    >
+                      siemaaaaaaa
+                    </MotiView>
+                  ) : null}
+                </AnimatePresence>
                 <MarginTopView>
                   <BasicButton
                     onPress={handleSubmit as (values: any) => void}
