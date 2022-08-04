@@ -10,7 +10,7 @@ gap: 10px;
 `
 
 export const CheckboxLabel = styled.Text`
-font-size: 20px;
+font-size: 18px;
 font-family: "Inter_300Light";
 color: ${colors.black};
 `

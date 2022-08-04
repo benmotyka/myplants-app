@@ -17,7 +17,7 @@ const BasicCheckbox = ({
       <Checkbox
         value={isChecked}
         onValueChange={setChecked}
-        style={{ transform: [{ scaleX: 1.3 }, { scaleY: 1.3 }] }}
+        style={{ transform: [{ scaleX: 1.1 }, { scaleY: 1.1 }] }}
       />
       <CheckboxLabel>{label}</CheckboxLabel>
     </Container>
