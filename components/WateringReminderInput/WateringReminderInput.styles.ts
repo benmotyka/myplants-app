@@ -15,7 +15,6 @@ export const Wrapper = styled.View`
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
 `;
 
 export const Text = styled.Text`
@@ -24,8 +23,10 @@ export const Text = styled.Text`
 `;
 
 export const Input = styled.TextInput<{ errorBorder: boolean }>`
-  width: 30px;
+  margin: 0 10px;
+  width: 35px;
   font-size: 20px;
+  border-radius: 5px;
   font-family: "Inter_200ExtraLight";
   border: ${(props) =>
     props.errorBorder

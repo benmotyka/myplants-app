@@ -1,6 +1,7 @@
 import React from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Formik, FormikHelpers } from "formik";
+import { View } from "react-native";
 import { useSelector } from "react-redux";
 import { ImageInfo } from "expo-image-picker";
 import { AnimatePresence, MotiView } from "moti";
@@ -13,12 +14,11 @@ import BasicImageInput from "components/BasicImageInput/BasicImageInput";
 import BasicButton from "components/BasicButton/BasicButton";
 import Loader from "components/Loader/Loader";
 import { UserDetails } from "interfaces/UserDetails";
-import { AddPlantSchema } from "schemas/AddPlant.schema";
+import { createAddPlantSchema } from "schemas/AddPlant.schema";
 import {
   KeyboardScreen,
   ColumnCenterWrapper,
   InputsWrapper,
-  MarginTopView,
   LoaderWrapper,
 } from "styles/shared";
 import { State } from "store/reducers";
@@ -27,6 +27,7 @@ import { ApiErrors } from "enums/api-errors";
 import { base64EncodeImage } from "util/images";
 import i18n from "../../i18n";
 import BasicCheckbox from "components/BasicCheckbox/BasicCheckbox";
+import WateringReminderInput from "components/WateringReminderInput/WateringReminderInput";
 
 type AddPlantProps = NativeStackScreenProps<RootStackParamList, "addPlant">;
 
@@ -34,6 +35,7 @@ interface AddPlantForm {
   name: string;
   description?: string;
   image?: string;
+  wateringFrequencyNumber?: number;
 }
 
 const { t } = i18n;
@@ -97,8 +99,13 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
       <ColumnCenterWrapper>
         <Back navigation={navigation} />
         <Formik
-          initialValues={{ name: "", description: "" }}
-          validationSchema={AddPlantSchema}
+          initialValues={{
+            name: "",
+            description: "",
+            wateringFrequencyNumber: 1,
+            wateringFrequencyInterval: "days",
+          }}
+          validationSchema={() => createAddPlantSchema(isRemindersChecked)}
           onSubmit={onSubmit}
           validateOnBlur={false}
           validateOnChange={false}
@@ -135,14 +142,16 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
                   error={errors.description}
                 />
                 <BasicCheckbox
-                  label="Remind me of watering"
+                  label={t(
+                    "pages.plants.add.remindWateringLabel"
+                  )}
                   isChecked={isRemindersChecked}
                   setChecked={setIsRemindersChecked}
                 />
                 <AnimatePresence>
                   {isRemindersChecked ? (
                     <MotiView
-                      style={{paddingVertical: 20}}
+                      style={{ paddingTop: 20, width: "100%" }}
                       from={{
                         opacity: 0,
                       }}
@@ -153,16 +162,20 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
                         opacity: 0,
                       }}
                     >
-                      siemaaaaaaa
+                      <WateringReminderInput
+                        numberValue={values.wateringFrequencyNumber}
+                        setNumberValue={handleChange("wateringFrequencyNumber")}
+                        error={errors.wateringFrequencyNumber}
+                      />
                     </MotiView>
                   ) : null}
                 </AnimatePresence>
-                <MarginTopView>
+                <View style={{ marginTop: 30 }}>
                   <BasicButton
-                    onPress={handleSubmit as (values: any) => void}
+                    onPress={handleSubmit as (values: unknown) => void}
                     text={t("pages.plants.add.submit")}
                   />
-                </MarginTopView>
+                </View>
               </InputsWrapper>
             )
           }

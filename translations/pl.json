@@ -27,7 +27,8 @@
                 "plantDescriptionPlaceholder": "Wpisz opis rośliny...",
                 "uploadPicture": "Dodaj zdjęcie",
                 "submit": "Dodaj roślinę",
-                "success": "Roślina dodana"
+                "success": "Roślina dodana",
+                "remindWateringLabel": "Przypominaj o podlewaniu"
             },
             "edit": {
                 "editPicture": "Edytuj zdjęcie",
@@ -61,12 +62,20 @@
         "usernameExists": "Użytkownik istnieje",
         "invalidFileType": "Błędny plik",
         "fieldTooShort": "{{field}} musi mieć przynajmniej {{number}} liter.",
-        "fieldTooLong": "{{field}} musi mieć maksymalnie {{number}} liter."
+        "fieldTooLong": "{{field}} musi mieć maksymalnie {{number}} liter.",
+        "valueMustBeNumber": "Wartość musi być liczbą",
+        "minimumValueIs": "Minimalna wartość to: {{value}}",
+        "maximumValueIs": "Maksymalna wartość to: {{value}}"
     },
     "components": {
         "addPlantSuggestion": "Dodaj swoją pierwszą roślinę",
         "plant": {
             "success": "Roślina podlana"
+        },
+        "wateringReminderInput": {
+            "every": "Co",
+            "daySingular": "dzień",
+            "dayPlurar": "dni"
         }
     }
 }

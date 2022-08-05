@@ -11,6 +11,7 @@ import {
   Input,
   Text,
 } from "./WateringReminderInput.styles";
+import i18n from "../../i18n";
 
 const WateringReminderInput = ({
   numberValue,
@@ -21,18 +22,24 @@ const WateringReminderInput = ({
   setNumberValue: any;
   error?: string;
 }): JSX.Element => {
+  const { t } = i18n;
 
   return (
     <Container>
       <Wrapper>
-        <Text>Every</Text>
+        <Text>{t("components.wateringReminderInput.every")}</Text>
         <Input
           value={`${numberValue}`}
           onChangeText={setNumberValue}
-          keyboardType="numeric"
+          keyboardType="number-pad"
           errorBorder={!!error}
           maxLength={1}
         />
+        <Text>
+          {numberValue == 1
+            ? t("components.wateringReminderInput.daySingular")
+            : t("components.wateringReminderInput.dayPlurar")}
+        </Text>
       </Wrapper>
       <AnimatePresence>
         {error ? (

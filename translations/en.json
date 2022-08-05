@@ -27,7 +27,8 @@
                 "plantDescriptionPlaceholder": "Enter your plant description...",
                 "uploadPicture": "Upload picture",
                 "submit": "Add plant",
-                "success": "Plant added"
+                "success": "Plant added",
+                "remindWateringLabel": "Remind me of watering"
             },
             "edit": {
                 "editPicture": "Edit picture",
@@ -61,12 +62,20 @@
         "usernameExists": "Username exists",
         "invalidFileType": "Invalid file type",
         "fieldTooShort": "{{field}} too short. Minimum {{number}} characters.",
-        "fieldTooLong": "{{field}} too long. Maximum {{number}} characters."
+        "fieldTooLong": "{{field}} too long. Maximum {{number}} characters.",
+        "valueMustBeNumber": "Value must be a number",
+        "minimumValueIs": "Minimum value is: {{value}}",
+        "maximumValueIs": "Maximum value is: {{value}}"
     },
     "components": {
         "addPlantSuggestion": "Add your first plant here",
         "plant": {
             "success": "Plant watered"
+        },
+        "wateringReminderInput": {
+            "every": "Every",
+            "daySingular": "day",
+            "dayPlurar": "days"
         }
     }
 }
