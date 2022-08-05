@@ -38,7 +38,8 @@
                 "success": "Roślina zmieniona",
                 "plantDeletedSuccess": "Roślina usunięta",
                 "createdAt": "Utworzona {{date}}",
-                "deletePlantConfirmation": "Czy na pewno chcesz usunąć roślinę?"
+                "deletePlantConfirmation": "Czy na pewno chcesz usunąć roślinę?",
+                "remindWateringLabel": "Przypominaj o podlewaniu"
             },
             "history": {
                 "header": "Historia podlewania",

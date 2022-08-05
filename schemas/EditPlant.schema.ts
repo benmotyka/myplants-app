@@ -1,3 +1,3 @@
-import { AddPlantSchema } from "schemas/AddPlant.schema";
+import { createAddPlantSchema } from "schemas/AddPlant.schema";
 
-export const EditPlantSchema = AddPlantSchema
+export const createEditPlantSchema = createAddPlantSchema

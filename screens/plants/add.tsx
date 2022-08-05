@@ -103,7 +103,6 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
             name: "",
             description: "",
             wateringFrequencyNumber: 1,
-            wateringFrequencyInterval: "days",
           }}
           validationSchema={() => createAddPlantSchema(isRemindersChecked)}
           onSubmit={onSubmit}

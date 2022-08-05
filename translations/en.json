@@ -38,7 +38,8 @@
                 "success": "Plant edited",
                 "plantDeletedSuccess": "Plant deleted",
                 "createdAt": "Created at {{date}}",
-                "deletePlantConfirmation": "Are you sure to delete your plant?"
+                "deletePlantConfirmation": "Are you sure to delete your plant?",
+                "remindWateringLabel": "Remind me of watering"
             },
             "history": {
                 "header": "Watering history",

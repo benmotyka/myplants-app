@@ -1,9 +1,10 @@
 import React from "react";
-import { Formik, FormikHelpers } from "formik";
+import { Formik } from "formik";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useSelector } from "react-redux";
 import { ImageInfo } from "expo-image-picker";
+import { View } from "react-native";
 
 import { RootStackParamList } from "../../App";
 import plantsApi from "config/api/plants";
@@ -19,13 +20,12 @@ import {
 } from "components/BasicModal/BasicModal.styles";
 import { Plant } from "interfaces/Plant";
 import { UserDetails } from "interfaces/UserDetails";
-import { EditPlantSchema } from "schemas/EditPlant.schema";
+import { createEditPlantSchema } from "schemas/EditPlant.schema";
 import { State } from "store/reducers";
 import {
   ColumnCenterWrapper,
   InputsWrapper,
   IconContainer,
-  MarginTopView,
   Description,
   KeyboardScreen,
 } from "styles/shared";
@@ -35,6 +35,9 @@ import showToast from "util/showToast";
 import { ApiErrors } from "enums/api-errors";
 import { base64EncodeImage } from "util/images";
 import i18n from "../../i18n";
+import BasicCheckbox from "components/BasicCheckbox/BasicCheckbox";
+import { AnimatePresence, MotiView } from "moti";
+import WateringReminderInput from "components/WateringReminderInput/WateringReminderInput";
 
 type EditPlantProps = NativeStackScreenProps<RootStackParamList, "editPlant">;
 
@@ -49,7 +52,8 @@ const { t } = i18n;
 const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
   const plantId = route.params.plantId;
   const [loading, setLoading] = React.useState(false);
-  const [image, setImage] = React.useState<ImageInfo>()
+  const [isRemindersChecked, setIsRemindersChecked] = React.useState(false);
+  const [image, setImage] = React.useState<ImageInfo>();
   const [selectedPlant, setSelectedPlant] = React.useState<Plant>();
   const [showModal, setShowModal] = React.useState(false);
   const { userPlants }: { userPlants: Plant[] } = useSelector(
@@ -62,6 +66,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
   React.useEffect(() => {
     const plant = userPlants.find((plant) => plant.id === plantId);
     setSelectedPlant(plant);
+    setIsRemindersChecked(!!plant?.wateringReminderFrequency)
   }, [userPlants]);
 
   const handleDelete = async () => {
@@ -81,12 +86,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
   };
 
   const handleEdit = async (
-    values: EditPlantForm,
-    {
-      setFieldError,
-    }: {
-      setFieldError: FormikHelpers<EditPlantForm>["setFieldError"];
-    }
+    values: EditPlantForm
   ) => {
     try {
       setLoading(true);
@@ -109,17 +109,12 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
       navigation.navigate("home");
       showToast(t("pages.plants.edit.success"), "success");
     } catch (error) {
-      console.log(error)
+      console.log(error);
       switch (error) {
         case ApiErrors.errorUploadingFile:
-          return showToast(
-            t("errors.invalidFileType"), "error"
-          );
+          return showToast(t("errors.invalidFileType"), "error");
         default:
-          return showToast(
-            t("errors.general"),
-            "error"
-          );
+          return showToast(t("errors.general"), "error");
       }
     } finally {
       setLoading(false);
@@ -150,16 +145,20 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
                 name: selectedPlant.name,
                 description: selectedPlant.description,
                 image: selectedPlant.imgSrc,
+                wateringFrequencyNumber:
+                  selectedPlant.wateringReminderFrequency,
               }}
-              validationSchema={EditPlantSchema}
+              validationSchema={() =>
+                createEditPlantSchema(isRemindersChecked)
+              }
               onSubmit={handleEdit}
             >
               {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
                 <InputsWrapper>
                   <BasicImageInput
-                  buttonText={t("pages.plants.edit.editPicture")}
-                  image={image ?? {uri: values.image}}
-                  setImage={setImage}
+                    buttonText={t("pages.plants.edit.editPicture")}
+                    image={image ?? { uri: values.image }}
+                    setImage={setImage}
                   />
                   <BasicTextInput
                     value={values.name}
@@ -172,28 +171,59 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
                   <BasicTextInput
                     value={values.description}
                     label={t("common.description")}
-                    placeholder={t("pages.plants.edit.plantDescriptionPlaceholder")}
+                    placeholder={t(
+                      "pages.plants.edit.plantDescriptionPlaceholder"
+                    )}
                     onChangeText={handleChange("description")}
                     onBlur={handleBlur("description")}
                     textarea={true}
                     error={errors.description}
                   />
+               <BasicCheckbox
+                  label={t(
+                    "pages.plants.edit.remindWateringLabel"
+                  )}
+                  isChecked={isRemindersChecked}
+                  setChecked={setIsRemindersChecked}
+                />
+                <AnimatePresence>
+                  {isRemindersChecked ? (
+                    <MotiView
+                      style={{ paddingTop: 20, width: "100%" }}
+                      from={{
+                        opacity: 0,
+                      }}
+                      animate={{
+                        opacity: 1,
+                      }}
+                      exit={{
+                        opacity: 0,
+                      }}
+                    >
+                      <WateringReminderInput
+                        numberValue={values.wateringFrequencyNumber}
+                        setNumberValue={handleChange("wateringFrequencyNumber")}
+                        error={errors.wateringFrequencyNumber}
+                      />
+                    </MotiView>
+                  ) : null}
+                </AnimatePresence>
                   <Description>
-                    {t('pages.plants.edit.createdAt', {
-                      date: formatToHourDateAndYear(selectedPlant.createdAt)
+                    {t("pages.plants.edit.createdAt", {
+                      date: formatToHourDateAndYear(selectedPlant.createdAt),
                     })}
                   </Description>
-                  <MarginTopView>
+                  <View style={{ marginTop: 30 }}>
                     <BasicButton
-                      onPress={handleSubmit as (values: any) => void}
+                      onPress={handleSubmit as (values: unknown) => void}
                       text={t("pages.plants.edit.submit")}
                       disabled={
                         selectedPlant.name === values.name &&
                         selectedPlant.description === values.description &&
-                        !image
+                        !image && selectedPlant.wateringReminderFrequency === values.wateringFrequencyNumber
                       }
                     />
-                  </MarginTopView>
+                  </View>
                 </InputsWrapper>
               )}
             </Formik>
@@ -204,17 +234,23 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
       </KeyboardScreen>
       <BasicModal showModal={showModal} toggleModal={setShowModal}>
         <ModalItem>
-          <ModalHeader>{t("pages.plants.edit.deletePlantConfirmation")}</ModalHeader>
+          <ModalHeader>
+            {t("pages.plants.edit.deletePlantConfirmation")}
+          </ModalHeader>
         </ModalItem>
         <ModalItem>
-          <BasicButton onPress={handleDelete} text={t('common.delete')} warning={true} />
+          <BasicButton
+            onPress={handleDelete}
+            text={t("common.delete")}
+            warning={true}
+          />
         </ModalItem>
         <ModalItem>
           <BasicButton
             onPress={() => {
               setShowModal(false);
             }}
-            text={t('common.cancel')} 
+            text={t("common.cancel")}
           />
         </ModalItem>
       </BasicModal>
