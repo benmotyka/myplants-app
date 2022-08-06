@@ -35,7 +35,7 @@ interface AddPlantForm {
   name: string;
   description?: string;
   image?: string;
-  wateringFrequencyNumber?: number;
+  wateringReminderFrequency?: number;
 }
 
 const { t } = i18n;
@@ -61,12 +61,22 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
       setLoading(true);
       const base64EncodedImage = image ? base64EncodeImage(image) : null;
 
-      await plantsApi.post(
+      // Workaround for ReactNative TextField working only on strings
+      const wateringReminderFrequency =
+        typeof values.wateringReminderFrequency === "string"
+          ? parseInt(values.wateringReminderFrequency)
+          : values.wateringReminderFrequency;
+
+
+          await plantsApi.post(
         "/plants",
         {
           name: values.name.trim(),
           description: values.description?.trim(),
           imageSrc: base64EncodedImage,
+          ...(isRemindersChecked && {
+            wateringReminderFrequency,
+          }),
         },
         {
           headers: {
@@ -102,7 +112,7 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
           initialValues={{
             name: "",
             description: "",
-            wateringFrequencyNumber: 1,
+            wateringReminderFrequency: 1,
           }}
           validationSchema={() => createAddPlantSchema(isRemindersChecked)}
           onSubmit={onSubmit}
@@ -141,9 +151,7 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
                   error={errors.description}
                 />
                 <BasicCheckbox
-                  label={t(
-                    "pages.plants.add.remindWateringLabel"
-                  )}
+                  label={t("pages.plants.add.remindWateringLabel")}
                   isChecked={isRemindersChecked}
                   setChecked={setIsRemindersChecked}
                 />
@@ -162,9 +170,11 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
                       }}
                     >
                       <WateringReminderInput
-                        numberValue={values.wateringFrequencyNumber}
-                        setNumberValue={handleChange("wateringFrequencyNumber")}
-                        error={errors.wateringFrequencyNumber}
+                        numberValue={values.wateringReminderFrequency}
+                        setNumberValue={handleChange(
+                          "wateringReminderFrequency"
+                        )}
+                        error={errors.wateringReminderFrequency}
                       />
                     </MotiView>
                   ) : null}

@@ -28,7 +28,8 @@ export const createAddPlantSchema = (isWateringReminderOn: boolean) =>
       })
     ),
     ...(isWateringReminderOn && {
-      wateringFrequencyNumber: Yup.number()
+      wateringReminderFrequency: Yup.number()
+        .required(t("errors.valueMustBeNumber"))
         .typeError(t("errors.valueMustBeNumber"))
         .min(
           MIN_WATERING_FREQUENCY_VALUE,

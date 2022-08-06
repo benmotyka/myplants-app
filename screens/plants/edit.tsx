@@ -45,6 +45,7 @@ interface EditPlantForm {
   name: string;
   description?: string;
   image?: string;
+  wateringReminderFrequency?: number;
 }
 
 const { t } = i18n;
@@ -66,7 +67,8 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
   React.useEffect(() => {
     const plant = userPlants.find((plant) => plant.id === plantId);
     setSelectedPlant(plant);
-    setIsRemindersChecked(!!plant?.wateringReminderFrequency)
+    console.log(plant);
+    setIsRemindersChecked(!!plant?.wateringReminderFrequency);
   }, [userPlants]);
 
   const handleDelete = async () => {
@@ -85,12 +87,16 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
     }
   };
 
-  const handleEdit = async (
-    values: EditPlantForm
-  ) => {
+  const handleEdit = async (values: EditPlantForm) => {
     try {
       setLoading(true);
       const base64EncodedImage = image ? base64EncodeImage(image) : null;
+
+      // Workaround for ReactNative TextField working only on strings
+      const wateringReminderFrequency =
+        typeof values.wateringReminderFrequency === "string"
+          ? parseInt(values.wateringReminderFrequency)
+          : values.wateringReminderFrequency;
 
       await plantsApi.put(
         `/plants`,
@@ -99,6 +105,9 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
           name: values.name,
           description: values.description,
           ...(image && { imageSrc: base64EncodedImage }),
+          ...(isRemindersChecked && {
+            wateringReminderFrequency,
+          }),
         },
         {
           headers: {
@@ -119,6 +128,20 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const checkIfButtonShouldBeDisabled = (values: EditPlantForm) => {
+    if (!selectedPlant) return true;
+
+    return (
+      selectedPlant.name === values.name &&
+      selectedPlant.description === values.description &&
+      !image &&
+      !!selectedPlant.wateringReminderFrequency === isRemindersChecked &&
+      (!isRemindersChecked ||
+        selectedPlant.wateringReminderFrequency ==
+          values.wateringReminderFrequency)
+    );
   };
 
   return (
@@ -145,12 +168,10 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
                 name: selectedPlant.name,
                 description: selectedPlant.description,
                 image: selectedPlant.imgSrc,
-                wateringFrequencyNumber:
-                  selectedPlant.wateringReminderFrequency,
+                wateringReminderFrequency:
+                  selectedPlant.wateringReminderFrequency || 1,
               }}
-              validationSchema={() =>
-                createEditPlantSchema(isRemindersChecked)
-              }
+              validationSchema={() => createEditPlantSchema(isRemindersChecked)}
               onSubmit={handleEdit}
             >
               {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
@@ -179,51 +200,47 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
                     textarea={true}
                     error={errors.description}
                   />
-               <BasicCheckbox
-                  label={t(
-                    "pages.plants.edit.remindWateringLabel"
-                  )}
-                  isChecked={isRemindersChecked}
-                  setChecked={setIsRemindersChecked}
-                />
-                <AnimatePresence>
-                  {isRemindersChecked ? (
-                    <MotiView
-                      style={{ paddingTop: 20, width: "100%" }}
-                      from={{
-                        opacity: 0,
-                      }}
-                      animate={{
-                        opacity: 1,
-                      }}
-                      exit={{
-                        opacity: 0,
-                      }}
-                    >
-                      <WateringReminderInput
-                        numberValue={values.wateringFrequencyNumber}
-                        setNumberValue={handleChange("wateringFrequencyNumber")}
-                        error={errors.wateringFrequencyNumber}
-                      />
-                    </MotiView>
-                  ) : null}
-                </AnimatePresence>
+                  <BasicCheckbox
+                    label={t("pages.plants.edit.remindWateringLabel")}
+                    isChecked={isRemindersChecked}
+                    setChecked={setIsRemindersChecked}
+                  />
+                  <AnimatePresence>
+                    {isRemindersChecked ? (
+                      <MotiView
+                        style={{ paddingTop: 20, width: "100%" }}
+                        from={{
+                          opacity: 0,
+                        }}
+                        animate={{
+                          opacity: 1,
+                        }}
+                        exit={{
+                          opacity: 0,
+                        }}
+                      >
+                        <WateringReminderInput
+                          numberValue={values.wateringReminderFrequency}
+                          setNumberValue={handleChange(
+                            "wateringReminderFrequency"
+                          )}
+                          error={errors.wateringReminderFrequency}
+                        />
+                      </MotiView>
+                    ) : null}
+                  </AnimatePresence>
+                  <View style={{ marginVertical: 30 }}>
+                    <BasicButton
+                      onPress={handleSubmit as (values: unknown) => void}
+                      text={t("pages.plants.edit.submit")}
+                      disabled={checkIfButtonShouldBeDisabled(values)}
+                    />
+                  </View>
                   <Description>
                     {t("pages.plants.edit.createdAt", {
                       date: formatToHourDateAndYear(selectedPlant.createdAt),
                     })}
                   </Description>
-                  <View style={{ marginTop: 30 }}>
-                    <BasicButton
-                      onPress={handleSubmit as (values: unknown) => void}
-                      text={t("pages.plants.edit.submit")}
-                      disabled={
-                        selectedPlant.name === values.name &&
-                        selectedPlant.description === values.description &&
-                        !image && selectedPlant.wateringReminderFrequency === values.wateringFrequencyNumber
-                      }
-                    />
-                  </View>
                 </InputsWrapper>
               )}
             </Formik>
