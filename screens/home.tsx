@@ -83,6 +83,7 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
                   onSlidingStart={() => setAllowScrolling(false)}
                   onSlidingFinish={() => setAllowScrolling(true)}
                   latestWatering={item.latestWatering}
+                  reminderFrequency={item.wateringReminderFrequency}
                 />
               );
             }}

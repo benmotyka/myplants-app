@@ -11,8 +11,8 @@ export const formatToHour = (date: string) => dayjs(date).format("HH:mm");
 export const calculateDifferenceFromNow = (date: string | Date) => {
   const now = dayjs();
   const givenDate = dayjs(date);
-
+  
   const diff = dayjs.duration(now.diff(givenDate));
 
-  return diff.format("HH:mm");
+  return diff.format("DD:HH:mm");
 };

@@ -13,6 +13,7 @@ import {
   SmallImage,
 } from "components/Plant/Plant.styles";
 import { PlantProps } from "components/Plant/Plant.interface";
+import ReminderIcon from "components/ReminderIcon/ReminderIcon";
 import { colors } from "styles/colors";
 import showToast from "util/showToast";
 import plantsApi from "config/api/plants";
@@ -35,6 +36,7 @@ const Plant = ({
   onSlidingStart,
   onSlidingFinish,
   latestWatering,
+  reminderFrequency,
 }: PlantProps): JSX.Element => {
   const [sliderValue, setSliderValue] = React.useState(0);
   const [watered, setWatered] = React.useState(false);
@@ -44,8 +46,9 @@ const Plant = ({
       ? calculateDifferenceFromNow(latestWatering.created_at)
       : null
   );
+  const [showWateringReminder, setShowWateringReminder] = React.useState(false);
 
-  const { t } = i18n
+  const { t } = i18n;
   const isFocused = useIsFocused();
   const { userDetails }: { userDetails: UserDetails } = useSelector(
     (state: State) => state.user
@@ -86,6 +89,21 @@ const Plant = ({
     setSliderValue(0);
   }, [isFocused]);
 
+  // This useEffect checks if there's reminder frequency turned on, or plant was ever watered.
+  // If both of them are true, if plant was watered by user in current state. If it wasn't,
+  // (most of the times), gets number of days from last watering, and compares it with
+  // selected remidnerFrequency, and finally displays alert based on these two.
+  // If plant was watered in the current state, it hides reminder.
+  useEffect(() => {
+    if (!reminderFrequency || !timeFromLastWatering || watered) {
+      setShowWateringReminder(false);
+      return;
+    }
+    const daysFromLastWatering = parseInt(timeFromLastWatering.split(":")[0]);
+    
+    setShowWateringReminder(daysFromLastWatering >= reminderFrequency);
+  }, [watered, reminderFrequency, timeFromLastWatering]);
+
   const onSlidingComplete = async (value: number | number[]): Promise<void> => {
     const currentValue = typeof value !== "number" ? value[0] : value;
     onSlidingFinish();
@@ -104,12 +122,12 @@ const Plant = ({
           },
         }
       );
-      showToast(t('components.plant.success'), "success");
+      showToast(t("components.plant.success"), "success");
       setTimeFromLastWatering(calculateDifferenceFromNow(new Date()));
       setWatered(true);
     } catch (error) {
       console.log(error);
-      showToast(t('errors.general'), "error");
+      showToast(t("errors.general"), "error");
     }
   };
 
@@ -128,6 +146,7 @@ const Plant = ({
   return (
     <Container>
       <Wrapper>
+        <ReminderIcon showReminder={showWateringReminder} />
         <TouchableHighlight
           onLongPress={onLongPress}
           onPress={onPress}
