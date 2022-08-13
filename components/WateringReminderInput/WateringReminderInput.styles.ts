@@ -9,6 +9,7 @@ export const Container = styled.View`
   padding-bottom: 20px;
   display: flex;
   align-items: center;
+  margin: 0 auto;
 `;
 
 export const Wrapper = styled.View`

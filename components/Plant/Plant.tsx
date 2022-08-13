@@ -151,7 +151,7 @@ const Plant = ({
           onLongPress={onLongPress}
           onPress={onPress}
           delayLongPress={750}
-          underlayColor="white"
+          underlayColor="rgba(0,0,0,0.05)"
           style={{ width: "100%", height: "100%", borderRadius: 10 }}
         >
           <Image
