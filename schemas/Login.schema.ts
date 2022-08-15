@@ -3,9 +3,9 @@ import i18n from "../i18n";
 
 const { t } = i18n;
 
-const MIN_USERNAME_CHARACTERS = 4;
-const MAX_USERNAME_CHARACTERS = 20;
-const MIN_PASSWORD_CHARACTERS = 6;
+export const MIN_USERNAME_CHARACTERS = 4;
+export const MAX_USERNAME_CHARACTERS = 20;
+export const MIN_PASSWORD_CHARACTERS = 6;
 
 export const LoginSchema = Yup.object().shape({
   username: Yup.string()

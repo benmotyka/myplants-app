@@ -72,7 +72,7 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
       dispatch(
         userAction.setUserDetails({
           username: values.username,
-          jwt: result.data.access_token,
+          jwt: result.data.accessToken,
         })
       );
       resetForm();
@@ -115,7 +115,7 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
               <InputsWrapper>
                 <BasicTextInput
                   label={t('common.username')}
-                  placeholder={t('pages.login.usernameLabel')}
+                  placeholder={t('pages.login.usernamePlaceholder')}
                   onChangeText={handleChange("username")}
                   onBlur={handleBlur("username")}
                   value={values.username}
@@ -123,7 +123,7 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
                 />
                 <BasicTextInput
                   label={t('common.password')}
-                  placeholder={t('pages.login.passwordLabel')}
+                  placeholder={t('pages.login.passwordPlaceholder')}
                   onChangeText={handleChange("password")}
                   onBlur={handleBlur("password")}
                   value={values.password}

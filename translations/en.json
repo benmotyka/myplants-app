@@ -13,13 +13,14 @@
     },
     "pages": {
         "login": {
-            "usernameLabel": "Enter your username...",
-            "passwordLabel": "Enter your password...",
+            "usernamePlaceholder": "Enter your username...",
+            "passwordPlaceholder": "Enter your password...",
             "registerNow": "Register now"
         },
         "register": {
-            "usernameLabel": "Enter your username...",
-            "passwordLabel": "Enter your password..."
+            "usernamePlaceholder": "Enter your username...",
+            "passwordPlaceholder": "Enter your password...",
+            "passwordRepeatLabel": "Repeat password"
         },
         "plants": {
             "add": {
@@ -66,7 +67,8 @@
         "fieldTooLong": "{{field}} too long. Maximum {{number}} characters.",
         "valueMustBeNumber": "Value must be a number",
         "minimumValueIs": "Minimum value is: {{value}}",
-        "maximumValueIs": "Maximum value is: {{value}}"
+        "maximumValueIs": "Maximum value is: {{value}}",
+        "passwordsMustMatch": "Passwords must match"
     },
     "components": {
         "addPlantSuggestion": "Add your first plant here",

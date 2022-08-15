@@ -13,13 +13,14 @@
     },
     "pages": {
         "login": {
-            "usernameLabel": "Wpisz nazwę użytkownika...",
-            "passwordLabel": "Wpisz hasło...",
+            "usernamePlaceholder": "Wpisz nazwę użytkownika...",
+            "passwordPlaceholder": "Wpisz hasło...",
             "registerNow": "Zarejestruj się"
         },
         "register": {
-            "usernameLabel": "Wpisz nazwę użytkownika...",
-            "passwordLabel": "Wpisz hasło..."
+            "usernamePlaceholder": "Wpisz nazwę użytkownika...",
+            "passwordPlaceholder": "Wpisz hasło...",
+            "passwordRepeatLabel": "Powtórz hasło"
         },
         "plants": {
             "add": {
@@ -66,7 +67,8 @@
         "fieldTooLong": "{{field}} musi mieć maksymalnie {{number}} liter.",
         "valueMustBeNumber": "Wartość musi być liczbą",
         "minimumValueIs": "Minimalna wartość to: {{value}}",
-        "maximumValueIs": "Maksymalna wartość to: {{value}}"
+        "maximumValueIs": "Maksymalna wartość to: {{value}}",
+        "passwordsMustMatch": "Hasła muszą się zgadzać"
     },
     "components": {
         "addPlantSuggestion": "Dodaj swoją pierwszą roślinę",

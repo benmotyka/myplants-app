@@ -29,6 +29,7 @@ type RegisterProps = NativeStackScreenProps<RootStackParamList, "register">;
 interface RegisterForm {
   username: string;
   password: string;
+  passwordRepeat: string;
 }
 
 interface RegisterResponse {
@@ -63,7 +64,7 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
       dispatch(
         userAction.setUserDetails({
           username: values.username,
-          jwt: result.data.access_token,
+          jwt: result.data.accessToken,
         })
       );
       resetForm();
@@ -92,7 +93,7 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
         <Back navigation={navigation} />
         <Header>{t('common.register')}</Header>
         <Formik
-          initialValues={{ username: "", password: "" }}
+          initialValues={{ username: "", password: "", passwordRepeat: ""}}
           onSubmit={onSubmit}
           validationSchema={RegisterSchema}
           validateOnChange={false}
@@ -107,7 +108,7 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
               <InputsWrapper>
                 <BasicTextInput
                   label={t('common.username')}
-                  placeholder={t('pages.register.usernameLabel')}
+                  placeholder={t('pages.register.usernamePlaceholder')}
                   onChangeText={handleChange("username")}
                   onBlur={handleBlur("username")}
                   value={values.username}
@@ -115,13 +116,23 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
                 />
                 <BasicTextInput
                   label={t('common.password')}
-                  placeholder={t('pages.register.passwordLabel')}
+                  placeholder={t('pages.register.passwordPlaceholder')}
                   onChangeText={handleChange("password")}
                   onBlur={handleBlur("password")}
                   value={values.password}
                   hideInput={true}
                   error={errors.password}
                 />
+                <BasicTextInput
+                  label={t('pages.register.passwordRepeatLabel')}
+                  placeholder={t('pages.register.passwordPlaceholder')}
+                  onChangeText={handleChange("passwordRepeat")}
+                  onBlur={handleBlur("passwordRepeat")}
+                  value={values.passwordRepeat}
+                  hideInput={true}
+                  error={errors.passwordRepeat}
+                />
+                
                 <MarginTopView>
                   <BasicButton
                     onPress={handleSubmit as (values: any) => void}

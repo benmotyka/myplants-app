@@ -43,7 +43,7 @@ const Plant = ({
   // If there was any watering, set time to last watering.
   const [timeFromLastWatering, setTimeFromLastWatering] = React.useState(
     latestWatering
-      ? calculateDifferenceFromNow(latestWatering.created_at)
+      ? calculateDifferenceFromNow(latestWatering.createdAt)
       : null
   );
   const [showWateringReminder, setShowWateringReminder] = React.useState(false);
@@ -66,7 +66,7 @@ const Plant = ({
     let interval = setInterval(() => {
       setTimeFromLastWatering(
         calculateDifferenceFromNow(
-          latestWatering ? latestWatering.created_at : fallbackDate
+          latestWatering ? latestWatering.createdAt : fallbackDate
         )
       );
     }, REFRESH_TIME_MS);

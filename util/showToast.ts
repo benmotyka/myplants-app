@@ -8,11 +8,6 @@ export interface ToastProps {
   type: ToastTypes
 }
 
-const TOAST_SETTINGS = {
-  duration: 1500,
-  position: 40,
-};
-
 export default (text: string, type: ToastTypes = 'info') => {
   const getToastBackgruondColor = (type: ToastTypes) => {
     switch (type) {
@@ -26,12 +21,13 @@ export default (text: string, type: ToastTypes = 'info') => {
   };
 
   return OToast.show(text, {
-    ...TOAST_SETTINGS,
-    backgroundColor: getToastBackgruondColor(type),
+    duration: 1500,
+    position: 40,
     textStyle: {
       fontSize: 20,
       paddingHorizontal: 10
-    }
+    },
+    backgroundColor: getToastBackgruondColor(type)
   });
 };
 
