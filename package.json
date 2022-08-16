@@ -46,7 +46,9 @@
     "redux-thunk": "^2.4.1",
     "styled-components": "^5.3.5",
     "yup": "^0.32.11",
-    "expo-checkbox": "~2.1.0"
+    "expo-checkbox": "~2.1.0",
+    "expo-notifications": "~0.15.4",
+    "expo-device": "~4.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
