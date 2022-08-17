@@ -42,7 +42,7 @@ const { t } = i18n;
 
 const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
   const [loading, setLoading] = React.useState(false);
-  const [isRemindersChecked, setIsRemindersChecked] = React.useState(false);
+  const [isRemindersChecked, setRemindersChecked] = React.useState(false);
   const [image, setImage] = React.useState<ImageInfo>();
   const { userDetails }: { userDetails: UserDetails } = useSelector(
     (state: State) => state.user
@@ -153,7 +153,7 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
                 <BasicCheckbox
                   label={t("pages.plants.add.remindWateringLabel")}
                   isChecked={isRemindersChecked}
-                  setChecked={setIsRemindersChecked}
+                  setChecked={setRemindersChecked}
                 />
                 <AnimatePresence>
                   {isRemindersChecked ? (

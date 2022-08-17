@@ -2,16 +2,13 @@ import React from "react";
 import Checkbox from "expo-checkbox";
 
 import { Container, CheckboxLabel } from "./BasicCheckbox.styles";
+import { BasicCheckboxProps } from "./BasicCheckbox.interface";
 
 const BasicCheckbox = ({
   isChecked,
   setChecked,
   label,
-}: {
-  isChecked: boolean;
-  setChecked: (value: boolean) => void;
-  label: string;
-}): JSX.Element => {
+}: BasicCheckboxProps): JSX.Element => {
   return (
     <Container>
       <Checkbox

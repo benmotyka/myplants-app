@@ -53,7 +53,7 @@ const { t } = i18n;
 const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
   const plantId = route.params.plantId;
   const [loading, setLoading] = React.useState(false);
-  const [isRemindersChecked, setIsRemindersChecked] = React.useState(false);
+  const [isRemindersChecked, setRemindersChecked] = React.useState(false);
   const [image, setImage] = React.useState<ImageInfo>();
   const [selectedPlant, setSelectedPlant] = React.useState<Plant>();
   const [showModal, setShowModal] = React.useState(false);
@@ -67,8 +67,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
   React.useEffect(() => {
     const plant = userPlants.find((plant) => plant.id === plantId);
     setSelectedPlant(plant);
-    console.log(plant);
-    setIsRemindersChecked(!!plant?.wateringReminderFrequency);
+    setRemindersChecked(!!plant?.wateringReminderFrequency);
   }, [userPlants]);
 
   const handleDelete = async () => {
@@ -203,7 +202,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
                   <BasicCheckbox
                     label={t("pages.plants.edit.remindWateringLabel")}
                     isChecked={isRemindersChecked}
-                    setChecked={setIsRemindersChecked}
+                    setChecked={setRemindersChecked}
                   />
                   <AnimatePresence>
                     {isRemindersChecked ? (
