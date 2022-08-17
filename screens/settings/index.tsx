@@ -36,20 +36,20 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
       <ColumnCenterWrapper>
         <SettingsSection>
           <SettingsHeader text={t('pages.settings.header')} />
-          <SettingsItem>
+          {/* <SettingsItem>
             <BasicButton
               onPress={() => {
                 console.log("");
               }}
               text={t('pages.settings.application')}
             />
-          </SettingsItem>
+          </SettingsItem> */}
           <SettingsItem>
             <BasicButton
               onPress={() => {
-                console.log("");
+                navigation.navigate("settingsNotifications")
               }}
-              text={t('pages.settings.notifications')}
+              text={t('pages.settings.notificationsHeader')}
             />
           </SettingsItem>
         </SettingsSection>

@@ -9,7 +9,9 @@
         "description": "Description",
         "delete": "Delete",
         "cancel": "Cancel",
-        "plantName": "Plant name"
+        "plantName": "Plant name",
+        "disable": "Disable",
+        "enable": "Enable"
     },
     "pages": {
         "login": {
@@ -50,11 +52,14 @@
         "settings": {
             "header": "Settings",
             "application": "Application",
-            "notifications": "Notifications",
             "account": "Account",
             "myAccount": "My account",
             "logout": "Log out",
-            "logoutConfirmation": "Are you sure you want to log out?"
+            "logoutConfirmation": "Are you sure you want to log out?",
+            "notificationsHeader": "Notifications",
+            "notifications": {
+                "checkboxLabel": "Allow notifications"
+            }
         }
     },
     "errors": {

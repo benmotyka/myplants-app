@@ -24,6 +24,7 @@ import PlantHistory from "screens/plants/history";
 import SettingsScreen from "screens/settings";
 import LoginScreen from "screens/login";
 import RegisterScreen from "screens/register";
+import SettingsNotificationsScreen from "screens/settings/notifications"
 import { store, persistor } from "store";
 import './i18n'
 
@@ -34,6 +35,7 @@ export type RootStackParamList = {
   addPlant: undefined;
   settings: undefined;
   settingsAccount: undefined;
+  settingsNotifications: undefined;
   editPlant: { plantId: string };
   plantHistory: { plantId: string };
 };
@@ -84,6 +86,7 @@ export default function App() {
               <Stack.Screen name="plantHistory" component={PlantHistory} />
 
               <Stack.Screen name="settings" component={SettingsScreen} />
+              <Stack.Screen name="settingsNotifications" component={SettingsNotificationsScreen} />
             </Stack.Navigator>
           </NavigationContainer>
         </RootSiblingParent>

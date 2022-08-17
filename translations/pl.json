@@ -9,7 +9,9 @@
         "description": "Opis",
         "delete": "Usuń",
         "cancel": "Anuluj",
-        "plantName": "Nazwa rośliny"
+        "plantName": "Nazwa rośliny",
+        "disable": "Wyłącz",
+        "enable": "Włącz"
     },
     "pages": {
         "login": {
@@ -50,11 +52,14 @@
         "settings": {
             "header": "Ustawienia",
             "application": "Aplikacja",
-            "notifications": "Powiadomienia",
             "account": "Konto",
             "myAccount": "Moje konto",
             "logout": "Wyloguj się",
-            "logoutConfirmation": "Czy na pewno chcesz się wylogować?"
+            "logoutConfirmation": "Czy na pewno chcesz się wylogować?",
+            "notificationsHeader": "Powiadomienia",
+            "notifications": {
+                "checkboxLabel": "Zezwalaj na notyfikacje"
+            }
         }
     },
     "errors": {
