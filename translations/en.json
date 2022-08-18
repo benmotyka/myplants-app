@@ -58,7 +58,10 @@
             "logoutConfirmation": "Are you sure you want to log out?",
             "notificationsHeader": "Notifications",
             "notifications": {
-                "checkboxLabel": "Allow notifications"
+                "manageHeader": "Manage notifications",
+                "manageDescription" : "Notifications are {{state}}",
+                "notificationsEnabled": "enabled",
+                "notificationsDisabled": "disabled"
             }
         }
     },

@@ -23,10 +23,6 @@ const BasicSwitch = ({
       <Wrapper>
         <PartWrapper
           active={activeItem === "left"}
-          style={{
-            borderTopLeftRadius: 10,
-            borderBottomLeftRadius: 10,
-          }}
         >
           <TouchableOpacity onPress={onClickLeftItem}>
             <ItemText>{leftItemLabel}</ItemText>
@@ -34,10 +30,6 @@ const BasicSwitch = ({
         </PartWrapper>
         <PartWrapper
           active={activeItem === "right"}
-          style={{
-            borderTopRightRadius: 10,
-            borderBottomRightRadius: 10,
-          }}
         >
           <TouchableOpacity onPress={onClickRightItem}>
             <ItemText>{rightItemLabel}</ItemText>

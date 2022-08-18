@@ -2,7 +2,11 @@ import React from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "App";
 import Back from "components/Back/Back";
-import { ColumnCenterWrapper, ScreenContainer } from "styles/shared";
+import {
+  ColumnCenterWrapper,
+  ScreenContainer,
+  Description,
+} from "styles/shared";
 import i18n from "../../i18n";
 import BasicSwitch from "components/BasicSwitch/BasicSwitch";
 
@@ -24,13 +28,20 @@ const SettingsNotifications = ({
       <ColumnCenterWrapper>
         <Back navigation={navigation} />
         <BasicSwitch
-          label="Manage notifications"
+          label={t("pages.settings.notifications.manageHeader")}
           leftItemLabel={t("common.disable")}
           rightItemLabel={t("common.enable")}
           onClickLeftItem={() => setAllowNotificationsEnabled(false)}
           onClickRightItem={() => setAllowNotificationsEnabled(true)}
           activeItem={isAllowNotificationsEnabled ? "right" : "left"}
         />
+        <Description style={{ marginTop: 10 }}>
+          {t("pages.settings.notifications.manageDescription", {
+            state: isAllowNotificationsEnabled
+              ? t("pages.settings.notifications.notificationsEnabled")
+              : t("pages.settings.notifications.notificationsDisabled"),
+          })}
+        </Description>
       </ColumnCenterWrapper>
     </ScreenContainer>
   );

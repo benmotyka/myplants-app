@@ -58,7 +58,10 @@
             "logoutConfirmation": "Czy na pewno chcesz się wylogować?",
             "notificationsHeader": "Powiadomienia",
             "notifications": {
-                "checkboxLabel": "Zezwalaj na notyfikacje"
+                "manageHeader": "Zarządzaj powiadomieniami",
+                "manageDescription" : "Powiadomienia są {{state}}",
+                "notificationsEnabled": "włączone",
+                "notificationsDisabled": "wyłączone"
             }
         }
     },
