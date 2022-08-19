@@ -1,19 +1,28 @@
 import { UserDetails } from "interfaces/UserDetails";
-import { SET_USER_DETAILS, REMOVE_USER_DETAILS } from "store/types";
+import { UserSettings } from "interfaces/UserSettings";
+import {
+  SET_USER_DETAILS,
+  REMOVE_USER_DETAILS,
+  SET_USER_SETTINGS,
+} from "store/types";
 
 interface State {
   userDetails: UserDetails;
+  userSettings?: UserSettings;
 }
 
 interface Action {
   type: string;
-  payload: UserDetails;
+  payload: UserDetails | UserSettings;
 }
 
 const initialstate: State = {
   userDetails: {
     jwt: null,
     username: null,
+  },
+  userSettings: {
+    notificationsEnabled: false,
   },
 };
 
@@ -28,8 +37,12 @@ export default (state: State = initialstate, action: Action) => {
         userDetails: {
           jwt: null,
           username: null,
-        },
+        }
       };
+    case SET_USER_SETTINGS:
+      return Object.assign({}, state, {
+        userSettings: action.payload,
+      });
     default:
       return state;
   }
