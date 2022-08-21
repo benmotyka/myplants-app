@@ -58,7 +58,7 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
           <SettingsItem>
             <BasicButton
               onPress={() => {
-                console.log("");
+                navigation.navigate("settingsAccount")
               }}
               text={t('pages.settings.myAccount')}
             />

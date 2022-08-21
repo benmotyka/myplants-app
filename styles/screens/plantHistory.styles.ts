@@ -1,11 +1,6 @@
 import styled from "styled-components/native";
 import { colors } from "styles/colors";
 
-export const HeaderWrapper = styled.View`
-padding: 0 25px;
-width: 100%;
-`
-
 export const ItemDateHeader = styled.Text`
 background-color: ${colors.lightGrey};
 padding: 10px 25px;

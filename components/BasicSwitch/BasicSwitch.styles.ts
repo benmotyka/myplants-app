@@ -5,13 +5,8 @@ import { colors } from "styles/colors";
 export const Container = styled.View`
   display: flex;
   flex-direction: column;
-  width: 90%;
-`;
-
-export const Label = styled.Text`
-  font-size: 18px;
-  font-family: "Inter_300Light";
-  color: ${colors.black};
+  width: 100%;
+  padding: 0 25px;
 `;
 
 export const Wrapper = styled.View`
@@ -34,7 +29,7 @@ export const PartWrapper = styled.View<{ active?: boolean }>`
 
   opacity: ${(props) => (props.active ? 1 : 0.1)};
   background-color: ${(props) => (props.active ? colors.white : colors.grey)};
-  box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
 `;
 

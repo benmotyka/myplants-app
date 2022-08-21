@@ -25,6 +25,7 @@ import SettingsScreen from "screens/settings";
 import LoginScreen from "screens/login";
 import RegisterScreen from "screens/register";
 import SettingsNotificationsScreen from "screens/settings/notifications"
+import SettingsAccountScreen from "screens/settings/account"
 import { store, persistor } from "store";
 import './i18n'
 
@@ -87,6 +88,7 @@ export default function App() {
 
               <Stack.Screen name="settings" component={SettingsScreen} />
               <Stack.Screen name="settingsNotifications" component={SettingsNotificationsScreen} />
+              <Stack.Screen name="settingsAccount" component={SettingsAccountScreen} />
             </Stack.Navigator>
           </NavigationContainer>
         </RootSiblingParent>

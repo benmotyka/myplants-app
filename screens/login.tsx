@@ -5,7 +5,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { RootStackParamList } from "../App";
-import i18n from '../i18n'
+import i18n from "../i18n";
 import plantsApi from "config/api/plants";
 import Loader from "components/Loader/Loader";
 import BasicButton from "components/BasicButton/BasicButton";
@@ -34,7 +34,7 @@ interface LoginForm {
   password: string;
 }
 
-const { t } = i18n
+const { t } = i18n;
 
 const Login = ({ navigation }: LoginProps): JSX.Element => {
   const [loading, setLoading] = React.useState(false);
@@ -75,15 +75,16 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
           jwt: result.data.accessToken,
         })
       );
+      dispatch(userAction.setUserSettings(result.data.userSettings));
       resetForm();
       navigation.navigate("home");
     } catch (error) {
       console.log(error);
       switch (error) {
         case ApiErrors.invalidCredentials:
-          return showToast(t('errors.invalidUsernameOrPassword'), "error");
+          return showToast(t("errors.invalidUsernameOrPassword"), "error");
         default:
-          return showToast(t('errors.invalidUsernameOrPassword'), "error");
+          return showToast(t("errors.invalidUsernameOrPassword"), "error");
       }
     } finally {
       setLoading(false);
@@ -98,7 +99,7 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
       bounces={false}
     >
       <ColumnCenterWrapper>
-        <Header>{t('common.login')}</Header>
+        <Header>{t("common.login")}</Header>
         <Formik
           initialValues={{ username: "", password: "" }}
           onSubmit={onSubmit}
@@ -114,16 +115,16 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
             ) : (
               <InputsWrapper>
                 <BasicTextInput
-                  label={t('common.username')}
-                  placeholder={t('pages.login.usernamePlaceholder')}
+                  label={t("common.username")}
+                  placeholder={t("pages.login.usernamePlaceholder")}
                   onChangeText={handleChange("username")}
                   onBlur={handleBlur("username")}
                   value={values.username}
                   error={errors.username}
                 />
                 <BasicTextInput
-                  label={t('common.password')}
-                  placeholder={t('pages.login.passwordPlaceholder')}
+                  label={t("common.password")}
+                  placeholder={t("pages.login.passwordPlaceholder")}
                   onChangeText={handleChange("password")}
                   onBlur={handleBlur("password")}
                   value={values.password}
@@ -133,7 +134,7 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
                 <MarginTopView>
                   <BasicButton
                     onPress={handleSubmit as (values: any) => void}
-                    text={t('common.submit')}
+                    text={t("common.submit")}
                   />
                 </MarginTopView>
               </InputsWrapper>
@@ -143,7 +144,7 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
       </ColumnCenterWrapper>
       <FooterWrapper>
         <FooterText onPress={() => navigation.navigate("register")}>
-          {t('pages.login.registerNow')}
+          {t("pages.login.registerNow")}
         </FooterText>
       </FooterWrapper>
     </KeyboardScreen>

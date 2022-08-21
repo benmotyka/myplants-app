@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 import { Dimensions } from "react-native";
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { MotiView } from "moti";
 
 import { colors } from "styles/colors";
@@ -19,15 +19,14 @@ export const ScreenContainer = styled.View`
   position: relative;
 `;
 
-export const KeyboardScreen = styled(KeyboardAwareScrollView)`
-`
+export const KeyboardScreen = styled(KeyboardAwareScrollView)``;
 
-export const ColumnCenterWrapper = styled.View<{fullHeight?: boolean;}>`
+export const ColumnCenterWrapper = styled.View<{ fullHeight?: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 100px 0 50px;
-  height: ${(props) => props.fullHeight ? '100%' : 'auto'};
+  height: ${(props) => (props.fullHeight ? "100%" : "auto")};
 `;
 
 export const InputsWrapper = styled.View`
@@ -59,25 +58,35 @@ export const Header = styled.Text`
   text-align: left;
   font-family: "Inter_300Light";
   margin-bottom: 20px;
+  color: ${colors.black};
 `;
 
-export const SmallHeader = styled(Header)`
-  font-size: 20px;
+export const SmallHeader = styled.Text`
+  font-size: 22px;
+  text-align: left;
+  font-family: "Inter_300Light";
+  color: ${colors.black};
+`;
+
+export const SmallHeaderWrapper = styled.View`
+  padding: 0 25px;
+  width: 100%;
+  margin-bottom: 10px;
 `;
 
 export const LoaderWrapper = styled.View`
-margin-top: 100px;
-`
+  margin-top: 100px;
+`;
 
 export const Description = styled.Text`
   font-size: 13px;
   font-family: "Inter_300Light";
   opacity: 0.6;
-`
+`;
 
 export const ModalAnimationWrapper = styled(MotiView)`
-width: 100%;
-height: 100%;
-position: absolute;
-z-index: 10;
-`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 10;
+`;

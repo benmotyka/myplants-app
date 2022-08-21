@@ -1,4 +1,4 @@
 export interface UserSettings {
-    notificationsEnabled: boolean;
+    pushNotificationsEnabled: boolean;
   }
   

@@ -12,10 +12,10 @@ import {
   Description,
   ScreenContainer,
   SmallHeader,
+  SmallHeaderWrapper,
 } from "styles/shared";
 import {
   ItemDateHeader,
-  HeaderWrapper,
   ActionText,
   ItemWrapper,
   HistoryIcon,
@@ -80,9 +80,9 @@ const PlantHistory = ({
     <ScreenContainer>
       <Back navigation={navigation} />
       <ColumnCenterWrapper fullHeight>
-        <HeaderWrapper>
+        <SmallHeaderWrapper>
           <SmallHeader>{t('pages.plants.history.header')}</SmallHeader>
-        </HeaderWrapper>
+        </SmallHeaderWrapper>
         <HistoryContainer>
           {!wateringData ? (
             <Loader />

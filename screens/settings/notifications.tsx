@@ -35,7 +35,7 @@ const SettingsNotifications = ({
     (state: State) => state.user
   );
   const [isAllowNotificationsEnabled, setAllowNotificationsEnabled] =
-  React.useState(userSettings?.notificationsEnabled);
+  React.useState(userSettings?.pushNotificationsEnabled);
   const dispatch = useDispatch();
 
   const handleSwitch = async ({ isEnabled }: { isEnabled: boolean }) => {
@@ -55,7 +55,7 @@ const SettingsNotifications = ({
       );
       dispatch(
         userAction.setUserSettings({
-          notificationsEnabled: isEnabled,
+          pushNotificationsEnabled: isEnabled,
         })
       );
     } catch (error) {

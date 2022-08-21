@@ -22,7 +22,7 @@ const initialstate: State = {
     username: null,
   },
   userSettings: {
-    notificationsEnabled: false,
+    pushNotificationsEnabled: false,
   },
 };
 
