@@ -54,7 +54,7 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
           </SettingsItem>
         </SettingsSection>
         <SettingsSection>
-          <SettingsHeader text={t('pages.settings.account')} />
+          <SettingsHeader text={t('pages.settings.accountLabel')} />
           <SettingsItem>
             <BasicButton
               onPress={() => {
