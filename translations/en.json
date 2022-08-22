@@ -96,6 +96,12 @@
       "every": "Every",
       "daySingular": "day",
       "dayPlurar": "days"
+    },
+    "emailConfirmation": {
+      "header": "Link your account",
+      "description": "Linking your account will allow you to use the 'Forget password'.",
+      "inputLabel": "Email",
+      "inputPlaceholder": "Your email address..."
     }
   }
 }

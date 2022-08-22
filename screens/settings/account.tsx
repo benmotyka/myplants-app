@@ -28,6 +28,7 @@ import showToast from "util/showToast";
 import Back from "components/Back/Back";
 import { View } from "react-native";
 import i18n from "../../i18n";
+import EmailConfirmation from "components/EmailConfirmation/EmailConfirmation";
 
 type SettingsAccountProps = NativeStackScreenProps<
   RootStackParamList,
@@ -66,44 +67,53 @@ const SettingsAccount = ({ navigation }: SettingsAccountProps): JSX.Element => {
               </LoaderWrapper>
             ) : (
               <>
-                <SmallHeaderWrapper>
-                  <SmallHeader>{t('pages.settings.account.changePassword')}</SmallHeader>
-                </SmallHeaderWrapper>
-                <InputsWrapper>
-                  <BasicTextInput
-                    label={t('pages.settings.account.oldPasswordLabel')}
-                    placeholder={t('pages.settings.account.oldPasswordPlaceholder')}
-                    onChangeText={handleChange("oldPassword")}
-                    onBlur={handleBlur("oldPassword")}
-                    value={values.oldPassword}
-                    hideInput={true}
-                    error={errors.oldPassword}
-                  />
-                  <BasicTextInput
-                    label={t('pages.settings.account.newPasswordLabel')}
-                    placeholder={t('pages.settings.account.newPasswordPlaceholder')}
-                    onChangeText={handleChange("newPassword")}
-                    onBlur={handleBlur("newPassword")}
-                    value={values.newPassword}
-                    hideInput={true}
-                    error={errors.newPassword}
-                  />
-                  <BasicTextInput
-                    label={t('pages.settings.account.newPasswordRepeatLabel')}
-                    placeholder={t('pages.settings.account.newPasswordRepeatPlaceholder')}
-                    onChangeText={handleChange("newPasswordRepeat")}
-                    onBlur={handleBlur("newPasswordRepeat")}
-                    value={values.newPasswordRepeat}
-                    hideInput={true}
-                    error={errors.newPasswordRepeat}
-                  />
-                  <MarginTopView>
+                <EmailConfirmation />
+                <MarginTopView>
+                  <SmallHeaderWrapper>
+                    <SmallHeader>
+                      {t("pages.settings.account.changePassword")}
+                    </SmallHeader>
+                  </SmallHeaderWrapper>
+                  <InputsWrapper>
+                    <BasicTextInput
+                      label={t("pages.settings.account.oldPasswordLabel")}
+                      placeholder={t(
+                        "pages.settings.account.oldPasswordPlaceholder"
+                      )}
+                      onChangeText={handleChange("oldPassword")}
+                      onBlur={handleBlur("oldPassword")}
+                      value={values.oldPassword}
+                      hideInput={true}
+                      error={errors.oldPassword}
+                    />
+                    <BasicTextInput
+                      label={t("pages.settings.account.newPasswordLabel")}
+                      placeholder={t(
+                        "pages.settings.account.newPasswordPlaceholder"
+                      )}
+                      onChangeText={handleChange("newPassword")}
+                      onBlur={handleBlur("newPassword")}
+                      value={values.newPassword}
+                      hideInput={true}
+                      error={errors.newPassword}
+                    />
+                    <BasicTextInput
+                      label={t("pages.settings.account.newPasswordRepeatLabel")}
+                      placeholder={t(
+                        "pages.settings.account.newPasswordRepeatPlaceholder"
+                      )}
+                      onChangeText={handleChange("newPasswordRepeat")}
+                      onBlur={handleBlur("newPasswordRepeat")}
+                      value={values.newPasswordRepeat}
+                      hideInput={true}
+                      error={errors.newPasswordRepeat}
+                    />
                     <BasicButton
                       onPress={handleSubmit as (values: any) => void}
-                      text={t('common.submit')}
+                      text={t("common.submit")}
                     />
-                  </MarginTopView>
-                </InputsWrapper>
+                  </InputsWrapper>
+                </MarginTopView>
               </>
             )
           }

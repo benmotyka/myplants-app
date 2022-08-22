@@ -96,6 +96,12 @@
       "every": "Co",
       "daySingular": "dzień",
       "dayPlurar": "dni"
+    },
+    "emailConfirmation": {
+      "header": "Powiąż swoje konto",
+      "description": "Powiązanie konta pozwoli Ci na użycie opcji 'Przypomnij hasło'.",
+      "inputLabel": "Email",
+      "inputPlaceholder": "Twój adres email..."
     }
   }
 }
