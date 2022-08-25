@@ -65,6 +65,7 @@
       },
       "account": {
         "changePassword": "Zmień hasło",
+        "confirmEmail": "Potwierdź email",
         "oldPasswordLabel": "Stare hasło",
         "oldPasswordPlaceholder": "Wpisz stare hasło...",
         "newPasswordLabel": "Nowe hasło",

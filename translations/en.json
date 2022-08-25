@@ -65,6 +65,7 @@
       },
       "account": {
         "changePassword": "Change password",
+        "confirmEmail": "Confirm email",
         "oldPasswordLabel": "Old password",
         "oldPasswordPlaceholder": "Enter your old password...",
         "newPasswordLabel": "New password",
