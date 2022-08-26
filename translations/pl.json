@@ -52,7 +52,6 @@
     "settings": {
       "header": "Ustawienia",
       "application": "Aplikacja",
-      "accountLabel": "Konto",
       "myAccount": "Moje konto",
       "logout": "Wyloguj się",
       "logoutConfirmation": "Czy na pewno chcesz się wylogować?",
@@ -64,14 +63,18 @@
         "notificationsDisabled": "wyłączone"
       },
       "account": {
-        "changePassword": "Zmień hasło",
-        "confirmEmail": "Potwierdź email",
-        "oldPasswordLabel": "Stare hasło",
-        "oldPasswordPlaceholder": "Wpisz stare hasło...",
-        "newPasswordLabel": "Nowe hasło",
-        "newPasswordPlaceholder": "Wpisz nowe hasło...",
-        "newPasswordRepeatLabel": "Powtórz nowe hasło",
-        "newPasswordRepeatPlaceholder": "Potwórz nowe hasło..."
+        "changePassword": {
+          "label": "Zmień hasło",
+          "oldPasswordLabel": "Stare hasło",
+          "oldPasswordPlaceholder": "Wpisz stare hasło...",
+          "newPasswordLabel": "Nowe hasło",
+          "newPasswordPlaceholder": "Wpisz nowe hasło...",
+          "newPasswordRepeatLabel": "Powtórz nowe hasło",
+          "newPasswordRepeatPlaceholder": "Potwórz nowe hasło..."
+        },
+        "confirmEmail": {
+          "label": "Potwierdź email"
+        }
       }
     }
   },

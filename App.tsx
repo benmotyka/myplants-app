@@ -27,6 +27,7 @@ import RegisterScreen from "screens/register";
 import SettingsNotificationsScreen from "screens/settings/notifications"
 import SettingsAccountScreen from "screens/settings/account"
 import SettingsAccountChangePasswordScreen from "screens/settings/account/changePassword"
+import SettingsAccountConfirmEmailScreen from "screens/settings/account/confirmEmail"
 import { store, persistor } from "store";
 import './i18n'
 
@@ -35,12 +36,14 @@ export type RootStackParamList = {
   register: undefined;
   home: undefined;
   addPlant: undefined;
+  editPlant: { plantId: string };
+  plantHistory: { plantId: string };
+
   settings: undefined;
   settingsAccount: undefined;
   settingsAccountChangePassword: undefined;
   settingsNotifications: undefined;
-  editPlant: { plantId: string };
-  plantHistory: { plantId: string };
+  settingsAccountConfirmEmail: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -92,6 +95,7 @@ export default function App() {
               <Stack.Screen name="settingsNotifications" component={SettingsNotificationsScreen} />
               <Stack.Screen name="settingsAccount" component={SettingsAccountScreen} />
               <Stack.Screen name="settingsAccountChangePassword" component={SettingsAccountChangePasswordScreen} />
+              <Stack.Screen name="settingsAccountConfirmEmail" component={SettingsAccountConfirmEmailScreen} />
             </Stack.Navigator>
           </NavigationContainer>
         </RootSiblingParent>

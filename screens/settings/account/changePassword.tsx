@@ -6,6 +6,7 @@ import BasicTextInput from "components/BasicTextInput/BasicTextInput";
 import Loader from "components/Loader/Loader";
 import { Formik } from "formik";
 import React from "react";
+import { ChangePasswordSchema } from "schemas/ChangePassword.schema";
 import {
   ColumnCenterWrapper,
   InputsWrapper,
@@ -16,7 +17,7 @@ import {
 } from "styles/shared";
 import i18n from "../../../i18n";
 
-type SettingsAccountProps = NativeStackScreenProps<
+type SettingsAccountChangePasswordProps = NativeStackScreenProps<
   RootStackParamList,
   "settingsAccountChangePassword"
 >;
@@ -25,7 +26,7 @@ const { t } = i18n;
 
 const SettingsAccountChangePassword = ({
   navigation,
-}: SettingsAccountProps): JSX.Element => {
+}: SettingsAccountChangePasswordProps): JSX.Element => {
   const [loading, setLoading] = React.useState(false);
 
   return (
@@ -41,6 +42,7 @@ const SettingsAccountChangePassword = ({
           onSubmit={(values) => console.log(values)}
           validateOnChange={false}
           validateOnBlur={false}
+          validationSchema={ChangePasswordSchema}
         >
           {({ handleChange, handleBlur, handleSubmit, values, errors }) =>
             loading ? (
@@ -51,14 +53,14 @@ const SettingsAccountChangePassword = ({
               <>
                 <SmallHeaderWrapper>
                   <SmallHeader>
-                    {t("pages.settings.account.changePassword")}
+                    {t("pages.settings.account.changePassword.label")}
                   </SmallHeader>
                 </SmallHeaderWrapper>
                 <InputsWrapper>
                   <BasicTextInput
-                    label={t("pages.settings.account.oldPasswordLabel")}
+                    label={t("pages.settings.account.changePassword.oldPasswordLabel")}
                     placeholder={t(
-                      "pages.settings.account.oldPasswordPlaceholder"
+                      "pages.settings.account.changePassword.oldPasswordPlaceholder"
                     )}
                     onChangeText={handleChange("oldPassword")}
                     onBlur={handleBlur("oldPassword")}
@@ -67,9 +69,9 @@ const SettingsAccountChangePassword = ({
                     error={errors.oldPassword}
                   />
                   <BasicTextInput
-                    label={t("pages.settings.account.newPasswordLabel")}
+                    label={t("pages.settings.account.changePassword.newPasswordLabel")}
                     placeholder={t(
-                      "pages.settings.account.newPasswordPlaceholder"
+                      "pages.settings.account.changePassword.newPasswordPlaceholder"
                     )}
                     onChangeText={handleChange("newPassword")}
                     onBlur={handleBlur("newPassword")}
@@ -78,9 +80,9 @@ const SettingsAccountChangePassword = ({
                     error={errors.newPassword}
                   />
                   <BasicTextInput
-                    label={t("pages.settings.account.newPasswordRepeatLabel")}
+                    label={t("pages.settings.account.changePassword.newPasswordRepeatLabel")}
                     placeholder={t(
-                      "pages.settings.account.newPasswordRepeatPlaceholder"
+                      "pages.settings.account.changePassword.newPasswordRepeatPlaceholder"
                     )}
                     onChangeText={handleChange("newPasswordRepeat")}
                     onBlur={handleBlur("newPasswordRepeat")}

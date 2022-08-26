@@ -35,32 +35,21 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
       <Back navigation={navigation} />
       <ColumnCenterWrapper>
         <SettingsSection>
-          <SettingsHeader text={t('pages.settings.header')} />
-          {/* <SettingsItem>
-            <BasicButton
-              onPress={() => {
-                console.log("");
-              }}
-              text={t('pages.settings.application')}
-            />
-          </SettingsItem> */}
+          <SettingsHeader text={t("pages.settings.header")} />
           <SettingsItem>
             <BasicButton
               onPress={() => {
-                navigation.navigate("settingsNotifications")
+                navigation.navigate("settingsNotifications");
               }}
-              text={t('pages.settings.notificationsHeader')}
+              text={t("pages.settings.notificationsHeader")}
             />
           </SettingsItem>
-        </SettingsSection>
-        <SettingsSection>
-          <SettingsHeader text={t('pages.settings.accountLabel')} />
           <SettingsItem>
             <BasicButton
               onPress={() => {
-                navigation.navigate("settingsAccount")
+                navigation.navigate("settingsAccount");
               }}
-              text={t('pages.settings.myAccount')}
+              text={t("pages.settings.myAccount")}
             />
           </SettingsItem>
           <SettingsItem>
@@ -68,7 +57,7 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
               onPress={() => {
                 setShowModal(true);
               }}
-              text={t('pages.settings.logout')}
+              text={t("pages.settings.logout")}
               warning={true}
             />
           </SettingsItem>
@@ -76,17 +65,21 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
       </ColumnCenterWrapper>
       <BasicModal showModal={showModal} toggleModal={setShowModal}>
         <ModalItem>
-          <ModalHeader>{t('pages.settings.logoutConfirmation')}</ModalHeader>
+          <ModalHeader>{t("pages.settings.logoutConfirmation")}</ModalHeader>
         </ModalItem>
         <ModalItem>
-          <BasicButton onPress={handleLogOut} text={t('pages.settings.logout')} warning={true} />
+          <BasicButton
+            onPress={handleLogOut}
+            text={t("pages.settings.logout")}
+            warning={true}
+          />
         </ModalItem>
         <ModalItem>
           <BasicButton
             onPress={() => {
               setShowModal(false);
             }}
-            text={t('common.cancel')}
+            text={t("common.cancel")}
           />
         </ModalItem>
       </BasicModal>

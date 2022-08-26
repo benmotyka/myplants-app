@@ -15,7 +15,7 @@ padding: 0 5px;
 `
 
 export const ItemWrapper = styled.View`
-margin-top: 10px;
+margin-top: 15px;
 `
 
 export const ItemText = styled.Text`

@@ -52,7 +52,6 @@
     "settings": {
       "header": "Settings",
       "application": "Application",
-      "accountLabel": "Account",
       "myAccount": "My account",
       "logout": "Log out",
       "logoutConfirmation": "Are you sure you want to log out?",
@@ -64,14 +63,18 @@
         "notificationsDisabled": "disabled"
       },
       "account": {
-        "changePassword": "Change password",
-        "confirmEmail": "Confirm email",
-        "oldPasswordLabel": "Old password",
-        "oldPasswordPlaceholder": "Enter your old password...",
-        "newPasswordLabel": "New password",
-        "newPasswordPlaceholder": "Enter your new password...",
-        "newPasswordRepeatLabel": "Repeat new password",
-        "newPasswordRepeatPlaceholder": "Repeat your new password..."
+        "changePassword": {
+          "label": "Change password",
+          "oldPasswordLabel": "Old password",
+          "oldPasswordPlaceholder": "Enter your old password...",
+          "newPasswordLabel": "New password",
+          "newPasswordPlaceholder": "Enter your new password...",
+          "newPasswordRepeatLabel": "Repeat new password",
+          "newPasswordRepeatPlaceholder": "Repeat your new password..."
+        },
+        "confirmEmail": {
+          "label": "Confirm email"
+        }
       }
     }
   },
