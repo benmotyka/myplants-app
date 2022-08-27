@@ -60,7 +60,6 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
       resetForm,
     }: {
       resetForm: FormikHelpers<LoginForm>["resetForm"];
-      setFieldError: FormikHelpers<LoginForm>["setFieldError"];
     }
   ) => {
     try {
@@ -84,7 +83,7 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
         case ApiErrors.invalidCredentials:
           return showToast(t("errors.invalidUsernameOrPassword"), "error");
         default:
-          return showToast(t("errors.invalidUsernameOrPassword"), "error");
+          return showToast(t("errors.general"), "error");
       }
     } finally {
       setLoading(false);

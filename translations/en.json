@@ -70,7 +70,8 @@
           "newPasswordLabel": "New password",
           "newPasswordPlaceholder": "Enter your new password...",
           "newPasswordRepeatLabel": "Repeat new password",
-          "newPasswordRepeatPlaceholder": "Repeat your new password..."
+          "newPasswordRepeatPlaceholder": "Repeat your new password...",
+          "success": "Password changed"
         },
         "confirmEmail": {
           "label": "Confirm email"
@@ -81,6 +82,7 @@
   "errors": {
     "required": "Required",
     "invalidUsernameOrPassword": "Invalid username or password",
+    "invalidOldPassword": "Invalid old password",
     "general": "Something went wrong. Please try again later.",
     "usernameExists": "Username exists",
     "invalidFileType": "Invalid file type",

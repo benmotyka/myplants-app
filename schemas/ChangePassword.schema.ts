@@ -5,7 +5,7 @@ import { MIN_PASSWORD_CHARACTERS } from "./Login.schema";
 const { t } = i18n;
 
 export const ChangePasswordSchema = Yup.object().shape({
-  password: Yup.string()
+  oldPassword: Yup.string()
     .min(
       MIN_PASSWORD_CHARACTERS,
       t("errors.fieldTooShort", {
@@ -18,7 +18,7 @@ export const ChangePasswordSchema = Yup.object().shape({
     .min(
       MIN_PASSWORD_CHARACTERS,
       t("errors.fieldTooShort", {
-        field: t("common.newPassword"),
+        field: t("common.password"),
         number: MIN_PASSWORD_CHARACTERS,
       })
     )

@@ -4,17 +4,24 @@ import Back from "components/Back/Back";
 import BasicButton from "components/BasicButton/BasicButton";
 import BasicTextInput from "components/BasicTextInput/BasicTextInput";
 import Loader from "components/Loader/Loader";
-import { Formik } from "formik";
+import plantsApi from "config/api/plants";
+import { ApiErrors } from "enums/api-errors";
+import { Formik, FormikHelpers } from "formik";
+import { UserDetails } from "interfaces/UserDetails";
 import React from "react";
+import { useSelector } from "react-redux";
 import { ChangePasswordSchema } from "schemas/ChangePassword.schema";
+import { State } from "store/reducers";
 import {
   ColumnCenterWrapper,
   InputsWrapper,
   LoaderWrapper,
+  MarginTopView,
   ScreenContainer,
   SmallHeader,
   SmallHeaderWrapper,
 } from "styles/shared";
+import showToast from "util/showToast";
 import i18n from "../../../i18n";
 
 type SettingsAccountChangePasswordProps = NativeStackScreenProps<
@@ -24,10 +31,54 @@ type SettingsAccountChangePasswordProps = NativeStackScreenProps<
 
 const { t } = i18n;
 
+interface ChangePasswordForm {
+  oldPassword: string;
+  newPassword: string;
+  newPasswordRepeat: string;
+}
+
 const SettingsAccountChangePassword = ({
   navigation,
 }: SettingsAccountChangePasswordProps): JSX.Element => {
   const [loading, setLoading] = React.useState(false);
+
+  const { userDetails }: { userDetails: UserDetails } = useSelector(
+    (state: State) => state.user
+  );
+
+  const onSubmit = async (
+    values: ChangePasswordForm,
+    { resetForm }: { resetForm: FormikHelpers<ChangePasswordForm>["resetForm"] }
+  ) => {
+    try {
+      setLoading(true);
+      await plantsApi.patch(
+        "/auth/password",
+        {
+          oldPassword: values.oldPassword,
+          newPassword: values.newPassword,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${userDetails.jwt}`,
+          },
+        }
+      );
+      showToast(t("pages.settings.account.changePassword.success"), "success");
+      resetForm();
+      navigation.navigate("settings");
+    } catch (error) {
+      console.log(error);
+      switch (error) {
+        case ApiErrors.invalidCredentials:
+          return showToast(t("errors.invalidUsernameOrPassword"), "error");
+        default:
+          return showToast(t("errors.general"), "error");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <ScreenContainer>
@@ -39,7 +90,7 @@ const SettingsAccountChangePassword = ({
             newPassword: "",
             newPasswordRepeat: "",
           }}
-          onSubmit={(values) => console.log(values)}
+          onSubmit={onSubmit}
           validateOnChange={false}
           validateOnBlur={false}
           validationSchema={ChangePasswordSchema}
@@ -58,7 +109,9 @@ const SettingsAccountChangePassword = ({
                 </SmallHeaderWrapper>
                 <InputsWrapper>
                   <BasicTextInput
-                    label={t("pages.settings.account.changePassword.oldPasswordLabel")}
+                    label={t(
+                      "pages.settings.account.changePassword.oldPasswordLabel"
+                    )}
                     placeholder={t(
                       "pages.settings.account.changePassword.oldPasswordPlaceholder"
                     )}
@@ -69,7 +122,9 @@ const SettingsAccountChangePassword = ({
                     error={errors.oldPassword}
                   />
                   <BasicTextInput
-                    label={t("pages.settings.account.changePassword.newPasswordLabel")}
+                    label={t(
+                      "pages.settings.account.changePassword.newPasswordLabel"
+                    )}
                     placeholder={t(
                       "pages.settings.account.changePassword.newPasswordPlaceholder"
                     )}
@@ -80,7 +135,9 @@ const SettingsAccountChangePassword = ({
                     error={errors.newPassword}
                   />
                   <BasicTextInput
-                    label={t("pages.settings.account.changePassword.newPasswordRepeatLabel")}
+                    label={t(
+                      "pages.settings.account.changePassword.newPasswordRepeatLabel"
+                    )}
                     placeholder={t(
                       "pages.settings.account.changePassword.newPasswordRepeatPlaceholder"
                     )}
@@ -90,10 +147,12 @@ const SettingsAccountChangePassword = ({
                     hideInput={true}
                     error={errors.newPasswordRepeat}
                   />
-                  <BasicButton
-                    onPress={handleSubmit as (values: any) => void}
-                    text={t("common.submit")}
-                  />
+                  <MarginTopView>
+                    <BasicButton
+                      onPress={handleSubmit as (values: any) => void}
+                      text={t("common.submit")}
+                    />
+                  </MarginTopView>
                 </InputsWrapper>
               </>
             )
