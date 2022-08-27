@@ -70,7 +70,7 @@ const SettingsAccountChangePassword = ({
     } catch (error) {
       console.log(error);
       switch (error) {
-        case ApiErrors.invalidCredentials:
+        case ApiErrors.INVALID_CREDENTIALS:
           return showToast(t("errors.invalidUsernameOrPassword"), "error");
         default:
           return showToast(t("errors.general"), "error");

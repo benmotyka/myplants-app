@@ -90,7 +90,7 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
     } catch (error) {
       console.log(error);
       switch (error) {
-        case ApiErrors.errorUploadingFile:
+        case ApiErrors.INVALID_FILE:
           return showToast(t("errors.invalidFileType"), "error");
         default:
           return showToast(t("errors.general"), "error");

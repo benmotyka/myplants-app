@@ -1,5 +1,5 @@
 export enum ApiErrors {
-    usernameExists = 'username-exists',
-    invalidCredentials = 'invalid-credentials',
-    errorUploadingFile = 'error-uploading-file'
+  INVALID_USERNAME = 'username-exists',
+  INVALID_CREDENTIALS = "invalid-credentials",
+  INVALID_FILE = "invalid-file",
 }

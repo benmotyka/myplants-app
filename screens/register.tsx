@@ -72,7 +72,7 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
     } catch (error) {
       console.log(error);
       switch (error) {
-        case ApiErrors.usernameExists: 
+        case ApiErrors.INVALID_USERNAME: 
           return showToast(t('errors.usernameExists'), "error")
         default: 
           return showToast(t('errors.general'), "error")
