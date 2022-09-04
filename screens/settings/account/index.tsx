@@ -9,6 +9,10 @@ import { SettingsSection } from "components/Settings/Settings.styles";
 import { ColumnCenterWrapper, ScreenContainer } from "styles/shared";
 import i18n from "../../../i18n";
 import SettingsHeader from "components/Settings/SettingsHeader";
+import { useDispatch } from "react-redux";
+import { userAction } from "store/actions";
+import BasicModal from "components/BasicModal/BasicModal";
+import { ModalHeader, ModalItem } from "components/BasicModal/BasicModal.styles";
 
 type SettingsAccountProps = NativeStackScreenProps<
   RootStackParamList,
@@ -18,6 +22,14 @@ type SettingsAccountProps = NativeStackScreenProps<
 const { t } = i18n;
 
 const SettingsAccount = ({ navigation }: SettingsAccountProps): JSX.Element => {
+  const [showModal, setShowModal] = React.useState(false);
+  const dispatch = useDispatch();
+
+  const handleLogOut = () => {
+    dispatch(userAction.removeUserDetails());
+    navigation.navigate("login");
+  };
+
   return (
     <ScreenContainer>
       <ColumnCenterWrapper>
@@ -41,8 +53,37 @@ const SettingsAccount = ({ navigation }: SettingsAccountProps): JSX.Element => {
               text={t("pages.settings.account.changePassword.label")}
             />
           </SettingsItem>
+          <SettingsItem>
+            <BasicButton
+              onPress={() => {
+                setShowModal(true);
+              }}
+              text={t("pages.settings.logout")}
+              warning={true}
+            />
+          </SettingsItem>
         </SettingsSection>
       </ColumnCenterWrapper>
+      <BasicModal showModal={showModal} toggleModal={setShowModal}>
+        <ModalItem>
+          <ModalHeader>{t("pages.settings.logoutConfirmation")}</ModalHeader>
+        </ModalItem>
+        <ModalItem>
+          <BasicButton
+            onPress={handleLogOut}
+            text={t("pages.settings.logout")}
+            warning={true}
+          />
+        </ModalItem>
+        <ModalItem>
+          <BasicButton
+            onPress={() => {
+              setShowModal(false);
+            }}
+            text={t("common.cancel")}
+          />
+        </ModalItem>
+      </BasicModal>
     </ScreenContainer>
   );
 };

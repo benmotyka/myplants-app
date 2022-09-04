@@ -4,7 +4,7 @@ import en from './translations/en.json'
 import pl from './translations/pl.json'
 
 i18n.translations = {
-    en,
+    en: pl,
     pl,
   };
 
