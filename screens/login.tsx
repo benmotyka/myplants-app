@@ -72,6 +72,7 @@ const Login = ({ navigation }: LoginProps): JSX.Element => {
         userAction.setUserDetails({
           username: values.username,
           jwt: result.data.accessToken,
+          confirmedEmail: result.data.confirmedEmail
         })
       );
       dispatch(userAction.setUserSettings(result.data.userSettings));

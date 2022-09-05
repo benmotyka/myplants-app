@@ -91,7 +91,8 @@
     "valueMustBeNumber": "Value must be a number",
     "minimumValueIs": "Minimum value is: {{value}}",
     "maximumValueIs": "Maximum value is: {{value}}",
-    "passwordsMustMatch": "Passwords must match"
+    "passwordsMustMatch": "Passwords must match",
+    "invalidEmail": "Invalid email"
   },
   "components": {
     "addPlantSuggestion": "Add your first plant here",

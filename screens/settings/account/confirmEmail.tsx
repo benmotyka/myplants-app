@@ -7,6 +7,7 @@ import {
   Description,
   InputsWrapper,
   LoaderWrapper,
+  MarginTopView,
   ScreenContainer,
   SmallHeader,
   SmallHeaderWrapper,
@@ -17,6 +18,7 @@ import { Formik } from "formik";
 import Loader from "components/Loader/Loader";
 import BasicTextInput from "components/BasicTextInput/BasicTextInput";
 import BasicButton from "components/BasicButton/BasicButton";
+import { ConfirmEmailSchema } from "schemas/ConfirmEmail.schema";
 
 type SettingsAccountConfirmEmailProps = NativeStackScreenProps<
   RootStackParamList,
@@ -39,6 +41,7 @@ const SettingsAccountConfirmEmail = ({
             email: "",
           }}
           onSubmit={(values) => console.log(values)}
+          validationSchema={ConfirmEmailSchema}
           validateOnChange={false}
           validateOnBlur={false}
         >
@@ -63,15 +66,17 @@ const SettingsAccountConfirmEmail = ({
                     placeholder={t(
                       "components.emailConfirmation.inputPlaceholder"
                     )}
-                    onChangeText={handleChange("username")}
-                    onBlur={handleBlur("username")}
+                    onChangeText={handleChange("email")}
+                    onBlur={handleBlur("email")}
                     value={values.email}
                     error={errors.email}
                   />
-                  <BasicButton
-                    onPress={handleSubmit as (values: any) => void}
-                    text={t("common.submit")}
-                  />
+                  <MarginTopView>
+                    <BasicButton
+                      onPress={handleSubmit as (values: any) => void}
+                      text={t("common.submit")}
+                    />
+                  </MarginTopView>
                 </InputsWrapper>
               </>
             )

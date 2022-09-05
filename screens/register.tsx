@@ -4,7 +4,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 
 import { RootStackParamList } from "../App";
-import i18n from '../i18n'
+import i18n from "../i18n";
 import plantsApi from "config/api/plants";
 import Back from "components/Back/Back";
 import BasicButton from "components/BasicButton/BasicButton";
@@ -36,7 +36,7 @@ interface RegisterResponse {
   status: string;
 }
 
-const { t } = i18n
+const { t } = i18n;
 
 const Register = ({ navigation }: RegisterProps): JSX.Element => {
   const [loading, setLoading] = React.useState(false);
@@ -65,6 +65,7 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
         userAction.setUserDetails({
           username: values.username,
           jwt: result.data.accessToken,
+          confirmedEmail: result.data.confirmedEmail,
         })
       );
       resetForm();
@@ -72,10 +73,10 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
     } catch (error) {
       console.log(error);
       switch (error) {
-        case ApiErrors.INVALID_USERNAME: 
-          return showToast(t('errors.usernameExists'), "error")
-        default: 
-          return showToast(t('errors.general'), "error")
+        case ApiErrors.INVALID_USERNAME:
+          return showToast(t("errors.usernameExists"), "error");
+        default:
+          return showToast(t("errors.general"), "error");
       }
     } finally {
       setLoading(false);
@@ -91,9 +92,9 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
     >
       <ColumnCenterWrapper>
         <Back navigation={navigation} />
-        <Header>{t('common.register')}</Header>
+        <Header>{t("common.register")}</Header>
         <Formik
-          initialValues={{ username: "", password: "", passwordRepeat: ""}}
+          initialValues={{ username: "", password: "", passwordRepeat: "" }}
           onSubmit={onSubmit}
           validationSchema={RegisterSchema}
           validateOnChange={false}
@@ -107,16 +108,16 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
             ) : (
               <InputsWrapper>
                 <BasicTextInput
-                  label={t('common.username')}
-                  placeholder={t('pages.register.usernamePlaceholder')}
+                  label={t("common.username")}
+                  placeholder={t("pages.register.usernamePlaceholder")}
                   onChangeText={handleChange("username")}
                   onBlur={handleBlur("username")}
                   value={values.username}
                   error={errors.username}
                 />
                 <BasicTextInput
-                  label={t('common.password')}
-                  placeholder={t('pages.register.passwordPlaceholder')}
+                  label={t("common.password")}
+                  placeholder={t("pages.register.passwordPlaceholder")}
                   onChangeText={handleChange("password")}
                   onBlur={handleBlur("password")}
                   value={values.password}
@@ -124,19 +125,19 @@ const Register = ({ navigation }: RegisterProps): JSX.Element => {
                   error={errors.password}
                 />
                 <BasicTextInput
-                  label={t('pages.register.passwordRepeatLabel')}
-                  placeholder={t('pages.register.passwordPlaceholder')}
+                  label={t("pages.register.passwordRepeatLabel")}
+                  placeholder={t("pages.register.passwordPlaceholder")}
                   onChangeText={handleChange("passwordRepeat")}
                   onBlur={handleBlur("passwordRepeat")}
                   value={values.passwordRepeat}
                   hideInput={true}
                   error={errors.passwordRepeat}
                 />
-                
+
                 <MarginTopView>
                   <BasicButton
                     onPress={handleSubmit as (values: any) => void}
-                    text={t('common.submit')}
+                    text={t("common.submit")}
                   />
                 </MarginTopView>
               </InputsWrapper>

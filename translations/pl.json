@@ -91,7 +91,8 @@
     "valueMustBeNumber": "Wartość musi być liczbą",
     "minimumValueIs": "Minimalna wartość to: {{value}}",
     "maximumValueIs": "Maksymalna wartość to: {{value}}",
-    "passwordsMustMatch": "Hasła muszą się zgadzać"
+    "passwordsMustMatch": "Hasła muszą się zgadzać",
+    "invalidEmail": "Błędny email"
   },
   "components": {
     "addPlantSuggestion": "Dodaj swoją pierwszą roślinę",

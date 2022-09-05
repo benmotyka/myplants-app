@@ -13,6 +13,9 @@ import { useDispatch } from "react-redux";
 import { userAction } from "store/actions";
 import BasicModal from "components/BasicModal/BasicModal";
 import { ModalHeader, ModalItem } from "components/BasicModal/BasicModal.styles";
+import { UserDetails } from "interfaces/UserDetails";
+import { useSelector } from "react-redux";
+import { State } from "store/reducers";
 
 type SettingsAccountProps = NativeStackScreenProps<
   RootStackParamList,
@@ -25,18 +28,23 @@ const SettingsAccount = ({ navigation }: SettingsAccountProps): JSX.Element => {
   const [showModal, setShowModal] = React.useState(false);
   const dispatch = useDispatch();
 
+  const { userDetails }: { userDetails: UserDetails } = useSelector(
+    (state: State) => state.user
+  );
+  
   const handleLogOut = () => {
     dispatch(userAction.removeUserDetails());
     navigation.navigate("login");
   };
 
+  console.log(userDetails)
   return (
     <ScreenContainer>
       <ColumnCenterWrapper>
         <Back navigation={navigation} />
         <SettingsSection>
         <SettingsHeader text={t("pages.settings.myAccount")} />
-          <SettingsItem>
+          {!userDetails?.confirmedEmail ? <SettingsItem>
             <BasicButton
               onPress={() => {
                 navigation.navigate("settingsAccountConfirmEmail");
@@ -44,7 +52,7 @@ const SettingsAccount = ({ navigation }: SettingsAccountProps): JSX.Element => {
               text={t("pages.settings.account.confirmEmail.label")}
               important
             />
-          </SettingsItem>
+          </SettingsItem> : null}
           <SettingsItem>
             <BasicButton
               onPress={() => {

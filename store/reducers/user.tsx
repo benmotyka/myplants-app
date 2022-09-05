@@ -20,6 +20,7 @@ const initialstate: State = {
   userDetails: {
     jwt: null,
     username: null,
+    confirmedEmail: true
   },
   userSettings: {
     pushNotificationsEnabled: false,
