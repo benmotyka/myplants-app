@@ -11,7 +11,8 @@
     "cancel": "Anuluj",
     "plantName": "Nazwa rośliny",
     "disable": "Wyłącz",
-    "enable": "Włącz"
+    "enable": "Włącz",
+    "confirm": "Potwierdź"
   },
   "pages": {
     "login": {
@@ -92,7 +93,8 @@
     "minimumValueIs": "Minimalna wartość to: {{value}}",
     "maximumValueIs": "Maksymalna wartość to: {{value}}",
     "passwordsMustMatch": "Hasła muszą się zgadzać",
-    "invalidEmail": "Błędny email"
+    "invalidEmail": "Błędny email",
+    "invalidCode": "Błędny kod"
   },
   "components": {
     "addPlantSuggestion": "Dodaj swoją pierwszą roślinę",
@@ -108,7 +110,11 @@
       "header": "Powiąż swoje konto",
       "description": "Powiązanie konta pozwoli Ci na użycie opcji 'Przypomnij hasło'.",
       "inputLabel": "Email",
-      "inputPlaceholder": "Twój adres email..."
+      "inputPlaceholder": "Twój adres email...",
+      "confirmationCodeLabel": "Kod potwierdzający",
+      "confirmCodeHeader": "Potwierdź email",
+      "confirmCodeDescription": "Kod weryfikacyjny został wysłany na adres: {{email}}. Wpisz go poniżej, aby potwierdzić adres email.",
+      "success": "Adres email został powiązany!"
     }
   }
 }

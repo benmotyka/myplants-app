@@ -82,6 +82,7 @@ export const Description = styled.Text`
   font-size: 13px;
   font-family: "Inter_300Light";
   opacity: 0.6;
+  line-height: 18px;
 `;
 
 export const ModalAnimationWrapper = styled(MotiView)`

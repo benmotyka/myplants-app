@@ -37,7 +37,6 @@ const SettingsAccount = ({ navigation }: SettingsAccountProps): JSX.Element => {
     navigation.navigate("login");
   };
 
-  console.log(userDetails)
   return (
     <ScreenContainer>
       <ColumnCenterWrapper>

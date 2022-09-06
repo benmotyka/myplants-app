@@ -11,7 +11,8 @@
     "cancel": "Cancel",
     "plantName": "Plant name",
     "disable": "Disable",
-    "enable": "Enable"
+    "enable": "Enable",
+    "confirm": "Confirm"
   },
   "pages": {
     "login": {
@@ -92,7 +93,8 @@
     "minimumValueIs": "Minimum value is: {{value}}",
     "maximumValueIs": "Maximum value is: {{value}}",
     "passwordsMustMatch": "Passwords must match",
-    "invalidEmail": "Invalid email"
+    "invalidEmail": "Invalid email",
+    "invalidCode": "Invalid code"
   },
   "components": {
     "addPlantSuggestion": "Add your first plant here",
@@ -108,7 +110,11 @@
       "header": "Link your account",
       "description": "Linking your account will allow you to use the 'Forget password'.",
       "inputLabel": "Email",
-      "inputPlaceholder": "Your email address..."
+      "inputPlaceholder": "Your email address...",
+      "confirmationCodeLabel": "Confirmation code",
+      "confirmCodeHeader": "Confirm email",
+      "confirmCodeDescription": "Verification code has been sent to: {{email}}. Enter it below to confirm email address.",
+      "success": "Email address linked!"
     }
   }
 }
