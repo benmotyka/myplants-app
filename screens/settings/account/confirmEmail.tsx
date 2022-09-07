@@ -21,6 +21,11 @@ import BasicButton from "components/BasicButton/BasicButton";
 import { ConfirmEmailSchema } from "schemas/ConfirmEmail.schema";
 import { ConfirmCodeSchema } from "schemas/ConfirmCode";
 import showToast from "util/showToast";
+import { ApiErrors } from "enums/api-errors";
+import plantsApi from "config/api/plants";
+import { UserDetails } from "interfaces/UserDetails";
+import { useSelector } from "react-redux";
+import { State } from "store/reducers";
 
 type SettingsAccountConfirmEmailProps = NativeStackScreenProps<
   RootStackParamList,
@@ -35,12 +40,33 @@ const SettingsAccountConfirmEmail = ({
   const [loading, setLoading] = React.useState(false);
   const [emailEntered, setEmailEntered] = React.useState("");
 
+  const { userDetails }: { userDetails: UserDetails } = useSelector(
+    (state: State) => state.user
+  );
+
   const onSubmitEmail = async (values: { email: string }) => {
     try {
       setLoading(true);
-      //await plantsApi.post()
+      await plantsApi.post(
+        "verification-code/email/send",
+        {
+          email: values.email,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${userDetails.jwt}`,
+          },
+        }
+      );
       setEmailEntered(values.email);
     } catch (error) {
+      console.log(error);
+      switch (error) {
+        case ApiErrors.EMAIL_EXISTS:
+          return showToast(t("errors.emailExists"), "error");
+        default:
+          return showToast(t("errors.general"), "error");
+      }
     } finally {
       setLoading(false);
     }
@@ -57,11 +83,17 @@ const SettingsAccountConfirmEmail = ({
     try {
       setLoading(true);
       // dispatch set verified email
-      resetForm()
+      resetForm();
       showToast(t("components.emailConfirmation.success"), "success");
       navigation.navigate("settings");
     } catch (error) {
-      console.log(error)
+      console.log(error);
+      switch (error) {
+        case ApiErrors.INVALID_CODE:
+          return showToast(t("errors.invalidCode"), "error");
+        default:
+          return showToast(t("errors.general"), "error");
+      }
     } finally {
       setLoading(false);
     }
@@ -99,10 +131,15 @@ const SettingsAccountConfirmEmail = ({
                       <SmallHeader>
                         {t("components.emailConfirmation.confirmCodeHeader")}
                       </SmallHeader>
-                      <Description style={{ marginTop: 10 }}>
+                      <Description style={{ marginVertical: 10 }}>
                         {t(
-                          "components.emailConfirmation.confirmCodeDescription",
+                          "components.emailConfirmation.confirmCodeDescription1",
                           { email: emailEntered }
+                        )}
+                      </Description>
+                      <Description>
+                        {t(
+                          "components.emailConfirmation.confirmCodeDescription2"
                         )}
                       </Description>
                     </SmallHeaderWrapper>

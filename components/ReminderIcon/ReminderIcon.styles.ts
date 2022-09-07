@@ -11,6 +11,6 @@ export const IconWrapper = styled.View`
   top: 5px;
   right: 5px;
   padding: 3px;
-  border-radius: 5px;
+  border-radius: 24px;
   background-color: ${colors.alert};
 `;

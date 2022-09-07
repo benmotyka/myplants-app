@@ -94,7 +94,8 @@
     "maximumValueIs": "Maximum value is: {{value}}",
     "passwordsMustMatch": "Passwords must match",
     "invalidEmail": "Invalid email",
-    "invalidCode": "Invalid code"
+    "invalidCode": "Invalid code",
+    "emailExists": "Email exists"
   },
   "components": {
     "addPlantSuggestion": "Add your first plant here",
@@ -113,7 +114,8 @@
       "inputPlaceholder": "Your email address...",
       "confirmationCodeLabel": "Confirmation code",
       "confirmCodeHeader": "Confirm email",
-      "confirmCodeDescription": "Verification code has been sent to: {{email}}. Enter it below to confirm email address.",
+      "confirmCodeDescription1": "Verification code has been sent to: {{email}}.",
+      "confirmCodeDescription2": "Enter it below to confirm email address.",
       "success": "Email address linked!"
     }
   }

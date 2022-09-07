@@ -94,7 +94,8 @@
     "maximumValueIs": "Maksymalna wartość to: {{value}}",
     "passwordsMustMatch": "Hasła muszą się zgadzać",
     "invalidEmail": "Błędny email",
-    "invalidCode": "Błędny kod"
+    "invalidCode": "Błędny kod",
+    "emailExists": "Email istnieje"
   },
   "components": {
     "addPlantSuggestion": "Dodaj swoją pierwszą roślinę",
@@ -113,7 +114,8 @@
       "inputPlaceholder": "Twój adres email...",
       "confirmationCodeLabel": "Kod potwierdzający",
       "confirmCodeHeader": "Potwierdź email",
-      "confirmCodeDescription": "Kod weryfikacyjny został wysłany na adres: {{email}}. Wpisz go poniżej, aby potwierdzić adres email.",
+      "confirmCodeDescription1": "Kod weryfikacyjny został wysłany na adres: {{email}}.",
+      "confirmCodeDescription2": "Wpisz go poniżej, aby potwierdzić adres email.",
       "success": "Adres email został powiązany!"
     }
   }
