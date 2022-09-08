@@ -16,6 +16,7 @@ import {
 } from "@expo-google-fonts/inter";
 import { AkayaKanadaka_400Regular } from "@expo-google-fonts/akaya-kanadaka";
 import { RootSiblingParent } from "react-native-root-siblings";
+import * as Sentry from 'sentry-expo';
 
 import HomeScreen from "screens/home";
 import AddPlantScreen from "screens/plants/add";
@@ -45,6 +46,12 @@ export type RootStackParamList = {
   settingsNotifications: undefined;
   settingsAccountConfirmEmail: undefined;
 };
+
+Sentry.init({
+  dsn: 'https://bb2c2200bc6d42d2a2fe98aa5b3d35a1@o1400884.ingest.sentry.io/6730902',
+  enableInExpoDevelopment: true,
+  debug: true, 
+});
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

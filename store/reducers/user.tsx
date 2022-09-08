@@ -20,7 +20,7 @@ const initialstate: State = {
   userDetails: {
     jwt: null,
     username: null,
-    confirmedEmail: true
+    confirmedEmail: false
   },
   userSettings: {
     pushNotificationsEnabled: false,
@@ -38,6 +38,7 @@ export default (state: State = initialstate, action: Action) => {
         userDetails: {
           jwt: null,
           username: null,
+          confirmedEmail: false
         }
       };
     case SET_USER_SETTINGS:
