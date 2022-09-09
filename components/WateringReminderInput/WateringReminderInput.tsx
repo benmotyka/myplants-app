@@ -10,6 +10,7 @@ import {
   Wrapper,
   Input,
   Text,
+  ErrorContainer,
 } from "./WateringReminderInput.styles";
 import i18n from "../../i18n";
 
@@ -33,7 +34,7 @@ const WateringReminderInput = ({
           onChangeText={setNumberValue}
           keyboardType="number-pad"
           errorBorder={!!error}
-          maxLength={1}
+          maxLength={2}
         />
         <Text>
           {numberValue == 1
@@ -42,24 +43,26 @@ const WateringReminderInput = ({
         </Text>
       </Wrapper>
       <AnimatePresence>
-        {error ? (
-          <ErrorWrapper
-            from={{
-              opacity: 0,
-              scale: 0,
-            }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-            }}
-            exit={{
-              scale: 0,
-              opacity: 0,
-            }}
-          >
-            <ErrorText>{error}</ErrorText>
-          </ErrorWrapper>
-        ) : null}
+        <ErrorContainer>
+          {error ? (
+            <ErrorWrapper
+              from={{
+                opacity: 0,
+                scale: 0,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+              }}
+              exit={{
+                scale: 0,
+                opacity: 0,
+              }}
+            >
+              <ErrorText>{error}</ErrorText>
+            </ErrorWrapper>
+          ) : null}
+        </ErrorContainer>
       </AnimatePresence>
     </Container>
   );

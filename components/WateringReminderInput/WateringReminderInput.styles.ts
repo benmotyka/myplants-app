@@ -35,3 +35,8 @@ export const Input = styled.TextInput<{ errorBorder: boolean }>`
       : `1px solid ${colors.grey}`};
   text-align: center;
 `;
+
+export const ErrorContainer = styled.View`
+height: 20px;
+text-align: center;
+`

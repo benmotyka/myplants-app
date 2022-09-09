@@ -7,7 +7,7 @@ const MAX_PLANT_CHARACTERS = 25;
 const MAX_DESCRIPTION_CHARACTERS = 100;
 
 const MIN_WATERING_FREQUENCY_VALUE = 1;
-const MAX_WATERING_FREQUENCY_VALUE = 9;
+const MAX_WATERING_FREQUENCY_VALUE = 31;
 
 export const createAddPlantSchema = (isWateringReminderOn: boolean) =>
   Yup.object().shape({

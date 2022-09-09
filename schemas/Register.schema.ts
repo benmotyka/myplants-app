@@ -16,7 +16,7 @@ export const RegisterSchema = Yup.object().shape({
       .max(
         MAX_USERNAME_CHARACTERS,
         t("errors.fieldTooLong", {
-          field: t("common.password"),
+          field: t("common.username"),
           number: MAX_USERNAME_CHARACTERS,
         })
       )

@@ -7,7 +7,7 @@ export const InputWrapper = styled.View`
   margin-top: 10px;
   width: 100%;
   position: relative;
-  padding: 0 25px 20px;
+  padding: 0 20px;
   max-width: 400px;
 `;
 
@@ -29,13 +29,16 @@ export const InputLabel = styled.Text`
   margin-bottom: 5px;
 `;
 
+export const ErrorContainer = styled.View`
+height: 20px;
+width: 100%;
+`
+
 export const ErrorWrapper = styled(MotiView)`
-  position: absolute;
-  bottom: 0;
 `;
 
 export const ErrorText = styled.Text`
-  font-size: 12px;
+  font-size: 11px;
   font-family: "Inter_300Light";
   color: ${colors.alert};
   margin-top: 3px;

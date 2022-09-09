@@ -8,6 +8,7 @@ import {
   InputLabel,
   ErrorWrapper,
   ErrorText,
+  ErrorContainer,
 } from "components/BasicTextInput/BasicTextInput.styles";
 import { AnimatePresence } from "moti";
 
@@ -34,6 +35,7 @@ const BasicTextInput = ({
         onBlur={onBlur}
         multiline={textarea}
         textAlignVertical="top" //in order to make multiline work correctny on android
+        autoCapitalize="none"
         secureTextEntry={hideInput}
         errorBorder={!!error}
         numberOfLines={textarea ? TEXTAREA_NUMBER_OF_LINES : 1}
@@ -45,24 +47,26 @@ const BasicTextInput = ({
         }
       />
       <AnimatePresence>
-        {error ? (
-          <ErrorWrapper
-            from={{
-              opacity: 0,
-              scale: 0,
-            }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-            }}
-            exit={{
-              scale: 0,
-              opacity: 0,
-            }}
-          >
-            <ErrorText>{error}</ErrorText>
-          </ErrorWrapper>
-        ) : null}
+        <ErrorContainer>
+          {error ? (
+            <ErrorWrapper
+              from={{
+                opacity: 0,
+                scale: 0,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+              }}
+              exit={{
+                scale: 0,
+                opacity: 0,
+              }}
+            >
+              <ErrorText>{error}</ErrorText>
+            </ErrorWrapper>
+          ) : null}
+        </ErrorContainer>
       </AnimatePresence>
     </InputWrapper>
   );
