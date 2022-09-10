@@ -14,6 +14,9 @@ import { AkayaKanadaka_400Regular } from "@expo-google-fonts/akaya-kanadaka";
 import { RootSiblingParent } from "react-native-root-siblings";
 import * as Sentry from "sentry-expo";
 
+import {
+  sentryDsn
+} from "config/environment";
 import HomeScreen from "screens/home";
 import AddPlantScreen from "screens/plants/add";
 import EditPlant from "screens/plants/edit";
@@ -44,7 +47,7 @@ export type RootStackParamList = {
 };
 
 Sentry.init({
-  dsn: "https://bb2c2200bc6d42d2a2fe98aa5b3d35a1@o1400884.ingest.sentry.io/6730902",
+  dsn: sentryDsn,
   enableInExpoDevelopment: true,
   debug: true,
 });
