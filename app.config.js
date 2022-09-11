@@ -11,8 +11,8 @@ module.exports = {
   icon: "./assets/icon.png",
   userInterfaceStyle: "light",
   splash: {
-    image: "./assets/splash.png",
-    resizeMode: "contain",
+    image: "./assets/icon.png",
+    resizeMode: "center",
     backgroundColor: "#ffffff",
   },
   updates: {
@@ -29,7 +29,7 @@ module.exports = {
       backgroundColor: "#FFFFFF",
     },
     package: "com.benmotyka.myplants",
-    versionCode: 3,
+    versionCode: 5,
   },
   web: {
     favicon: "./assets/icon.png",
