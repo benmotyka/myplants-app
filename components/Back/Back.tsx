@@ -4,8 +4,7 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { IconWrapper } from "components/Back/Back.styles";
 import { BackProps } from "components/Back/Back.interface";
 import { colors } from "styles/colors";
-
-const ICON_SIZE_PX = 24;
+import { ICON_SIZE_PX } from "config";
 
 const Back = ({ navigation }: BackProps): JSX.Element => {
   return (

@@ -6,6 +6,7 @@ export interface Plant {
     description?: string;
     imgSrc?: string;    
     createdAt: string;
+    shareId: string;
     latestWatering: Watering;
     wateringReminderFrequency?: number;
 }
