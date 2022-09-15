@@ -47,7 +47,11 @@
       },
       "history": {
         "header": "Watering history",
-        "plantNotWatered": "This plant has not been watered yet."
+        "plantNotWatered": "This plant has not been watered yet.",
+        "shareModal": {
+          "header": "Share plant",
+          "description": "Let your friend friend add this plant to their collection, so they can water it together with you."
+        }
       }
     },
     "settings": {

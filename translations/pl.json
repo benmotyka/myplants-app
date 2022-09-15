@@ -47,7 +47,11 @@
       },
       "history": {
         "header": "Historia podlewania",
-        "plantNotWatered": "Ta roślina nie została jeszcze podlana."
+        "plantNotWatered": "Ta roślina nie została jeszcze podlana.",
+        "shareModal": {
+          "header": "Udostępnij roślinę",
+          "description": "Pozwól znajomemu dodać tą roślinę do jego kolekcji, aby mógł ją podlewać razem z Tobą."
+        }
       }
     },
     "settings": {

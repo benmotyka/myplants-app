@@ -31,6 +31,13 @@ import i18n from "../../i18n";
 import { Entypo } from "@expo/vector-icons";
 import { ICON_SIZE_PX } from "config";
 import { colors } from "styles/colors";
+import BasicModal from "components/BasicModal/BasicModal";
+import {
+  ModalDescription,
+  ModalHeader,
+  ModalItem,
+} from "components/BasicModal/BasicModal.styles";
+import { Plant } from "interfaces/Plant";
 
 type PlantHistoryProps = NativeStackScreenProps<
   RootStackParamList,
@@ -44,12 +51,23 @@ const PlantHistory = ({
   navigation,
 }: PlantHistoryProps): JSX.Element => {
   const plantId = route.params.plantId;
+  const [showShareModal, setShowShareModal] = React.useState(false);
+  const [selectedPlant, setSelectedPlant] = React.useState<Plant>();
   const [wateringData, setWateringData] = React.useState<WateringData>();
   const isFocused = useIsFocused();
-
+  const { userPlants }: { userPlants: Plant[] } = useSelector(
+    (state: State) => state.plants
+  );
   const { userDetails }: { userDetails: UserDetails } = useSelector(
     (state: State) => state.user
   );
+
+  React.useEffect(() => {
+    const plant = userPlants.find((plant) => plant.id === plantId);
+    setSelectedPlant(plant);
+    console.log(plant);
+    console.log("WWAWA");
+  }, [userPlants]);
 
   const getPlantWateringHistory = async () => {
     try {
@@ -81,41 +99,63 @@ const PlantHistory = ({
   }, [isFocused]);
 
   return (
-    <ScreenContainer>
-      <Back navigation={navigation} />
-      <IconContainer style={{ top: 20, right: 20 }}>
-        <Entypo name="share" size={ICON_SIZE_PX} color={colors.lightBlack} />
-      </IconContainer>
-      <ColumnCenterWrapper fullHeight>
-        <SmallHeaderWrapper>
-          <SmallHeader>{t("pages.plants.history.header")}</SmallHeader>
-        </SmallHeaderWrapper>
-        <HistoryContainer>
-          {!wateringData ? (
-            <Loader />
-          ) : !Object.keys(wateringData).length ? (
-            <Description style={{ textAlign: "center" }}>
-              {t("pages.plants.history.plantNotWatered")}
-            </Description>
-          ) : (
-            Object.entries(wateringData).map(([day, hours]) => (
-              <ItemContainer key={day}>
-                <ItemDateHeader>{day}</ItemDateHeader>
-                {hours.map((hour, index) => (
-                  <ItemWrapper key={hour + index}>
-                    <HistoryIcon
-                      resizeMode="contain"
-                      source={require("../../assets/water-drop.png")}
-                    />
-                    <ActionText>{formatToHour(hour)}</ActionText>
-                  </ItemWrapper>
-                ))}
-              </ItemContainer>
-            ))
-          )}
-        </HistoryContainer>
-      </ColumnCenterWrapper>
-    </ScreenContainer>
+    <>
+      <ScreenContainer>
+        <Back navigation={navigation} />
+        <IconContainer
+          style={{ top: 20, right: 20 }}
+          onPress={() => {
+            setShowShareModal(true);
+          }}
+        >
+          <Entypo name="share" size={ICON_SIZE_PX} color={colors.lightBlack} />
+        </IconContainer>
+        <ColumnCenterWrapper fullHeight>
+          <SmallHeaderWrapper>
+            <SmallHeader>{t("pages.plants.history.header")}</SmallHeader>
+          </SmallHeaderWrapper>
+          <HistoryContainer>
+            {!wateringData ? (
+              <Loader />
+            ) : !Object.keys(wateringData).length ? (
+              <Description style={{ textAlign: "center" }}>
+                {t("pages.plants.history.plantNotWatered")}
+              </Description>
+            ) : (
+              Object.entries(wateringData).map(([day, hours]) => (
+                <ItemContainer key={day}>
+                  <ItemDateHeader>{day}</ItemDateHeader>
+                  {hours.map((hour, index) => (
+                    <ItemWrapper key={hour + index}>
+                      <HistoryIcon
+                        resizeMode="contain"
+                        source={require("../../assets/water-drop.png")}
+                      />
+                      <ActionText>{formatToHour(hour)}</ActionText>
+                    </ItemWrapper>
+                  ))}
+                </ItemContainer>
+              ))
+            )}
+          </HistoryContainer>
+        </ColumnCenterWrapper>
+      </ScreenContainer>
+      <BasicModal showModal={showShareModal} toggleModal={setShowShareModal}>
+        <ModalItem>
+          <ModalHeader>
+            {t("pages.plants.history.shareModal.header")}
+          </ModalHeader>
+          <ModalDescription>
+            {t("pages.plants.history.shareModal.description")}
+          </ModalDescription>
+        </ModalItem>
+        <ModalItem>
+          {/* @TODO: add copy button */}
+          <ModalDescription>{selectedPlant?.shareId}</ModalDescription>
+        </ModalItem>
+        <ModalItem></ModalItem>
+      </BasicModal>
+    </>
   );
 };
 

@@ -11,22 +11,29 @@ export const ModalContainer = styled.TouchableOpacity`
   display: flex;
   align-items: center;
   justify-content: center;
-`
+`;
 
 export const ModalWrapper = styled.View`
-width: 80%;
-max-width: 400px;
-border-radius: 10px;
-background-color: ${colors.lightGrey};
-padding: 15px;
-`
+  width: 80%;
+  max-width: 400px;
+  border-radius: 10px;
+  background-color: ${colors.lightGrey};
+  padding: 15px;
+`;
 
 export const ModalHeader = styled.Text`
-font-size: 24px;
-text-align: center;
-font-family: 'Inter_300Light';
-`
+  font-size: 20px;
+  text-align: center;
+  font-family: "Inter_300Light";
+`;
 
 export const ModalItem = styled.View`
-margin: 15px;
-`
+  margin: 15px;
+`;
+
+export const ModalDescription = styled.Text`
+  font-size: 15px;
+  font-family: "Inter_300Light";
+  opacity: 0.6;
+  margin-top: 10px;
+`;
