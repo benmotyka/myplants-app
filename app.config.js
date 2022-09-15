@@ -10,11 +10,7 @@ module.exports = {
   orientation: "portrait",
   icon: "./assets/icon.png",
   userInterfaceStyle: "light",
-  splash: {
-    image: "./assets/icon.png",
-    resizeMode: "center",
-    backgroundColor: "#ffffff",
-  },
+  // @TODO: add splash screen
   updates: {
     fallbackToCacheTimeout: 0,
   },

@@ -13,6 +13,7 @@ import {
   ScreenContainer,
   SmallHeader,
   SmallHeaderWrapper,
+  IconContainer,
 } from "styles/shared";
 import {
   ItemDateHeader,
@@ -27,6 +28,9 @@ import { WateringData } from "interfaces/WateringData";
 import Loader from "components/Loader/Loader";
 import { formatToHour } from "util/date";
 import i18n from "../../i18n";
+import { Entypo } from "@expo/vector-icons";
+import { ICON_SIZE_PX } from "config";
+import { colors } from "styles/colors";
 
 type PlantHistoryProps = NativeStackScreenProps<
   RootStackParamList,
@@ -79,16 +83,19 @@ const PlantHistory = ({
   return (
     <ScreenContainer>
       <Back navigation={navigation} />
+      <IconContainer style={{ top: 20, right: 20 }}>
+        <Entypo name="share" size={ICON_SIZE_PX} color={colors.lightBlack} />
+      </IconContainer>
       <ColumnCenterWrapper fullHeight>
         <SmallHeaderWrapper>
-          <SmallHeader>{t('pages.plants.history.header')}</SmallHeader>
+          <SmallHeader>{t("pages.plants.history.header")}</SmallHeader>
         </SmallHeaderWrapper>
         <HistoryContainer>
           {!wateringData ? (
             <Loader />
           ) : !Object.keys(wateringData).length ? (
             <Description style={{ textAlign: "center" }}>
-              {t('pages.plants.history.plantNotWatered')}
+              {t("pages.plants.history.plantNotWatered")}
             </Description>
           ) : (
             Object.entries(wateringData).map(([day, hours]) => (

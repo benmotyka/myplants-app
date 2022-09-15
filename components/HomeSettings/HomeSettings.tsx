@@ -11,8 +11,8 @@ import { HomeSettingsProps } from "components/HomeSettings/HomeSettings.interfac
 import { AnimatePresence } from "moti";
 import { ModalAnimationWrapper } from "styles/shared";
 import { RootStackParamList } from "App";
+import { ICON_SIZE_PX } from "config";
 
-const ICON_SIZE_PX = 24;
 const ITEMS_MARGIN_PX = 60;
 const ITEMS_OFFSET_PX = 20;
 

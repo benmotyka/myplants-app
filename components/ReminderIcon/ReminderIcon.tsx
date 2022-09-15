@@ -4,8 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { IconWrapper, ReminderAnimationWrapper } from "./ReminderIcon.styles";
 import { ReminderIconProps } from "./ReminderIcon.interface";
-
-const ICON_SIZE_PX = 24;
+import { ICON_SIZE_PX } from "config";
 
 const ReminderIcon = ({ showReminder }: ReminderIconProps): JSX.Element => {
   return (

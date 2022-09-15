@@ -10,7 +10,7 @@ const plantsApi = axios.create({
 });
 
 plantsApi.interceptors.request.use(async (config) => {
-  if (config.headers) config.headers.deviceId = await getDeviceId();
+  if (config.headers) config.headers["device-id"] = await getDeviceId();
   return config;
 });
 
