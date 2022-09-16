@@ -12,7 +12,8 @@
     "plantName": "Plant name",
     "disable": "Disable",
     "enable": "Enable",
-    "confirm": "Confirm"
+    "confirm": "Confirm",
+    "copy": "Copy"
   },
   "pages": {
     "login": {
@@ -102,6 +103,9 @@
     "emailExists": "Email exists"
   },
   "components": {
+    "copyField": {
+      "successInfo": "Copied!"
+    },
     "addPlantSuggestion": "Add your first plant here",
     "plant": {
       "success": "Plant watered"

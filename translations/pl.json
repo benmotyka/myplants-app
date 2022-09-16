@@ -12,7 +12,8 @@
     "plantName": "Nazwa rośliny",
     "disable": "Wyłącz",
     "enable": "Włącz",
-    "confirm": "Potwierdź"
+    "confirm": "Potwierdź",
+    "copy": "Kopiuj"
   },
   "pages": {
     "login": {
@@ -102,6 +103,9 @@
     "emailExists": "Email istnieje"
   },
   "components": {
+    "copyField": {
+      "successInfo": "Skopiowano!"
+    },
     "addPlantSuggestion": "Dodaj swoją pierwszą roślinę",
     "plant": {
       "success": "Roślina podlana"

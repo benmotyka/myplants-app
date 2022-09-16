@@ -38,6 +38,7 @@ import {
   ModalItem,
 } from "components/BasicModal/BasicModal.styles";
 import { Plant } from "interfaces/Plant";
+import CopyField from "components/CopyField/CopyField";
 
 type PlantHistoryProps = NativeStackScreenProps<
   RootStackParamList,
@@ -150,10 +151,8 @@ const PlantHistory = ({
           </ModalDescription>
         </ModalItem>
         <ModalItem>
-          {/* @TODO: add copy button */}
-          <ModalDescription>{selectedPlant?.shareId}</ModalDescription>
+          {selectedPlant ? <CopyField value={selectedPlant.shareId} /> : null}
         </ModalItem>
-        <ModalItem></ModalItem>
       </BasicModal>
     </>
   );
