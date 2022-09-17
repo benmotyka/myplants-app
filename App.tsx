@@ -19,31 +19,22 @@ import {
 } from "config/environment";
 import HomeScreen from "screens/home";
 import AddPlantScreen from "screens/plants/add";
-import EditPlant from "screens/plants/edit";
-import PlantHistory from "screens/plants/history";
+import EditPlantScreen from "screens/plants/edit";
+import PlantHistoryScreen from "screens/plants/history";
 import SettingsScreen from "screens/settings";
-import LoginScreen from "screens/login";
-import RegisterScreen from "screens/register";
+import ImportPlantScreen from "screens/plants/import";
 import SettingsNotificationsScreen from "screens/settings/notifications";
-import SettingsAccountScreen from "screens/settings/account";
-import SettingsAccountChangePasswordScreen from "screens/settings/account/changePassword";
-import SettingsAccountConfirmEmailScreen from "screens/settings/account/confirmEmail";
 import { store, persistor } from "store";
 import "./i18n";
 
 export type RootStackParamList = {
-  login: undefined;
-  register: undefined;
   home: undefined;
   addPlant: undefined;
   editPlant: { plantId: string };
   plantHistory: { plantId: string };
-
+  importPlant: undefined;
   settings: undefined;
-  settingsAccount: undefined;
-  settingsAccountChangePassword: undefined;
   settingsNotifications: undefined;
-  settingsAccountConfirmEmail: undefined;
 };
 
 Sentry.init({
@@ -81,12 +72,6 @@ export default function App() {
                 headerShown: false,
               }}
             >
-              {/* <Stack.Screen
-                name="login"
-                component={LoginScreen}
-                options={{ gestureEnabled: false }}
-              /> */}
-              {/* <Stack.Screen name="register" component={RegisterScreen} /> */}
               <Stack.Screen
                 name="home"
                 component={HomeScreen}
@@ -94,26 +79,15 @@ export default function App() {
               />
 
               <Stack.Screen name="addPlant" component={AddPlantScreen} />
-              <Stack.Screen name="editPlant" component={EditPlant} />
-              <Stack.Screen name="plantHistory" component={PlantHistory} />
+              <Stack.Screen name="editPlant" component={EditPlantScreen} />
+              <Stack.Screen name="plantHistory" component={PlantHistoryScreen} />
+              <Stack.Screen name="importPlant" component={ImportPlantScreen} />
 
               <Stack.Screen name="settings" component={SettingsScreen} />
               <Stack.Screen
                 name="settingsNotifications"
                 component={SettingsNotificationsScreen}
               />
-              {/* <Stack.Screen
-                name="settingsAccount"
-                component={SettingsAccountScreen}
-              />
-              <Stack.Screen
-                name="settingsAccountChangePassword"
-                component={SettingsAccountChangePasswordScreen}
-              />
-              <Stack.Screen
-                name="settingsAccountConfirmEmail"
-                component={SettingsAccountConfirmEmailScreen}
-              /> */}
             </Stack.Navigator>
           </NavigationContainer>
         </RootSiblingParent>

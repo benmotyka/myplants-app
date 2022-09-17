@@ -1,6 +1,5 @@
 import React, { ReactElement } from "react";
-import { Entypo } from "@expo/vector-icons";
-import { MaterialIcons } from "@expo/vector-icons";
+import { MaterialIcons, Feather, Entypo } from "@expo/vector-icons";
 
 import { colors } from "styles/colors";
 import {
@@ -19,7 +18,7 @@ const ITEMS_OFFSET_PX = 20;
 interface SettingsItem {
   name: string;
   icon: ReactElement;
-  href: keyof RootStackParamList
+  href: keyof RootStackParamList;
 }
 
 const settingsItems: SettingsItem[] = [
@@ -27,6 +26,18 @@ const settingsItems: SettingsItem[] = [
     name: "addPlant",
     icon: <Entypo name="plus" size={ICON_SIZE_PX} color={colors.lightBlack} />,
     href: "addPlant",
+  },
+
+  {
+    name: "importPlant",
+    icon: (
+      <Feather
+        name="download-cloud"
+        size={ICON_SIZE_PX}
+        color={colors.lightBlack}
+      />
+    ),
+    href: "importPlant",
   },
   {
     name: "appSettings",

@@ -1,6 +1,6 @@
 import React from "react";
 import { MotiView, AnimatePresence } from "moti";
-import Clipboard from "expo-clipboard";
+import * as Clipboard from "expo-clipboard";
 import {
   ButtonWrapper,
   FieldContainer,
