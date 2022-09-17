@@ -8,7 +8,7 @@ export const FieldContainer = styled.View`
   flex-direction: row;
   max-width: 400px;
   border-radius: 5px;
-  border: 1px solid ${colors.important};
+  border: 1px solid ${colors.mediumGrey};
 `;
 
 export const FieldValue = styled.Text`
@@ -28,17 +28,17 @@ export const ButtonWrapper = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   background-color: ${colors.mediumGrey};
-  borderTopRightRadius: 5px;
-  borderBottomRightRadius: 5px;
+  bordertoprightradius: 5px;
+  borderbottomrightradius: 5px;
 `;
 
 export const InfoWrapper = styled.View`
-  height: 20px;
+  height: 25px;
 `;
 
 export const Info = styled.Text`
   font-family: "Inter_300Light";
-  font-size: 14px;
+  font-size: 15px;
   opacity: 0.6;
   text-align: center;
   padding: 5px 0;

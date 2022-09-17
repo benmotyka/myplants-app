@@ -1,16 +1,21 @@
 import styled from "styled-components/native";
 import { colors } from "../../styles/colors";
 
-export const ModalContainer = styled.TouchableOpacity`
+export const ModalContainer = styled.View`
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
+`;
+
+export const ModalBackground = styled.TouchableOpacity`
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 `;
 
 export const ModalWrapper = styled.View`
@@ -19,6 +24,7 @@ export const ModalWrapper = styled.View`
   border-radius: 10px;
   background-color: ${colors.lightGrey};
   padding: 15px;
+  position: absolute;
 `;
 
 export const ModalHeader = styled.Text`

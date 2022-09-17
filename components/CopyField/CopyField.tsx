@@ -1,5 +1,6 @@
 import React from "react";
 import { MotiView, AnimatePresence } from "moti";
+import Clipboard from "expo-clipboard";
 import {
   ButtonWrapper,
   FieldContainer,
@@ -16,17 +17,21 @@ const CopyField = ({ value }: { value: string }): JSX.Element => {
   const { t } = i18n;
   const [copied, setCopied] = React.useState(false);
 
-  const onClick = () => {
+  const onClick = async () => {
+    await Clipboard.setStringAsync(value);
     setCopied(true);
     setTimeout(() => {
       setCopied(false);
     }, INFO_APPEAR_TIME_MS);
   };
+
   return (
     <>
       <FieldContainer>
-        <FieldValue> {value}</FieldValue>
-        <ButtonWrapper onPress={onClick}>{t("common.copy")}</ButtonWrapper>
+        <FieldValue>{value}</FieldValue>
+        <ButtonWrapper onPress={onClick}>
+          <Info>{t("common.copy")}</Info>
+        </ButtonWrapper>
       </FieldContainer>
       <InfoWrapper>
         <AnimatePresence>

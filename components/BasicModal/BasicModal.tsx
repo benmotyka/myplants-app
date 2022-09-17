@@ -4,6 +4,7 @@ import { BasicModalProps } from "components/BasicModal/BasicModal.interface";
 import {
   ModalWrapper,
   ModalContainer,
+  ModalBackground,
 } from "components/BasicModal/BasicModal.styles";
 import { AnimatePresence } from "moti";
 import { ModalAnimationWrapper } from "styles/shared";
@@ -27,7 +28,11 @@ const BasicModal = ({
             opacity: 0,
           }}
         >
-          <ModalContainer onPress={() => toggleModal(false)} activeOpacity={1}>
+          <ModalContainer>
+            <ModalBackground
+              onPress={() => toggleModal(false)}
+              activeOpacity={1}
+            />
             <ModalWrapper>{children}</ModalWrapper>
           </ModalContainer>
         </ModalAnimationWrapper>

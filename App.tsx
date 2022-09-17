@@ -81,12 +81,12 @@ export default function App() {
                 headerShown: false,
               }}
             >
-              <Stack.Screen
+              {/* <Stack.Screen
                 name="login"
                 component={LoginScreen}
                 options={{ gestureEnabled: false }}
-              />
-              <Stack.Screen name="register" component={RegisterScreen} />
+              /> */}
+              {/* <Stack.Screen name="register" component={RegisterScreen} /> */}
               <Stack.Screen
                 name="home"
                 component={HomeScreen}
@@ -102,7 +102,7 @@ export default function App() {
                 name="settingsNotifications"
                 component={SettingsNotificationsScreen}
               />
-              <Stack.Screen
+              {/* <Stack.Screen
                 name="settingsAccount"
                 component={SettingsAccountScreen}
               />
@@ -113,7 +113,7 @@ export default function App() {
               <Stack.Screen
                 name="settingsAccountConfirmEmail"
                 component={SettingsAccountConfirmEmailScreen}
-              />
+              /> */}
             </Stack.Navigator>
           </NavigationContainer>
         </RootSiblingParent>
