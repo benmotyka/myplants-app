@@ -46,6 +46,10 @@
         "deletePlantConfirmation": "Are you sure to delete your plant?",
         "remindWateringLabel": "Remind me of watering"
       },
+      "import": {
+        "inputLabel": "Plant code",
+        "inputPlaceholder": "Enter plant code..."
+      },
       "history": {
         "header": "Watering history",
         "plantNotWatered": "This plant has not been watered yet.",

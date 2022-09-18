@@ -115,11 +115,6 @@ const Plant = ({
         `/watering`,
         {
           plantId: id,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${userDetails.jwt}`,
-          },
         }
       );
       showToast(t("components.plant.success"), "success");

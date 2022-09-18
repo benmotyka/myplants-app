@@ -24,7 +24,7 @@ export const Input = styled.TextInput<{ errorBorder: boolean }>`
 `;
 
 export const InputLabel = styled.Text`
-  font-size: 18px;
+  font-size: 20px;
   font-family: "Inter_300Light";
   margin-bottom: 5px;
 `;

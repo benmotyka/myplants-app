@@ -17,8 +17,14 @@ import {
   KeyboardScreen,
 } from "styles/shared";
 import i18n from "../../i18n";
+import { ApiErrors } from "enums/api-errors";
+import showToast from "util/showToast";
 
 type ImportPlantProps = NativeStackScreenProps<RootStackParamList, "importPlant">;
+
+interface ImportPlantForm {
+  plantShareId: string;
+}
 
 const { t } = i18n;
 
@@ -27,6 +33,25 @@ const ImportPlant = ({ navigation }: ImportPlantProps): JSX.Element => {
   const { userPlants }: { userPlants: Plant[] } = useSelector(
     (state: State) => state.plants
   );
+
+  const onSubmit = async (values: ImportPlantForm) => {
+    try {
+      setLoading(true);
+      
+      // req to api
+
+    } catch (error) {
+      console.log(error);
+      switch (error) {
+        case ApiErrors.INVALID_FILE:
+          return showToast(t("errors.invalidFileType"), "error");
+        default:
+          return showToast(t("errors.general"), "error");
+      }
+    } finally {
+      setLoading(false)
+    }
+  }
 
   return (
     <KeyboardScreen
@@ -49,8 +74,8 @@ const ImportPlant = ({ navigation }: ImportPlantProps): JSX.Element => {
               <InputsWrapper>
                 <BasicTextInput
                   value={values.plantShareId}
-                  label={t("common.plantShareId")}
-                  placeholder={t("pages.plants.edit.plantNamePlaceholder")}
+                  label={t("pages.plants.import.inputLabel")}
+                  placeholder={t("pages.plants.import.inputPlaceholder")}
                   onChangeText={handleChange("plantShareId")}
                   onBlur={handleBlur("plantShareId")}
                   error={errors.plantShareId}
@@ -58,7 +83,7 @@ const ImportPlant = ({ navigation }: ImportPlantProps): JSX.Element => {
                 <View style={{ marginVertical: 30 }}>
                   <BasicButton
                     onPress={handleSubmit as (values: unknown) => void}
-                    text={t("pages.plants.edit.submit")}
+                    text={t("common.confirm")}
                   />
                 </View>
               </InputsWrapper>

@@ -46,6 +46,10 @@
         "deletePlantConfirmation": "Czy na pewno chcesz usunąć roślinę?",
         "remindWateringLabel": "Przypominaj o podlewaniu"
       },
+      "import": {
+        "inputLabel": "Kod rośliny",
+        "inputPlaceholder": "Wpisz kod rośliny..."
+      },
       "history": {
         "header": "Historia podlewania",
         "plantNotWatered": "Ta roślina nie została jeszcze podlana.",

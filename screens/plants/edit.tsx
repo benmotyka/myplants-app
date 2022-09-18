@@ -72,11 +72,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
 
   const handleDelete = async () => {
     try {
-      await plantsApi.delete(`/plants/${plantId}`, {
-        headers: {
-          Authorization: `Bearer ${userDetails.jwt}`,
-        },
-      });
+      await plantsApi.delete(`/plants/${plantId}`);
       showToast(t("pages.plants.edit.plantDeletedSuccess"), "success");
     } catch (error) {
       console.error(error);
@@ -107,11 +103,6 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
           ...(isRemindersChecked && {
             wateringReminderFrequency,
           }),
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${userDetails.jwt}`,
-          },
         }
       );
       navigation.navigate("home");

@@ -51,11 +51,6 @@ const SettingsAccountConfirmEmail = ({
         "verification-code/email/send",
         {
           email: values.email,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${userDetails.jwt}`,
-          },
         }
       );
       setEmailEntered(values.email);

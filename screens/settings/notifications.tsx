@@ -46,11 +46,6 @@ const SettingsNotifications = ({
         "/user/settings",
         {
           pushNotificationsEnabled: isEnabled,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${userDetails.jwt}`,
-          },
         }
       );
       dispatch(

@@ -54,7 +54,6 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
       resetForm,
     }: {
       resetForm: FormikHelpers<AddPlantForm>["resetForm"];
-      setFieldError: FormikHelpers<AddPlantForm>["setFieldError"];
     }
   ) => {
     try {
@@ -77,11 +76,6 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
           ...(isRemindersChecked && {
             wateringReminderFrequency,
           }),
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${userDetails.jwt}`,
-          },
         }
       );
       resetForm();

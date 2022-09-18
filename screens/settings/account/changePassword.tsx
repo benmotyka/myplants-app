@@ -57,11 +57,6 @@ const SettingsAccountChangePassword = ({
         {
           oldPassword: values.oldPassword,
           newPassword: values.newPassword,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${userDetails.jwt}`,
-          },
         }
       );
       showToast(t("pages.settings.account.changePassword.success"), "success");

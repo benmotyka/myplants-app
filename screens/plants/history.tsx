@@ -66,19 +66,12 @@ const PlantHistory = ({
   React.useEffect(() => {
     const plant = userPlants.find((plant) => plant.id === plantId);
     setSelectedPlant(plant);
-    console.log(plant);
-    console.log("WWAWA");
   }, [userPlants]);
 
   const getPlantWateringHistory = async () => {
     try {
       const { data } = await plantsApi.get<{ waterings: WateringData }>(
-        `watering/${plantId}`,
-        {
-          headers: {
-            Authorization: `Bearer ${userDetails.jwt}`,
-          },
-        }
+        `watering/${plantId}`
       );
       return data;
     } catch (error) {
@@ -94,7 +87,6 @@ const PlantHistory = ({
         setWateringData(waterings);
       } catch (error) {
         console.error(error);
-        navigation.navigate("login");
       }
     })();
   }, [isFocused]);

@@ -30,11 +30,7 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
 
   const getUserPlants = async () => {
     try {
-      const { data } = await plantsApi.get<{ plants: Plant[] }>("plants", {
-        headers: {
-          Authorization: `Bearer ${userDetails.jwt}`,
-        },
-      });
+      const { data } = await plantsApi.get<{ plants: Plant[] }>("plants");
       return data;
     } catch (error) {
       throw new Error("error");
@@ -58,7 +54,6 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
       } catch (error) {
         dispatch(userAction.removeUserDetails());
         console.error(error);
-        navigation.navigate("login");
       }
     })();
 
