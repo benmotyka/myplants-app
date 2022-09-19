@@ -5,5 +5,6 @@ export enum ApiErrors {
   EMAIL_EXISTS = "email-exists",
   INVALID_CODE = "invalid-code",
   INVALID_SHARE_ID = 'invalid-share-id',
-  SHARE_ID_ALREADY_ADDED = 'share-id-already-added',
+  PLANT_ALREADY_ADDED = 'plant-already-added',
+  INVALID_PLANT = 'plant-not-found',
 }

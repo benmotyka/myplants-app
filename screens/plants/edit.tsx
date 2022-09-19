@@ -76,7 +76,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
       showToast(t("pages.plants.edit.plantDeletedSuccess"), "success");
     } catch (error) {
       console.error(error);
-      showToast(t("errors.general"));
+      showToast(t("errors.general"), "error");
     } finally {
       navigation.navigate("home");
     }

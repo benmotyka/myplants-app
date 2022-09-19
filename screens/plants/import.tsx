@@ -1,5 +1,5 @@
 import React from "react";
-import { Formik } from "formik";
+import { Formik, FormikHelpers } from "formik";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useSelector } from "react-redux";
 import { View } from "react-native";
@@ -19,8 +19,12 @@ import {
 import i18n from "../../i18n";
 import { ApiErrors } from "enums/api-errors";
 import showToast from "util/showToast";
+import plantsApi from "config/api/plants";
 
-type ImportPlantProps = NativeStackScreenProps<RootStackParamList, "importPlant">;
+type ImportPlantProps = NativeStackScreenProps<
+  RootStackParamList,
+  "importPlant"
+>;
 
 interface ImportPlantForm {
   plantShareId: string;
@@ -34,24 +38,37 @@ const ImportPlant = ({ navigation }: ImportPlantProps): JSX.Element => {
     (state: State) => state.plants
   );
 
-  const onSubmit = async (values: ImportPlantForm) => {
+  const onSubmit = async (
+    values: ImportPlantForm,
+    {
+      resetForm,
+    }: {
+      resetForm: FormikHelpers<ImportPlantForm>["resetForm"];
+    }
+  ) => {
     try {
       setLoading(true);
-      
-      // req to api
 
+      await plantsApi.post("/plants/import", {
+        shareId: values.plantShareId,
+      });
+      resetForm();
+      navigation.navigate("home");
+      showToast(t("pages.plants.import.success"), "success");
     } catch (error) {
       console.log(error);
       switch (error) {
-        case ApiErrors.INVALID_FILE:
-          return showToast(t("errors.invalidFileType"), "error");
+        case ApiErrors.PLANT_ALREADY_ADDED:
+          return showToast(t("errors.plantAlreadyAdded"), "info");
+        case ApiErrors.INVALID_PLANT:
+          return showToast(t("errors.plantNotExists"), "error");
         default:
           return showToast(t("errors.general"), "error");
       }
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <KeyboardScreen
@@ -68,7 +85,7 @@ const ImportPlant = ({ navigation }: ImportPlantProps): JSX.Element => {
             initialValues={{
               plantShareId: "",
             }}
-            onSubmit={() => console.log("hej")}
+            onSubmit={onSubmit}
           >
             {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
               <InputsWrapper>

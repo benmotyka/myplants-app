@@ -66,18 +66,14 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
           ? parseInt(values.wateringReminderFrequency)
           : values.wateringReminderFrequency;
 
-
-          await plantsApi.post(
-        "/plants",
-        {
-          name: values.name.trim(),
-          description: values.description?.trim(),
-          imageSrc: base64EncodedImage,
-          ...(isRemindersChecked && {
-            wateringReminderFrequency,
-          }),
-        }
-      );
+      await plantsApi.post("/plants", {
+        name: values.name.trim(),
+        description: values.description?.trim(),
+        imageSrc: base64EncodedImage,
+        ...(isRemindersChecked && {
+          wateringReminderFrequency,
+        }),
+      });
       resetForm();
       navigation.navigate("home");
       showToast(t("pages.plants.add.success"), "success");

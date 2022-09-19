@@ -43,12 +43,13 @@
         "success": "Roślina zmieniona",
         "plantDeletedSuccess": "Roślina usunięta",
         "createdAt": "Utworzona {{date}}",
-        "deletePlantConfirmation": "Czy na pewno chcesz usunąć roślinę?",
+        "deletePlantConfirmation": "Czy na pewno chcesz usunąć roślinę ze swojej kolekcji?",
         "remindWateringLabel": "Przypominaj o podlewaniu"
       },
       "import": {
         "inputLabel": "Kod rośliny",
-        "inputPlaceholder": "Wpisz kod rośliny..."
+        "inputPlaceholder": "Wpisz kod rośliny...",
+        "success": "Roślina zaimportowana"
       },
       "history": {
         "header": "Historia podlewania",
@@ -104,7 +105,9 @@
     "passwordsMustMatch": "Hasła muszą się zgadzać",
     "invalidEmail": "Błędny email",
     "invalidCode": "Błędny kod",
-    "emailExists": "Email istnieje"
+    "emailExists": "Email istnieje",
+    "plantAlreadyAdded": "Roślina już istnieje w Twojej kolekcji",
+    "plantNotExists": "Roślina nie istnieje"
   },
   "components": {
     "copyField": {
