@@ -19,7 +19,7 @@ export const ScreenContainer = styled.View`
   position: relative;
 `;
 
-export const KeyboardScreen = styled(KeyboardAwareScrollView)``;
+export const KeyboardScreen = KeyboardAwareScrollView;
 
 export const ColumnCenterWrapper = styled.View<{ fullHeight?: boolean }>`
   display: flex;

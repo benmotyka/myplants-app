@@ -1,9 +1,5 @@
 {
   "common": {
-    "login": "Logowanie",
-    "register": "Rejestracja",
-    "username": "Nazwa użytkownika",
-    "password": "Hasło",
     "submit": "Prześlij",
     "name": "Nazwa",
     "description": "Opis",
@@ -16,16 +12,6 @@
     "copy": "Kopiuj"
   },
   "pages": {
-    "login": {
-      "usernamePlaceholder": "Wpisz nazwę użytkownika...",
-      "passwordPlaceholder": "Wpisz hasło...",
-      "registerNow": "Zarejestruj się"
-    },
-    "register": {
-      "usernamePlaceholder": "Wpisz nazwę użytkownika...",
-      "passwordPlaceholder": "Wpisz hasło...",
-      "passwordRepeatLabel": "Powtórz hasło"
-    },
     "plants": {
       "add": {
         "plantNamePlaceholder": "Wpisz nazwę rośliny...",
@@ -62,50 +48,23 @@
     },
     "settings": {
       "header": "Ustawienia",
-      "application": "Aplikacja",
-      "myAccount": "Moje konto",
-      "logout": "Wyloguj się",
-      "logoutConfirmation": "Czy na pewno chcesz się wylogować?",
       "notificationsHeader": "Powiadomienia",
       "notifications": {
         "manageHeader": "Zarządzaj powiadomieniami",
         "manageDescription": "Powiadomienia są {{state}}",
         "notificationsEnabled": "włączone",
         "notificationsDisabled": "wyłączone"
-      },
-      "account": {
-        "changePassword": {
-          "label": "Zmień hasło",
-          "oldPasswordLabel": "Stare hasło",
-          "oldPasswordPlaceholder": "Wpisz stare hasło...",
-          "newPasswordLabel": "Nowe hasło",
-          "newPasswordPlaceholder": "Wpisz nowe hasło...",
-          "newPasswordRepeatLabel": "Powtórz nowe hasło",
-          "newPasswordRepeatPlaceholder": "Potwórz nowe hasło...",
-          "success": "Hasło zmienione"
-        },
-        "confirmEmail": {
-          "label": "Potwierdź email"
-        }
       }
     }
   },
   "errors": {
     "required": "Pole wymagane",
-    "invalidUsernameOrPassword": "Błędny login lub hasło",
-    "invalidOldPassword": "Błędne stare hasło",
     "general": "Coś poszło nie tak. Spróbuj ponownie później",
-    "usernameExists": "Użytkownik istnieje",
     "invalidFileType": "Błędny plik",
-    "fieldTooShort": "{{field}} musi mieć przynajmniej {{number}} liter.",
     "fieldTooLong": "{{field}} musi mieć maksymalnie {{number}} liter.",
     "valueMustBeNumber": "Wartość musi być liczbą",
     "minimumValueIs": "Minimalna wartość to: {{value}}",
     "maximumValueIs": "Maksymalna wartość to: {{value}}",
-    "passwordsMustMatch": "Hasła muszą się zgadzać",
-    "invalidEmail": "Błędny email",
-    "invalidCode": "Błędny kod",
-    "emailExists": "Email istnieje",
     "plantAlreadyAdded": "Roślina już istnieje w Twojej kolekcji",
     "plantNotExists": "Roślina nie istnieje"
   },
@@ -121,17 +80,6 @@
       "every": "Co",
       "daySingular": "dzień",
       "dayPlurar": "dni"
-    },
-    "emailConfirmation": {
-      "header": "Powiąż swoje konto",
-      "description": "Powiązanie konta pozwoli Ci na użycie opcji 'Przypomnij hasło'.",
-      "inputLabel": "Email",
-      "inputPlaceholder": "Twój adres email...",
-      "confirmationCodeLabel": "Kod potwierdzający",
-      "confirmCodeHeader": "Potwierdź email",
-      "confirmCodeDescription1": "Kod weryfikacyjny został wysłany na adres: {{email}}.",
-      "confirmCodeDescription2": "Wpisz go poniżej, aby potwierdzić adres email.",
-      "success": "Adres email został powiązany!"
     }
   }
 }

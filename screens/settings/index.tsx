@@ -29,14 +29,6 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
               text={t("pages.settings.notificationsHeader")}
             />
           </SettingsItem>
-          {/* <SettingsItem>
-            <BasicButton
-              onPress={() => {
-                navigation.navigate("settingsAccount");
-              }}
-              text={t("pages.settings.myAccount")}
-            />
-          </SettingsItem> */}
         </SettingsSection>
       </ColumnCenterWrapper>
     </ScreenContainer>

@@ -20,6 +20,7 @@ import i18n from "../../i18n";
 import { ApiErrors } from "enums/api-errors";
 import showToast from "util/showToast";
 import plantsApi from "config/api/plants";
+import { ImportPlantSchema } from "schemas/ImportPlant.schema";
 
 type ImportPlantProps = NativeStackScreenProps<
   RootStackParamList,
@@ -86,6 +87,9 @@ const ImportPlant = ({ navigation }: ImportPlantProps): JSX.Element => {
               plantShareId: "",
             }}
             onSubmit={onSubmit}
+            validationSchema={ImportPlantSchema}
+            validateOnChange={false}
+            validateOnBlur={false}
           >
             {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
               <InputsWrapper>

@@ -19,7 +19,6 @@ import {
   ModalItem,
 } from "components/BasicModal/BasicModal.styles";
 import { Plant } from "interfaces/Plant";
-import { UserDetails } from "interfaces/UserDetails";
 import { createEditPlantSchema } from "schemas/EditPlant.schema";
 import { State } from "store/reducers";
 import {
@@ -59,9 +58,6 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
   const [showModal, setShowModal] = React.useState(false);
   const { userPlants }: { userPlants: Plant[] } = useSelector(
     (state: State) => state.plants
-  );
-  const { userDetails }: { userDetails: UserDetails } = useSelector(
-    (state: State) => state.user
   );
 
   React.useEffect(() => {

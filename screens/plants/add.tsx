@@ -2,7 +2,6 @@ import React from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Formik, FormikHelpers } from "formik";
 import { View } from "react-native";
-import { useSelector } from "react-redux";
 import { ImageInfo } from "expo-image-picker";
 import { AnimatePresence, MotiView } from "moti";
 
@@ -13,7 +12,6 @@ import BasicTextInput from "components/BasicTextInput/BasicTextInput";
 import BasicImageInput from "components/BasicImageInput/BasicImageInput";
 import BasicButton from "components/BasicButton/BasicButton";
 import Loader from "components/Loader/Loader";
-import { UserDetails } from "interfaces/UserDetails";
 import { createAddPlantSchema } from "schemas/AddPlant.schema";
 import {
   KeyboardScreen,
@@ -21,7 +19,6 @@ import {
   InputsWrapper,
   LoaderWrapper,
 } from "styles/shared";
-import { State } from "store/reducers";
 import showToast from "util/showToast";
 import { ApiErrors } from "enums/api-errors";
 import { base64EncodeImage } from "util/images";
@@ -44,9 +41,6 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
   const [loading, setLoading] = React.useState(false);
   const [isRemindersChecked, setRemindersChecked] = React.useState(false);
   const [image, setImage] = React.useState<ImageInfo>();
-  const { userDetails }: { userDetails: UserDetails } = useSelector(
-    (state: State) => state.user
-  );
 
   const onSubmit = async (
     values: AddPlantForm,

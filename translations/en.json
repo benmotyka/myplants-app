@@ -1,9 +1,5 @@
 {
   "common": {
-    "login": "Login",
-    "register": "Register",
-    "username": "Username",
-    "password": "Password",
     "submit": "Submit",
     "name": "Name",
     "description": "Description",
@@ -16,16 +12,6 @@
     "copy": "Copy"
   },
   "pages": {
-    "login": {
-      "usernamePlaceholder": "Enter your username...",
-      "passwordPlaceholder": "Enter your password...",
-      "registerNow": "Register now"
-    },
-    "register": {
-      "usernamePlaceholder": "Enter your username...",
-      "passwordPlaceholder": "Enter your password...",
-      "passwordRepeatLabel": "Repeat password"
-    },
     "plants": {
       "add": {
         "plantNamePlaceholder": "Enter your plant name...",
@@ -62,50 +48,23 @@
     },
     "settings": {
       "header": "Settings",
-      "application": "Application",
-      "myAccount": "My account",
-      "logout": "Log out",
-      "logoutConfirmation": "Are you sure you want to log out?",
       "notificationsHeader": "Notifications",
       "notifications": {
         "manageHeader": "Manage notifications",
         "manageDescription": "Notifications are {{state}}",
         "notificationsEnabled": "enabled",
         "notificationsDisabled": "disabled"
-      },
-      "account": {
-        "changePassword": {
-          "label": "Change password",
-          "oldPasswordLabel": "Old password",
-          "oldPasswordPlaceholder": "Enter your old password...",
-          "newPasswordLabel": "New password",
-          "newPasswordPlaceholder": "Enter your new password...",
-          "newPasswordRepeatLabel": "Repeat new password",
-          "newPasswordRepeatPlaceholder": "Repeat your new password...",
-          "success": "Password changed"
-        },
-        "confirmEmail": {
-          "label": "Confirm email"
-        }
       }
     }
   },
   "errors": {
     "required": "Required",
-    "invalidUsernameOrPassword": "Invalid username or password",
-    "invalidOldPassword": "Invalid old password",
     "general": "Something went wrong. Please try again later.",
-    "usernameExists": "Username exists",
     "invalidFileType": "Invalid file type",
-    "fieldTooShort": "{{field}} too short. Minimum {{number}} characters.",
     "fieldTooLong": "{{field}} too long. Maximum {{number}} characters.",
     "valueMustBeNumber": "Value must be a number",
     "minimumValueIs": "Minimum value is: {{value}}",
     "maximumValueIs": "Maximum value is: {{value}}",
-    "passwordsMustMatch": "Passwords must match",
-    "invalidEmail": "Invalid email",
-    "invalidCode": "Invalid code",
-    "emailExists": "Email exists",
     "plantAlreadyAdded": "Plant already exists in your collection",
     "plantNotExists": "Plant not found"
   },
@@ -121,17 +80,6 @@
       "every": "Every",
       "daySingular": "day",
       "dayPlurar": "days"
-    },
-    "emailConfirmation": {
-      "header": "Link your account",
-      "description": "Linking your account will allow you to use the 'Forget password'.",
-      "inputLabel": "Email",
-      "inputPlaceholder": "Your email address...",
-      "confirmationCodeLabel": "Confirmation code",
-      "confirmCodeHeader": "Confirm email",
-      "confirmCodeDescription1": "Verification code has been sent to: {{email}}.",
-      "confirmCodeDescription2": "Enter it below to confirm email address.",
-      "success": "Email address linked!"
     }
   }
 }
