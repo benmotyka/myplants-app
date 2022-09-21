@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { RootStackParamList } from "App";
@@ -9,7 +9,6 @@ import {
   Description,
 } from "styles/shared";
 import i18n from "../../i18n";
-import { UserDetails } from "interfaces/UserDetails";
 import BasicSwitch from "components/BasicSwitch/BasicSwitch";
 import plantsApi from "config/api/plants";
 import showToast from "util/showToast";
@@ -29,13 +28,12 @@ const SettingsNotifications = ({
   navigation,
 }: SettingsNotificationsProps): JSX.Element => {
   const {
-    userDetails,
     userSettings,
-  }: { userDetails: UserDetails; userSettings?: UserSettings } = useSelector(
+  }: { userSettings?: UserSettings } = useSelector(
     (state: State) => state.user
   );
   const [isAllowNotificationsEnabled, setAllowNotificationsEnabled] =
-  React.useState(userSettings?.pushNotificationsEnabled);
+  useState(userSettings?.pushNotificationsEnabled);
   const dispatch = useDispatch();
 
   const handleSwitch = async ({ isEnabled }: { isEnabled: boolean }) => {

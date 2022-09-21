@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Formik } from "formik";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -51,16 +51,16 @@ const { t } = i18n;
 
 const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
   const plantId = route.params.plantId;
-  const [loading, setLoading] = React.useState(false);
-  const [isRemindersChecked, setRemindersChecked] = React.useState(false);
-  const [image, setImage] = React.useState<ImageInfo>();
-  const [selectedPlant, setSelectedPlant] = React.useState<Plant>();
-  const [showModal, setShowModal] = React.useState(false);
+  const [loading, setLoading] = useState(false);
+  const [isRemindersChecked, setRemindersChecked] = useState(false);
+  const [image, setImage] = useState<ImageInfo>();
+  const [selectedPlant, setSelectedPlant] = useState<Plant>();
+  const [showModal, setShowModal] = useState(false);
   const { userPlants }: { userPlants: Plant[] } = useSelector(
     (state: State) => state.plants
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     const plant = userPlants.find((plant) => plant.id === plantId);
     setSelectedPlant(plant);
     setRemindersChecked(!!plant?.wateringReminderFrequency);

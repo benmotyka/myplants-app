@@ -38,7 +38,8 @@
         "success": "Roślina zaimportowana"
       },
       "history": {
-        "header": "Historia podlewania",
+        "wateringHeader": "Historia podlewania",
+        "imagesHeader": "Historia zdjęć",
         "plantNotWatered": "Ta roślina nie została jeszcze podlana.",
         "shareModal": {
           "header": "Udostępnij roślinę",

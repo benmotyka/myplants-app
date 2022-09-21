@@ -38,7 +38,8 @@
         "success": "Plant imported"
       },
       "history": {
-        "header": "Watering history",
+        "wateringHeader": "Watering history",
+        "imagesHeader": "Images history",
         "plantNotWatered": "This plant has not been watered yet.",
         "shareModal": {
           "header": "Share plant",

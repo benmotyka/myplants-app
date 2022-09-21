@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { TouchableHighlight, View } from "react-native";
 import { Slider } from "@miblanchard/react-native-slider";
 import { useIsFocused } from "@react-navigation/native";
@@ -17,9 +17,6 @@ import ReminderIcon from "components/ReminderIcon/ReminderIcon";
 import { colors } from "styles/colors";
 import showToast from "util/showToast";
 import plantsApi from "config/api/plants";
-import { UserDetails } from "interfaces/UserDetails";
-import { useSelector } from "react-redux";
-import { State } from "store/reducers";
 import { calculateDifferenceFromNow } from "util/date";
 import i18n from "../../i18n";
 
@@ -38,21 +35,18 @@ const Plant = ({
   latestWatering,
   reminderFrequency,
 }: PlantProps): JSX.Element => {
-  const [sliderValue, setSliderValue] = React.useState(0);
-  const [watered, setWatered] = React.useState(false);
+  const [sliderValue, setSliderValue] = useState(0);
+  const [watered, setWatered] = useState(false);
   // If there was any watering, set time to last watering.
-  const [timeFromLastWatering, setTimeFromLastWatering] = React.useState(
+  const [timeFromLastWatering, setTimeFromLastWatering] = useState(
     latestWatering
       ? calculateDifferenceFromNow(latestWatering.createdAt)
       : null
   );
-  const [showWateringReminder, setShowWateringReminder] = React.useState(false);
+  const [showWateringReminder, setShowWateringReminder] = useState(false);
 
   const { t } = i18n;
   const isFocused = useIsFocused();
-  const { userDetails }: { userDetails: UserDetails } = useSelector(
-    (state: State) => state.user
-  );
 
   // This useEffect sets and clears intervals for changing Plant time. If plant was ever watered,
   // simply create a new interval, and destory old on return. If user waters this plant, this code

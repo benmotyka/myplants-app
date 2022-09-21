@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
 import { colors } from "styles/colors";
+import { SmallHeader } from "styles/shared";
 
 export const ItemDateHeader = styled.Text`
 background-color: ${colors.lightGrey};
@@ -29,9 +30,15 @@ margin-right: 5px;
 export const ItemContainer = styled.View`
 `
 
-export const HistoryContainer = styled.View`
+export const SectionContainer = styled.View`
 width: 100%;
 display: flex;
 overflow-y: auto;
 height: 90%;
+`
+
+export const SectionHeader = styled(SmallHeader)<{
+    active: boolean
+}>`
+opacity: ${(props) => props.active ? 1 : 0.3};
 `

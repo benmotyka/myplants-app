@@ -1,19 +1,17 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useSelector } from "react-redux";
 import { useIsFocused } from "@react-navigation/core";
 
 import { RootStackParamList } from "../../App";
 import Back from "components/Back/Back";
-import { UserDetails } from "interfaces/UserDetails";
 import { State } from "store/reducers";
 import {
   ColumnCenterWrapper,
   Description,
   ScreenContainer,
-  SmallHeader,
-  SmallHeaderWrapper,
   IconContainer,
+  ScrollableHeader,
 } from "styles/shared";
 import {
   ItemDateHeader,
@@ -21,7 +19,8 @@ import {
   ItemWrapper,
   HistoryIcon,
   ItemContainer,
-  HistoryContainer,
+  SectionContainer,
+  SectionHeader,
 } from "styles/screens/plantHistory.styles";
 import plantsApi from "config/api/plants";
 import { WateringData } from "interfaces/WateringData";
@@ -39,6 +38,7 @@ import {
 } from "components/BasicModal/BasicModal.styles";
 import { Plant } from "interfaces/Plant";
 import CopyField from "components/CopyField/CopyField";
+import { TouchableOpacity } from "react-native";
 
 type PlantHistoryProps = NativeStackScreenProps<
   RootStackParamList,
@@ -47,23 +47,26 @@ type PlantHistoryProps = NativeStackScreenProps<
 
 const { t } = i18n;
 
+type Sections = "watering" | "images";
+
 const PlantHistory = ({
   route,
   navigation,
 }: PlantHistoryProps): JSX.Element => {
   const plantId = route.params.plantId;
-  const [showShareModal, setShowShareModal] = React.useState(false);
-  const [selectedPlant, setSelectedPlant] = React.useState<Plant>();
-  const [wateringData, setWateringData] = React.useState<WateringData>();
+
+  const [activeSection, setActiveSection] =
+    useState<Sections>("watering");
+  const [showShareModal, setShowShareModal] = useState(false);
+  const [selectedPlant, setSelectedPlant] = useState<Plant>();
+  const [wateringData, setWateringData] = useState<WateringData>();
+
   const isFocused = useIsFocused();
   const { userPlants }: { userPlants: Plant[] } = useSelector(
     (state: State) => state.plants
   );
-  const { userDetails }: { userDetails: UserDetails } = useSelector(
-    (state: State) => state.user
-  );
 
-  React.useEffect(() => {
+  useEffect(() => {
     const plant = userPlants.find((plant) => plant.id === plantId);
     setSelectedPlant(plant);
   }, [userPlants]);
@@ -104,33 +107,50 @@ const PlantHistory = ({
           <Entypo name="share" size={ICON_SIZE_PX} color={colors.lightBlack} />
         </IconContainer>
         <ColumnCenterWrapper fullHeight>
-          <SmallHeaderWrapper>
-            <SmallHeader>{t("pages.plants.history.header")}</SmallHeader>
-          </SmallHeaderWrapper>
-          <HistoryContainer>
-            {!wateringData ? (
-              <Loader />
-            ) : !Object.keys(wateringData).length ? (
-              <Description style={{ textAlign: "center" }}>
-                {t("pages.plants.history.plantNotWatered")}
-              </Description>
-            ) : (
-              Object.entries(wateringData).map(([day, hours]) => (
-                <ItemContainer key={day}>
-                  <ItemDateHeader>{day}</ItemDateHeader>
-                  {hours.map((hour, index) => (
-                    <ItemWrapper key={hour + index}>
-                      <HistoryIcon
-                        resizeMode="contain"
-                        source={require("../../assets/water-drop.png")}
-                      />
-                      <ActionText>{formatToHour(hour)}</ActionText>
-                    </ItemWrapper>
-                  ))}
-                </ItemContainer>
-              ))
-            )}
-          </HistoryContainer>
+          <ScrollableHeader
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={{ alignItems: "center", columnGap: 20 }}
+          >
+            <TouchableOpacity onPress={() => setActiveSection("watering")}>
+              <SectionHeader active={activeSection === "watering"}>
+                {t("pages.plants.history.wateringHeader")}
+              </SectionHeader>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => setActiveSection("images")}>
+              <SectionHeader active={activeSection === "images"}>
+                {t("pages.plants.history.imagesHeader")}
+              </SectionHeader>
+            </TouchableOpacity>
+          </ScrollableHeader>
+          {activeSection === "watering" ? (
+            <SectionContainer>
+              {!wateringData ? (
+                <Loader />
+              ) : !Object.keys(wateringData).length ? (
+                <Description style={{ textAlign: "center" }}>
+                  {t("pages.plants.history.plantNotWatered")}
+                </Description>
+              ) : (
+                Object.entries(wateringData).map(([day, hours]) => (
+                  <ItemContainer key={day}>
+                    <ItemDateHeader>{day}</ItemDateHeader>
+                    {hours.map((hour, index) => (
+                      <ItemWrapper key={hour + index}>
+                        <HistoryIcon
+                          resizeMode="contain"
+                          source={require("../../assets/water-drop.png")}
+                        />
+                        <ActionText>{formatToHour(hour)}</ActionText>
+                      </ItemWrapper>
+                    ))}
+                  </ItemContainer>
+                ))
+              )}
+            </SectionContainer>
+          ) : (
+            <SectionContainer></SectionContainer>
+          )}
         </ColumnCenterWrapper>
       </ScreenContainer>
       <BasicModal showModal={showShareModal} toggleModal={setShowShareModal}>

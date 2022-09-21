@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import { MaterialIcons, Feather, Entypo } from "@expo/vector-icons";
 
 import { colors } from "styles/colors";
@@ -53,7 +53,8 @@ const settingsItems: SettingsItem[] = [
 ];
 
 const HomeSettings = ({ navigation }: HomeSettingsProps): JSX.Element => {
-  const [showMenu, setShowMenu] = React.useState(false);
+  const [showMenu, setShowMenu] = useState(false);
+
   return (
     <>
       <IconWrapper onPress={() => setShowMenu(!showMenu)}>

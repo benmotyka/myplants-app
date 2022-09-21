@@ -1,7 +1,7 @@
 import "dotenv/config";
 
 module.exports = {
-  name: "My plants",
+  name: "Moje Rośliny",
   slug: "myplants",
   version: "1.0.0",
   privacy: "public",
@@ -21,11 +21,11 @@ module.exports = {
   },
   android: {
     adaptiveIcon: {
-      foregroundImage: "./assets/icon.png",
+      foregroundImage: "./assets/icons/adaptive.png",
       backgroundColor: "#FFFFFF",
     },
     package: "com.benmotyka.myplants",
-    versionCode: 5,
+    versionCode: 7,
   },
   web: {
     favicon: "./assets/icon.png",
@@ -34,7 +34,8 @@ module.exports = {
   extra: {
     apiUrl: process.env.API_URL,
     sentryDsn: process.env.SENTRY_DSN,
-    text: '123',
+    basicAuthUsername: process.env.BASIC_AUTH_USERNAME,
+    basicAuthPassword: process.env.BASIC_AUTH_PASSWORD,
     eas: {
       projectId: "9b57b4b7-39d0-474c-9ffb-3f5d617bcabd",
     },

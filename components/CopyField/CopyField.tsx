@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { MotiView, AnimatePresence } from "moti";
 import * as Clipboard from "expo-clipboard";
 import {
@@ -15,7 +15,7 @@ const INFO_APPEAR_TIME_MS = 1000;
 
 const CopyField = ({ value }: { value: string }): JSX.Element => {
   const { t } = i18n;
-  const [copied, setCopied] = React.useState(false);
+  const [copied, setCopied] = useState(false);
 
   const onClick = async () => {
     await Clipboard.setStringAsync(value);
