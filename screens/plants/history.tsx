@@ -21,6 +21,7 @@ import {
   ItemContainer,
   SectionContainer,
   SectionHeader,
+  HistoryImage
 } from "styles/screens/plantHistory.styles";
 import plantsApi from "config/api/plants";
 import { WateringData } from "interfaces/WateringData";
@@ -39,6 +40,8 @@ import {
 import { Plant } from "interfaces/Plant";
 import CopyField from "components/CopyField/CopyField";
 import { TouchableOpacity } from "react-native";
+import showToast from "util/showToast";
+import { PlantImagesHistoryData } from "interfaces/PlantImagesHistoryData";
 
 type PlantHistoryProps = NativeStackScreenProps<
   RootStackParamList,
@@ -55,11 +58,12 @@ const PlantHistory = ({
 }: PlantHistoryProps): JSX.Element => {
   const plantId = route.params.plantId;
 
-  const [activeSection, setActiveSection] =
-    useState<Sections>("watering");
+  const [activeSection, setActiveSection] = useState<Sections>("watering");
   const [showShareModal, setShowShareModal] = useState(false);
   const [selectedPlant, setSelectedPlant] = useState<Plant>();
   const [wateringData, setWateringData] = useState<WateringData>();
+  const [plantImagesHistoryData, setPlantImagesHistoryData] =
+    useState<PlantImagesHistoryData>();
 
   const isFocused = useIsFocused();
   const { userPlants }: { userPlants: Plant[] } = useSelector(
@@ -78,19 +82,36 @@ const PlantHistory = ({
       );
       return data;
     } catch (error) {
-      throw new Error("error");
+      console.log(error);
+      switch (error) {
+        default:
+          return showToast(t("errors.general"), "error");
+      }
+    }
+  };
+
+  const getPlantImagesHistory = async () => {
+    try {
+      const { data } = await plantsApi.get<{
+        imagesData: PlantImagesHistoryData;
+      }>(`plants/history/images/${plantId}`);
+      return data;
+    } catch (error) {
+      console.log(error);
+      switch (error) {
+        default:
+          return showToast(t("errors.general"), "error");
+      }
     }
   };
 
   useEffect(() => {
     if (!isFocused) return;
     (async () => {
-      try {
-        const { waterings } = await getPlantWateringHistory();
-        setWateringData(waterings);
-      } catch (error) {
-        console.error(error);
-      }
+      const { waterings } = await getPlantWateringHistory();
+      setWateringData(waterings);
+      const { imagesData } = await getPlantImagesHistory();
+      setPlantImagesHistoryData(imagesData);
     })();
   }, [isFocused]);
 
@@ -149,7 +170,25 @@ const PlantHistory = ({
               )}
             </SectionContainer>
           ) : (
-            <SectionContainer></SectionContainer>
+            <SectionContainer>
+              {!plantImagesHistoryData ? <Loader /> : !Object.keys(plantImagesHistoryData).length ? (
+                <Description style={{ textAlign: "center" }}>
+                  {t("pages.plants.history.plantHasNoImages")}
+                </Description>
+              ) : (
+                Object.entries(plantImagesHistoryData).map(([day, images]) => (
+                  <ItemContainer key={day}>
+                    <ItemDateHeader>{day}</ItemDateHeader>
+                    {images.map((image, index) => (
+                        <HistoryImage
+                        resizeMode="contain"
+                        source={image}
+                        />
+                    ))}
+                  </ItemContainer>
+                ))
+              )}
+            </SectionContainer>
           )}
         </ColumnCenterWrapper>
       </ScreenContainer>

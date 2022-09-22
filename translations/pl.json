@@ -41,6 +41,7 @@
         "wateringHeader": "Historia podlewania",
         "imagesHeader": "Historia zdjęć",
         "plantNotWatered": "Ta roślina nie została jeszcze podlana.",
+        "plantHasNoImages": "Ta roślina nie ma jeszcze zdjęć.",
         "shareModal": {
           "header": "Udostępnij roślinę",
           "description": "Pozwól znajomemu dodać tą roślinę do jego kolekcji, aby mógł ją podlewać razem z Tobą."

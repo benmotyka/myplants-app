@@ -27,6 +27,12 @@ height: 15px;
 margin-right: 5px;
 `
 
+export const HistoryImage = styled.Image`
+width: 60%;
+min-height: 200px;
+margin: 0 auto;
+`
+
 export const ItemContainer = styled.View`
 `
 
