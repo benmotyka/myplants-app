@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useSelector } from "react-redux";
 import { useIsFocused } from "@react-navigation/core";
@@ -41,7 +41,7 @@ import {
 } from "components/BasicModal/BasicModal.styles";
 import { Plant } from "interfaces/Plant";
 import CopyField from "components/CopyField/CopyField";
-import { Text, TouchableOpacity } from "react-native";
+import { ScrollView, Text, TouchableOpacity } from "react-native";
 import showToast from "util/showToast";
 import { PlantImagesHistoryData } from "interfaces/PlantImagesHistoryData";
 
@@ -66,6 +66,8 @@ const PlantHistory = ({
   const [wateringData, setWateringData] = useState<WateringData>();
   const [plantImagesHistoryData, setPlantImagesHistoryData] =
     useState<PlantImagesHistoryData>();
+
+  const scrollViewRef = useRef<ScrollView>();
 
   const isFocused = useIsFocused();
   const { userPlants }: { userPlants: Plant[] } = useSelector(
@@ -131,15 +133,22 @@ const PlantHistory = ({
         </IconContainer>
         <ColumnCenterWrapper fullHeight>
           <ScrollableHeader
+            ref={scrollViewRef}
             horizontal={true}
-            showsHorizontalScrollIndicator={true}
+            showsHorizontalScrollIndicator={false}
           >
-            <SectionHeaderWrapper onPress={() => setActiveSection("watering")}>
+            <SectionHeaderWrapper onPress={() => {
+              scrollViewRef.current?.scrollTo({x: 0})
+              setActiveSection("watering")
+              }}>
               <SectionHeader active={activeSection === "watering"}>
                 {t("pages.plants.history.wateringHeader")}
               </SectionHeader>
             </SectionHeaderWrapper>
-            <SectionHeaderWrapper onPress={() => setActiveSection("images")}>
+            <SectionHeaderWrapper onPress={() => {
+              scrollViewRef.current?.scrollToEnd()
+              setActiveSection("images")
+              }}>
               <SectionHeader active={activeSection === "images"}>
                 {t("pages.plants.history.imagesHeader")}
               </SectionHeader>

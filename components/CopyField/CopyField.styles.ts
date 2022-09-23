@@ -41,5 +41,5 @@ export const Info = styled.Text`
   font-size: 15px;
   opacity: 0.6;
   text-align: center;
-  padding: 5px 0;
+  padding-top: 5px;
 `;

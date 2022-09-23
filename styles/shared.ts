@@ -94,5 +94,5 @@ export const ModalAnimationWrapper = styled(MotiView)`
 
 export const ScrollableHeader = styled.ScrollView`
 margin-bottom: 10px;
-padding: 0 30px;
+margin: 0 30px;
 `
