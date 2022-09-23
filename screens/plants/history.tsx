@@ -21,7 +21,9 @@ import {
   ItemContainer,
   SectionContainer,
   SectionHeader,
-  HistoryImage
+  HistoryImage,
+  ScrollableImagesContainer,
+  SectionHeaderWrapper
 } from "styles/screens/plantHistory.styles";
 import plantsApi from "config/api/plants";
 import { WateringData } from "interfaces/WateringData";
@@ -39,7 +41,7 @@ import {
 } from "components/BasicModal/BasicModal.styles";
 import { Plant } from "interfaces/Plant";
 import CopyField from "components/CopyField/CopyField";
-import { TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
 import showToast from "util/showToast";
 import { PlantImagesHistoryData } from "interfaces/PlantImagesHistoryData";
 
@@ -130,22 +132,21 @@ const PlantHistory = ({
         <ColumnCenterWrapper fullHeight>
           <ScrollableHeader
             horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={{ alignItems: "center", columnGap: 20 }}
+            showsHorizontalScrollIndicator={true}
           >
-            <TouchableOpacity onPress={() => setActiveSection("watering")}>
+            <SectionHeaderWrapper onPress={() => setActiveSection("watering")}>
               <SectionHeader active={activeSection === "watering"}>
                 {t("pages.plants.history.wateringHeader")}
               </SectionHeader>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => setActiveSection("images")}>
+            </SectionHeaderWrapper>
+            <SectionHeaderWrapper onPress={() => setActiveSection("images")}>
               <SectionHeader active={activeSection === "images"}>
                 {t("pages.plants.history.imagesHeader")}
               </SectionHeader>
-            </TouchableOpacity>
+            </SectionHeaderWrapper>
           </ScrollableHeader>
           {activeSection === "watering" ? (
-            <SectionContainer>
+            <SectionContainer key={"wateringHistory"}>
               {!wateringData ? (
                 <Loader />
               ) : !Object.keys(wateringData).length ? (
@@ -170,8 +171,10 @@ const PlantHistory = ({
               )}
             </SectionContainer>
           ) : (
-            <SectionContainer>
-              {!plantImagesHistoryData ? <Loader /> : !Object.keys(plantImagesHistoryData).length ? (
+            <SectionContainer key={"imagesHistory"}>
+              {!plantImagesHistoryData ? (
+                <Loader />
+              ) : !Object.keys(plantImagesHistoryData).length ? (
                 <Description style={{ textAlign: "center" }}>
                   {t("pages.plants.history.plantHasNoImages")}
                 </Description>
@@ -179,12 +182,14 @@ const PlantHistory = ({
                 Object.entries(plantImagesHistoryData).map(([day, images]) => (
                   <ItemContainer key={day}>
                     <ItemDateHeader>{day}</ItemDateHeader>
-                    {images.map((image, index) => (
-                        <HistoryImage
-                        resizeMode="contain"
-                        source={image}
-                        />
-                    ))}
+                    <ScrollableImagesContainer
+                      horizontal={true}
+                      showsHorizontalScrollIndicator={false}
+                    >
+                      {images.map((image, index) => (
+                        <HistoryImage key={image} resizeMode="contain" source={{uri: image}} />
+                      ))}
+                    </ScrollableImagesContainer>
                   </ItemContainer>
                 ))
               )}

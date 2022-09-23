@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, BackHandler } from "react-native";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useIsFocused } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
@@ -11,9 +11,7 @@ import { numberOfColumns } from "components/Plant/Plant.styles";
 import AddPlantSuggestion from "components/AddPlantSuggestion/AddPlantSuggestion";
 import HomeSettings from "components/HomeSettings/HomeSettings";
 import { Plant } from "interfaces/Plant";
-import { UserDetails } from "interfaces/UserDetails";
 import { plantsAction, userAction } from "store/actions";
-import { State } from "store/reducers";
 import { ScreenContainer } from "styles/shared";
 
 type HomeProps = NativeStackScreenProps<RootStackParamList, "home">;
@@ -23,10 +21,6 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
   const [allowScrolling, setAllowScrolling] = useState(true);
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
-
-  const { userDetails }: { userDetails: UserDetails } = useSelector(
-    (state: State) => state.user
-  );
 
   const getUserPlants = async () => {
     try {

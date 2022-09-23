@@ -7,10 +7,10 @@ import { getDeviceId } from "util/device";
 const plantsApi = axios.create({
   baseURL: apiUrl,
   timeout: 10000,
-  auth: {
-    username: basicAuthUsername,
-    password: basicAuthPassword
-  }
+  // auth: {
+    // username: basicAuthUsername,
+    // password: basicAuthPassword
+  // }
 });
 
 plantsApi.interceptors.request.use(async (config) => {
@@ -25,7 +25,6 @@ plantsApi.interceptors.response.use(
     if (errorMessage === "Unauthorized") {
       store.dispatch(userAction.removeUserDetails());
     }
-
     return Promise.reject(errorMessage);
   }
 );
