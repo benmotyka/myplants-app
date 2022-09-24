@@ -1,6 +1,6 @@
 import styled from "styled-components/native";
 import { colors } from "styles/colors";
-import { ScrollableHeader, SmallHeader } from "styles/shared";
+import { Description, ScrollableHeader, SmallHeader } from "styles/shared";
 
 export const ItemDateHeader = styled.Text`
 background-color: ${colors.lightGrey};
@@ -53,8 +53,20 @@ export const SectionHeaderWrapper = styled.TouchableOpacity`
 margin: 0 10px;
 `
 
+export const InfoText = styled(Description)`
+margin-top: 10px;
+text-align: center;
+`
+
+export const ButtonWrapper = styled.View`
+display: flex;
+align-items: center;
+margin-top: 20px;
+`
+
 export const SectionHeader = styled(SmallHeader)<{
     active: boolean
 }>`
 opacity: ${(props) => props.active ? 1 : 0.3};
 `
+

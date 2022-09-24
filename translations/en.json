@@ -40,8 +40,12 @@
       "history": {
         "wateringHeader": "Watering history",
         "imagesHeader": "Images history",
+        "addImageHeader": "Add image",
         "plantNotWatered": "This plant has not been watered yet.",
         "plantHasNoImages": "This plant has not any images history yet.",
+        "chooseImage": "Choose image",
+        "addImage": "Add image",
+        "success": "Image added",
         "shareModal": {
           "header": "Share plant",
           "description": "Let your friend friend add this plant to their collection, so they can water it together with you."

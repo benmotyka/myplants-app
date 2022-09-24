@@ -22,6 +22,15 @@ const BasicImageInput = ({
       base64: true,
       type: "image",
     });
+    // TODO: consider adding modal/switch and getting image from library OR camera 
+    // await ImagePicker.requestCameraPermissionsAsync()
+    // const result = await ImagePicker.launchCameraAsync({
+    //   mediaTypes: ImagePicker.MediaTypeOptions.All,
+    //   allowsEditing: true,
+    //   aspect: [4, 3],
+    //   quality: 1,
+    //   base64: true,
+    // });
     if (!result.cancelled) {
       setImage(result);
     }

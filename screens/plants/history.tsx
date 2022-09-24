@@ -2,13 +2,15 @@ import React, { useEffect, useRef, useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useSelector } from "react-redux";
 import { useIsFocused } from "@react-navigation/core";
+import { ImageInfo } from "expo-image-picker";
+import { ScrollView } from "react-native";
+import { Entypo } from "@expo/vector-icons";
 
 import { RootStackParamList } from "../../App";
 import Back from "components/Back/Back";
 import { State } from "store/reducers";
 import {
   ColumnCenterWrapper,
-  Description,
   ScreenContainer,
   IconContainer,
   ScrollableHeader,
@@ -23,14 +25,15 @@ import {
   SectionHeader,
   HistoryImage,
   ScrollableImagesContainer,
-  SectionHeaderWrapper
+  SectionHeaderWrapper,
+  InfoText,
+  ButtonWrapper,
 } from "styles/screens/plantHistory.styles";
 import plantsApi from "config/api/plants";
 import { WateringData } from "interfaces/WateringData";
 import Loader from "components/Loader/Loader";
 import { formatToHour } from "util/date";
 import i18n from "../../i18n";
-import { Entypo } from "@expo/vector-icons";
 import { ICON_SIZE_PX } from "config";
 import { colors } from "styles/colors";
 import BasicModal from "components/BasicModal/BasicModal";
@@ -41,9 +44,11 @@ import {
 } from "components/BasicModal/BasicModal.styles";
 import { Plant } from "interfaces/Plant";
 import CopyField from "components/CopyField/CopyField";
-import { ScrollView, Text, TouchableOpacity } from "react-native";
 import showToast from "util/showToast";
 import { PlantImagesHistoryData } from "interfaces/PlantImagesHistoryData";
+import BasicImageInput from "components/BasicImageInput/BasicImageInput";
+import BasicButton from "components/BasicButton/BasicButton";
+import { base64EncodeImage } from "util/images";
 
 type PlantHistoryProps = NativeStackScreenProps<
   RootStackParamList,
@@ -52,7 +57,7 @@ type PlantHistoryProps = NativeStackScreenProps<
 
 const { t } = i18n;
 
-type Sections = "watering" | "images";
+type Sections = "watering" | "images" | "addImage";
 
 const PlantHistory = ({
   route,
@@ -60,14 +65,16 @@ const PlantHistory = ({
 }: PlantHistoryProps): JSX.Element => {
   const plantId = route.params.plantId;
 
+  const [loading, setLoading] = useState(false);
   const [activeSection, setActiveSection] = useState<Sections>("watering");
   const [showShareModal, setShowShareModal] = useState(false);
   const [selectedPlant, setSelectedPlant] = useState<Plant>();
   const [wateringData, setWateringData] = useState<WateringData>();
   const [plantImagesHistoryData, setPlantImagesHistoryData] =
     useState<PlantImagesHistoryData>();
+  const [image, setImage] = useState<ImageInfo>();
 
-  const scrollViewRef = useRef<ScrollView>();
+  const scrollViewRef = useRef<ScrollView & HTMLElement>();
 
   const isFocused = useIsFocused();
   const { userPlants }: { userPlants: Plant[] } = useSelector(
@@ -109,6 +116,25 @@ const PlantHistory = ({
     }
   };
 
+  const handleAddImage = async () => {
+    try {
+      setLoading(true);
+      const base64EncodedImage = image ? base64EncodeImage(image) : null;
+
+      await plantsApi.post("/plants/images", {
+        id: plantId,
+        image: base64EncodedImage,
+      });
+      showToast(t("pages.plants.history.success"), "success");
+    } catch (error) {
+      console.log(error);
+      switch (error) {
+        default:
+          return showToast(t("errors.general"), "error");
+      }
+    }
+  };
+
   useEffect(() => {
     if (!isFocused) return;
     (async () => {
@@ -137,20 +163,35 @@ const PlantHistory = ({
             horizontal={true}
             showsHorizontalScrollIndicator={false}
           >
-            <SectionHeaderWrapper onPress={() => {
-              scrollViewRef.current?.scrollTo({x: 0})
-              setActiveSection("watering")
-              }}>
+            <SectionHeaderWrapper
+              onPress={() => {
+                scrollViewRef.current?.scrollTo({ x: 0 });
+                setActiveSection("watering");
+              }}
+            >
               <SectionHeader active={activeSection === "watering"}>
                 {t("pages.plants.history.wateringHeader")}
               </SectionHeader>
             </SectionHeaderWrapper>
-            <SectionHeaderWrapper onPress={() => {
-              scrollViewRef.current?.scrollToEnd()
-              setActiveSection("images")
-              }}>
+            <SectionHeaderWrapper
+              onPress={() => {
+                // TODO: determine how to calculate 'center' of scrollview instead of arbitrary value
+                scrollViewRef.current?.scrollTo({ x: 130 });
+                setActiveSection("images");
+              }}
+            >
               <SectionHeader active={activeSection === "images"}>
                 {t("pages.plants.history.imagesHeader")}
+              </SectionHeader>
+            </SectionHeaderWrapper>
+            <SectionHeaderWrapper
+              onPress={() => {
+                scrollViewRef.current?.scrollToEnd();
+                setActiveSection("addImage");
+              }}
+            >
+              <SectionHeader active={activeSection === "addImage"}>
+                {t("pages.plants.history.addImageHeader")}
               </SectionHeader>
             </SectionHeaderWrapper>
           </ScrollableHeader>
@@ -159,9 +200,7 @@ const PlantHistory = ({
               {!wateringData ? (
                 <Loader />
               ) : !Object.keys(wateringData).length ? (
-                <Description style={{ textAlign: "center" }}>
-                  {t("pages.plants.history.plantNotWatered")}
-                </Description>
+                <InfoText>{t("pages.plants.history.plantNotWatered")}</InfoText>
               ) : (
                 Object.entries(wateringData).map(([day, hours]) => (
                   <ItemContainer key={day}>
@@ -179,14 +218,15 @@ const PlantHistory = ({
                 ))
               )}
             </SectionContainer>
-          ) : (
+          ) : null}
+          {activeSection === "images" ? (
             <SectionContainer key={"imagesHistory"}>
               {!plantImagesHistoryData ? (
                 <Loader />
               ) : !Object.keys(plantImagesHistoryData).length ? (
-                <Description style={{ textAlign: "center" }}>
+                <InfoText>
                   {t("pages.plants.history.plantHasNoImages")}
-                </Description>
+                </InfoText>
               ) : (
                 Object.entries(plantImagesHistoryData).map(([day, images]) => (
                   <ItemContainer key={day}>
@@ -196,14 +236,35 @@ const PlantHistory = ({
                       showsHorizontalScrollIndicator={false}
                     >
                       {images.map((image, index) => (
-                        <HistoryImage key={image} resizeMode="contain" source={{uri: image}} />
+                        <HistoryImage
+                          key={image}
+                          resizeMode="contain"
+                          source={{ uri: image }}
+                        />
                       ))}
                     </ScrollableImagesContainer>
                   </ItemContainer>
                 ))
               )}
             </SectionContainer>
-          )}
+          ) : null}
+          {activeSection === "addImage" ? (
+            <SectionContainer key={"addImage"}>
+              <BasicImageInput
+                buttonText={t("pages.plants.history.chooseImage")}
+                image={image}
+                setImage={setImage}
+              />
+              {image ? (
+                <ButtonWrapper>
+                  <BasicButton
+                    text={t("pages.plants.history.addImage")}
+                    onPress={handleAddImage}
+                  />
+                </ButtonWrapper>
+              ) : null}
+            </SectionContainer>
+          ) : null}
         </ColumnCenterWrapper>
       </ScreenContainer>
       <BasicModal showModal={showShareModal} toggleModal={setShowShareModal}>
