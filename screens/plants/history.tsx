@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useSelector } from "react-redux";
 import { useIsFocused } from "@react-navigation/core";
@@ -14,6 +14,7 @@ import {
   ScreenContainer,
   IconContainer,
   ScrollableHeader,
+  MarginTopView,
 } from "styles/shared";
 import {
   ItemDateHeader,
@@ -74,7 +75,7 @@ const PlantHistory = ({
   const [wateringData, setWateringData] = useState<WateringData>();
   const [plantImagesHistoryData, setPlantImagesHistoryData] =
     useState<PlantImagesHistoryData>();
-  const [image, setImage] = useState<ImageInfo>();
+  const [image, setImage] = useState<ImageInfo | null>();
 
   const scrollViewRef = useRef<ScrollView & HTMLElement>();
 
@@ -124,18 +125,44 @@ const PlantHistory = ({
       const base64EncodedImage = image ? base64EncodeImage(image) : null;
 
       await plantsApi.post("/plants/images", {
-        id: plantId,
+        plantId: plantId,
         image: base64EncodedImage,
       });
+
+      const { imagesData } = await getPlantImagesHistory();
+      setPlantImagesHistoryData(imagesData);
+      setImage(null);
+
       showToast(t("pages.plants.history.success"), "success");
+      handleChangeSection("images");
     } catch (error) {
       console.log(error);
       switch (error) {
         default:
           return showToast(t("errors.general"), "error");
       }
+    } finally {
+      setLoading(false);
     }
   };
+
+  const handleChangeSection = useCallback(async (section: Sections) => {
+    switch (section) {
+      case "watering":
+        scrollViewRef.current?.scrollTo({ x: 0 });
+        setActiveSection("watering");
+        break;
+      case "images":
+        // TODO: determine how to calculate 'center' of scrollview instead of arbitrary value
+        scrollViewRef.current?.scrollTo({ x: 130 });
+        setActiveSection("images");
+        break;
+      case "addImage":
+        scrollViewRef.current?.scrollToEnd();
+        setActiveSection("addImage");
+        break;
+    }
+  }, []);
 
   useEffect(() => {
     if (!isFocused) return;
@@ -166,31 +193,19 @@ const PlantHistory = ({
             showsHorizontalScrollIndicator={false}
           >
             <SectionHeaderWrapper
-              onPress={() => {
-                scrollViewRef.current?.scrollTo({ x: 0 });
-                setActiveSection("watering");
-              }}
+              onPress={() => handleChangeSection("watering")}
             >
               <SectionHeader active={activeSection === "watering"}>
                 {t("pages.plants.history.wateringHeader")}
               </SectionHeader>
             </SectionHeaderWrapper>
-            <SectionHeaderWrapper
-              onPress={() => {
-                // TODO: determine how to calculate 'center' of scrollview instead of arbitrary value
-                scrollViewRef.current?.scrollTo({ x: 130 });
-                setActiveSection("images");
-              }}
-            >
+            <SectionHeaderWrapper onPress={() => handleChangeSection("images")}>
               <SectionHeader active={activeSection === "images"}>
                 {t("pages.plants.history.imagesHeader")}
               </SectionHeader>
             </SectionHeaderWrapper>
             <SectionHeaderWrapper
-              onPress={() => {
-                scrollViewRef.current?.scrollToEnd();
-                setActiveSection("addImage");
-              }}
+              onPress={() => handleChangeSection("addImage")}
             >
               <SectionHeader active={activeSection === "addImage"}>
                 {t("pages.plants.history.addImageHeader")}
@@ -256,19 +271,27 @@ const PlantHistory = ({
           ) : null}
           {activeSection === "addImage" ? (
             <SectionContainer key={"addImage"}>
-              <BasicImageInput
-                buttonText={t("pages.plants.history.chooseImage")}
-                image={image}
-                setImage={setImage}
-              />
-              {image ? (
-                <ButtonWrapper>
-                  <BasicButton
-                    text={t("pages.plants.history.addImage")}
-                    onPress={handleAddImage}
+              {loading ? (
+                <MarginTopView>
+                  <Loader />
+                </MarginTopView>
+              ) : (
+                <>
+                  <BasicImageInput
+                    buttonText={t("pages.plants.history.chooseImage")}
+                    image={image}
+                    setImage={setImage}
                   />
-                </ButtonWrapper>
-              ) : null}
+                  {image ? (
+                    <ButtonWrapper>
+                      <BasicButton
+                        text={t("pages.plants.history.addImage")}
+                        onPress={handleAddImage}
+                      />
+                    </ButtonWrapper>
+                  ) : null}
+                </>
+              )}
             </SectionContainer>
           ) : null}
         </ColumnCenterWrapper>
