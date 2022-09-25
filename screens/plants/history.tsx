@@ -3,7 +3,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useSelector } from "react-redux";
 import { useIsFocused } from "@react-navigation/core";
 import { ImageInfo } from "expo-image-picker";
-import { ScrollView } from "react-native";
+import { ScrollView, TouchableOpacity } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 
 import { RootStackParamList } from "../../App";
@@ -41,6 +41,7 @@ import {
   ModalDescription,
   ModalHeader,
   ModalItem,
+  ModalImage,
 } from "components/BasicModal/BasicModal.styles";
 import { Plant } from "interfaces/Plant";
 import CopyField from "components/CopyField/CopyField";
@@ -68,6 +69,7 @@ const PlantHistory = ({
   const [loading, setLoading] = useState(false);
   const [activeSection, setActiveSection] = useState<Sections>("watering");
   const [showShareModal, setShowShareModal] = useState(false);
+  const [showImageModal, setShowImageModal] = useState<boolean | string>(false);
   const [selectedPlant, setSelectedPlant] = useState<Plant>();
   const [wateringData, setWateringData] = useState<WateringData>();
   const [plantImagesHistoryData, setPlantImagesHistoryData] =
@@ -205,8 +207,8 @@ const PlantHistory = ({
                 Object.entries(wateringData).map(([day, hours]) => (
                   <ItemContainer key={day}>
                     <ItemDateHeader>{day}</ItemDateHeader>
-                    {hours.map((hour, index) => (
-                      <ItemWrapper key={hour + index}>
+                    {hours.map((hour) => (
+                      <ItemWrapper key={hour}>
                         <HistoryIcon
                           resizeMode="contain"
                           source={require("../../assets/water-drop.png")}
@@ -236,11 +238,15 @@ const PlantHistory = ({
                       showsHorizontalScrollIndicator={false}
                     >
                       {images.map((image, index) => (
-                        <HistoryImage
+                        <TouchableOpacity
                           key={image}
-                          resizeMode="contain"
-                          source={{ uri: image }}
-                        />
+                          onPress={() => setShowImageModal(image)}
+                        >
+                          <HistoryImage
+                            resizeMode="contain"
+                            source={{ uri: image }}
+                          />
+                        </TouchableOpacity>
                       ))}
                     </ScrollableImagesContainer>
                   </ItemContainer>
@@ -279,6 +285,9 @@ const PlantHistory = ({
         <ModalItem>
           {selectedPlant ? <CopyField value={selectedPlant.shareId} /> : null}
         </ModalItem>
+      </BasicModal>
+      <BasicModal showModal={!!showImageModal} toggleModal={setShowImageModal}>
+        <ModalImage source={{ uri: showImageModal }} />
       </BasicModal>
     </>
   );

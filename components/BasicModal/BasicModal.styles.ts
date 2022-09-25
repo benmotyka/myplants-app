@@ -43,3 +43,8 @@ export const ModalDescription = styled.Text`
   opacity: 0.6;
   margin-top: 10px;
 `;
+
+export const ModalImage = styled.Image`
+width: 100%;
+height: 300px;
+`
