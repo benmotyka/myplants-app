@@ -1,15 +1,17 @@
 import axios from "axios";
-import { apiUrl, basicAuthUsername, basicAuthPassword } from "config/environment";
-import { store } from "store";
-import { userAction } from "store/actions";
+import {
+  apiUrl,
+  basicAuthUsername,
+  basicAuthPassword,
+} from "config/environment";
 import { getDeviceId } from "util/device";
 
 const plantsApi = axios.create({
   baseURL: apiUrl,
   timeout: 10000,
   // auth: {
-    // username: basicAuthUsername,
-    // password: basicAuthPassword
+  // username: basicAuthUsername,
+  // password: basicAuthPassword
   // }
 });
 
@@ -20,12 +22,7 @@ plantsApi.interceptors.request.use(async (config) => {
 
 plantsApi.interceptors.response.use(
   (response) => response,
-  (error) => {
-    const errorMessage = error.response?.data?.message;
-    if (errorMessage === "Unauthorized") {
-      store.dispatch(userAction.removeUserDetails());
-    }
-    return Promise.reject(errorMessage);
-  }
+  (error) => Promise.reject(error.response?.data?.message)
 );
+
 export default plantsApi;
