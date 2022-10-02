@@ -75,8 +75,12 @@
     "plantNotExists": "Roślina nie istnieje"
   },
   "components": {
+    "basicImageInput": {
+      "takePhoto": "Zrób zdjęcie",
+      "chooseLibrary": "Wybierz z galerii"
+    },
     "copyField": {
-      "successInfo": "Skopiowano!"
+      "successInfo": "Skopiowano"
     },
     "addPlantSuggestion": "Dodaj swoją pierwszą roślinę",
     "plant": {

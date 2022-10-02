@@ -75,8 +75,12 @@
     "plantNotExists": "Plant not found"
   },
   "components": {
+    "basicImageInput": {
+      "takePhoto": "Take photo",
+      "chooseLibrary": "Choose from library"
+    },
     "copyField": {
-      "successInfo": "Copied!"
+      "successInfo": "Copied"
     },
     "addPlantSuggestion": "Add your first plant here",
     "plant": {
