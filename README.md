@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/benmotyka/my-plants_app">
-    <img src="readme/banner.svg" alt="Banner">
+    <img src="readme/banner.png" alt="Banner">
   </a>
   <h1 align="center">My Plants</h1>
   <h5 align="center">Mobile App</h5>
@@ -41,7 +41,7 @@
 
 ## About The Project
 
-My Plants is a free and open source mobile app that helps to manage watering of plants. App users can add plants to their collection and manage them, and then mark them as watered upon every watering. Users can view history of watering for their plants, add images to their plants or set reminders so they get push notification when plant should be watered. 
+My Plants is a free and open source mobile app that helps to manage watering of plants. App users can add plants to their collection and manage them, and then mark them as watered upon every watering. Users can import plants of other users, in order to water them together, view history of watering for their plants, add images to their plants or set reminders so they get push notification when the plant should be watered. 
 
 ### Built With
 
