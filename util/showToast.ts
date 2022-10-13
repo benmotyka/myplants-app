@@ -3,7 +3,7 @@ import { colors } from "styles/colors";
 
 export type ToastTypes = "error" | "success" | "info" 
 
-export interface ToastProps {
+interface ToastProps {
   text: string;
   type: ToastTypes
 }

@@ -39,9 +39,7 @@ const Plant = ({
   const [watered, setWatered] = useState(false);
   // If there was any watering, set time to last watering.
   const [timeFromLastWatering, setTimeFromLastWatering] = useState(
-    latestWatering
-      ? calculateDifferenceFromNow(latestWatering.createdAt)
-      : null
+    latestWatering ? calculateDifferenceFromNow(latestWatering.createdAt) : null
   );
   const [showWateringReminder, setShowWateringReminder] = useState(false);
 
@@ -94,7 +92,7 @@ const Plant = ({
       return;
     }
     const daysFromLastWatering = parseInt(timeFromLastWatering.split(":")[0]);
-    
+
     setShowWateringReminder(daysFromLastWatering >= reminderFrequency);
   }, [watered, reminderFrequency, timeFromLastWatering]);
 
@@ -105,12 +103,9 @@ const Plant = ({
     if (currentValue < SLIDE_SUCCESS_VALUE_THRESHOLD * MAX_SLIDER_VALUE) return;
 
     try {
-      await plantsApi.post(
-        `/watering`,
-        {
-          plantId: id,
-        }
-      );
+      await plantsApi.post(`/watering`, {
+        plantId: id,
+      });
       showToast(t("components.plant.success"), "success");
       setTimeFromLastWatering(calculateDifferenceFromNow(new Date()));
       setWatered(true);
@@ -130,6 +125,14 @@ const Plant = ({
     navigation.navigate("plantHistory", {
       plantId: id,
     });
+  };
+
+  const cancelWatering = () => {
+    setTimeFromLastWatering(
+      latestWatering
+        ? calculateDifferenceFromNow(latestWatering.createdAt)
+        : null
+    );
   };
 
   return (
