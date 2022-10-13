@@ -14,7 +14,7 @@ import {
   ScreenContainer,
   IconContainer,
   ScrollableHeader,
-  MarginTopView,
+  LoaderWrapper,
 } from "styles/shared";
 import {
   ItemDateHeader,
@@ -272,9 +272,9 @@ const PlantHistory = ({
           {activeSection === "addImage" ? (
             <SectionContainer key={"addImage"}>
               {loading ? (
-                <MarginTopView>
+                <LoaderWrapper>
                   <Loader />
-                </MarginTopView>
+                </LoaderWrapper>
               ) : (
                 <>
                   <BasicImageInput

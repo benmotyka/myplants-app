@@ -12,7 +12,8 @@ import AddPlantSuggestion from "components/AddPlantSuggestion/AddPlantSuggestion
 import HomeSettings from "components/HomeSettings/HomeSettings";
 import { Plant } from "interfaces/Plant";
 import { plantsAction, userAction } from "store/actions";
-import { ScreenContainer } from "styles/shared";
+import { LoaderWrapper, ScreenContainer } from "styles/shared";
+import Loader from "components/Loader/Loader";
 
 type HomeProps = NativeStackScreenProps<RootStackParamList, "home">;
 
@@ -52,8 +53,11 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
     })();
 
     // Workaround for devices with hardware back button
-    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => true)
-    return () => backHandler.remove()
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      () => true
+    );
+    return () => backHandler.remove();
   }, [isFocused]);
 
   return (
@@ -83,7 +87,11 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
           />
           {!dataSource.length ? <AddPlantSuggestion /> : null}
         </>
-      ) : null}
+      ) : (
+        <LoaderWrapper>
+          <Loader />
+        </LoaderWrapper>
+      )}
       <HomeSettings navigation={navigation} />
     </ScreenContainer>
   );

@@ -49,10 +49,6 @@ export const IconContainer = styled.TouchableOpacity`
   z-index: 10;
 `;
 
-export const MarginTopView = styled.View`
-  margin-top: 50px;
-`;
-
 export const Header = styled.Text`
   font-size: 40px;
   text-align: left;

@@ -45,9 +45,9 @@ My Plants is a free and open source mobile app that helps to manage watering of 
 
 ### Built With
 
-* [Expo]()
-* [React Native]()
-* [Redux]()
+* [Expo](https://expo.dev/)
+* [React Native](https://reactnative.dev/)
+* [styled-components](https://styled-components.com/)
 
 <!-- GETTING STARTED -->
 
@@ -78,6 +78,8 @@ My Plants is a free and open source mobile app that helps to manage watering of 
    SENTRY_ORGANIZATION=<sentry_organization>
    SENTRY_PROJECT=<sentry_project_name>
    SENTRY_AUTHTOKEN=<sentry_authorization_token>
+   BASIC_AUTH_USERNAME=<basicauth_username>
+   BASIC_AUTH_USERNAME=<basicauth_password>
    ```
 5. Run app
    ```sh
@@ -102,14 +104,6 @@ Thanks again!
 5. Open a Pull Request
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- LICENSE
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
- -->
 
 ## Contact
 
