@@ -84,7 +84,8 @@
     },
     "addPlantSuggestion": "Dodaj swoją pierwszą roślinę",
     "plant": {
-      "success": "Roślina podlana"
+      "success": "Roślina podlana",
+      "wateringCanceled": "Podlanie anulowane"
     },
     "wateringReminderInput": {
       "every": "Co",

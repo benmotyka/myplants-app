@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { TouchableHighlight, View } from "react-native";
 import { Slider } from "@miblanchard/react-native-slider";
 import { useIsFocused } from "@react-navigation/native";
@@ -45,6 +45,7 @@ const Plant = ({
 
   const { t } = i18n;
   const isFocused = useIsFocused();
+  const wateringRef = useRef();
 
   // This useEffect sets and clears intervals for changing Plant time. If plant was ever watered,
   // simply create a new interval, and destory old on return. If user waters this plant, this code
@@ -103,9 +104,12 @@ const Plant = ({
     if (currentValue < SLIDE_SUCCESS_VALUE_THRESHOLD * MAX_SLIDER_VALUE) return;
 
     try {
-      await plantsApi.post(`/watering`, {
+      const result = await plantsApi.post(`/watering`, {
         plantId: id,
       });
+
+      wateringRef.current = result.data.id;
+
       showToast(t("components.plant.success"), "success");
       setTimeFromLastWatering(calculateDifferenceFromNow(new Date()));
       setWatered(true);
@@ -127,12 +131,20 @@ const Plant = ({
     });
   };
 
-  const cancelWatering = () => {
-    setTimeFromLastWatering(
-      latestWatering
-        ? calculateDifferenceFromNow(latestWatering.createdAt)
-        : null
-    );
+  const cancelWatering = async () => {
+    try {
+      await plantsApi.delete(`/watering/${wateringRef.current}`);
+      setTimeFromLastWatering(
+        latestWatering
+          ? calculateDifferenceFromNow(latestWatering.createdAt)
+          : null
+      );
+      showToast(t("components.plant.wateringCanceled"), "info");
+      setWatered(false);
+    } catch (error) {
+      console.log(error);
+      showToast(t("errors.general"), "error");
+    }
   };
 
   return (

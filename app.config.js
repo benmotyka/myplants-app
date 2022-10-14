@@ -25,7 +25,7 @@ module.exports = {
       backgroundColor: "#FFFFFF",
     },
     package: "com.benmotyka.myplants",
-    versionCode: 7,
+    versionCode: 9,
   },
   web: {
     favicon: "./assets/icon.png",

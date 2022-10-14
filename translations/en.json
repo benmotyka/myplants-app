@@ -84,7 +84,8 @@
     },
     "addPlantSuggestion": "Add your first plant here",
     "plant": {
-      "success": "Plant watered"
+      "success": "Plant watered",
+      "wateringCanceled": "Watering canceled"
     },
     "wateringReminderInput": {
       "every": "Every",
