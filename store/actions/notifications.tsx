@@ -1,4 +1,4 @@
-import { SET_NOTIFICATIONS_TOKEN } from "store/types";
+import { HIDE_TOAST, SET_NOTIFICATIONS_TOKEN, SHOW_TOAST } from "store/types";
 
 const setNotificationsToken = (payload: string) => {
   return {
@@ -7,6 +7,20 @@ const setNotificationsToken = (payload: string) => {
   };
 };
 
+const showToast = () => {
+  return {
+    type: SHOW_TOAST,
+  };
+};
+
+const hideToast = () => {
+  return {
+    type: HIDE_TOAST,
+  };
+};
+
 export default {
   setNotificationsToken,
+  showToast,
+  hideToast,
 };
