@@ -1,26 +1,32 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef } from "react";
+import { Text } from "react-native";
 import RNToast from "react-native-root-toast";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { notificationAction } from "store/actions";
+import { State } from "store/reducers";
 import { colors } from "styles/colors";
 
 export type ToastTypes = "error" | "success" | "info";
 
 export interface ToastProps {
   text: string;
-  type: ToastTypes;
+  type?: ToastTypes;
 }
 
 const Toast = ({ text, type = "info" }: ToastProps): JSX.Element => {
-  const [showToast, setShowToast] = useState(false);
+  const { showToast } = useSelector((state: State) => state.notifications);
+  const dispatch = useDispatch();
 
-  //   @TODO: add redux state
   useEffect(() => {
-    setTimeout(() => {
-      setShowToast(true);
-    }, 500);
-    setTimeout(() => {
-      setShowToast(false);
-    }, 3500);
-  });
+    if (!showToast) return;
+
+    const timeout = setTimeout(() => {
+      dispatch(notificationAction.hideToast());
+    }, 3000);
+
+    return () => clearTimeout(timeout);
+  }, [showToast]);
 
   const toastBackgruondColor = useMemo(() => {
     switch (type) {
@@ -38,7 +44,9 @@ const Toast = ({ text, type = "info" }: ToastProps): JSX.Element => {
       visible={showToast}
       position={40}
       backgroundColor={toastBackgruondColor}
-    ></RNToast>
+    >
+      <Text>{text}</Text>
+    </RNToast>
   );
 };
 

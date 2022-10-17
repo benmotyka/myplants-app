@@ -19,6 +19,8 @@ import showToast from "util/showToast";
 import plantsApi from "config/api/plants";
 import { calculateDifferenceFromNow } from "util/date";
 import i18n from "../../i18n";
+import { useDispatch } from "react-redux";
+import { notificationAction } from "store/actions";
 
 const MAX_SLIDER_VALUE = 1;
 const SLIDE_SUCCESS_VALUE_THRESHOLD = 0.9;
@@ -45,6 +47,7 @@ const Plant = ({
 
   const { t } = i18n;
   const isFocused = useIsFocused();
+  const dispatch = useDispatch();
   const wateringRef = useRef();
 
   // This useEffect sets and clears intervals for changing Plant time. If plant was ever watered,
@@ -133,13 +136,15 @@ const Plant = ({
 
   const cancelWatering = async () => {
     try {
-      await plantsApi.delete(`/watering/${wateringRef.current}`);
+    dispatch(notificationAction.showToast());
+
+      // await plantsApi.delete(`/watering/${wateringRef.current}`);
       setTimeFromLastWatering(
         latestWatering
           ? calculateDifferenceFromNow(latestWatering.createdAt)
           : null
       );
-      showToast(t("components.plant.wateringCanceled"), "info");
+      // showToast(t("components.plant.wateringCanceled"), "info");
       setWatered(false);
     } catch (error) {
       console.log(error);
