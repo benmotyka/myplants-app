@@ -58,7 +58,8 @@
     "sentry-expo": "~5.0.0",
     "styled-components": "^5.3.5",
     "uuid": "^9.0.0",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "zustand": "^4.1.2"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",

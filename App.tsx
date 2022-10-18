@@ -14,9 +14,7 @@ import { AkayaKanadaka_400Regular } from "@expo-google-fonts/akaya-kanadaka";
 import { RootSiblingParent } from "react-native-root-siblings";
 import * as Sentry from "sentry-expo";
 
-import {
-  sentryDsn
-} from "config/environment";
+import { sentryDsn } from "config/environment";
 import HomeScreen from "screens/home";
 import AddPlantScreen from "screens/plants/add";
 import EditPlantScreen from "screens/plants/edit";
@@ -26,6 +24,7 @@ import ImportPlantScreen from "screens/plants/import";
 import SettingsNotificationsScreen from "screens/settings/notifications";
 import { store, persistor } from "store";
 import "./i18n";
+import ToastProvider from "components/ToastProvider/ToastProvider";
 
 export type RootStackParamList = {
   home: undefined;
@@ -80,7 +79,10 @@ export default function App() {
 
               <Stack.Screen name="addPlant" component={AddPlantScreen} />
               <Stack.Screen name="editPlant" component={EditPlantScreen} />
-              <Stack.Screen name="plantHistory" component={PlantHistoryScreen} />
+              <Stack.Screen
+                name="plantHistory"
+                component={PlantHistoryScreen}
+              />
               <Stack.Screen name="importPlant" component={ImportPlantScreen} />
 
               <Stack.Screen name="settings" component={SettingsScreen} />
@@ -89,6 +91,7 @@ export default function App() {
                 component={SettingsNotificationsScreen}
               />
             </Stack.Navigator>
+            <ToastProvider />
           </NavigationContainer>
         </RootSiblingParent>
       </PersistGate>
