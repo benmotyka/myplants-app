@@ -21,6 +21,7 @@ import { calculateDifferenceFromNow } from "util/date";
 import i18n from "../../i18n";
 import { useDispatch } from "react-redux";
 import { notificationAction } from "store/actions";
+import { useToastStore } from "../../newStore/index";
 
 const MAX_SLIDER_VALUE = 1;
 const SLIDE_SUCCESS_VALUE_THRESHOLD = 0.9;
@@ -49,6 +50,7 @@ const Plant = ({
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
   const wateringRef = useRef();
+  const displayToast = useToastStore((state) => state.showToast);
 
   // This useEffect sets and clears intervals for changing Plant time. If plant was ever watered,
   // simply create a new interval, and destory old on return. If user waters this plant, this code
@@ -123,21 +125,27 @@ const Plant = ({
   };
 
   const onLongPress = (): void => {
-    navigation.navigate("editPlant", {
-      plantId: id,
-    });
+    displayToast({ text: "heja", type: "success" });
+      showToast("heja", "success");
+
+    // navigation.navigate("editPlant", {
+    //   plantId: id,
+    // });
   };
 
   const onPress = (): void => {
-    navigation.navigate("plantHistory", {
-      plantId: id,
-    });
+    // displayToast({ text: "hej", type: "success" });
+      showToast("heja", "success");
+
+    // navigation.navigate("plantHistory", {
+    //   plantId: id,
+    // });
   };
 
   const cancelWatering = async () => {
     try {
-    dispatch(notificationAction.showToast());
-
+      displayToast({ text: "hej" });
+      // dispatch(notificationAction.showToast());
       // await plantsApi.delete(`/watering/${wateringRef.current}`);
       setTimeFromLastWatering(
         latestWatering

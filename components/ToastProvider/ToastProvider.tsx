@@ -1,8 +1,14 @@
-import { useToastStore } from "../../newStore";
+import { AnimatePresence } from "moti";
 import React, { useEffect, useMemo } from "react";
-import { Text } from "react-native";
-import RNToast from "react-native-root-toast";
 import { colors } from "styles/colors";
+import {
+  ToastContainer,
+  ToastText,
+  ToastWrapper,
+} from "./ToastProvider.styles";
+import { useToastStore } from "../../newStore";
+
+const TOAST_DURATION = 1500; // ms
 
 const ToastProvider = (): JSX.Element => {
   const { isToastShown, text, type, hideToast } = useToastStore(
@@ -14,7 +20,7 @@ const ToastProvider = (): JSX.Element => {
 
     const timeout = setTimeout(() => {
       hideToast();
-    }, 1000);
+    }, TOAST_DURATION);
 
     return () => clearTimeout(timeout);
   }, [isToastShown]);
@@ -31,13 +37,26 @@ const ToastProvider = (): JSX.Element => {
   }, [type]);
 
   return (
-    <RNToast
-      visible={isToastShown}
-      position={40}
-      backgroundColor={toastBackgruondColor}
-    >
-      <Text>{text}</Text>
-    </RNToast>
+    <ToastContainer>
+      <AnimatePresence>
+        {isToastShown ? (
+          <ToastWrapper
+            backgroundColor={toastBackgruondColor}
+            from={{
+              opacity: 0,
+            }}
+            animate={{
+              opacity: 0.9,
+            }}
+            exit={{
+              opacity: 0,
+            }}
+          >
+            <ToastText>{text}</ToastText>
+          </ToastWrapper>
+        ) : null}
+      </AnimatePresence>
+    </ToastContainer>
   );
 };
 
