@@ -15,9 +15,9 @@ import {
 } from "styles/shared";
 import i18n from "../../i18n";
 import { ApiErrors } from "enums/api-errors";
-import showToast from "util/showToast";
 import plantsApi from "config/api/plants";
 import { ImportPlantSchema } from "schemas/ImportPlant.schema";
+import { useToastStore } from "../../newStore";
 
 type ImportPlantProps = NativeStackScreenProps<
   RootStackParamList,
@@ -32,6 +32,7 @@ const { t } = i18n;
 
 const ImportPlant = ({ navigation }: ImportPlantProps): JSX.Element => {
   const [loading, setLoading] = useState(false);
+  const displayToast = useToastStore((state) => state.showToast);
 
   const onSubmit = async (
     values: ImportPlantForm,
@@ -49,16 +50,16 @@ const ImportPlant = ({ navigation }: ImportPlantProps): JSX.Element => {
       });
       resetForm();
       navigation.navigate("home");
-      showToast(t("pages.plants.import.success"), "success");
+      displayToast({ text: t("pages.plants.import.success"), type: "success" });
     } catch (error) {
       console.log(error);
       switch (error) {
         case ApiErrors.PLANT_ALREADY_ADDED:
-          return showToast(t("errors.plantAlreadyAdded"), "info");
+          return displayToast({ text: t("errors.plantAlreadyAdded"), type: "info" });
         case ApiErrors.INVALID_PLANT:
-          return showToast(t("errors.plantNotExists"), "error");
+          return displayToast({ text: t("errors.plantNotExists"), type: "error" });
         default:
-          return showToast(t("errors.general"), "error");
+          return displayToast({ text: t("errors.general"), type: "error" });
       }
     } finally {
       setLoading(false);

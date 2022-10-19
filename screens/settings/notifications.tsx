@@ -11,11 +11,11 @@ import {
 import i18n from "../../i18n";
 import BasicSwitch from "components/BasicSwitch/BasicSwitch";
 import plantsApi from "config/api/plants";
-import showToast from "util/showToast";
 import { useSelector, useDispatch } from "react-redux";
 import { State } from "store/reducers";
 import { userAction } from "store/actions";
 import { UserSettings } from "interfaces/UserSettings";
+import { useToastStore } from "../../newStore";
 
 type SettingsNotificationsProps = NativeStackScreenProps<
   RootStackParamList,
@@ -35,6 +35,7 @@ const SettingsNotifications = ({
   const [isAllowNotificationsEnabled, setAllowNotificationsEnabled] =
   useState(userSettings?.pushNotificationsEnabled);
   const dispatch = useDispatch();
+  const displayToast = useToastStore((state) => state.showToast);
 
   const handleSwitch = async ({ isEnabled }: { isEnabled: boolean }) => {
     if (isEnabled === isAllowNotificationsEnabled) return;
@@ -53,7 +54,7 @@ const SettingsNotifications = ({
       );
     } catch (error) {
       console.log(error);
-      showToast(t("errors.general"), "error");
+      return displayToast({ text: t("errors.general"), type: "error" });
     }
   };
 

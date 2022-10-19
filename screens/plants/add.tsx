@@ -19,12 +19,12 @@ import {
   InputsWrapper,
   LoaderWrapper,
 } from "styles/shared";
-import showToast from "util/showToast";
 import { ApiErrors } from "enums/api-errors";
 import { base64EncodeImage } from "util/images";
 import i18n from "../../i18n";
 import BasicCheckbox from "components/BasicCheckbox/BasicCheckbox";
 import WateringReminderInput from "components/WateringReminderInput/WateringReminderInput";
+import { useToastStore } from "../../newStore";
 
 type AddPlantProps = NativeStackScreenProps<RootStackParamList, "addPlant">;
 
@@ -41,6 +41,7 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
   const [loading, setLoading] = useState(false);
   const [isRemindersChecked, setRemindersChecked] = useState(false);
   const [image, setImage] = useState<ImageInfo>();
+  const displayToast = useToastStore((state) => state.showToast);
 
   const onSubmit = async (
     values: AddPlantForm,
@@ -70,14 +71,14 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
       });
       resetForm();
       navigation.navigate("home");
-      showToast(t("pages.plants.add.success"), "success");
+      displayToast({text: t("pages.plants.add.success"), type: "success"})
     } catch (error) {
       console.log(error);
       switch (error) {
         case ApiErrors.INVALID_FILE:
-          return showToast(t("errors.invalidFileType"), "error");
+          return displayToast({text: t("errors.invalidFileType"), type: "error"})
         default:
-          return showToast(t("errors.general"), "error");
+          return displayToast({text: t("errors.general"), type: "error"})
       }
     } finally {
       setLoading(false);

@@ -46,11 +46,11 @@ import {
 } from "components/BasicModal/BasicModal.styles";
 import { Plant } from "interfaces/Plant";
 import CopyField from "components/CopyField/CopyField";
-import showToast from "util/showToast";
 import { PlantImagesHistoryData } from "interfaces/PlantImagesHistoryData";
 import BasicImageInput from "components/BasicImageInput/BasicImageInput";
 import BasicButton from "components/BasicButton/BasicButton";
 import { base64EncodeImage } from "util/images";
+import { useToastStore } from "../../newStore";
 
 type PlantHistoryProps = NativeStackScreenProps<
   RootStackParamList,
@@ -78,6 +78,7 @@ const PlantHistory = ({
   const [image, setImage] = useState<ImageInfo | null>();
 
   const scrollViewRef = useRef<ScrollView & HTMLElement>();
+  const displayToast = useToastStore((state) => state.showToast);
 
   const isFocused = useIsFocused();
   const { userPlants }: { userPlants: Plant[] } = useSelector(
@@ -99,7 +100,7 @@ const PlantHistory = ({
       console.log(error);
       switch (error) {
         default:
-          return showToast(t("errors.general"), "error");
+          return displayToast({ text: t("errors.general"), type: "error" });
       }
     }
   };
@@ -114,7 +115,7 @@ const PlantHistory = ({
       console.log(error);
       switch (error) {
         default:
-          return showToast(t("errors.general"), "error");
+          return displayToast({ text: t("errors.general"), type: "error" });
       }
     }
   };
@@ -129,17 +130,20 @@ const PlantHistory = ({
         image: base64EncodedImage,
       });
 
-      const { imagesData } = await getPlantImagesHistory();
-      setPlantImagesHistoryData(imagesData);
+      const result = await getPlantImagesHistory();
+      setPlantImagesHistoryData(result?.imagesData);
       setImage(null);
 
-      showToast(t("pages.plants.history.success"), "success");
+      displayToast({
+        text: t("pages.plants.history.success"),
+        type: "success",
+      });
       handleChangeSection("images");
     } catch (error) {
       console.log(error);
       switch (error) {
         default:
-          return showToast(t("errors.general"), "error");
+          return displayToast({ text: t("errors.general"), type: "error" });
       }
     } finally {
       setLoading(false);
@@ -167,10 +171,10 @@ const PlantHistory = ({
   useEffect(() => {
     if (!isFocused) return;
     (async () => {
-      const { waterings } = await getPlantWateringHistory();
-      setWateringData(waterings);
-      const { imagesData } = await getPlantImagesHistory();
-      setPlantImagesHistoryData(imagesData);
+      const plantWaterings = await getPlantWateringHistory();
+      setWateringData(plantWaterings?.waterings);
+      const plantImages = await getPlantImagesHistory();
+      setPlantImagesHistoryData(plantImages?.imagesData);
     })();
   }, [isFocused]);
 

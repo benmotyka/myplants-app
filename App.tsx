@@ -11,7 +11,6 @@ import {
   Inter_300Light,
 } from "@expo-google-fonts/inter";
 import { AkayaKanadaka_400Regular } from "@expo-google-fonts/akaya-kanadaka";
-import { RootSiblingParent } from "react-native-root-siblings";
 import * as Sentry from "sentry-expo";
 
 import { sentryDsn } from "config/environment";
@@ -24,7 +23,7 @@ import ImportPlantScreen from "screens/plants/import";
 import SettingsNotificationsScreen from "screens/settings/notifications";
 import { store, persistor } from "store";
 import "./i18n";
-import ToastProvider from "components/ToastProvider/ToastProvider";
+import ToastProvider from "./providers/ToastProvider";
 
 export type RootStackParamList = {
   home: undefined;
@@ -58,7 +57,6 @@ export default function App() {
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        <RootSiblingParent>
           <SafeAreaView>
             {/* Workaround for devices with native StatusBar */}
             <View style={{ paddingTop: NativeStatusBar.currentHeight }}>
@@ -66,34 +64,37 @@ export default function App() {
             </View>
           </SafeAreaView>
           <NavigationContainer>
-            <Stack.Navigator
-              screenOptions={{
-                headerShown: false,
-              }}
-            >
-              <Stack.Screen
-                name="home"
-                component={HomeScreen}
-                options={{ gestureEnabled: false }}
-              />
+            <ToastProvider>
+              <Stack.Navigator
+                screenOptions={{
+                  headerShown: false,
+                }}
+              >
+                <Stack.Screen
+                  name="home"
+                  component={HomeScreen}
+                  options={{ gestureEnabled: false }}
+                />
 
-              <Stack.Screen name="addPlant" component={AddPlantScreen} />
-              <Stack.Screen name="editPlant" component={EditPlantScreen} />
-              <Stack.Screen
-                name="plantHistory"
-                component={PlantHistoryScreen}
-              />
-              <Stack.Screen name="importPlant" component={ImportPlantScreen} />
+                <Stack.Screen name="addPlant" component={AddPlantScreen} />
+                <Stack.Screen name="editPlant" component={EditPlantScreen} />
+                <Stack.Screen
+                  name="plantHistory"
+                  component={PlantHistoryScreen}
+                />
+                <Stack.Screen
+                  name="importPlant"
+                  component={ImportPlantScreen}
+                />
 
-              <Stack.Screen name="settings" component={SettingsScreen} />
-              <Stack.Screen
-                name="settingsNotifications"
-                component={SettingsNotificationsScreen}
-              />
-            </Stack.Navigator>
-            <ToastProvider />
+                <Stack.Screen name="settings" component={SettingsScreen} />
+                <Stack.Screen
+                  name="settingsNotifications"
+                  component={SettingsNotificationsScreen}
+                />
+              </Stack.Navigator>
+            </ToastProvider>
           </NavigationContainer>
-        </RootSiblingParent>
       </PersistGate>
     </Provider>
   );

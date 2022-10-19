@@ -30,13 +30,13 @@ import {
 } from "styles/shared";
 import { colors } from "styles/colors";
 import { formatToHourDateAndYear } from "util/date";
-import showToast from "util/showToast";
 import { ApiErrors } from "enums/api-errors";
 import { base64EncodeImage } from "util/images";
 import i18n from "../../i18n";
 import BasicCheckbox from "components/BasicCheckbox/BasicCheckbox";
 import { AnimatePresence, MotiView } from "moti";
 import WateringReminderInput from "components/WateringReminderInput/WateringReminderInput";
+import { useToastStore } from "../../newStore";
 
 type EditPlantProps = NativeStackScreenProps<RootStackParamList, "editPlant">;
 
@@ -59,6 +59,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
   const { userPlants }: { userPlants: Plant[] } = useSelector(
     (state: State) => state.plants
   );
+  const displayToast = useToastStore((state) => state.showToast);
 
   useEffect(() => {
     const plant = userPlants.find((plant) => plant.id === plantId);
@@ -69,10 +70,13 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
   const handleDelete = async () => {
     try {
       await plantsApi.delete(`/plants/${plantId}`);
-      showToast(t("pages.plants.edit.plantDeletedSuccess"), "success");
+      displayToast({
+        text: t("pages.plants.edit.plantDeletedSuccess"),
+        type: "success",
+      });
     } catch (error) {
       console.error(error);
-      showToast(t("errors.general"), "error");
+      return displayToast({ text: t("errors.general"), type: "error" });
     } finally {
       navigation.navigate("home");
     }
@@ -89,27 +93,27 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
           ? parseInt(values.wateringReminderFrequency)
           : values.wateringReminderFrequency;
 
-      await plantsApi.put(
-        `/plants`,
-        {
-          id: plantId,
-          name: values.name,
-          description: values.description,
-          ...(image && { imageSrc: base64EncodedImage }),
-          ...(isRemindersChecked && {
-            wateringReminderFrequency,
-          }),
-        }
-      );
+      await plantsApi.put(`/plants`, {
+        id: plantId,
+        name: values.name,
+        description: values.description,
+        ...(image && { imageSrc: base64EncodedImage }),
+        ...(isRemindersChecked && {
+          wateringReminderFrequency,
+        }),
+      });
       navigation.navigate("home");
-      showToast(t("pages.plants.edit.success"), "success");
+      displayToast({ text: t("pages.plants.edit.success"), type: "success" })
     } catch (error) {
       console.log(error);
       switch (error) {
         case ApiErrors.INVALID_FILE:
-          return showToast(t("errors.invalidFileType"), "error");
+          return displayToast({
+            text: t("errors.invalidFileType"),
+            type: "error",
+          });
         default:
-          return showToast(t("errors.general"), "error");
+          return displayToast({ text: t("errors.general"), type: "error" });
       }
     } finally {
       setLoading(false);

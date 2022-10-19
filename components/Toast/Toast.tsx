@@ -5,12 +5,12 @@ import {
   ToastContainer,
   ToastText,
   ToastWrapper,
-} from "./ToastProvider.styles";
+} from "./Toast.styles";
 import { useToastStore } from "../../newStore";
 
 const TOAST_DURATION = 1500; // ms
 
-const ToastProvider = (): JSX.Element => {
+const Toast = (): JSX.Element => {
   const { isToastShown, text, type, hideToast } = useToastStore(
     (store) => store
   );
@@ -60,4 +60,4 @@ const ToastProvider = (): JSX.Element => {
   );
 };
 
-export default ToastProvider;
+export default Toast;

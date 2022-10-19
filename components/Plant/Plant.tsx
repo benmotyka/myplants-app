@@ -15,12 +15,9 @@ import {
 import { PlantProps } from "components/Plant/Plant.interface";
 import ReminderIcon from "components/ReminderIcon/ReminderIcon";
 import { colors } from "styles/colors";
-import showToast from "util/showToast";
 import plantsApi from "config/api/plants";
 import { calculateDifferenceFromNow } from "util/date";
 import i18n from "../../i18n";
-import { useDispatch } from "react-redux";
-import { notificationAction } from "store/actions";
 import { useToastStore } from "../../newStore/index";
 
 const MAX_SLIDER_VALUE = 1;
@@ -48,7 +45,6 @@ const Plant = ({
 
   const { t } = i18n;
   const isFocused = useIsFocused();
-  const dispatch = useDispatch();
   const wateringRef = useRef();
   const displayToast = useToastStore((state) => state.showToast);
 
@@ -115,48 +111,41 @@ const Plant = ({
 
       wateringRef.current = result.data.id;
 
-      showToast(t("components.plant.success"), "success");
+      displayToast({ text: t("components.plant.success"), type: "success" });
       setTimeFromLastWatering(calculateDifferenceFromNow(new Date()));
       setWatered(true);
     } catch (error) {
       console.log(error);
-      showToast(t("errors.general"), "error");
+      displayToast({ text: t("errors.general"), type: "error" });
     }
   };
 
   const onLongPress = (): void => {
-    displayToast({ text: "heja", type: "success" });
-      showToast("heja", "success");
-
-    // navigation.navigate("editPlant", {
-    //   plantId: id,
-    // });
+    navigation.navigate("editPlant", {
+      plantId: id,
+    });
   };
 
   const onPress = (): void => {
-    // displayToast({ text: "hej", type: "success" });
-      showToast("heja", "success");
-
-    // navigation.navigate("plantHistory", {
-    //   plantId: id,
-    // });
+    navigation.navigate("plantHistory", {
+      plantId: id,
+    });
   };
 
   const cancelWatering = async () => {
     try {
-      displayToast({ text: "hej" });
-      // dispatch(notificationAction.showToast());
       // await plantsApi.delete(`/watering/${wateringRef.current}`);
       setTimeFromLastWatering(
         latestWatering
           ? calculateDifferenceFromNow(latestWatering.createdAt)
           : null
       );
-      // showToast(t("components.plant.wateringCanceled"), "info");
+      displayToast({ text: t("components.plant.wateringCanceled"), type: "info" });
+
       setWatered(false);
     } catch (error) {
       console.log(error);
-      showToast(t("errors.general"), "error");
+      displayToast({ text: t("errors.general"), type: "error" });
     }
   };
 
