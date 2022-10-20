@@ -71,14 +71,20 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
       });
       resetForm();
       navigation.navigate("home");
-      displayToast({text: t("pages.plants.add.success"), type: "success"})
+      displayToast({
+        text: t("pages.plants.add.success"),
+        type: "success",
+      });
     } catch (error) {
       console.log(error);
       switch (error) {
         case ApiErrors.INVALID_FILE:
-          return displayToast({text: t("errors.invalidFileType"), type: "error"})
+          return displayToast({
+            text: t("errors.invalidFileType"),
+            type: "error",
+          });
         default:
-          return displayToast({text: t("errors.general"), type: "error"})
+          return displayToast({ text: t("errors.general"), type: "error" });
       }
     } finally {
       setLoading(false);

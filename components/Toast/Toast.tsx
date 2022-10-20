@@ -1,19 +1,23 @@
 import { AnimatePresence } from "moti";
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 import { colors } from "styles/colors";
 import {
+  ToastCancelText,
   ToastContainer,
   ToastText,
   ToastWrapper,
 } from "./Toast.styles";
 import { useToastStore } from "../../newStore";
+import { TouchableOpacity } from "react-native";
+import i18n from "../../i18n";
 
 const TOAST_DURATION = 1500; // ms
 
 const Toast = (): JSX.Element => {
-  const { isToastShown, text, type, hideToast } = useToastStore(
+  const { isToastShown, text, type, hideToast, onCancel } = useToastStore(
     (store) => store
   );
+  const { t } = i18n;
 
   useEffect(() => {
     if (!isToastShown) return;
@@ -25,7 +29,7 @@ const Toast = (): JSX.Element => {
     return () => clearTimeout(timeout);
   }, [isToastShown]);
 
-  const toastBackgruondColor = useMemo(() => {
+  const toastBackgruondColor = () => {
     switch (type) {
       case "success":
         return colors.success;
@@ -34,14 +38,14 @@ const Toast = (): JSX.Element => {
       case "info":
         return colors.important;
     }
-  }, [type]);
+  };
 
   return (
     <ToastContainer>
       <AnimatePresence>
         {isToastShown ? (
           <ToastWrapper
-            backgroundColor={toastBackgruondColor}
+            backgroundColor={toastBackgruondColor()}
             from={{
               opacity: 0,
             }}
@@ -53,6 +57,11 @@ const Toast = (): JSX.Element => {
             }}
           >
             <ToastText>{text}</ToastText>
+            {onCancel ? (
+              <TouchableOpacity onPress={onCancel}>
+                <ToastCancelText>{t("common.cancel")}</ToastCancelText>
+              </TouchableOpacity>
+            ) : null}
           </ToastWrapper>
         ) : null}
       </AnimatePresence>

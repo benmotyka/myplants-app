@@ -6,7 +6,16 @@ interface ToastState {
   text: string;
   type: ToastTypes;
   isToastShown: boolean;
-  showToast: ({ text, type }: { text: string; type: ToastTypes }) => void;
+  onCancel: (() => void) | null;
+  showToast: ({
+    text,
+    type,
+    onCancel,
+  }: {
+    text: string;
+    type: ToastTypes;
+    onCancel?: () => void;
+  }) => void;
   hideToast: () => void;
 }
 
@@ -14,6 +23,8 @@ export const useToastStore = create<ToastState>((set) => ({
   text: "",
   type: "info",
   isToastShown: false,
-  showToast: ({ text, type }) => set({ text, type, isToastShown: true }),
+  onCancel: null,
+  showToast: ({ text, type, onCancel }) =>
+    set({ text, type, onCancel, isToastShown: true }),
   hideToast: () => set({ text: "", isToastShown: false }),
 }));

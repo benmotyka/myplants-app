@@ -111,7 +111,11 @@ const Plant = ({
 
       wateringRef.current = result.data.id;
 
-      displayToast({ text: t("components.plant.success"), type: "success" });
+      displayToast({
+        text: t("components.plant.success"),
+        type: "success",
+        onCancel: cancelWatering,
+      });
       setTimeFromLastWatering(calculateDifferenceFromNow(new Date()));
       setWatered(true);
     } catch (error) {
@@ -140,9 +144,13 @@ const Plant = ({
           ? calculateDifferenceFromNow(latestWatering.createdAt)
           : null
       );
-      displayToast({ text: t("components.plant.wateringCanceled"), type: "info" });
+      displayToast({
+        text: t("components.plant.wateringCanceled"),
+        type: "info",
+      });
 
       setWatered(false);
+      setSliderValue(0);
     } catch (error) {
       console.log(error);
       displayToast({ text: t("errors.general"), type: "error" });
