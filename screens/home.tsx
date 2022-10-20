@@ -11,9 +11,10 @@ import { numberOfColumns } from "components/Plant/Plant.styles";
 import AddPlantSuggestion from "components/AddPlantSuggestion/AddPlantSuggestion";
 import HomeSettings from "components/HomeSettings/HomeSettings";
 import { Plant } from "interfaces/Plant";
-import { plantsAction, userAction } from "store/actions";
+import { userAction } from "store/actions";
 import { LoaderWrapper, ScreenContainer } from "styles/shared";
 import Loader from "components/Loader/Loader";
+import { usePlantsStore } from "../newStore";
 
 type HomeProps = NativeStackScreenProps<RootStackParamList, "home">;
 
@@ -22,6 +23,8 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
   const [allowScrolling, setAllowScrolling] = useState(true);
   const isFocused = useIsFocused();
   const dispatch = useDispatch();
+
+  const setUserPlants = usePlantsStore((store) => store.setUserPlants);
 
   const getUserPlants = async () => {
     try {
@@ -44,7 +47,7 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
       try {
         const { plants } = await getUserPlants();
         const sortedPlants = sortPlantsByCreatedAt(plants);
-        dispatch(plantsAction.setUserPlants(sortedPlants));
+        setUserPlants(sortedPlants);
         setDataSource(sortedPlants);
       } catch (error) {
         dispatch(userAction.removeUserDetails());

@@ -1,4 +1,5 @@
 import create from "zustand";
+import { Plant } from "interfaces/Plant";
 
 export type ToastTypes = "error" | "success" | "info";
 
@@ -27,4 +28,14 @@ export const useToastStore = create<ToastState>((set) => ({
   showToast: ({ text, type, onCancel }) =>
     set({ text, type, onCancel, isToastShown: true }),
   hideToast: () => set({ text: "", isToastShown: false }),
+}));
+
+interface UserPlantsState {
+  userPlants: Plant[];
+  setUserPlants: (plants: Plant[]) => void;
+}
+
+export const usePlantsStore = create<UserPlantsState>((set) => ({
+  userPlants: [],
+  setUserPlants: (userPlants) => set({ userPlants }),
 }));

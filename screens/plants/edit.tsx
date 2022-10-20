@@ -36,7 +36,7 @@ import i18n from "../../i18n";
 import BasicCheckbox from "components/BasicCheckbox/BasicCheckbox";
 import { AnimatePresence, MotiView } from "moti";
 import WateringReminderInput from "components/WateringReminderInput/WateringReminderInput";
-import { useToastStore } from "../../newStore";
+import { useToastStore, usePlantsStore } from "../../newStore";
 
 type EditPlantProps = NativeStackScreenProps<RootStackParamList, "editPlant">;
 
@@ -56,10 +56,9 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
   const [image, setImage] = useState<ImageInfo>();
   const [selectedPlant, setSelectedPlant] = useState<Plant>();
   const [showModal, setShowModal] = useState(false);
-  const { userPlants }: { userPlants: Plant[] } = useSelector(
-    (state: State) => state.plants
-  );
+
   const displayToast = useToastStore((state) => state.showToast);
+  const userPlants = usePlantsStore((state) => state.userPlants);
 
   useEffect(() => {
     const plant = userPlants.find((plant) => plant.id === plantId);

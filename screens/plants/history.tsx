@@ -1,6 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { useSelector } from "react-redux";
 import { useIsFocused } from "@react-navigation/core";
 import { ImageInfo } from "expo-image-picker";
 import { ScrollView, TouchableOpacity } from "react-native";
@@ -8,7 +7,6 @@ import { Entypo } from "@expo/vector-icons";
 
 import { RootStackParamList } from "../../App";
 import Back from "components/Back/Back";
-import { State } from "store/reducers";
 import {
   ColumnCenterWrapper,
   ScreenContainer,
@@ -50,7 +48,7 @@ import { PlantImagesHistoryData } from "interfaces/PlantImagesHistoryData";
 import BasicImageInput from "components/BasicImageInput/BasicImageInput";
 import BasicButton from "components/BasicButton/BasicButton";
 import { base64EncodeImage } from "util/images";
-import { useToastStore } from "../../newStore";
+import { useToastStore, usePlantsStore } from "../../newStore";
 
 type PlantHistoryProps = NativeStackScreenProps<
   RootStackParamList,
@@ -79,11 +77,9 @@ const PlantHistory = ({
 
   const scrollViewRef = useRef<ScrollView & HTMLElement>();
   const displayToast = useToastStore((state) => state.showToast);
+  const userPlants = usePlantsStore((state) => state.userPlants);
 
   const isFocused = useIsFocused();
-  const { userPlants }: { userPlants: Plant[] } = useSelector(
-    (state: State) => state.plants
-  );
 
   useEffect(() => {
     const plant = userPlants.find((plant) => plant.id === plantId);
