@@ -1,5 +1,5 @@
 import { AnimatePresence } from "moti";
-import React, { useEffect } from "react";
+import React from "react";
 import { colors } from "styles/colors";
 import {
   ToastCancelText,
@@ -11,23 +11,11 @@ import { useToastStore } from "../../newStore";
 import { TouchableOpacity } from "react-native";
 import i18n from "../../i18n";
 
-const TOAST_DURATION = 1500; // ms
-
 const Toast = (): JSX.Element => {
-  const { isToastShown, text, type, hideToast, onCancel } = useToastStore(
+  const { isToastShown, text, type, onCancel } = useToastStore(
     (store) => store
   );
   const { t } = i18n;
-
-  useEffect(() => {
-    if (!isToastShown) return;
-
-    const timeout = setTimeout(() => {
-      hideToast();
-    }, TOAST_DURATION);
-
-    return () => clearTimeout(timeout);
-  }, [isToastShown]);
 
   const toastBackgruondColor = () => {
     switch (type) {

@@ -3,6 +3,7 @@ import { SafeAreaView, View, StatusBar as NativeStatusBar } from "react-native";
 import { PersistGate } from "redux-persist/integration/react";
 import AppLoading from "expo-app-loading";
 import { Provider } from "react-redux";
+import { RootSiblingParent } from "react-native-root-siblings";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import {
@@ -56,7 +57,8 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+      <RootSiblingParent>
+        <PersistGate loading={null} persistor={persistor}>
           <SafeAreaView>
             {/* Workaround for devices with native StatusBar */}
             <View style={{ paddingTop: NativeStatusBar.currentHeight }}>
@@ -95,7 +97,8 @@ export default function App() {
               </Stack.Navigator>
             </ToastProvider>
           </NavigationContainer>
-      </PersistGate>
+        </PersistGate>
+      </RootSiblingParent>
     </Provider>
   );
 }

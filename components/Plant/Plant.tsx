@@ -138,7 +138,7 @@ const Plant = ({
 
   const cancelWatering = async () => {
     try {
-      // await plantsApi.delete(`/watering/${wateringRef.current}`);
+      await plantsApi.delete(`/watering/${wateringRef.current}`);
       setTimeFromLastWatering(
         latestWatering
           ? calculateDifferenceFromNow(latestWatering.createdAt)
