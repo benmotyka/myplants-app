@@ -1,9 +1,9 @@
 import create from "zustand";
 import { Plant } from "interfaces/Plant";
 
-export type ToastTypes = "error" | "success" | "info";
+type ToastTypes = "error" | "success" | "info";
 
-interface ToastState {
+export interface ToastState {
   text: string;
   type: ToastTypes;
   isToastShown: boolean;

@@ -7,14 +7,16 @@ import {
   ToastText,
   ToastWrapper,
 } from "./Toast.styles";
-import { useToastStore } from "../../newStore";
+import { useToastStore, ToastState } from "../../newStore";
 import { TouchableOpacity } from "react-native";
 import i18n from "../../i18n";
 
-const Toast = (): JSX.Element => {
-  const { isToastShown, text, type, onCancel } = useToastStore(
-    (store) => store
-  );
+const Toast = ({
+  text,
+  type,
+  onCancel,
+}: Pick<ToastState, "text" | "type" | "onCancel">): JSX.Element => {
+  const { isToastShown } = useToastStore((store) => store);
   const { t } = i18n;
 
   const toastBackgruondColor = () => {
@@ -23,7 +25,7 @@ const Toast = (): JSX.Element => {
         return colors.success;
       case "error":
         return colors.alert;
-      case "info":
+      default:
         return colors.important;
     }
   };

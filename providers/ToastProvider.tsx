@@ -7,29 +7,35 @@ interface ToastProviderProps {
   children: ReactElement | ReactElement[];
 }
 
-const TOAST_DURATION = 1500; // ms
+const TOAST_DURATION = 2500; // ms
 
 const ToastProvider = ({ children }: ToastProviderProps): JSX.Element => {
-  const { hideToast, text, type, onCancel } =
-    useToastStore((store) => store);
+  const { hideToast, text, type, onCancel, isToastShown } = useToastStore(
+    (store) => store
+  );
 
   useEffect(() => {
-    const toast = new RootSiblings(<Toast />);
+    if (!isToastShown) return;
+
+    const toast = new RootSiblings(<Toast text={text} type={type} onCancel={onCancel} />);
 
     const timeout = setTimeout(() => {
       hideToast();
-      toast.destroy();
+      setTimeout(() => {
+        toast.destroy();
+        clearTimeout(timeout);
+      }, 1000);
     }, TOAST_DURATION);
-    
-    return () => clearTimeout(timeout);
+
+    return () => {
+      clearTimeout(timeout);
+      setTimeout(() => {
+        toast.destroy();
+      }, 1000);
+    };
   }, [text, type, onCancel]);
 
-  return (
-    <>
-      <Toast />
-      {children}
-    </>
-  );
+  return <>{children}</>;
 };
 
 export default ToastProvider;
