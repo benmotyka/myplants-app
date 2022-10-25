@@ -1,5 +1,7 @@
-import { AnimatePresence } from "moti";
 import React from "react";
+import { TouchableOpacity } from "react-native";
+import { AnimatePresence } from "moti";
+
 import { colors } from "styles/colors";
 import {
   ToastCancelText,
@@ -7,8 +9,7 @@ import {
   ToastText,
   ToastWrapper,
 } from "./Toast.styles";
-import { useToastStore, ToastState } from "../../newStore";
-import { TouchableOpacity } from "react-native";
+import { useToastStore, ToastState } from "store";
 import i18n from "../../i18n";
 
 const Toast = ({

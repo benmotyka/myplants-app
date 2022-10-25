@@ -33,6 +33,7 @@
         "remindWateringLabel": "Remind me of watering"
       },
       "import": {
+        "description": "Every plant added to the app by any user has its own unique code. You can ask your friend for their plant code and then import it to your collection here. This way, you will be able to water it with together with them.",
         "inputLabel": "Plant code",
         "inputPlaceholder": "Enter plant code...",
         "success": "Plant imported"

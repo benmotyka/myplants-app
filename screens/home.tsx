@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, BackHandler } from "react-native";
-import { useDispatch } from "react-redux";
 import { useIsFocused } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
@@ -11,10 +10,9 @@ import { numberOfColumns } from "components/Plant/Plant.styles";
 import AddPlantSuggestion from "components/AddPlantSuggestion/AddPlantSuggestion";
 import HomeSettings from "components/HomeSettings/HomeSettings";
 import { Plant } from "interfaces/Plant";
-import { userAction } from "store/actions";
 import { LoaderWrapper, ScreenContainer } from "styles/shared";
 import Loader from "components/Loader/Loader";
-import { usePlantsStore } from "../newStore";
+import { usePlantsStore } from "store";
 
 type HomeProps = NativeStackScreenProps<RootStackParamList, "home">;
 
@@ -22,7 +20,6 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
   const [dataSource, setDataSource] = useState<Plant[]>();
   const [allowScrolling, setAllowScrolling] = useState(true);
   const isFocused = useIsFocused();
-  const dispatch = useDispatch();
 
   const setUserPlants = usePlantsStore((store) => store.setUserPlants);
 
@@ -50,7 +47,6 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
         setUserPlants(sortedPlants);
         setDataSource(sortedPlants);
       } catch (error) {
-        dispatch(userAction.removeUserDetails());
         console.error(error);
       }
     })();

@@ -18,7 +18,7 @@ import { colors } from "styles/colors";
 import plantsApi from "config/api/plants";
 import { calculateDifferenceFromNow } from "util/date";
 import i18n from "../../i18n";
-import { useToastStore } from "../../newStore/index";
+import { useToastStore } from "store";
 
 const MAX_SLIDER_VALUE = 1;
 const SLIDE_SUCCESS_VALUE_THRESHOLD = 0.9;

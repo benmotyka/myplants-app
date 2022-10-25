@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Formik } from "formik";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { MaterialIcons } from "@expo/vector-icons";
-import { useSelector } from "react-redux";
 import { ImageInfo } from "expo-image-picker";
 import { View } from "react-native";
 
@@ -20,7 +19,6 @@ import {
 } from "components/BasicModal/BasicModal.styles";
 import { Plant } from "interfaces/Plant";
 import { createEditPlantSchema } from "schemas/EditPlant.schema";
-import { State } from "store/reducers";
 import {
   ColumnCenterWrapper,
   InputsWrapper,
@@ -36,7 +34,7 @@ import i18n from "../../i18n";
 import BasicCheckbox from "components/BasicCheckbox/BasicCheckbox";
 import { AnimatePresence, MotiView } from "moti";
 import WateringReminderInput from "components/WateringReminderInput/WateringReminderInput";
-import { useToastStore, usePlantsStore } from "../../newStore";
+import { useToastStore, usePlantsStore } from "store";
 
 type EditPlantProps = NativeStackScreenProps<RootStackParamList, "editPlant">;
 

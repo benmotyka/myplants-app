@@ -1,8 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView, View, StatusBar as NativeStatusBar } from "react-native";
-import { PersistGate } from "redux-persist/integration/react";
 import AppLoading from "expo-app-loading";
-import { Provider } from "react-redux";
 import { RootSiblingParent } from "react-native-root-siblings";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
@@ -22,7 +20,6 @@ import PlantHistoryScreen from "screens/plants/history";
 import SettingsScreen from "screens/settings";
 import ImportPlantScreen from "screens/plants/import";
 import SettingsNotificationsScreen from "screens/settings/notifications";
-import { store, persistor } from "store";
 import "./i18n";
 import ToastProvider from "./providers/ToastProvider";
 
@@ -56,49 +53,39 @@ export default function App() {
   }
 
   return (
-    <Provider store={store}>
-      <RootSiblingParent>
-        <PersistGate loading={null} persistor={persistor}>
-          <SafeAreaView>
-            {/* Workaround for devices with native StatusBar */}
-            <View style={{ paddingTop: NativeStatusBar.currentHeight }}>
-              <StatusBar />
-            </View>
-          </SafeAreaView>
-          <NavigationContainer>
-            <ToastProvider>
-              <Stack.Navigator
-                screenOptions={{
-                  headerShown: false,
-                }}
-              >
-                <Stack.Screen
-                  name="home"
-                  component={HomeScreen}
-                  options={{ gestureEnabled: false }}
-                />
+    <RootSiblingParent>
+      <SafeAreaView>
+        {/* Workaround for devices with native StatusBar */}
+        <View style={{ paddingTop: NativeStatusBar.currentHeight }}>
+          <StatusBar />
+        </View>
+      </SafeAreaView>
+      <NavigationContainer>
+        <ToastProvider>
+          <Stack.Navigator
+            screenOptions={{
+              headerShown: false,
+            }}
+          >
+            <Stack.Screen
+              name="home"
+              component={HomeScreen}
+              options={{ gestureEnabled: false }}
+            />
 
-                <Stack.Screen name="addPlant" component={AddPlantScreen} />
-                <Stack.Screen name="editPlant" component={EditPlantScreen} />
-                <Stack.Screen
-                  name="plantHistory"
-                  component={PlantHistoryScreen}
-                />
-                <Stack.Screen
-                  name="importPlant"
-                  component={ImportPlantScreen}
-                />
+            <Stack.Screen name="addPlant" component={AddPlantScreen} />
+            <Stack.Screen name="editPlant" component={EditPlantScreen} />
+            <Stack.Screen name="plantHistory" component={PlantHistoryScreen} />
+            <Stack.Screen name="importPlant" component={ImportPlantScreen} />
 
-                <Stack.Screen name="settings" component={SettingsScreen} />
-                <Stack.Screen
-                  name="settingsNotifications"
-                  component={SettingsNotificationsScreen}
-                />
-              </Stack.Navigator>
-            </ToastProvider>
-          </NavigationContainer>
-        </PersistGate>
-      </RootSiblingParent>
-    </Provider>
+            <Stack.Screen name="settings" component={SettingsScreen} />
+            <Stack.Screen
+              name="settingsNotifications"
+              component={SettingsNotificationsScreen}
+            />
+          </Stack.Navigator>
+        </ToastProvider>
+      </NavigationContainer>
+    </RootSiblingParent>
   );
 }

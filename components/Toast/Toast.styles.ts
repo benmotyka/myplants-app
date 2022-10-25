@@ -24,6 +24,7 @@ export const ToastContainer = styled.View`
 export const ToastCancelText = styled(ToastText)`
   margin-left: 20px;
   opacity: 0.6;
+  font-size: 16px;
 `
 
 export const ToastWrapper = styled(MotiView)<{

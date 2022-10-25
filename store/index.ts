@@ -1,4 +1,7 @@
 import create from "zustand";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { persist } from "zustand/middleware";
+
 import { Plant } from "interfaces/Plant";
 
 type ToastTypes = "error" | "success" | "info";
@@ -39,3 +42,18 @@ export const usePlantsStore = create<UserPlantsState>((set) => ({
   userPlants: [],
   setUserPlants: (userPlants) => set({ userPlants }),
 }));
+
+type AppTheme = "light" | "dark";
+
+export const useAppConfigStore = create(
+  persist(
+    (set, get) => ({
+      theme: "light",
+      setTheme: (theme: AppTheme) => set({ theme }),
+    }),
+    {
+      name: "config-storage",
+      getStorage: () => AsyncStorage,
+    }
+  )
+);

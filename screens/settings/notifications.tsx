@@ -11,11 +11,7 @@ import {
 import i18n from "../../i18n";
 import BasicSwitch from "components/BasicSwitch/BasicSwitch";
 import plantsApi from "config/api/plants";
-import { useSelector, useDispatch } from "react-redux";
-import { State } from "store/reducers";
-import { userAction } from "store/actions";
-import { UserSettings } from "interfaces/UserSettings";
-import { useToastStore } from "../../newStore";
+import { useToastStore } from "store";
 
 type SettingsNotificationsProps = NativeStackScreenProps<
   RootStackParamList,
@@ -27,31 +23,17 @@ const { t } = i18n;
 const SettingsNotifications = ({
   navigation,
 }: SettingsNotificationsProps): JSX.Element => {
-  const {
-    userSettings,
-  }: { userSettings?: UserSettings } = useSelector(
-    (state: State) => state.user
-  );
   const [isAllowNotificationsEnabled, setAllowNotificationsEnabled] =
-  useState(userSettings?.pushNotificationsEnabled);
-  const dispatch = useDispatch();
+    useState(false);
   const displayToast = useToastStore((state) => state.showToast);
 
   const handleSwitch = async ({ isEnabled }: { isEnabled: boolean }) => {
     if (isEnabled === isAllowNotificationsEnabled) return;
 
     try {
-      await plantsApi.put(
-        "/user/settings",
-        {
-          pushNotificationsEnabled: isEnabled,
-        }
-      );
-      dispatch(
-        userAction.setUserSettings({
-          pushNotificationsEnabled: isEnabled,
-        })
-      );
+      await plantsApi.put("/user/settings", {
+        pushNotificationsEnabled: isEnabled,
+      });
     } catch (error) {
       console.log(error);
       return displayToast({ text: t("errors.general"), type: "error" });

@@ -33,6 +33,7 @@
         "remindWateringLabel": "Przypominaj o podlewaniu"
       },
       "import": {
+        "description": "Każda roślina dodana do aplikacji przez dowolnego użytkownika ma własny, unikalny kod. Możesz poprosić znajomego o kod do jego rośliny, a następnie zaimportować ją tutaj do Twojej kolekcji. Tym sposobem, będziesz mógł podlewać ją razem z nim.",
         "inputLabel": "Kod rośliny",
         "inputPlaceholder": "Wpisz kod rośliny...",
         "success": "Roślina zaimportowana"

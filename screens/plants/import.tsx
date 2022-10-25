@@ -10,14 +10,15 @@ import BasicButton from "components/BasicButton/BasicButton";
 import Loader from "components/Loader/Loader";
 import {
   ColumnCenterWrapper,
+  Description,
   InputsWrapper,
   KeyboardScreen,
 } from "styles/shared";
-import i18n from "../../i18n";
 import { ApiErrors } from "enums/api-errors";
 import plantsApi from "config/api/plants";
 import { ImportPlantSchema } from "schemas/ImportPlant.schema";
-import { useToastStore } from "../../newStore";
+import { useToastStore } from "store";
+import i18n from "../../i18n";
 
 type ImportPlantProps = NativeStackScreenProps<
   RootStackParamList,
@@ -55,9 +56,15 @@ const ImportPlant = ({ navigation }: ImportPlantProps): JSX.Element => {
       console.log(error);
       switch (error) {
         case ApiErrors.PLANT_ALREADY_ADDED:
-          return displayToast({ text: t("errors.plantAlreadyAdded"), type: "info" });
+          return displayToast({
+            text: t("errors.plantAlreadyAdded"),
+            type: "info",
+          });
         case ApiErrors.INVALID_PLANT:
-          return displayToast({ text: t("errors.plantNotExists"), type: "error" });
+          return displayToast({
+            text: t("errors.plantNotExists"),
+            type: "error",
+          });
         default:
           return displayToast({ text: t("errors.general"), type: "error" });
       }
@@ -75,7 +82,6 @@ const ImportPlant = ({ navigation }: ImportPlantProps): JSX.Element => {
     >
       <ColumnCenterWrapper>
         <Back navigation={navigation} />
-
         {!loading ? (
           <Formik
             initialValues={{
@@ -87,22 +93,30 @@ const ImportPlant = ({ navigation }: ImportPlantProps): JSX.Element => {
             validateOnBlur={false}
           >
             {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-              <InputsWrapper>
-                <BasicTextInput
-                  value={values.plantShareId}
-                  label={t("pages.plants.import.inputLabel")}
-                  placeholder={t("pages.plants.import.inputPlaceholder")}
-                  onChangeText={handleChange("plantShareId")}
-                  onBlur={handleBlur("plantShareId")}
-                  error={errors.plantShareId}
-                />
-                <View style={{ marginVertical: 30 }}>
-                  <BasicButton
-                    onPress={handleSubmit as (values: unknown) => void}
-                    text={t("common.confirm")}
+              <>
+              <View style={{paddingHorizontal: 40, paddingVertical: 10}}>
+
+                <Description>
+                  {t("pages.plants.import.description")}
+                </Description>
+              </View>
+                <InputsWrapper>
+                  <BasicTextInput
+                    value={values.plantShareId}
+                    label={t("pages.plants.import.inputLabel")}
+                    placeholder={t("pages.plants.import.inputPlaceholder")}
+                    onChangeText={handleChange("plantShareId")}
+                    onBlur={handleBlur("plantShareId")}
+                    error={errors.plantShareId}
                   />
-                </View>
-              </InputsWrapper>
+                  <View style={{ marginVertical: 30 }}>
+                    <BasicButton
+                      onPress={handleSubmit as (values: unknown) => void}
+                      text={t("common.confirm")}
+                    />
+                  </View>
+                </InputsWrapper>
+              </>
             )}
           </Formik>
         ) : (
