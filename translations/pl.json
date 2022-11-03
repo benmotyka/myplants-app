@@ -61,6 +61,12 @@
         "manageDescription": "Powiadomienia są {{state}}",
         "notificationsEnabled": "włączone",
         "notificationsDisabled": "wyłączone"
+      },
+      "appHeader": "Aplikacja",
+      "app": {
+        "manageTheme": "Zmień motyw",
+        "darkTheme": "Ciemny",
+        "lightTheme": "Jasny"
       }
     }
   },

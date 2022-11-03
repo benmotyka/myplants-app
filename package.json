@@ -8,7 +8,9 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "production:build": "eas build",
+    "production:publish": "eas submit"
   },
   "dependencies": {
     "@expo-google-fonts/akaya-kanadaka": "^0.2.2",

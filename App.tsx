@@ -20,6 +20,7 @@ import PlantHistoryScreen from "screens/plants/history";
 import SettingsScreen from "screens/settings";
 import ImportPlantScreen from "screens/plants/import";
 import SettingsNotificationsScreen from "screens/settings/notifications";
+import SettingsAppScreen from "screens/settings/app";
 import "./i18n";
 import ToastProvider from "./providers/ToastProvider";
 
@@ -31,6 +32,7 @@ export type RootStackParamList = {
   importPlant: undefined;
   settings: undefined;
   settingsNotifications: undefined;
+  settingsApp: undefined;
 };
 
 Sentry.init({
@@ -83,6 +85,7 @@ export default function App() {
               name="settingsNotifications"
               component={SettingsNotificationsScreen}
             />
+            <Stack.Screen name="settingsApp" component={SettingsAppScreen} />
           </Stack.Navigator>
         </ToastProvider>
       </NavigationContainer>

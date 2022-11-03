@@ -43,7 +43,7 @@ export const usePlantsStore = create<UserPlantsState>((set) => ({
   setUserPlants: (userPlants) => set({ userPlants }),
 }));
 
-type AppTheme = "light" | "dark";
+export type AppTheme = "light" | "dark";
 
 export const useAppConfigStore = create(
   persist(

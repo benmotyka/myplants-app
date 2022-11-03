@@ -37,4 +37,5 @@ export const ToastWrapper = styled(MotiView)<{
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
 `;

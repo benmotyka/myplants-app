@@ -61,6 +61,12 @@
         "manageDescription": "Notifications are {{state}}",
         "notificationsEnabled": "enabled",
         "notificationsDisabled": "disabled"
+      },
+      "appHeader": "App",
+      "app": {
+        "manageTheme": "Change theme",
+        "darkTheme": "Dark",
+        "lightTheme": "Light"
       }
     }
   },
