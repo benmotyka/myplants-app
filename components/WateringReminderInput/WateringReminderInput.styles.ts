@@ -21,6 +21,7 @@ export const Wrapper = styled.View`
 export const Text = styled.Text`
   font-family: "Inter_200ExtraLight";
   font-size: 18px;
+  color: ${colors.text};
 `;
 
 export const Input = styled.TextInput<{ errorBorder: boolean }>`
@@ -34,9 +35,10 @@ export const Input = styled.TextInput<{ errorBorder: boolean }>`
       ? `1px solid ${colors.warning}`
       : `1px solid ${colors.neutral}`};
   text-align: center;
+  color: ${colors.text};
 `;
 
 export const ErrorContainer = styled.View`
-height: 20px;
-text-align: center;
-`
+  height: 20px;
+  text-align: center;
+`;

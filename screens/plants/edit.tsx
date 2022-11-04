@@ -138,6 +138,9 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
         resetScrollToCoords={{ x: 0, y: 0 }}
         scrollEnabled={true}
         bounces={false}
+        style={{
+          backgroundColor: colors.background
+        }}
       >
         <ColumnCenterWrapper>
           <Back navigation={navigation} />

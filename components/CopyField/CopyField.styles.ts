@@ -17,6 +17,7 @@ export const FieldValue = styled.Text`
   font-family: "Inter_300Light";
   opacity: 0.8;
   width: 75%;
+  color: ${colors.text};
 `;
 
 export const ButtonWrapper = styled.TouchableOpacity`
@@ -42,4 +43,5 @@ export const Info = styled.Text`
   opacity: 0.6;
   text-align: center;
   padding-top: 5px;
+  color: ${colors.text};
 `;

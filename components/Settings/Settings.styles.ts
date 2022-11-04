@@ -12,6 +12,7 @@ font-size: 24px;
 font-family: 'Inter_300Light';
 margin-bottom: 5px;
 padding: 0 5px;
+color: ${colors.text};
 `
 
 export const ItemWrapper = styled.View`
@@ -22,6 +23,7 @@ export const ItemText = styled.Text`
 font-size: 20px;
 padding: 10px 5px;
 font-family: 'Inter_200ExtraLight';
+color: ${colors.text};
 `
 
 export const SettingsSection = styled.View`

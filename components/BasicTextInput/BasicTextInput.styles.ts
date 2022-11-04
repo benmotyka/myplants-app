@@ -21,12 +21,14 @@ export const Input = styled.TextInput<{ errorBorder: boolean }>`
     props.errorBorder
       ? `1px solid ${colors.warning}`
       : `1px solid ${colors.neutral}`};
+  color: ${colors.text};
 `;
 
 export const InputLabel = styled.Text`
   font-size: 20px;
   font-family: "Inter_300Light";
   margin-bottom: 5px;
+  color: ${colors.text};
 `;
 
 export const ErrorContainer = styled.View`

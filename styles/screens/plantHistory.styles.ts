@@ -3,15 +3,17 @@ import { colors } from "styles/colors";
 import { Description, ScrollableHeader, SmallHeader } from "styles/shared";
 
 export const ItemDateHeader = styled.Text`
-background-color: ${colors.background};
+background-color: ${colors.neutralLight};
 padding: 10px 25px;
 font-size: 18px;
 font-family: "Inter_300Light";
+color: ${colors.text};
 `
 
 export const ActionText = styled.Text`
 font-size: 14px;
 font-family: "Inter_300Light";
+color: ${colors.text};
 `
 
 export const ItemWrapper = styled.View`

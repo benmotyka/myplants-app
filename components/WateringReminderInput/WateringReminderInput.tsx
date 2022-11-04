@@ -1,9 +1,9 @@
+import { AnimatePresence } from "moti";
+import React from "react";
 import {
   ErrorWrapper,
   ErrorText,
 } from "components/BasicTextInput/BasicTextInput.styles";
-import { AnimatePresence } from "moti";
-import React from "react";
 
 import {
   Container,

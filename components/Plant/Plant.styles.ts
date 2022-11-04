@@ -46,6 +46,7 @@ export const Body = styled.View`
 export const Header = styled.Text`
   font-size: 15px;
   font-family: 'Inter_200ExtraLight';
+  color: ${colors.text};
 `;
 
 export const ItemsWrapper = styled.View`

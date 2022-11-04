@@ -25,12 +25,14 @@ export const ModalWrapper = styled.View`
   background-color: ${colors.background};
   padding: 15px;
   position: absolute;
+  border: 1px solid ${colors.neutral};
 `;
 
 export const ModalHeader = styled.Text`
   font-size: 20px;
   text-align: center;
   font-family: "Inter_300Light";
+  color: ${colors.text};
 `;
 
 export const ModalItem = styled.View`
@@ -42,9 +44,10 @@ export const ModalDescription = styled.Text`
   font-family: "Inter_300Light";
   opacity: 0.6;
   margin-top: 10px;
+  color: ${colors.text};
 `;
 
 export const ModalImage = styled.Image`
-width: 100%;
-height: 300px;
-`
+  width: 100%;
+  height: 300px;
+`;

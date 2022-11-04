@@ -25,6 +25,7 @@ import i18n from "../../i18n";
 import BasicCheckbox from "components/BasicCheckbox/BasicCheckbox";
 import WateringReminderInput from "components/WateringReminderInput/WateringReminderInput";
 import { useToastStore } from "store";
+import { colors } from "styles/colors";
 
 type AddPlantProps = NativeStackScreenProps<RootStackParamList, "addPlant">;
 
@@ -96,6 +97,9 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
       resetScrollToCoords={{ x: 0, y: 0 }}
       scrollEnabled={true}
       bounces={false}
+      style={{
+        backgroundColor: colors.background
+      }}
     >
       <ColumnCenterWrapper>
         <Back navigation={navigation} />

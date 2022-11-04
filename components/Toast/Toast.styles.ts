@@ -4,10 +4,10 @@ import { MotiView } from "moti";
 import { colors } from "styles/colors";
 
 export const ToastText = styled.Text`
-  font-size: 20px;
+  font-size: 22px;
   text-align: center;
-  color: ${colors.backgroundLight};
-  opacity: 0.8;
+  color: ${colors.white}; // should be always white
+  opacity: 0.9;
 `;
 
 export const ToastContainer = styled.View`
@@ -23,7 +23,7 @@ export const ToastContainer = styled.View`
 export const ToastCancelText = styled(ToastText)`
   margin-left: 20px;
   opacity: 0.6;
-  font-size: 16px;
+  font-size: 18px;
 `;
 
 export const ToastWrapper = styled(MotiView)<{

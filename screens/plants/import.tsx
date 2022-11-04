@@ -19,6 +19,7 @@ import plantsApi from "config/api/plants";
 import { ImportPlantSchema } from "schemas/ImportPlant.schema";
 import { useToastStore } from "store";
 import i18n from "../../i18n";
+import { colors } from "styles/colors";
 
 type ImportPlantProps = NativeStackScreenProps<
   RootStackParamList,
@@ -79,6 +80,9 @@ const ImportPlant = ({ navigation }: ImportPlantProps): JSX.Element => {
       resetScrollToCoords={{ x: 0, y: 0 }}
       scrollEnabled={true}
       bounces={false}
+      style={{
+        backgroundColor: colors.background
+      }}
     >
       <ColumnCenterWrapper>
         <Back navigation={navigation} />

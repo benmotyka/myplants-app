@@ -17,6 +17,7 @@ export const ScreenContainer = styled.View`
   height: 100%;
   width: 100%;
   position: relative;
+  background-color: ${colors.background};
 `;
 
 export const KeyboardScreen = KeyboardAwareScrollView;
@@ -41,6 +42,7 @@ export const IconContainer = styled.TouchableOpacity`
   width: 50px;
   height: 50px;
   background-color: ${colors.background};
+  border: 1px solid ${colors.neutral};
   border-radius: 25px;
   display: flex;
   align-items: center;
@@ -79,6 +81,7 @@ export const Description = styled.Text`
   font-family: "Inter_300Light";
   opacity: 0.6;
   line-height: 18px;
+  color: ${colors.text};
 `;
 
 export const ModalAnimationWrapper = styled(MotiView)`
