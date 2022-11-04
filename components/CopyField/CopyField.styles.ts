@@ -8,7 +8,7 @@ export const FieldContainer = styled.View`
   flex-direction: row;
   max-width: 400px;
   border-radius: 5px;
-  border: 1px solid ${colors.mediumGrey};
+  border: 1px solid ${colors.neutralLight};
 `;
 
 export const FieldValue = styled.Text`
@@ -27,7 +27,7 @@ export const ButtonWrapper = styled.TouchableOpacity`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: ${colors.mediumGrey};
+  background-color: ${colors.neutralLight};
   bordertoprightradius: 5px;
   borderbottomrightradius: 5px;
 `;

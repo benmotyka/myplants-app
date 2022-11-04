@@ -1,12 +1,17 @@
 export const colors = {
-  white: "#fff",
-  black: "#000",
-  lightBlack: "#413F42",
-  grey: "#D0C9C0",
-  mediumGrey: "#e3e3e3",
-  lightGrey: "#EEEEEE",
-  thumbStyle: "#C4DDFF",
-  alert: "#F94C66",
-  important: "#3AB0FF",
-  success: "#76BA99",
+  primary: "#3AB0FF",
+  primaryLight: "#C4DDFF",
+
+  text: "#000",
+  textLight: "#413F42",
+
+  background: "#EEEEEE",
+  backgroundLight: "#fff",
+
+  neutral: "#D0C9C0",
+  neutralLight: "#e3e3e3",
+
+  warning: "#F94C66",
+  success: "#76BA99", 
+  
 };

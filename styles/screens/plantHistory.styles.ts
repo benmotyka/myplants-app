@@ -3,7 +3,7 @@ import { colors } from "styles/colors";
 import { Description, ScrollableHeader, SmallHeader } from "styles/shared";
 
 export const ItemDateHeader = styled.Text`
-background-color: ${colors.lightGrey};
+background-color: ${colors.background};
 padding: 10px 25px;
 font-size: 18px;
 font-family: "Inter_300Light";

@@ -25,9 +25,9 @@ const Toast = ({
       case "success":
         return colors.success;
       case "error":
-        return colors.alert;
+        return colors.warning;
       default:
-        return colors.important;
+        return colors.primary;
     }
   };
 

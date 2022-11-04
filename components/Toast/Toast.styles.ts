@@ -6,7 +6,7 @@ import { colors } from "styles/colors";
 export const ToastText = styled.Text`
   font-size: 20px;
   text-align: center;
-  color: ${colors.white};
+  color: ${colors.backgroundLight};
   opacity: 0.8;
 `;
 
@@ -20,19 +20,18 @@ export const ToastContainer = styled.View`
   z-index: 10;
 `;
 
-
 export const ToastCancelText = styled(ToastText)`
   margin-left: 20px;
   opacity: 0.6;
   font-size: 16px;
-`
+`;
 
 export const ToastWrapper = styled(MotiView)<{
   backgroundColor: string;
 }>`
   background-color: ${(props) => props.backgroundColor};
   border-radius: 5px;
-  color: ${colors.white};
+  color: ${colors.backgroundLight};
   padding: 10px 20px;
   display: flex;
   flex-direction: row;

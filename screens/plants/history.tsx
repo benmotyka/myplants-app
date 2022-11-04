@@ -184,7 +184,7 @@ const PlantHistory = ({
             setShowShareModal(true);
           }}
         >
-          <Entypo name="share" size={ICON_SIZE_PX} color={colors.lightBlack} />
+          <Entypo name="share" size={ICON_SIZE_PX} color={colors.textLight} />
         </IconContainer>
         <ColumnCenterWrapper fullHeight>
           <ScrollableHeader

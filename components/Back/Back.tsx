@@ -12,7 +12,7 @@ const Back = ({ navigation }: BackProps): JSX.Element => {
         <MaterialIcons
           name="keyboard-arrow-left"
           size={ICON_SIZE_PX}
-          color={colors.lightBlack}
+          color={colors.textLight}
         />
       </IconWrapper>
   );

@@ -147,7 +147,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
               setShowModal(true);
             }}
           >
-            <MaterialIcons name="delete" size={24} color={colors.alert} />
+            <MaterialIcons name="delete" size={24} color={colors.warning} />
           </IconContainer>
           {selectedPlant && !loading ? (
             <Formik

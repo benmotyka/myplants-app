@@ -7,7 +7,7 @@ interface ToastProviderProps {
   children: ReactElement | ReactElement[];
 }
 
-const TOAST_DURATION = 2500; // ms
+const TOAST_DURATION = 3500; // ms
 
 const ToastProvider = ({ children }: ToastProviderProps): JSX.Element => {
   const { hideToast, text, type, onCancel, isToastShown } = useToastStore(

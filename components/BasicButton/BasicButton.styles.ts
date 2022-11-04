@@ -9,13 +9,13 @@ export const ButtonWrapper = styled.TouchableOpacity<{
   paddingVertical: 10px;
   paddingHorizontal: 10px;
   border-radius: 10px;
-  background-color: ${colors.lightGrey};
+  background-color: ${colors.background};
   border: ${(props) =>
     props.warning
-      ? `1px solid ${colors.alert}`
+      ? `1px solid ${colors.warning}`
       : props.important
-      ? `1px solid ${colors.important}`
-      : `1px solid ${colors.grey}`};
+      ? `1px solid ${colors.primary}`
+      : `1px solid ${colors.neutral}`};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,9 +31,9 @@ export const ButtonText = styled.Text<{
   font-size: 18px;
   color: ${(props) =>
     props.warning
-      ? colors.alert
+      ? colors.warning
       : props.important
-      ? colors.important
-      : colors.black};
+      ? colors.primary
+      : colors.text};
   opacity: ${(props) => props.disabled ? 0.2 : 1};
 `;

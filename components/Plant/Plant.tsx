@@ -203,7 +203,7 @@ const Plant = ({
                 value={sliderValue}
                 onSlidingComplete={onSlidingComplete}
                 thumbStyle={{
-                  backgroundColor: colors.thumbStyle,
+                  backgroundColor: colors.primaryLight,
                   borderRadius: 3,
                   width: 35,
                   height: 25,

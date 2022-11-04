@@ -15,7 +15,7 @@ export const Container = styled.View`
 `;
 
 export const Wrapper = styled.View`
-  border: 1px solid ${colors.grey};
+  border: 1px solid ${colors.neutral};
   height: 100%;
   position: relative;
   box-shadow: 3px 3px 15px rgba(0,0,0,0.2);

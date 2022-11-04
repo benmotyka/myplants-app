@@ -40,7 +40,7 @@ export const IconContainer = styled.TouchableOpacity`
   position: absolute;
   width: 50px;
   height: 50px;
-  background-color: ${colors.lightGrey};
+  background-color: ${colors.background};
   border-radius: 25px;
   display: flex;
   align-items: center;
@@ -54,14 +54,14 @@ export const Header = styled.Text`
   text-align: left;
   font-family: "Inter_300Light";
   margin-bottom: 20px;
-  color: ${colors.black};
+  color: ${colors.text};
 `;
 
 export const SmallHeader = styled.Text`
   font-size: 22px;
   text-align: left;
   font-family: "Inter_300Light";
-  color: ${colors.black};
+  color: ${colors.text};
 `;
 
 export const SmallHeaderWrapper = styled.View`

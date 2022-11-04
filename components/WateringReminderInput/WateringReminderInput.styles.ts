@@ -31,8 +31,8 @@ export const Input = styled.TextInput<{ errorBorder: boolean }>`
   font-family: "Inter_200ExtraLight";
   border: ${(props) =>
     props.errorBorder
-      ? `1px solid ${colors.alert}`
-      : `1px solid ${colors.grey}`};
+      ? `1px solid ${colors.warning}`
+      : `1px solid ${colors.neutral}`};
   text-align: center;
 `;
 

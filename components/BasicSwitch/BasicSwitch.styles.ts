@@ -19,8 +19,8 @@ export const Wrapper = styled.View`
   justify-content: space-between;
 
   border-radius: 10px;
-  border: 1px solid ${colors.grey};
-  background-color: ${colors.grey};
+  border: 1px solid ${colors.neutral};
+  background-color: ${colors.neutral};
 `;
 
 export const PartWrapper = styled.View<{ active?: boolean }>`
@@ -28,7 +28,7 @@ export const PartWrapper = styled.View<{ active?: boolean }>`
   padding: 15px;
 
   opacity: ${(props) => (props.active ? 1 : 0.1)};
-  background-color: ${(props) => (props.active ? colors.white : colors.grey)};
+  background-color: ${(props) => (props.active ? colors.backgroundLight : colors.neutral)};
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
 `;
@@ -37,5 +37,5 @@ export const ItemText = styled.Text`
   font-size: 15px;
   font-family: "Inter_300Light";
   text-align: center;
-  color: ${colors.black};
+  color: ${colors.text};
 `;

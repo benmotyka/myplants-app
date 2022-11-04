@@ -24,7 +24,7 @@ interface SettingsItem {
 const settingsItems: SettingsItem[] = [
   {
     name: "addPlant",
-    icon: <Entypo name="plus" size={ICON_SIZE_PX} color={colors.lightBlack} />,
+    icon: <Entypo name="plus" size={ICON_SIZE_PX} color={colors.textLight} />,
     href: "addPlant",
   },
 
@@ -34,7 +34,7 @@ const settingsItems: SettingsItem[] = [
       <Feather
         name="download-cloud"
         size={ICON_SIZE_PX}
-        color={colors.lightBlack}
+        color={colors.textLight}
       />
     ),
     href: "importPlant",
@@ -45,7 +45,7 @@ const settingsItems: SettingsItem[] = [
       <MaterialIcons
         name="settings"
         size={ICON_SIZE_PX}
-        color={colors.lightBlack}
+        color={colors.textLight}
       />
     ),
     href: "settings",
@@ -62,7 +62,7 @@ const HomeSettings = ({ navigation }: HomeSettingsProps): JSX.Element => {
           style={{ transform: [{ rotate: showMenu ? "180deg" : "0deg" }] }}
           name="keyboard-arrow-up"
           size={ICON_SIZE_PX}
-          color={colors.lightBlack}
+          color={colors.textLight}
         />
       </IconWrapper>
       <AnimatePresence>

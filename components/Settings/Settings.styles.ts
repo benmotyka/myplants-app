@@ -4,7 +4,7 @@ import { colors } from "styles/colors";
 
 export const HeaderWrapper = styled.View`
 borderBottomWidth: 1px;
-borderBottomColor: ${colors.grey};
+borderBottomColor: ${colors.neutral};
 `
 
 export const HeaderText = styled.Text`

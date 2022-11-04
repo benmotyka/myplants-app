@@ -10,5 +10,5 @@ font-family: 'Inter_200ExtraLight';
 font-size: 20px;
 margin-bottom: 40px;
 text-align: center;
-color: ${colors.important};
+color: ${colors.primary};
 `
