@@ -1,8 +1,6 @@
 import styled from "styled-components/native";
 import { MotiView } from "moti";
 
-import { colors } from "styles/colors";
-
 export const InputWrapper = styled.View`
   margin-top: 10px;
   width: 100%;
@@ -19,29 +17,28 @@ export const Input = styled.TextInput<{ errorBorder: boolean }>`
   font-family: "Inter_200ExtraLight";
   border: ${(props) =>
     props.errorBorder
-      ? `1px solid ${colors.warning}`
-      : `1px solid ${colors.neutral}`};
-  color: ${colors.text};
+      ? `1px solid ${props.theme.warning}`
+      : `1px solid ${props.theme.neutral}`};
+  color: ${({ theme }) => theme.text};
 `;
 
 export const InputLabel = styled.Text`
   font-size: 20px;
   font-family: "Inter_300Light";
   margin-bottom: 5px;
-  color: ${colors.text};
+  color: ${({ theme }) => theme.text};
 `;
 
 export const ErrorContainer = styled.View`
-height: 20px;
-width: 100%;
-`
-
-export const ErrorWrapper = styled(MotiView)`
+  height: 20px;
+  width: 100%;
 `;
+
+export const ErrorWrapper = styled(MotiView)``;
 
 export const ErrorText = styled.Text`
   font-size: 11px;
   font-family: "Inter_300Light";
-  color: ${colors.warning};
+  color: ${({ theme }) => theme.warning};
   margin-top: 3px;
 `;

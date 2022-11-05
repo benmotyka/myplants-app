@@ -1,7 +1,5 @@
 import styled from "styled-components/native";
 
-import { colors } from "styles/colors";
-
 export const TutorialContainer = styled.View`
   position: absolute;
   bottom: 0;
@@ -29,6 +27,6 @@ export const TutorialText = styled.Text`
 
   font-family: 'AkayaKanadaka_400Regular'
   font-size: 26px;
-  color: ${colors.neutral};
+  color: ${({ theme }) => theme.neutral};
   opacity: 0.8;
 `;

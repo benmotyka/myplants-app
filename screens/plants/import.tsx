@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Formik, FormikHelpers } from "formik";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { View } from "react-native";
+import { useTheme } from "styled-components/native";
 
 import { RootStackParamList } from "../../App";
 import Back from "components/Back/Back";
@@ -19,7 +20,6 @@ import plantsApi from "config/api/plants";
 import { ImportPlantSchema } from "schemas/ImportPlant.schema";
 import { useToastStore } from "store";
 import i18n from "../../i18n";
-import { colors } from "styles/colors";
 
 type ImportPlantProps = NativeStackScreenProps<
   RootStackParamList,
@@ -35,6 +35,7 @@ const { t } = i18n;
 const ImportPlant = ({ navigation }: ImportPlantProps): JSX.Element => {
   const [loading, setLoading] = useState(false);
   const displayToast = useToastStore((state) => state.showToast);
+  const theme = useTheme();
 
   const onSubmit = async (
     values: ImportPlantForm,
@@ -81,7 +82,7 @@ const ImportPlant = ({ navigation }: ImportPlantProps): JSX.Element => {
       scrollEnabled={true}
       bounces={false}
       style={{
-        backgroundColor: colors.background
+        backgroundColor: theme.background
       }}
     >
       <ColumnCenterWrapper>

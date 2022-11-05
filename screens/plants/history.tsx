@@ -4,6 +4,7 @@ import { useIsFocused } from "@react-navigation/core";
 import { ImageInfo } from "expo-image-picker";
 import { ScrollView, TouchableOpacity } from "react-native";
 import { Entypo } from "@expo/vector-icons";
+import { useTheme } from "styled-components/native";
 
 import { RootStackParamList } from "../../App";
 import Back from "components/Back/Back";
@@ -34,7 +35,6 @@ import Loader from "components/Loader/Loader";
 import { formatToHour } from "util/date";
 import i18n from "../../i18n";
 import { ICON_SIZE_PX } from "config";
-import { colors } from "styles/colors";
 import BasicModal from "components/BasicModal/BasicModal";
 import {
   ModalDescription,
@@ -74,11 +74,11 @@ const PlantHistory = ({
   const [plantImagesHistoryData, setPlantImagesHistoryData] =
     useState<PlantImagesHistoryData>();
   const [image, setImage] = useState<ImageInfo | null>();
+  const theme = useTheme();
 
   const scrollViewRef = useRef<ScrollView & HTMLElement>();
   const displayToast = useToastStore((state) => state.showToast);
   const userPlants = usePlantsStore((state) => state.userPlants);
-
   const isFocused = useIsFocused();
 
   useEffect(() => {
@@ -184,7 +184,7 @@ const PlantHistory = ({
             setShowShareModal(true);
           }}
         >
-          <Entypo name="share" size={ICON_SIZE_PX} color={colors.textLight} />
+          <Entypo name="share" size={ICON_SIZE_PX} color={theme.textLight} />
         </IconContainer>
         <ColumnCenterWrapper fullHeight>
           <ScrollableHeader

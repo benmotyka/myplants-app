@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { TouchableHighlight, View } from "react-native";
 import { Slider } from "@miblanchard/react-native-slider";
 import { useIsFocused } from "@react-navigation/native";
+import { useTheme } from "styled-components/native";
 
 import {
   Body,
@@ -14,7 +15,6 @@ import {
 } from "components/Plant/Plant.styles";
 import { PlantProps } from "components/Plant/Plant.interface";
 import ReminderIcon from "components/ReminderIcon/ReminderIcon";
-import { colors } from "styles/colors";
 import plantsApi from "config/api/plants";
 import { calculateDifferenceFromNow } from "util/date";
 import i18n from "../../i18n";
@@ -47,6 +47,7 @@ const Plant = ({
   const isFocused = useIsFocused();
   const wateringRef = useRef();
   const displayToast = useToastStore((state) => state.showToast);
+  const theme = useTheme();
 
   // This useEffect sets and clears intervals for changing Plant time. If plant was ever watered,
   // simply create a new interval, and destory old on return. If user waters this plant, this code
@@ -203,7 +204,7 @@ const Plant = ({
                 value={sliderValue}
                 onSlidingComplete={onSlidingComplete}
                 thumbStyle={{
-                  backgroundColor: colors.primaryLight,
+                  backgroundColor: theme.primaryLight,
                   borderRadius: 3,
                   width: 35,
                   height: 25,

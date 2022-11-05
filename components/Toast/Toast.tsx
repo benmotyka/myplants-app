@@ -1,8 +1,8 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import { AnimatePresence } from "moti";
+import { useTheme } from "styled-components/native";
 
-import { colors } from "styles/colors";
 import {
   ToastCancelText,
   ToastContainer,
@@ -18,16 +18,17 @@ const Toast = ({
   onCancel,
 }: Pick<ToastState, "text" | "type" | "onCancel">): JSX.Element => {
   const { isToastShown } = useToastStore((store) => store);
+  const theme = useTheme();
   const { t } = i18n;
 
   const toastBackgruondColor = () => {
     switch (type) {
       case "success":
-        return colors.success;
+        return theme.success;
       case "error":
-        return colors.warning;
+        return theme.warning;
       default:
-        return colors.primary;
+        return theme.primary;
     }
   };
 

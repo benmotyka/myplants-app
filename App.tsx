@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView, View, StatusBar as NativeStatusBar } from "react-native";
 import AppLoading from "expo-app-loading";
@@ -11,6 +12,7 @@ import {
 } from "@expo-google-fonts/inter";
 import { AkayaKanadaka_400Regular } from "@expo-google-fonts/akaya-kanadaka";
 import * as Sentry from "sentry-expo";
+import { ThemeProvider } from "styled-components/native";
 
 import { sentryDsn } from "config/environment";
 import HomeScreen from "screens/home";
@@ -23,6 +25,7 @@ import SettingsNotificationsScreen from "screens/settings/notifications";
 import SettingsAppScreen from "screens/settings/app";
 import "./i18n";
 import ToastProvider from "./providers/ToastProvider";
+import { darkTheme, lightTheme } from "styles/theme";
 
 export type RootStackParamList = {
   home: undefined;
@@ -50,45 +53,52 @@ export default function App() {
     AkayaKanadaka_400Regular,
   });
 
+  const [theme, setTheme] = useState("dark");
+
   if (!fontsLoaded) {
     return <AppLoading />;
   }
 
   return (
-    <RootSiblingParent>
-      <SafeAreaView>
-        {/* Workaround for devices with native StatusBar */}
-        <View style={{ paddingTop: NativeStatusBar.currentHeight }}>
-          <StatusBar />
-        </View>
-      </SafeAreaView>
-      <NavigationContainer>
-        <ToastProvider>
-          <Stack.Navigator
-            screenOptions={{
-              headerShown: false,
-            }}
-          >
-            <Stack.Screen
-              name="home"
-              component={HomeScreen}
-              options={{ gestureEnabled: false }}
-            />
+    <ThemeProvider theme={darkTheme}>
+      <RootSiblingParent>
+        <SafeAreaView>
+          {/* Workaround for devices with native StatusBar */}
+          <View style={{ paddingTop: NativeStatusBar.currentHeight }}>
+            <StatusBar />
+          </View>
+        </SafeAreaView>
+        <NavigationContainer>
+          <ToastProvider>
+            <Stack.Navigator
+              screenOptions={{
+                headerShown: false,
+              }}
+            >
+              <Stack.Screen
+                name="home"
+                component={HomeScreen}
+                options={{ gestureEnabled: false }}
+              />
 
-            <Stack.Screen name="addPlant" component={AddPlantScreen} />
-            <Stack.Screen name="editPlant" component={EditPlantScreen} />
-            <Stack.Screen name="plantHistory" component={PlantHistoryScreen} />
-            <Stack.Screen name="importPlant" component={ImportPlantScreen} />
+              <Stack.Screen name="addPlant" component={AddPlantScreen} />
+              <Stack.Screen name="editPlant" component={EditPlantScreen} />
+              <Stack.Screen
+                name="plantHistory"
+                component={PlantHistoryScreen}
+              />
+              <Stack.Screen name="importPlant" component={ImportPlantScreen} />
 
-            <Stack.Screen name="settings" component={SettingsScreen} />
-            <Stack.Screen
-              name="settingsNotifications"
-              component={SettingsNotificationsScreen}
-            />
-            <Stack.Screen name="settingsApp" component={SettingsAppScreen} />
-          </Stack.Navigator>
-        </ToastProvider>
-      </NavigationContainer>
-    </RootSiblingParent>
+              <Stack.Screen name="settings" component={SettingsScreen} />
+              <Stack.Screen
+                name="settingsNotifications"
+                component={SettingsNotificationsScreen}
+              />
+              <Stack.Screen name="settingsApp" component={SettingsAppScreen} />
+            </Stack.Navigator>
+          </ToastProvider>
+        </NavigationContainer>
+      </RootSiblingParent>
+    </ThemeProvider>
   );
 }

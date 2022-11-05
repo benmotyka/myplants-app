@@ -1,12 +1,11 @@
 import styled from "styled-components/native";
 import { MotiView } from "moti";
 
-import { colors } from "styles/colors";
 
 export const ToastText = styled.Text`
   font-size: 22px;
   text-align: center;
-  color: ${colors.white}; // should be always white
+  color: ${({ theme }) => theme.white};  // should be always white
   opacity: 0.9;
 `;
 
@@ -31,7 +30,8 @@ export const ToastWrapper = styled(MotiView)<{
 }>`
   background-color: ${(props) => props.backgroundColor};
   border-radius: 5px;
-  color: ${colors.backgroundLight};
+  /* TODO: prbably remove this? v */
+  color: ${({ theme }) => theme.backgroundLight};
   padding: 10px 20px;
   display: flex;
   flex-direction: row;

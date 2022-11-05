@@ -1,6 +1,5 @@
 import styled from "styled-components/native";
 
-import { colors } from "styles/colors";
 import { screenWidth } from "styles/shared";
 
 const MAX_PLANT_WIDTH = 240;
@@ -15,7 +14,7 @@ export const Container = styled.View`
 `;
 
 export const Wrapper = styled.View`
-  border: 1px solid ${colors.neutral};
+  border: ${({ theme }) => `1px solid ${theme.neutral}`};
   height: 100%;
   position: relative;
   box-shadow: 3px 3px 15px rgba(0,0,0,0.2);
@@ -46,7 +45,7 @@ export const Body = styled.View`
 export const Header = styled.Text`
   font-size: 15px;
   font-family: 'Inter_200ExtraLight';
-  color: ${colors.text};
+  color: ${({ theme }) => theme.text};
 `;
 
 export const ItemsWrapper = styled.View`

@@ -4,6 +4,7 @@ import { Formik, FormikHelpers } from "formik";
 import { View } from "react-native";
 import { ImageInfo } from "expo-image-picker";
 import { AnimatePresence, MotiView } from "moti";
+import { useTheme } from "styled-components/native";
 
 import { RootStackParamList } from "../../App";
 import plantsApi from "config/api/plants";
@@ -25,7 +26,6 @@ import i18n from "../../i18n";
 import BasicCheckbox from "components/BasicCheckbox/BasicCheckbox";
 import WateringReminderInput from "components/WateringReminderInput/WateringReminderInput";
 import { useToastStore } from "store";
-import { colors } from "styles/colors";
 
 type AddPlantProps = NativeStackScreenProps<RootStackParamList, "addPlant">;
 
@@ -43,6 +43,7 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
   const [isRemindersChecked, setRemindersChecked] = useState(false);
   const [image, setImage] = useState<ImageInfo>();
   const displayToast = useToastStore((state) => state.showToast);
+  const theme = useTheme();
 
   const onSubmit = async (
     values: AddPlantForm,
@@ -98,7 +99,7 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
       scrollEnabled={true}
       bounces={false}
       style={{
-        backgroundColor: colors.background
+        backgroundColor: theme.background
       }}
     >
       <ColumnCenterWrapper>

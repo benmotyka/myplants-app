@@ -1,7 +1,5 @@
 import styled from "styled-components/native";
 
-import { colors } from "styles/colors";
-
 export const Container = styled.View`
   width: 100%;
   position: relative;
@@ -21,7 +19,7 @@ export const Wrapper = styled.View`
 export const Text = styled.Text`
   font-family: "Inter_200ExtraLight";
   font-size: 18px;
-  color: ${colors.text};
+  color: ${({ theme }) => theme.text};
 `;
 
 export const Input = styled.TextInput<{ errorBorder: boolean }>`
@@ -32,10 +30,10 @@ export const Input = styled.TextInput<{ errorBorder: boolean }>`
   font-family: "Inter_200ExtraLight";
   border: ${(props) =>
     props.errorBorder
-      ? `1px solid ${colors.warning}`
-      : `1px solid ${colors.neutral}`};
+      ? `1px solid ${props.theme.warning}`
+      : `1px solid ${props.theme.neutral}`};
   text-align: center;
-  color: ${colors.text};
+  color: ${({ theme }) => theme.text};
 `;
 
 export const ErrorContainer = styled.View`

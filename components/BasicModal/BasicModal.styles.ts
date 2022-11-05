@@ -1,5 +1,4 @@
 import styled from "styled-components/native";
-import { colors } from "../../styles/colors";
 
 export const ModalContainer = styled.View`
   top: 0;
@@ -22,17 +21,17 @@ export const ModalWrapper = styled.View`
   width: 80%;
   max-width: 400px;
   border-radius: 10px;
-  background-color: ${colors.background};
+  background-color: ${({ theme }) => theme.background};
   padding: 15px;
   position: absolute;
-  border: 1px solid ${colors.neutral};
+  border: ${({ theme }) => `1px solid ${theme.neutral}}`};
 `;
 
 export const ModalHeader = styled.Text`
   font-size: 20px;
   text-align: center;
   font-family: "Inter_300Light";
-  color: ${colors.text};
+  color: ${({ theme }) => theme.text};
 `;
 
 export const ModalItem = styled.View`
@@ -44,7 +43,7 @@ export const ModalDescription = styled.Text`
   font-family: "Inter_300Light";
   opacity: 0.6;
   margin-top: 10px;
-  color: ${colors.text};
+  color: ${({ theme }) => theme.text};
 `;
 
 export const ModalImage = styled.Image`

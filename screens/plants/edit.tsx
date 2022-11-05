@@ -4,6 +4,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { MaterialIcons } from "@expo/vector-icons";
 import { ImageInfo } from "expo-image-picker";
 import { View } from "react-native";
+import { useTheme } from "styled-components/native";
 
 import { RootStackParamList } from "../../App";
 import plantsApi from "config/api/plants";
@@ -26,7 +27,6 @@ import {
   Description,
   KeyboardScreen,
 } from "styles/shared";
-import { colors } from "styles/colors";
 import { formatToHourDateAndYear } from "util/date";
 import { ApiErrors } from "enums/api-errors";
 import { base64EncodeImage } from "util/images";
@@ -54,6 +54,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
   const [image, setImage] = useState<ImageInfo>();
   const [selectedPlant, setSelectedPlant] = useState<Plant>();
   const [showModal, setShowModal] = useState(false);
+  const theme = useTheme();
 
   const displayToast = useToastStore((state) => state.showToast);
   const userPlants = usePlantsStore((state) => state.userPlants);
@@ -139,7 +140,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
         scrollEnabled={true}
         bounces={false}
         style={{
-          backgroundColor: colors.background
+          backgroundColor: theme.background
         }}
       >
         <ColumnCenterWrapper>
@@ -150,7 +151,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
               setShowModal(true);
             }}
           >
-            <MaterialIcons name="delete" size={24} color={colors.warning} />
+            <MaterialIcons name="delete" size={24} color={theme.warning} />
           </IconContainer>
           {selectedPlant && !loading ? (
             <Formik

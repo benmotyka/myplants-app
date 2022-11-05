@@ -1,7 +1,5 @@
 import styled from "styled-components/native";
 
-import { colors } from "styles/colors";
-
 export const Container = styled.View`
   display: flex;
   flex-direction: column;
@@ -19,8 +17,8 @@ export const Wrapper = styled.View`
   justify-content: space-between;
 
   border-radius: 10px;
-  border: 1px solid ${colors.neutral};
-  background-color: ${colors.neutral};
+  border: ${({ theme }) => `1px solid ${theme.neutral}`};
+  background-color: ${({ theme }) => theme.neutral};
 `;
 
 export const PartWrapper = styled.View<{ active?: boolean }>`
@@ -28,7 +26,7 @@ export const PartWrapper = styled.View<{ active?: boolean }>`
   padding: 15px;
 
   opacity: ${(props) => (props.active ? 1 : 0.1)};
-  background-color: ${(props) => (props.active ? colors.backgroundLight : colors.neutral)};
+  background-color: ${(props) => (props.active ? props.theme.backgroundLight : props.theme.neutral)};
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
 `;
@@ -37,5 +35,5 @@ export const ItemText = styled.Text`
   font-size: 15px;
   font-family: "Inter_300Light";
   text-align: center;
-  color: ${colors.text};
+  color: ${({ theme }) => theme.text};
 `;

@@ -1,7 +1,5 @@
 import styled from "styled-components/native";
 
-import { colors } from "styles/colors";
-
 export const ButtonWrapper = styled.TouchableOpacity<{
   warning?: boolean;
   important?: boolean;
@@ -9,13 +7,13 @@ export const ButtonWrapper = styled.TouchableOpacity<{
   paddingVertical: 10px;
   paddingHorizontal: 10px;
   border-radius: 10px;
-  background-color: ${colors.background};
+  background-color: ${({ theme }) => theme.backgroundLight};
   border: ${(props) =>
     props.warning
-      ? `1px solid ${colors.warning}`
+      ? `1px solid ${props.theme.warning}`
       : props.important
-      ? `1px solid ${colors.primary}`
-      : `1px solid ${colors.neutral}`};
+      ? `1px solid ${props.theme.primary}`
+      : `1px solid ${props.theme.neutral}`};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,9 +29,9 @@ export const ButtonText = styled.Text<{
   font-size: 18px;
   color: ${(props) =>
     props.warning
-      ? colors.warning
+      ? props.theme.warning
       : props.important
-      ? colors.primary
-      : colors.text};
-  opacity: ${(props) => props.disabled ? 0.2 : 1};
+      ? props.theme.primary
+      : props.theme.text};
+  opacity: ${(props) => (props.disabled ? 0.2 : 1)};
 `;
