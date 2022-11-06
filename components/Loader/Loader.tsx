@@ -1,10 +1,17 @@
-import React from 'react'
-import { ActivityIndicator } from 'react-native'
+import React from "react";
+import { ActivityIndicator } from "react-native";
+
+import { useAppConfigStore } from "store";
 
 const Loader = (): JSX.Element => {
-  return (
-    <ActivityIndicator size="large" color="black" />
-  )
-}
+  const appTheme = useAppConfigStore((state) => state.theme);
 
-export default Loader
+  return (
+    <ActivityIndicator
+      size="large"
+      color={appTheme === "dark" ? "white" : "black"}
+    />
+  );
+};
+
+export default Loader;

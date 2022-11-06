@@ -13,7 +13,8 @@
       "store/*": ["store/*"],
       "styles/*": ["styles/*"],
       "util/*": ["util/*"],
-      "enums/*": ["enums/*"]
+      "enums/*": ["enums/*"],
+      "providers/*": ["providers/*"]
   },
   }
 }

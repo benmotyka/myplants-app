@@ -35,6 +35,7 @@ import BasicCheckbox from "components/BasicCheckbox/BasicCheckbox";
 import { AnimatePresence, MotiView } from "moti";
 import WateringReminderInput from "components/WateringReminderInput/WateringReminderInput";
 import { useToastStore, usePlantsStore } from "store";
+import { ICON_SIZE_PX } from "config";
 
 type EditPlantProps = NativeStackScreenProps<RootStackParamList, "editPlant">;
 
@@ -151,7 +152,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
               setShowModal(true);
             }}
           >
-            <MaterialIcons name="delete" size={24} color={theme.warning} />
+            <MaterialIcons name="delete" size={ICON_SIZE_PX} color={theme.warning} />
           </IconContainer>
           {selectedPlant && !loading ? (
             <Formik

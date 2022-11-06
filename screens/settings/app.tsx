@@ -10,7 +10,7 @@ import {
 } from "styles/shared";
 import i18n from "../../i18n";
 import BasicSwitch from "components/BasicSwitch/BasicSwitch";
-import { AppTheme, useToastStore } from "store";
+import { AppTheme, useAppConfigStore } from "store";
 
 type SettingsAppProps = NativeStackScreenProps<
   RootStackParamList,
@@ -20,11 +20,11 @@ type SettingsAppProps = NativeStackScreenProps<
 const { t } = i18n;
 
 const SettingsApp = ({ navigation }: SettingsAppProps): JSX.Element => {
-  const [theme, setTheme] = useState<AppTheme>("light");
-  const displayToast = useToastStore((state) => state.showToast);
+  const appConfig = useAppConfigStore((state) => state);
+  const [theme, setTheme] = useState<AppTheme>(appConfig.theme);
 
   const handleSwitch = ({ theme }: { theme: AppTheme }) => {
-    console.log(theme);
+    appConfig.setTheme(theme)
   };
 
   return (
@@ -45,8 +45,7 @@ const SettingsApp = ({ navigation }: SettingsAppProps): JSX.Element => {
           }}
           activeItem={theme === "light" ? "left" : "right"}
         />
-        <Description style={{ marginTop: 10 }}>
-        </Description>
+        <Description style={{ marginTop: 10 }}></Description>
       </ColumnCenterWrapper>
     </ScreenContainer>
   );

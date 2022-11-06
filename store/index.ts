@@ -1,6 +1,6 @@
-import create from "zustand";
+import create, { StateCreator } from "zustand";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { persist } from "zustand/middleware";
+import { persist, PersistOptions } from "zustand/middleware";
 
 import { Plant } from "interfaces/Plant";
 
@@ -45,11 +45,21 @@ export const usePlantsStore = create<UserPlantsState>((set) => ({
 
 export type AppTheme = "light" | "dark";
 
-export const useAppConfigStore = create(
-  persist(
-    (set, get) => ({
+interface AppConfigState {
+  theme: AppTheme;
+  setTheme: (theme: AppTheme) => void;
+}
+
+type AppConfigPersist = (
+  config: StateCreator<AppConfigState>,
+  options: PersistOptions<AppConfigState>
+) => StateCreator<AppConfigState>;
+
+export const useAppConfigStore = create<AppConfigState>(
+  (persist as unknown as AppConfigPersist)(
+    (set) => ({
       theme: "light",
-      setTheme: (theme: AppTheme) => set({ theme }),
+      setTheme: (theme) => set({ theme }),
     }),
     {
       name: "config-storage",

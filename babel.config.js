@@ -17,6 +17,7 @@ module.exports = function (api) {
             styles: "./styles",
             util: "./util",
             enums: "./enums",
+            providers: "./providers",
           },
         },
       ],

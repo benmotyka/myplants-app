@@ -24,8 +24,9 @@ import ImportPlantScreen from "screens/plants/import";
 import SettingsNotificationsScreen from "screens/settings/notifications";
 import SettingsAppScreen from "screens/settings/app";
 import "./i18n";
-import ToastProvider from "./providers/ToastProvider";
+import ToastProvider from "providers/ToastProvider";
 import { darkTheme, lightTheme } from "styles/theme";
+import { useAppConfigStore } from "store";
 
 export type RootStackParamList = {
   home: undefined;
@@ -53,14 +54,14 @@ export default function App() {
     AkayaKanadaka_400Regular,
   });
 
-  const [theme, setTheme] = useState("dark");
+  const appTheme = useAppConfigStore((state) => state.theme);
 
   if (!fontsLoaded) {
     return <AppLoading />;
   }
 
   return (
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={appTheme === "dark" ? darkTheme : lightTheme}>
       <RootSiblingParent>
         <SafeAreaView>
           {/* Workaround for devices with native StatusBar */}
