@@ -19,8 +19,8 @@ declare module "styled-components/native" {
 
 const themeCommon = {
     primary: "#3AB0FF",
-    primaryLight: "#C4DDFF",
-    warning: "#F94C66",
+    primaryLight: "#89d2ff",
+    warning: "#FF503D",
     success: "#76BA99",
     white: "#fff",
   };
@@ -29,10 +29,10 @@ export const darkTheme: DefaultTheme = {
     ...themeCommon,
     text: "#eee",
     textLight: "#fff",
-    background: "#000",
+    background: "#121212",
     backgroundLight: "#413F42",
     neutral: "#403d3a",
-    neutralLight: "#57524e",
+    neutralLight: "#1c1c1c",
 };
 
 export const lightTheme: DefaultTheme = {

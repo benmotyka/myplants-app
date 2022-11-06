@@ -62,7 +62,7 @@ export const useAppConfigStore = create<AppConfigState>(
       setTheme: (theme) => set({ theme }),
     }),
     {
-      name: "config-storage",
+      name: "app-config-storage",
       getStorage: () => AsyncStorage,
     }
   )

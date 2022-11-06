@@ -25,7 +25,7 @@ export const PartWrapper = styled.View<{ active?: boolean }>`
   width: 45%;
   padding: 15px;
 
-  opacity: ${(props) => (props.active ? 1 : 0.1)};
+  opacity: ${(props) => (props.active ? 1 : 0.2)};
   background-color: ${(props) => (props.active ? props.theme.backgroundLight : props.theme.neutral)};
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
