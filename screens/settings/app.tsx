@@ -45,7 +45,6 @@ const SettingsApp = ({ navigation }: SettingsAppProps): JSX.Element => {
           }}
           activeItem={theme === "light" ? "left" : "right"}
         />
-        <Description style={{ marginTop: 10 }}></Description>
       </ColumnCenterWrapper>
     </ScreenContainer>
   );

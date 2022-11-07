@@ -9,7 +9,8 @@
     "disable": "Wyłącz",
     "enable": "Włącz",
     "confirm": "Potwierdź",
-    "copy": "Kopiuj"
+    "copy": "Kopiuj",
+    "close": "Zamknij"
   },
   "pages": {
     "plants": {

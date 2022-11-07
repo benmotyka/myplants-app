@@ -76,10 +76,10 @@ export const LoaderWrapper = styled.View`
 `;
 
 export const Description = styled.Text`
-  font-size: 13px;
+  font-size: 15px;
   font-family: "Inter_300Light";
-  opacity: 0.6;
-  line-height: 18px;
+  opacity: 0.7;
+  line-height: 20px;
   color: ${({ theme }) => theme.text};
 `;
 

@@ -9,7 +9,8 @@
     "disable": "Disable",
     "enable": "Enable",
     "confirm": "Confirm",
-    "copy": "Copy"
+    "copy": "Copy",
+    "close": "Close"
   },
   "pages": {
     "plants": {

@@ -3,6 +3,7 @@ import { Formik, FormikHelpers } from "formik";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { View } from "react-native";
 import { useTheme } from "styled-components/native";
+import { AntDesign } from "@expo/vector-icons";
 
 import { RootStackParamList } from "../../App";
 import Back from "components/Back/Back";
@@ -12,6 +13,7 @@ import Loader from "components/Loader/Loader";
 import {
   ColumnCenterWrapper,
   Description,
+  IconContainer,
   InputsWrapper,
   KeyboardScreen,
 } from "styles/shared";
@@ -20,6 +22,9 @@ import plantsApi from "config/api/plants";
 import { ImportPlantSchema } from "schemas/ImportPlant.schema";
 import { useToastStore } from "store";
 import i18n from "../../i18n";
+import { ICON_SIZE_PX } from "config";
+import BasicModal from "components/BasicModal/BasicModal";
+import { ModalItem } from "components/BasicModal/BasicModal.styles";
 
 type ImportPlantProps = NativeStackScreenProps<
   RootStackParamList,
@@ -33,6 +38,7 @@ interface ImportPlantForm {
 const { t } = i18n;
 
 const ImportPlant = ({ navigation }: ImportPlantProps): JSX.Element => {
+  const [showHelpModal, setShowHelpModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const displayToast = useToastStore((state) => state.showToast);
   const theme = useTheme();
@@ -76,35 +82,41 @@ const ImportPlant = ({ navigation }: ImportPlantProps): JSX.Element => {
   };
 
   return (
-    <KeyboardScreen
-      contentContainerStyle={{ paddingBottom: 50 }}
-      resetScrollToCoords={{ x: 0, y: 0 }}
-      scrollEnabled={true}
-      bounces={false}
-      style={{
-        backgroundColor: theme.background
-      }}
-    >
-      <ColumnCenterWrapper>
-        <Back navigation={navigation} />
-        {!loading ? (
-          <Formik
-            initialValues={{
-              plantShareId: "",
+    <>
+      <KeyboardScreen
+        contentContainerStyle={{ paddingBottom: 50 }}
+        resetScrollToCoords={{ x: 0, y: 0 }}
+        scrollEnabled={true}
+        bounces={false}
+        style={{
+          backgroundColor: theme.background,
+        }}
+      >
+        <ColumnCenterWrapper>
+          <Back navigation={navigation} />
+          <IconContainer
+            style={{ top: 20, right: 20 }}
+            onPress={() => {
+              setShowHelpModal(true);
             }}
-            onSubmit={onSubmit}
-            validationSchema={ImportPlantSchema}
-            validateOnChange={false}
-            validateOnBlur={false}
           >
-            {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
-              <>
-              <View style={{paddingHorizontal: 40, paddingVertical: 10}}>
-
-                <Description>
-                  {t("pages.plants.import.description")}
-                </Description>
-              </View>
+            <AntDesign
+              name="question"
+              size={ICON_SIZE_PX}
+              color={theme.textLight}
+            />
+          </IconContainer>
+          {!loading ? (
+            <Formik
+              initialValues={{
+                plantShareId: "",
+              }}
+              onSubmit={onSubmit}
+              validationSchema={ImportPlantSchema}
+              validateOnChange={false}
+              validateOnBlur={false}
+            >
+              {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
                 <InputsWrapper>
                   <BasicTextInput
                     value={values.plantShareId}
@@ -121,14 +133,25 @@ const ImportPlant = ({ navigation }: ImportPlantProps): JSX.Element => {
                     />
                   </View>
                 </InputsWrapper>
-              </>
-            )}
-          </Formik>
-        ) : (
-          <Loader />
-        )}
-      </ColumnCenterWrapper>
-    </KeyboardScreen>
+              )}
+            </Formik>
+          ) : (
+            <Loader />
+          )}
+        </ColumnCenterWrapper>
+      </KeyboardScreen>
+      <BasicModal showModal={showHelpModal} toggleModal={setShowHelpModal}>
+        <ModalItem>
+          <Description>{t("pages.plants.import.description")}</Description>
+        </ModalItem>
+        <ModalItem>
+          <BasicButton
+            onPress={() => setShowHelpModal(false)}
+            text={t("common.close")}
+          />
+        </ModalItem>
+      </BasicModal>
+    </>
   );
 };
 
