@@ -48,11 +48,8 @@ import BasicImageInput from "components/BasicImageInput/BasicImageInput";
 import BasicButton from "components/BasicButton/BasicButton";
 import { base64EncodeImage } from "util/images";
 import { useToastStore, usePlantsStore } from "store";
-import {
-  getWateringHistory,
-  getImagesHistory,
-  addImageToPlant,
-} from "services/plant";
+import { getImagesHistory, addImageToPlant } from "services/plant";
+import { getWateringHistory } from "services/watering";
 
 type PlantHistoryProps = NativeStackScreenProps<
   RootStackParamList,

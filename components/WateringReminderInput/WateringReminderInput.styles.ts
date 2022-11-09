@@ -34,6 +34,7 @@ export const Input = styled.TextInput<{ errorBorder: boolean }>`
       : `1px solid ${props.theme.neutral}`};
   text-align: center;
   color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.backgroundLight};
 `;
 
 export const ErrorContainer = styled.View`

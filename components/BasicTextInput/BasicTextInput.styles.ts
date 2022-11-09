@@ -20,6 +20,7 @@ export const Input = styled.TextInput<{ errorBorder: boolean }>`
       ? `1px solid ${props.theme.warning}`
       : `1px solid ${props.theme.neutral}`};
   color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.backgroundLight};
 `;
 
 export const InputLabel = styled.Text`
