@@ -9,16 +9,6 @@ export const ToastText = styled.Text`
   opacity: 0.9;
 `;
 
-export const ToastContainer = styled.View`
-  position: absolute;
-  left: 0;
-  right: 0;
-  justify-content: center;
-  align-items: center;
-  top: 40px;
-  z-index: 10;
-`;
-
 export const ToastCancelText = styled(ToastText)`
   margin-left: 20px;
   opacity: 0.6;
@@ -28,10 +18,15 @@ export const ToastCancelText = styled(ToastText)`
 export const ToastWrapper = styled(MotiView)<{
   backgroundColor: string;
 }>`
+  width: max-content;
+  max-width: 350px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40px;
+  margin: 0 auto;
   background-color: ${(props) => props.backgroundColor};
   border-radius: 5px;
-  /* TODO: prbably remove this? v */
-  color: ${({ theme }) => theme.backgroundLight};
   padding: 10px 20px;
   display: flex;
   flex-direction: row;

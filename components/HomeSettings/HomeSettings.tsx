@@ -86,9 +86,7 @@ const HomeSettings = ({ navigation }: HomeSettingsProps): JSX.Element => {
                     bottom: ITEMS_OFFSET_PX + (index + 1) * ITEMS_MARGIN_PX,
                   }}
                   onPress={() => {
-                    // TODO: resolve typing error
-                    // @ts-ignore
-                    navigation.navigate(item.href);
+                    navigation.navigate(item.href as never);
                     setShowMenu(false);
                   }}
                 >

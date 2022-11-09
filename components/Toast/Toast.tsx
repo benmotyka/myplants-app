@@ -3,13 +3,8 @@ import { TouchableOpacity } from "react-native";
 import { AnimatePresence } from "moti";
 import { useTheme } from "styled-components/native";
 
-import {
-  ToastCancelText,
-  ToastContainer,
-  ToastText,
-  ToastWrapper,
-} from "./Toast.styles";
 import { useToastStore, ToastState } from "store";
+import { ToastCancelText, ToastText, ToastWrapper } from "./Toast.styles";
 import i18n from "../../i18n";
 
 const Toast = ({
@@ -33,31 +28,29 @@ const Toast = ({
   };
 
   return (
-    <ToastContainer>
-      <AnimatePresence>
-        {isToastShown ? (
-          <ToastWrapper
-            backgroundColor={toastBackgruondColor()}
-            from={{
-              opacity: 0,
-            }}
-            animate={{
-              opacity: 0.9,
-            }}
-            exit={{
-              opacity: 0,
-            }}
-          >
-            <ToastText>{text}</ToastText>
-            {onCancel ? (
-              <TouchableOpacity onPress={onCancel}>
-                <ToastCancelText>{t("common.cancel")}</ToastCancelText>
-              </TouchableOpacity>
-            ) : null}
-          </ToastWrapper>
-        ) : null}
-      </AnimatePresence>
-    </ToastContainer>
+    <AnimatePresence>
+      {isToastShown ? (
+        <ToastWrapper
+          backgroundColor={toastBackgruondColor()}
+          from={{
+            opacity: 0,
+          }}
+          animate={{
+            opacity: 0.9,
+          }}
+          exit={{
+            opacity: 0,
+          }}
+        >
+          <ToastText>{text}</ToastText>
+          {onCancel ? (
+            <TouchableOpacity onPress={onCancel}>
+              <ToastCancelText>{t("common.cancel")}</ToastCancelText>
+            </TouchableOpacity>
+          ) : null}
+        </ToastWrapper>
+      ) : null}
+    </AnimatePresence>
   );
 };
 

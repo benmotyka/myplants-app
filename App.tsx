@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView, View, StatusBar as NativeStatusBar } from "react-native";
 import AppLoading from "expo-app-loading";
@@ -23,10 +22,10 @@ import SettingsScreen from "screens/settings";
 import ImportPlantScreen from "screens/plants/import";
 import SettingsNotificationsScreen from "screens/settings/notifications";
 import SettingsAppScreen from "screens/settings/app";
-import "./i18n";
 import ToastProvider from "providers/ToastProvider";
 import { darkTheme, lightTheme } from "styles/theme";
 import { useAppConfigStore } from "store";
+import "./i18n";
 
 export type RootStackParamList = {
   home: undefined;

@@ -16,7 +16,7 @@ export const getDeviceId = async () => {
     return deviceId;
   }
 
-  const browserId = await localStorage.getItem("device_id");
+  const browserId = localStorage.getItem("device_id");
 
   if (!browserId) {
     const id = uuidv4();

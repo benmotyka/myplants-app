@@ -1,3 +1,4 @@
+import { Appearance } from 'react-native';
 import create, { StateCreator } from "zustand";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { persist, PersistOptions } from "zustand/middleware";
@@ -58,7 +59,7 @@ type AppConfigPersist = (
 export const useAppConfigStore = create<AppConfigState>(
   (persist as unknown as AppConfigPersist)(
     (set) => ({
-      theme: "light",
+      theme: Appearance.getColorScheme() === 'dark' ? "dark" : "light",
       setTheme: (theme) => set({ theme }),
     }),
     {
