@@ -4,7 +4,6 @@ import { useIsFocused } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { RootStackParamList } from "../App";
-import plantsApi from "config/api/plants";
 import PlantPreview from "components/Plant/Plant";
 import { numberOfColumns } from "components/Plant/Plant.styles";
 import AddPlantSuggestion from "components/AddPlantSuggestion/AddPlantSuggestion";
@@ -13,6 +12,7 @@ import { Plant } from "interfaces/Plant";
 import { LoaderWrapper, ScreenContainer } from "styles/shared";
 import Loader from "components/Loader/Loader";
 import { usePlantsStore } from "store";
+import { getPlants } from "services";
 
 type HomeProps = NativeStackScreenProps<RootStackParamList, "home">;
 
@@ -25,8 +25,7 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
 
   const getUserPlants = async () => {
     try {
-      const { data } = await plantsApi.get<{ plants: Plant[] }>("plants");
-      return data;
+      return await getPlants();
     } catch (error) {
       throw new Error("error");
     }

@@ -7,7 +7,6 @@ import { View } from "react-native";
 import { useTheme } from "styled-components/native";
 
 import { RootStackParamList } from "../../App";
-import plantsApi from "config/api/plants";
 import Back from "components/Back/Back";
 import BasicModal from "components/BasicModal/BasicModal";
 import BasicTextInput from "components/BasicTextInput/BasicTextInput";
@@ -36,6 +35,7 @@ import { AnimatePresence, MotiView } from "moti";
 import WateringReminderInput from "components/WateringReminderInput/WateringReminderInput";
 import { useToastStore, usePlantsStore } from "store";
 import { ICON_SIZE_PX } from "config";
+import { deletePlant, editPlant } from "services";
 
 type EditPlantProps = NativeStackScreenProps<RootStackParamList, "editPlant">;
 
@@ -68,7 +68,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
 
   const handleDelete = async () => {
     try {
-      await plantsApi.delete(`/plants/${plantId}`);
+      await deletePlant(plantId);
       displayToast({
         text: t("pages.plants.edit.plantDeletedSuccess"),
         type: "success",
@@ -92,17 +92,17 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
           ? parseInt(values.wateringReminderFrequency)
           : values.wateringReminderFrequency;
 
-      await plantsApi.put(`/plants`, {
+      await editPlant({
         id: plantId,
         name: values.name,
         description: values.description,
-        ...(image && { imageSrc: base64EncodedImage }),
+        image: base64EncodedImage,
         ...(isRemindersChecked && {
           wateringReminderFrequency,
         }),
       });
       navigation.navigate("home");
-      displayToast({ text: t("pages.plants.edit.success"), type: "success" })
+      displayToast({ text: t("pages.plants.edit.success"), type: "success" });
     } catch (error) {
       console.log(error);
       switch (error) {
@@ -141,7 +141,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
         scrollEnabled={true}
         bounces={false}
         style={{
-          backgroundColor: theme.background
+          backgroundColor: theme.background,
         }}
       >
         <ColumnCenterWrapper>
@@ -152,7 +152,11 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
               setShowModal(true);
             }}
           >
-            <MaterialIcons name="delete" size={ICON_SIZE_PX} color={theme.warning} />
+            <MaterialIcons
+              name="delete"
+              size={ICON_SIZE_PX}
+              color={theme.warning}
+            />
           </IconContainer>
           {selectedPlant && !loading ? (
             <Formik

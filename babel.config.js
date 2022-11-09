@@ -18,6 +18,7 @@ module.exports = function (api) {
             util: "./util",
             enums: "./enums",
             providers: "./providers",
+            services: "./services",
           },
         },
       ],

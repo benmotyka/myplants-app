@@ -18,13 +18,13 @@ import {
   KeyboardScreen,
 } from "styles/shared";
 import { ApiErrors } from "enums/api-errors";
-import plantsApi from "config/api/plants";
 import { ImportPlantSchema } from "schemas/ImportPlant.schema";
 import { useToastStore } from "store";
 import i18n from "../../i18n";
 import { ICON_SIZE_PX } from "config";
 import BasicModal from "components/BasicModal/BasicModal";
 import { ModalItem } from "components/BasicModal/BasicModal.styles";
+import { importPlant } from "services";
 
 type ImportPlantProps = NativeStackScreenProps<
   RootStackParamList,
@@ -54,9 +54,7 @@ const ImportPlant = ({ navigation }: ImportPlantProps): JSX.Element => {
     try {
       setLoading(true);
 
-      await plantsApi.post("/plants/import", {
-        shareId: values.plantShareId,
-      });
+      await importPlant(values.plantShareId);
       resetForm();
       navigation.navigate("home");
       displayToast({ text: t("pages.plants.import.success"), type: "success" });

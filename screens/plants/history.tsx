@@ -29,7 +29,6 @@ import {
   InfoText,
   ButtonWrapper,
 } from "styles/screens/plantHistory.styles";
-import plantsApi from "config/api/plants";
 import { WateringData } from "interfaces/WateringData";
 import Loader from "components/Loader/Loader";
 import { formatToHour } from "util/date";
@@ -49,6 +48,11 @@ import BasicImageInput from "components/BasicImageInput/BasicImageInput";
 import BasicButton from "components/BasicButton/BasicButton";
 import { base64EncodeImage } from "util/images";
 import { useToastStore, usePlantsStore } from "store";
+import {
+  getWateringHistory,
+  getImagesHistory,
+  addImageToPlant,
+} from "services";
 
 type PlantHistoryProps = NativeStackScreenProps<
   RootStackParamList,
@@ -88,10 +92,7 @@ const PlantHistory = ({
 
   const getPlantWateringHistory = async () => {
     try {
-      const { data } = await plantsApi.get<{ waterings: WateringData }>(
-        `watering/${plantId}`
-      );
-      return data;
+      return await getWateringHistory(plantId);
     } catch (error) {
       console.log(error);
       switch (error) {
@@ -103,10 +104,7 @@ const PlantHistory = ({
 
   const getPlantImagesHistory = async () => {
     try {
-      const { data } = await plantsApi.get<{
-        imagesData: PlantImagesHistoryData;
-      }>(`plants/history/images/${plantId}`);
-      return data;
+      return await getImagesHistory(plantId);
     } catch (error) {
       console.log(error);
       switch (error) {
@@ -121,10 +119,7 @@ const PlantHistory = ({
       setLoading(true);
       const base64EncodedImage = image ? base64EncodeImage(image) : null;
 
-      await plantsApi.post("/plants/images", {
-        plantId: plantId,
-        image: base64EncodedImage,
-      });
+      await addImageToPlant(plantId, base64EncodedImage);
 
       const result = await getPlantImagesHistory();
       setPlantImagesHistoryData(result?.imagesData);

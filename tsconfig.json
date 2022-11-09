@@ -14,7 +14,8 @@
       "styles/*": ["styles/*"],
       "util/*": ["util/*"],
       "enums/*": ["enums/*"],
-      "providers/*": ["providers/*"]
+      "providers/*": ["providers/*"],
+      "services/*": ["services/*"]
   },
   }
 }

@@ -7,7 +7,6 @@ import { AnimatePresence, MotiView } from "moti";
 import { useTheme } from "styled-components/native";
 
 import { RootStackParamList } from "../../App";
-import plantsApi from "config/api/plants";
 import Back from "components/Back/Back";
 import BasicTextInput from "components/BasicTextInput/BasicTextInput";
 import BasicImageInput from "components/BasicImageInput/BasicImageInput";
@@ -26,6 +25,7 @@ import i18n from "../../i18n";
 import BasicCheckbox from "components/BasicCheckbox/BasicCheckbox";
 import WateringReminderInput from "components/WateringReminderInput/WateringReminderInput";
 import { useToastStore } from "store";
+import { addPlant } from "services";
 
 type AddPlantProps = NativeStackScreenProps<RootStackParamList, "addPlant">;
 
@@ -63,10 +63,10 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
           ? parseInt(values.wateringReminderFrequency)
           : values.wateringReminderFrequency;
 
-      await plantsApi.post("/plants", {
+      await addPlant({
         name: values.name.trim(),
         description: values.description?.trim(),
-        imageSrc: base64EncodedImage,
+        image: base64EncodedImage,
         ...(isRemindersChecked && {
           wateringReminderFrequency,
         }),
@@ -99,7 +99,7 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
       scrollEnabled={true}
       bounces={false}
       style={{
-        backgroundColor: theme.background
+        backgroundColor: theme.background,
       }}
     >
       <ColumnCenterWrapper>

@@ -15,10 +15,10 @@ import {
 } from "components/Plant/Plant.styles";
 import { PlantProps } from "components/Plant/Plant.interface";
 import ReminderIcon from "components/ReminderIcon/ReminderIcon";
-import plantsApi from "config/api/plants";
 import { calculateDifferenceFromNow } from "util/date";
 import i18n from "../../i18n";
 import { useToastStore } from "store";
+import { cancelWatering, waterPlant } from "services";
 
 const MAX_SLIDER_VALUE = 1;
 const SLIDE_SUCCESS_VALUE_THRESHOLD = 0.9;
@@ -45,7 +45,7 @@ const Plant = ({
 
   const { t } = i18n;
   const isFocused = useIsFocused();
-  const wateringRef = useRef();
+  const wateringRef = useRef<string>("");
   const displayToast = useToastStore((state) => state.showToast);
   const theme = useTheme();
 
@@ -106,16 +106,12 @@ const Plant = ({
     if (currentValue < SLIDE_SUCCESS_VALUE_THRESHOLD * MAX_SLIDER_VALUE) return;
 
     try {
-      const result = await plantsApi.post(`/watering`, {
-        plantId: id,
-      });
-
-      wateringRef.current = result.data.id;
+      wateringRef.current = await waterPlant(id);
 
       displayToast({
         text: t("components.plant.success"),
         type: "success",
-        onCancel: cancelWatering,
+        onCancel: onCancelToast,
       });
       setTimeFromLastWatering(calculateDifferenceFromNow(new Date()));
       setWatered(true);
@@ -137,9 +133,9 @@ const Plant = ({
     });
   };
 
-  const cancelWatering = async () => {
+  const onCancelToast = async () => {
     try {
-      await plantsApi.delete(`/watering/${wateringRef.current}`);
+      await cancelWatering(wateringRef.current);
       setTimeFromLastWatering(
         latestWatering
           ? calculateDifferenceFromNow(latestWatering.createdAt)

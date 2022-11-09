@@ -10,8 +10,8 @@ import {
 } from "styles/shared";
 import i18n from "../../i18n";
 import BasicSwitch from "components/BasicSwitch/BasicSwitch";
-import plantsApi from "config/api/plants";
 import { useToastStore } from "store";
+import { updateUserSettings } from "services";
 
 type SettingsNotificationsProps = NativeStackScreenProps<
   RootStackParamList,
@@ -31,7 +31,7 @@ const SettingsNotifications = ({
     if (isEnabled === isAllowNotificationsEnabled) return;
 
     try {
-      await plantsApi.put("/user/settings", {
+      await updateUserSettings({
         pushNotificationsEnabled: isEnabled,
       });
     } catch (error) {
