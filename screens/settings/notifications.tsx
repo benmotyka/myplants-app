@@ -11,7 +11,7 @@ import {
 import i18n from "../../i18n";
 import BasicSwitch from "components/BasicSwitch/BasicSwitch";
 import { useToastStore } from "store";
-import { updateUserSettings } from "services";
+import { updateUserSettings } from "services/user";
 
 type SettingsNotificationsProps = NativeStackScreenProps<
   RootStackParamList,

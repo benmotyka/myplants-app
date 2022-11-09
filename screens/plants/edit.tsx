@@ -35,7 +35,7 @@ import { AnimatePresence, MotiView } from "moti";
 import WateringReminderInput from "components/WateringReminderInput/WateringReminderInput";
 import { useToastStore, usePlantsStore } from "store";
 import { ICON_SIZE_PX } from "config";
-import { deletePlant, editPlant } from "services";
+import { deletePlant, editPlant } from "services/plant";
 
 type EditPlantProps = NativeStackScreenProps<RootStackParamList, "editPlant">;
 

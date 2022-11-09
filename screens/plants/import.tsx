@@ -24,7 +24,7 @@ import i18n from "../../i18n";
 import { ICON_SIZE_PX } from "config";
 import BasicModal from "components/BasicModal/BasicModal";
 import { ModalItem } from "components/BasicModal/BasicModal.styles";
-import { importPlant } from "services";
+import { importPlant } from "services/plant";
 
 type ImportPlantProps = NativeStackScreenProps<
   RootStackParamList,

@@ -1,46 +1,11 @@
 import plantsApi from "config/api/plants";
 import { Plant } from "interfaces/Plant";
 import { PlantImagesHistoryData } from "interfaces/PlantImagesHistoryData";
-import { WateringData } from "interfaces/WateringData";
 
 export const getPlants = async () => {
   const result = await plantsApi.get<{ plants: Plant[] }>(`/plants`);
 
   return result.data;
-};
-
-export const getWateringHistory = async (plantId: string) => {
-  const result = await plantsApi.get<{ waterings: WateringData }>(
-    `watering/${plantId}`
-  );
-
-  return result.data;
-};
-
-export const waterPlant = async (plantId: string) => {
-  const result = await plantsApi.post(`/watering`, {
-    plantId,
-  });
-
-  return result.data.id;
-};
-
-export const cancelWatering = async (wateringId: string) => {
-  const result = await plantsApi.delete(`/watering/${wateringId}`);
-
-  return result;
-};
-
-export const updateUserSettings = async ({
-  pushNotificationsEnabled,
-}: {
-  pushNotificationsEnabled: boolean;
-}) => {
-  const result = await plantsApi.put("/user/settings", {
-    pushNotificationsEnabled,
-  });
-
-  return result;
 };
 
 export const addPlant = async ({

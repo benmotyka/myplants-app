@@ -18,7 +18,7 @@ import ReminderIcon from "components/ReminderIcon/ReminderIcon";
 import { calculateDifferenceFromNow } from "util/date";
 import i18n from "../../i18n";
 import { useToastStore } from "store";
-import { cancelWatering, waterPlant } from "services";
+import { cancelWatering, waterPlant } from "services/watering";
 
 const MAX_SLIDER_VALUE = 1;
 const SLIDE_SUCCESS_VALUE_THRESHOLD = 0.9;

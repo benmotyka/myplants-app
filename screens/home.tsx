@@ -12,7 +12,7 @@ import { Plant } from "interfaces/Plant";
 import { LoaderWrapper, ScreenContainer } from "styles/shared";
 import Loader from "components/Loader/Loader";
 import { usePlantsStore } from "store";
-import { getPlants } from "services";
+import { getPlants } from "services/plant";
 
 type HomeProps = NativeStackScreenProps<RootStackParamList, "home">;
 

@@ -52,7 +52,7 @@ import {
   getWateringHistory,
   getImagesHistory,
   addImageToPlant,
-} from "services";
+} from "services/plant";
 
 type PlantHistoryProps = NativeStackScreenProps<
   RootStackParamList,
