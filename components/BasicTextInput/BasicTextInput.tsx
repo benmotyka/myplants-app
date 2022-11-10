@@ -11,6 +11,7 @@ import {
   ErrorContainer,
 } from "components/BasicTextInput/BasicTextInput.styles";
 import { AnimatePresence } from "moti";
+import { useTheme } from "styled-components/native";
 
 const TEXTAREA_NUMBER_OF_LINES = 4;
 const IOS_LINE_HEIGHT_PX = 20;
@@ -25,6 +26,8 @@ const BasicTextInput = ({
   hideInput,
   error,
 }: BasicTextInputProps): JSX.Element => {
+  const theme = useTheme();
+
   return (
     <InputWrapper>
       <InputLabel>{label}</InputLabel>
@@ -45,6 +48,7 @@ const BasicTextInput = ({
             ? { height: TEXTAREA_NUMBER_OF_LINES * IOS_LINE_HEIGHT_PX }
             : null
         }
+        placeholderTextColor={theme.textLight}
       />
       <AnimatePresence>
         <ErrorContainer>

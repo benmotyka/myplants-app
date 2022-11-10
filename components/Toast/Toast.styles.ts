@@ -18,15 +18,12 @@ export const ToastCancelText = styled(ToastText)`
 export const ToastWrapper = styled(MotiView)<{
   backgroundColor: string;
 }>`
-  width: max-content;
-  max-width: 350px;
   position: absolute;
-  left: 0;
-  right: 0;
   top: 40px;
-  margin: 0 auto;
   background-color: ${(props) => props.backgroundColor};
   border-radius: 5px;
+  align-self: center;
+  max-width: 350px;
   padding: 10px 20px;
   display: flex;
   flex-direction: row;

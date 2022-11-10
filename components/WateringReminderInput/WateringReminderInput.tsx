@@ -12,17 +12,14 @@ import {
   Text,
   ErrorContainer,
 } from "./WateringReminderInput.styles";
+import { WateringReminderInputProps } from "./WateringReminderInput.interface";
 import i18n from "../../i18n";
 
 const WateringReminderInput = ({
   numberValue,
   setNumberValue,
   error,
-}: {
-  numberValue?: number;
-  setNumberValue: any;
-  error?: string;
-}): JSX.Element => {
+}: WateringReminderInputProps): JSX.Element => {
   const { t } = i18n;
 
   return (
