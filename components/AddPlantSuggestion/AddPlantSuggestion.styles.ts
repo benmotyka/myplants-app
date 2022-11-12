@@ -17,7 +17,7 @@ export const Image = styled.Image`
 export const ImageWrapper = styled.View`
   position: absolute;
   right: 5px;
-  bottom: 70px;
+  bottom: 68px;
 `;
 
 export const TutorialText = styled.Text`
