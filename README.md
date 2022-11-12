@@ -43,6 +43,17 @@
 
 My Plants is a free and open source mobile app that helps to manage watering of plants. App users can add plants to their collection and manage them, and then mark them as watered upon every watering. Users can import plants of other users, in order to water them together, view history of watering for their plants, add images to their plants or set reminders so they get push notification when the plant should be watered. 
 
+<br />
+
+<p align="center">
+  <!-- <a href="https://apps.apple.com">
+    <img alt="app-store" src="readme/app-store.png" />
+  </a> -->
+  <a href="https://play.google.com/store/apps/details?id=com.benmotyka.myplants">
+    <img alt="google-play" src="readme/google-play.png" />
+  </a>
+</p>
+
 ### Built With
 
 * [Expo](https://expo.dev/)
