@@ -1,7 +1,9 @@
 import styled from "styled-components/native";
 
 export const HeaderWrapper = styled.View`
+  /* prettier-ignore */
   borderBottomWidth: 1px;
+  /* prettier-ignore */
   borderBottomColor: ${({ theme }) => theme.neutral};
 `;
 

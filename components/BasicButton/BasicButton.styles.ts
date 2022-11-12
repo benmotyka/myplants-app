@@ -4,7 +4,9 @@ export const ButtonWrapper = styled.TouchableOpacity<{
   warning?: boolean;
   important?: boolean;
 }>`
+  /* prettier-ignore */
   paddingVertical: 10px;
+  /* prettier-ignore */
   paddingHorizontal: 10px;
   border-radius: 10px;
   background-color: ${({ theme }) => theme.backgroundLight};

@@ -20,15 +20,15 @@ export const FieldValue = styled.Text`
 
 export const ButtonWrapper = styled.TouchableOpacity`
   width: 25%;
-  paddingvertical: 10px;
-  paddinghorizontal: 10px;
   font-family: "Inter_300Light";
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: ${({ theme }) => theme.neutralLight};
-  bordertoprightradius: 5px;
-  borderbottomrightradius: 5px;
+  /* prettier-ignore */
+  borderTopRightRadius: 5px;
+  /* prettier-ignore */
+  borderBottomRightRadius: 5px;
 `;
 
 export const InfoWrapper = styled.View`
@@ -40,6 +40,6 @@ export const Info = styled.Text`
   font-size: 15px;
   opacity: 0.6;
   text-align: center;
-  padding-top: 5px;
+  padding: 5px 0;
   color: ${({ theme }) => theme.text};
 `;

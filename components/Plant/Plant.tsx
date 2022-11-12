@@ -16,9 +16,9 @@ import {
 import { PlantProps } from "components/Plant/Plant.interface";
 import ReminderIcon from "components/ReminderIcon/ReminderIcon";
 import { calculateDifferenceFromNow } from "util/date";
-import i18n from "../../i18n";
-import { useToastStore } from "store";
+import { useAppConfigStore, useToastStore } from "store";
 import { cancelWatering, waterPlant } from "services/watering";
+import i18n from "../../i18n";
 
 const MAX_SLIDER_VALUE = 1;
 const SLIDE_SUCCESS_VALUE_THRESHOLD = 0.9;
@@ -48,6 +48,7 @@ const Plant = ({
   const wateringRef = useRef<string>("");
   const displayToast = useToastStore((state) => state.showToast);
   const theme = useTheme();
+  const appTheme = useAppConfigStore((state) => state.theme);
 
   // This useEffect sets and clears intervals for changing Plant time. If plant was ever watered,
   // simply create a new interval, and destory old on return. If user waters this plant, this code
@@ -187,7 +188,7 @@ const Plant = ({
                 <>
                   <SmallImage
                     resizeMode="contain"
-                    source={require("../../assets/hourglass.png")}
+                    source={appTheme === 'dark' ? require("../../assets/hourglass-light.png") : require("../../assets/hourglass.png")}
                   />
                   <Header>{timeFromLastWatering}</Header>
                 </>

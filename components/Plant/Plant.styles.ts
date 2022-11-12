@@ -25,7 +25,9 @@ export const Image = styled.Image`
   width: 100%;
   height: 70%;
   position: absolute;
+  /* prettier-ignore */
   borderTopLeftRadius: 10px;
+  /* prettier-ignore */
   borderTopRightRadius: 10px;
 `;
 
