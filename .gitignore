@@ -11,3 +11,6 @@ npm-debug.*
 web-build/
 
 .env
+keys/*
+
+!/**/.gitkeep

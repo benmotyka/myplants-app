@@ -5,6 +5,7 @@ module.exports = {
   slug: "myplants",
   version: "1.0.0",
   privacy: "public",
+  scheme: "com.benmotyka.myplants",
   description:
     "My plants is an application that allows you to track watering of your plants.",
   orientation: "portrait",
@@ -25,6 +26,7 @@ module.exports = {
       backgroundColor: "#FFFFFF",
     },
     package: "com.benmotyka.myplants",
+    googleServicesFile: "./keys/google-services.json",
     versionCode: 11,
   },
   web: {
