@@ -14,7 +14,6 @@ import {
   SmallImage,
 } from "components/Plant/Plant.styles";
 import { PlantProps } from "components/Plant/Plant.interface";
-import ReminderIcon from "components/ReminderIcon/ReminderIcon";
 import { calculateDifferenceFromNow } from "util/date";
 import { useAppConfigStore, useToastStore } from "store";
 import { cancelWatering, waterPlant } from "services/watering";
@@ -157,8 +156,7 @@ const Plant = ({
 
   return (
     <Container>
-      <Wrapper>
-        <ReminderIcon showReminder={showWateringReminder} />
+      <Wrapper showWateringReminder={showWateringReminder}>
         <TouchableHighlight
           onLongPress={onLongPress}
           onPress={onPress}
