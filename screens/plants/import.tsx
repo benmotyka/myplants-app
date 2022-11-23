@@ -6,10 +6,10 @@ import { useTheme } from "styled-components/native";
 import { AntDesign } from "@expo/vector-icons";
 
 import { RootStackParamList } from "../../App";
-import Back from "components/Back/Back";
-import BasicTextInput from "components/BasicTextInput/BasicTextInput";
-import BasicButton from "components/BasicButton/BasicButton";
-import Loader from "components/Loader/Loader";
+import Back from "components/Back";
+import BasicTextInput from "components/BasicTextInput";
+import BasicButton from "components/BasicButton";
+import Loader from "components/Loader";
 import {
   ColumnCenterWrapper,
   Description,
@@ -22,8 +22,8 @@ import { ImportPlantSchema } from "schemas/ImportPlant.schema";
 import { useToastStore } from "store";
 import i18n from "../../i18n";
 import { ICON_SIZE_PX } from "config";
-import BasicModal from "components/BasicModal/BasicModal";
-import { ModalItem } from "components/BasicModal/BasicModal.styles";
+import BasicModal from "components/BasicModal";
+import { ModalItem } from "components/BasicModal/styles";
 import { importPlant } from "services/plant";
 
 type ImportPlantProps = NativeStackScreenProps<

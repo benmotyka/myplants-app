@@ -1,7 +1,8 @@
 import React from "react";
 import { Platform } from "react-native";
+import { AnimatePresence } from "moti";
+import { useTheme } from "styled-components/native";
 
-import { BasicTextInputProps } from "components/BasicTextInput/BasicTextInput.interface";
 import {
   Input,
   InputWrapper,
@@ -9,12 +10,22 @@ import {
   ErrorWrapper,
   ErrorText,
   ErrorContainer,
-} from "components/BasicTextInput/BasicTextInput.styles";
-import { AnimatePresence } from "moti";
-import { useTheme } from "styled-components/native";
+} from "./styles";
 
 const TEXTAREA_NUMBER_OF_LINES = 4;
 const IOS_LINE_HEIGHT_PX = 20;
+
+interface Props {
+  value?: string;
+  label?: string;
+  onChangeText: (...args: any[]) => void;
+  onBlur?: (...args: any[]) => void;
+  placeholder?: string;
+  textarea?: boolean;
+  hideInput?: boolean;
+  error?: string;
+  showErrorMessage?: boolean;
+}
 
 const BasicTextInput = ({
   placeholder,
@@ -25,7 +36,7 @@ const BasicTextInput = ({
   textarea,
   hideInput,
   error,
-}: BasicTextInputProps): JSX.Element => {
+}: Props): JSX.Element => {
   const theme = useTheme();
 
   return (

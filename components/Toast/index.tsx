@@ -4,14 +4,12 @@ import { AnimatePresence } from "moti";
 import { useTheme } from "styled-components/native";
 
 import { useToastStore, ToastState } from "store";
-import { ToastCancelText, ToastText, ToastWrapper } from "./Toast.styles";
+import { ToastCancelText, ToastText, ToastWrapper } from "./styles";
 import i18n from "../../i18n";
 
-const Toast = ({
-  text,
-  type,
-  onCancel,
-}: Pick<ToastState, "text" | "type" | "onCancel">): JSX.Element => {
+type Props = Pick<ToastState, "text" | "type" | "onCancel">;
+
+const Toast = ({ text, type, onCancel }: Props): JSX.Element => {
   const { isToastShown } = useToastStore((store) => store);
   const theme = useTheme();
   const { t } = i18n;

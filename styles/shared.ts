@@ -1,16 +1,10 @@
 import styled from "styled-components/native";
 import { Dimensions } from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { MotiView } from "moti";
-
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export const screenWidth = Dimensions.get("screen").width;
 export const screenHeight = Dimensions.get("screen").height;
-
-export const Container = styled.View`
-  flex: 1;
-  align-items: center;
-`;
 
 export const ScreenContainer = styled.View`
   height: 100%;

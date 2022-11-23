@@ -1,21 +1,26 @@
 import React, { useState } from "react";
 import * as ImagePicker from "expo-image-picker";
 
-import BasicButton from "components/BasicButton/BasicButton";
+import BasicButton from "components/BasicButton";
 import {
   InputWrapper,
   InputImage,
-} from "components/BasicImageInput/BasicImageInput.styles";
-import { BasicImageInputProps } from "components/BasicImageInput/BasicImageInput.interface";
-import BasicModal from "components/BasicModal/BasicModal";
-import { ModalItem } from "components/BasicModal/BasicModal.styles";
+} from "components/BasicImageInput/styles";
+import BasicModal from "components/BasicModal";
+import { ModalItem } from "components/BasicModal/styles";
 import i18n from "../../i18n";
+
+interface Props {
+  buttonText: string;
+  image?: ImagePicker.ImageInfo | { uri: string | undefined } | null;
+  setImage: (...args: any[]) => void;
+}
 
 const BasicImageInput = ({
   image,
   setImage,
   buttonText,
-}: BasicImageInputProps): JSX.Element => {
+}: Props): JSX.Element => {
   const [showModal, setShowModal] = useState(false);
 
   const { t } = i18n;

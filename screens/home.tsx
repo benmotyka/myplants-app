@@ -5,12 +5,12 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { RootStackParamList } from "../App";
 import PlantPreview from "components/Plant/Plant";
-import { numberOfColumns } from "components/Plant/Plant.styles";
-import AddPlantSuggestion from "components/AddPlantSuggestion/AddPlantSuggestion";
-import HomeSettings from "components/HomeSettings/HomeSettings";
+import { numberOfColumns } from "components/Plant/styles";
+import AddPlantSuggestion from "components/AddPlantSuggestion";
+import HomeSettings from "components/HomeSettings";
 import { Plant } from "interfaces/Plant";
 import { LoaderWrapper, ScreenContainer } from "styles/shared";
-import Loader from "components/Loader/Loader";
+import Loader from "components/Loader";
 import { usePlantsStore } from "store";
 import { getPlants } from "services/plant";
 

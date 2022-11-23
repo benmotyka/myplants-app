@@ -1,10 +1,14 @@
 import React from "react";
 
-import { BasicButtonProps } from "components/BasicButton/BasicButton.interface";
-import {
-  ButtonWrapper,
-  ButtonText,
-} from "components/BasicButton/BasicButton.styles";
+import { ButtonWrapper, ButtonText } from "./styles";
+
+interface Props {
+  text: string;
+  onPress: (...args: any[]) => void;
+  warning?: boolean;
+  important?: boolean;
+  disabled?: boolean;
+}
 
 const BasicButton = ({
   text,
@@ -12,7 +16,7 @@ const BasicButton = ({
   warning,
   important,
   disabled,
-}: BasicButtonProps): JSX.Element => {
+}: Props): JSX.Element => {
   return (
     <ButtonWrapper
       disabled={disabled}

@@ -7,13 +7,17 @@ import {
   FieldValue,
   Info,
   InfoWrapper,
-} from "./CopyField.styles";
+} from "./styles";
 
 import i18n from "../../i18n";
 
 const INFO_APPEAR_TIME_MS = 1000;
 
-const CopyField = ({ value }: { value: string }): JSX.Element => {
+interface Props {
+  value: string;
+}
+
+const CopyField = ({ value }: Props): JSX.Element => {
   const { t } = i18n;
   const [copied, setCopied] = useState(false);
 

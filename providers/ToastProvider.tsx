@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect } from "react";
-import Toast from "components/Toast/Toast";
 import RootSiblings from "react-native-root-siblings";
+import Toast from "components/Toast";
 import { useToastStore } from "store";
 
 interface ToastProviderProps {

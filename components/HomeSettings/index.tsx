@@ -5,8 +5,8 @@ import { useTheme } from "styled-components/native";
 import {
   IconWrapper,
   MenuContainer,
-} from "components/HomeSettings/HomeSettings.styles";
-import { HomeSettingsProps } from "components/HomeSettings/HomeSettings.interface";
+} from "components/HomeSettings/styles";
+import { Navigation } from "interfaces/Navigation";
 import { AnimatePresence } from "moti";
 import { ModalAnimationWrapper } from "styles/shared";
 import { RootStackParamList } from "App";
@@ -15,13 +15,15 @@ import { ICON_SIZE_PX } from "config";
 const ITEMS_MARGIN_PX = 60;
 const ITEMS_OFFSET_PX = 20;
 
+interface Props extends Navigation {}
+
 interface SettingsItem {
   name: string;
   icon: ReactElement;
   href: keyof RootStackParamList;
 }
 
-const HomeSettings = ({ navigation }: HomeSettingsProps): JSX.Element => {
+const HomeSettings = ({ navigation }: Props): JSX.Element => {
   const [showMenu, setShowMenu] = useState(false);
   const theme = useTheme();
 

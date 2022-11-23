@@ -3,7 +3,8 @@ import { TouchableHighlight, View } from "react-native";
 import { Slider } from "@miblanchard/react-native-slider";
 import { useIsFocused } from "@react-navigation/native";
 import { useTheme } from "styled-components/native";
-
+import { Navigation } from "interfaces/Navigation";
+import { Watering } from "interfaces/Watering";
 import {
   Body,
   Header,
@@ -12,8 +13,7 @@ import {
   Container,
   ItemsWrapper,
   SmallImage,
-} from "components/Plant/Plant.styles";
-import { PlantProps } from "components/Plant/Plant.interface";
+} from "components/Plant/styles";
 import { calculateDifferenceFromNow } from "util/date";
 import { useAppConfigStore, useToastStore } from "store";
 import { cancelWatering, waterPlant } from "services/watering";
@@ -24,6 +24,16 @@ const SLIDE_SUCCESS_VALUE_THRESHOLD = 0.9;
 const MAX_HEADER_CHARACTERS = 10;
 const REFRESH_TIME_MS = 10000;
 
+interface Props extends Navigation {
+  id: string;
+  name: string;
+  imgSrc?: string;
+  onSlidingStart: () => void;
+  onSlidingFinish: () => void;
+  latestWatering?: Watering;
+  reminderFrequency?: number;
+}
+
 const Plant = ({
   id,
   name,
@@ -33,7 +43,7 @@ const Plant = ({
   onSlidingFinish,
   latestWatering,
   reminderFrequency,
-}: PlantProps): JSX.Element => {
+}: Props): JSX.Element => {
   const [sliderValue, setSliderValue] = useState(0);
   const [watered, setWatered] = useState(false);
   // If there was any watering, set time to last watering.

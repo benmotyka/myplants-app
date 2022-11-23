@@ -1,25 +1,20 @@
 import { AnimatePresence } from "moti";
 import React from "react";
-import {
-  ErrorWrapper,
-  ErrorText,
-} from "components/BasicTextInput/BasicTextInput.styles";
-
-import {
-  Container,
-  Wrapper,
-  Input,
-  Text,
-  ErrorContainer,
-} from "./WateringReminderInput.styles";
-import { WateringReminderInputProps } from "./WateringReminderInput.interface";
+import { ErrorWrapper, ErrorText } from "components/BasicTextInput/styles";
+import { Container, Wrapper, Input, Text, ErrorContainer } from "./styles";
 import i18n from "../../i18n";
+
+interface Props {
+  numberValue?: number;
+  setNumberValue: (...args: any[]) => void;
+  error?: string;
+}
 
 const WateringReminderInput = ({
   numberValue,
   setNumberValue,
   error,
-}: WateringReminderInputProps): JSX.Element => {
+}: Props): JSX.Element => {
   const { t } = i18n;
 
   return (

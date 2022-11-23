@@ -1,12 +1,7 @@
 import React from "react";
 
-import {
-  TutorialContainer,
-  Image,
-  ImageWrapper,
-  TutorialText,
-} from "components/AddPlantSuggestion/AddPlantSuggestion.styles";
 import { useAppConfigStore } from "store";
+import { TutorialContainer, Image, ImageWrapper, TutorialText } from "./styles";
 import i18n from "../../i18n";
 
 const AddPlantSuggestion = (): JSX.Element => {

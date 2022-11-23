@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { RootStackParamList } from "App";
-import Back from "components/Back/Back";
+import Back from "components/Back";
 import {
   ColumnCenterWrapper,
   ScreenContainer,
   Description,
 } from "styles/shared";
 import i18n from "../../i18n";
-import BasicSwitch from "components/BasicSwitch/BasicSwitch";
+import BasicSwitch from "components/BasicSwitch";
 import { useToastStore } from "store";
 import { updateUserSettings } from "services/user";
 

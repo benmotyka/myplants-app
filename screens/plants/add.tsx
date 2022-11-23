@@ -7,11 +7,11 @@ import { AnimatePresence, MotiView } from "moti";
 import { useTheme } from "styled-components/native";
 
 import { RootStackParamList } from "../../App";
-import Back from "components/Back/Back";
-import BasicTextInput from "components/BasicTextInput/BasicTextInput";
-import BasicImageInput from "components/BasicImageInput/BasicImageInput";
-import BasicButton from "components/BasicButton/BasicButton";
-import Loader from "components/Loader/Loader";
+import Back from "components/Back";
+import BasicTextInput from "components/BasicTextInput";
+import BasicImageInput from "components/BasicImageInput";
+import BasicButton from "components/BasicButton";
+import Loader from "components/Loader";
 import { createAddPlantSchema } from "schemas/AddPlant.schema";
 import {
   KeyboardScreen,
@@ -22,8 +22,8 @@ import {
 import { ApiErrors } from "enums/api-errors";
 import { base64EncodeImage } from "util/images";
 import i18n from "../../i18n";
-import BasicCheckbox from "components/BasicCheckbox/BasicCheckbox";
-import WateringReminderInput from "components/WateringReminderInput/WateringReminderInput";
+import BasicCheckbox from "components/BasicCheckbox";
+import WateringReminderInput from "components/WateringReminderInput";
 import { useToastStore } from "store";
 import { addPlant } from "services/plant";
 

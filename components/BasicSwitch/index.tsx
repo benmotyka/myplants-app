@@ -1,13 +1,21 @@
 import React from "react";
 import { TouchableOpacity } from "react-native";
 import { SmallHeader } from "styles/shared";
-import { BasicSwitchProps } from "./BasicSwitch.interface";
 import {
   Container,
   PartWrapper,
   Wrapper,
   ItemText,
-} from "./BasicSwitch.styles";
+} from "./styles";
+
+interface Props {
+  label: string;
+  leftItemLabel: string;
+  rightItemLabel: string;
+  onClickLeftItem: () => void;
+  onClickRightItem: () => void;
+  activeItem: "left" | "right";
+}
 
 const BasicSwitch = ({
   label,
@@ -16,7 +24,7 @@ const BasicSwitch = ({
   onClickLeftItem,
   onClickRightItem,
   activeItem,
-}: BasicSwitchProps): JSX.Element => {
+}: Props): JSX.Element => {
   return (
     <Container>
       <SmallHeader>{label}</SmallHeader>

@@ -7,16 +7,16 @@ import { View } from "react-native";
 import { useTheme } from "styled-components/native";
 
 import { RootStackParamList } from "../../App";
-import Back from "components/Back/Back";
-import BasicModal from "components/BasicModal/BasicModal";
-import BasicTextInput from "components/BasicTextInput/BasicTextInput";
-import BasicImageInput from "components/BasicImageInput/BasicImageInput";
-import BasicButton from "components/BasicButton/BasicButton";
-import Loader from "components/Loader/Loader";
+import Back from "components/Back";
+import BasicModal from "components/BasicModal";
+import BasicTextInput from "components/BasicTextInput";
+import BasicImageInput from "components/BasicImageInput";
+import BasicButton from "components/BasicButton";
+import Loader from "components/Loader";
 import {
   ModalHeader,
   ModalItem,
-} from "components/BasicModal/BasicModal.styles";
+} from "components/BasicModal/styles";
 import { Plant } from "interfaces/Plant";
 import { createEditPlantSchema } from "schemas/EditPlant.schema";
 import {
@@ -30,9 +30,9 @@ import { formatToHourDateAndYear } from "util/date";
 import { ApiErrors } from "enums/api-errors";
 import { base64EncodeImage } from "util/images";
 import i18n from "../../i18n";
-import BasicCheckbox from "components/BasicCheckbox/BasicCheckbox";
+import BasicCheckbox from "components/BasicCheckbox";
 import { AnimatePresence, MotiView } from "moti";
-import WateringReminderInput from "components/WateringReminderInput/WateringReminderInput";
+import WateringReminderInput from "components/WateringReminderInput";
 import { useToastStore, usePlantsStore } from "store";
 import { ICON_SIZE_PX } from "config";
 import { deletePlant, editPlant } from "services/plant";

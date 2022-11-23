@@ -2,11 +2,13 @@ import React from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import { useTheme } from "styled-components/native";
 
-import { IconWrapper } from "components/Back/Back.styles";
-import { BackProps } from "components/Back/Back.interface";
+import { IconWrapper } from "./styles";
 import { ICON_SIZE_PX } from "config";
+import { Navigation } from "interfaces/Navigation";
 
-const Back = ({ navigation }: BackProps): JSX.Element => {
+interface Props extends Navigation {}
+
+const Back = ({ navigation }: Props): JSX.Element => {
   const theme = useTheme();
 
   return (

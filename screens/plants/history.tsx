@@ -7,7 +7,7 @@ import { Entypo } from "@expo/vector-icons";
 import { useTheme } from "styled-components/native";
 
 import { RootStackParamList } from "../../App";
-import Back from "components/Back/Back";
+import Back from "components/Back";
 import {
   ColumnCenterWrapper,
   ScreenContainer,
@@ -30,22 +30,22 @@ import {
   ButtonWrapper,
 } from "styles/screens/plantHistory.styles";
 import { WateringData } from "interfaces/WateringData";
-import Loader from "components/Loader/Loader";
+import Loader from "components/Loader";
 import { formatToHour } from "util/date";
 import i18n from "../../i18n";
 import { ICON_SIZE_PX } from "config";
-import BasicModal from "components/BasicModal/BasicModal";
+import BasicModal from "components/BasicModal";
 import {
   ModalDescription,
   ModalHeader,
   ModalItem,
   ModalImage,
-} from "components/BasicModal/BasicModal.styles";
+} from "components/BasicModal/styles";
 import { Plant } from "interfaces/Plant";
-import CopyField from "components/CopyField/CopyField";
+import CopyField from "components/CopyField";
 import { PlantImagesHistoryData } from "interfaces/PlantImagesHistoryData";
-import BasicImageInput from "components/BasicImageInput/BasicImageInput";
-import BasicButton from "components/BasicButton/BasicButton";
+import BasicImageInput from "components/BasicImageInput";
+import BasicButton from "components/BasicButton";
 import { base64EncodeImage } from "util/images";
 import { useToastStore, usePlantsStore } from "store";
 import { getImagesHistory, addImageToPlant } from "services/plant";
