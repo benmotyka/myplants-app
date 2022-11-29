@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Formik } from "formik";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -6,7 +6,6 @@ import { ImageInfo } from "expo-image-picker";
 import { View } from "react-native";
 import { useTheme } from "styled-components/native";
 
-import { RootStackParamList } from "../../App";
 import Back from "components/Back";
 import BasicModal from "components/BasicModal";
 import BasicTextInput from "components/BasicTextInput";
@@ -17,7 +16,6 @@ import {
   ModalHeader,
   ModalItem,
 } from "components/BasicModal/styles";
-import { Plant } from "interfaces/Plant";
 import { createEditPlantSchema } from "schemas/EditPlant.schema";
 import {
   ColumnCenterWrapper,
@@ -29,13 +27,16 @@ import {
 import { formatToHourDateAndYear } from "util/date";
 import { ApiErrors } from "enums/api-errors";
 import { base64EncodeImage } from "util/images";
-import i18n from "../../i18n";
 import BasicCheckbox from "components/BasicCheckbox";
 import { AnimatePresence, MotiView } from "moti";
 import WateringReminderInput from "components/WateringReminderInput";
-import { useToastStore, usePlantsStore } from "store";
+import { useToastStore } from "store";
 import { ICON_SIZE_PX } from "config";
 import { deletePlant, editPlant } from "services/plant";
+import { useGetPlantDetailsFromCache } from "hooks/useGetPlantDetailsFromCache";
+import i18n from "../../i18n";
+import { RootStackParamList } from "../../App";
+
 
 type EditPlantProps = NativeStackScreenProps<RootStackParamList, "editPlant">;
 
@@ -51,20 +52,13 @@ const { t } = i18n;
 const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
   const plantId = route.params.plantId;
   const [loading, setLoading] = useState(false);
-  const [isRemindersChecked, setRemindersChecked] = useState(false);
   const [image, setImage] = useState<ImageInfo>();
-  const [selectedPlant, setSelectedPlant] = useState<Plant>();
   const [showModal, setShowModal] = useState(false);
   const theme = useTheme();
 
   const displayToast = useToastStore((state) => state.showToast);
-  const userPlants = usePlantsStore((state) => state.userPlants);
 
-  useEffect(() => {
-    const plant = userPlants.find((plant) => plant.id === plantId);
-    setSelectedPlant(plant);
-    setRemindersChecked(!!plant?.wateringReminderFrequency);
-  }, [userPlants]);
+  const { isReminderChecked, plant: selectedPlant, setReminderChecked } = useGetPlantDetailsFromCache(plantId)
 
   const handleDelete = async () => {
     try {
@@ -97,7 +91,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
         name: values.name,
         description: values.description,
         image: base64EncodedImage,
-        ...(isRemindersChecked && {
+        ...(isReminderChecked && {
           wateringReminderFrequency,
         }),
       });
@@ -126,8 +120,8 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
       selectedPlant.name === values.name &&
       selectedPlant.description === values.description &&
       !image &&
-      !!selectedPlant.wateringReminderFrequency === isRemindersChecked &&
-      (!isRemindersChecked ||
+      !!selectedPlant.wateringReminderFrequency === isReminderChecked &&
+      (!isReminderChecked ||
         selectedPlant.wateringReminderFrequency ==
           values.wateringReminderFrequency)
     );
@@ -167,7 +161,7 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
                 wateringReminderFrequency:
                   selectedPlant.wateringReminderFrequency || 1,
               }}
-              validationSchema={() => createEditPlantSchema(isRemindersChecked)}
+              validationSchema={() => createEditPlantSchema(isReminderChecked)}
               onSubmit={handleEdit}
             >
               {({ handleChange, handleBlur, handleSubmit, values, errors }) => (
@@ -198,11 +192,11 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
                   />
                   <BasicCheckbox
                     label={t("pages.plants.edit.remindWateringLabel")}
-                    isChecked={isRemindersChecked}
-                    setChecked={setRemindersChecked}
+                    isChecked={isReminderChecked}
+                    setChecked={setReminderChecked}
                   />
                   <AnimatePresence>
-                    {isRemindersChecked ? (
+                    {isReminderChecked ? (
                       <MotiView
                         style={{ paddingTop: 20, width: "100%" }}
                         from={{

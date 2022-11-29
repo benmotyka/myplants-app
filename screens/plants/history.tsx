@@ -6,7 +6,6 @@ import { ScrollView, TouchableOpacity } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { useTheme } from "styled-components/native";
 
-import { RootStackParamList } from "../../App";
 import Back from "components/Back";
 import {
   ColumnCenterWrapper,
@@ -32,7 +31,6 @@ import {
 import { WateringData } from "interfaces/WateringData";
 import Loader from "components/Loader";
 import { formatToHour } from "util/date";
-import i18n from "../../i18n";
 import { ICON_SIZE_PX } from "config";
 import BasicModal from "components/BasicModal";
 import {
@@ -41,15 +39,17 @@ import {
   ModalItem,
   ModalImage,
 } from "components/BasicModal/styles";
-import { Plant } from "interfaces/Plant";
 import CopyField from "components/CopyField";
 import { PlantImagesHistoryData } from "interfaces/PlantImagesHistoryData";
 import BasicImageInput from "components/BasicImageInput";
 import BasicButton from "components/BasicButton";
 import { base64EncodeImage } from "util/images";
-import { useToastStore, usePlantsStore } from "store";
+import { useToastStore } from "store";
 import { getImagesHistory, addImageToPlant } from "services/plant";
 import { getWateringHistory } from "services/watering";
+import { useGetPlantDetailsFromCache } from "hooks/useGetPlantDetailsFromCache";
+import { RootStackParamList } from "../../App";
+import i18n from "../../i18n";
 
 type PlantHistoryProps = NativeStackScreenProps<
   RootStackParamList,
@@ -70,7 +70,6 @@ const PlantHistory = ({
   const [activeSection, setActiveSection] = useState<Sections>("watering");
   const [showShareModal, setShowShareModal] = useState(false);
   const [showImageModal, setShowImageModal] = useState<boolean | string>(false);
-  const [selectedPlant, setSelectedPlant] = useState<Plant>();
   const [wateringData, setWateringData] = useState<WateringData>();
   const [plantImagesHistoryData, setPlantImagesHistoryData] =
     useState<PlantImagesHistoryData>();
@@ -79,13 +78,9 @@ const PlantHistory = ({
 
   const scrollViewRef = useRef<ScrollView & HTMLElement>();
   const displayToast = useToastStore((state) => state.showToast);
-  const userPlants = usePlantsStore((state) => state.userPlants);
   const isFocused = useIsFocused();
 
-  useEffect(() => {
-    const plant = userPlants.find((plant) => plant.id === plantId);
-    setSelectedPlant(plant);
-  }, [userPlants]);
+  const { plant: selectedPlant } = useGetPlantDetailsFromCache(plantId)
 
   const getPlantWateringHistory = async () => {
     try {

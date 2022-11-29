@@ -19,6 +19,7 @@ module.exports = function (api) {
             enums: "./enums",
             providers: "./providers",
             services: "./services",
+            hooks: "./hooks"
           },
         },
       ],

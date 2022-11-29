@@ -15,7 +15,8 @@
       "util/*": ["util/*"],
       "enums/*": ["enums/*"],
       "providers/*": ["providers/*"],
-      "services/*": ["services/*"]
+      "services/*": ["services/*"],
+      "hooks/*": ["hooks/*"]
   },
   }
 }
