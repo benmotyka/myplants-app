@@ -2,26 +2,21 @@ import plantsApi from "config/api/plants";
 import { WateringData } from "interfaces/WateringData";
 
 export const getWateringHistory = async (plantId: string) => {
-  const result = await plantsApi.get<{ waterings: WateringData }>(
+  const { data } = await plantsApi.get<{ waterings: WateringData }>(
     `watering/${plantId}`
   );
 
-  return result.data;
+  return data;
 };
 
 export const cancelWatering = async (wateringId: string) => {
-  const result = await plantsApi.delete(`/watering/${wateringId}`);
-
-  return result;
+  return await plantsApi.delete(`/watering/${wateringId}`);
 };
 
-
-
 export const waterPlant = async (plantId: string) => {
-  const result = await plantsApi.post(`/watering`, {
+  const { data } = await plantsApi.post(`/watering`, {
     plantId,
   });
 
-  return result.data.id;
+  return data.id;
 };
-

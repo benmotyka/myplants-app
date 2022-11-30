@@ -1,13 +1,13 @@
 import plantsApi from "config/api/plants";
 
+interface UpdateUserSettings {
+  pushNotificationsEnabled: boolean;
+}
+
 export const updateUserSettings = async ({
   pushNotificationsEnabled,
-}: {
-  pushNotificationsEnabled: boolean;
-}) => {
-  const result = await plantsApi.put("/user/settings", {
+}: UpdateUserSettings) => {
+  return await plantsApi.put("/user/settings", {
     pushNotificationsEnabled,
   });
-
-  return result;
 };
