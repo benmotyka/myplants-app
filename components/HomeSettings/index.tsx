@@ -1,15 +1,12 @@
 import React, { ReactElement, useState } from "react";
+import { AnimatePresence } from "moti";
 import { MaterialIcons, Feather, Entypo } from "@expo/vector-icons";
 import { useTheme } from "styled-components/native";
 
-import {
-  IconWrapper,
-  MenuContainer,
-} from "components/HomeSettings/styles";
+import { RootStackParamList } from "interfaces/RootStackParamList";
+import { IconWrapper, MenuContainer } from "components/HomeSettings/styles";
 import { Navigation } from "interfaces/Navigation";
-import { AnimatePresence } from "moti";
 import { ModalAnimationWrapper } from "styles/shared";
-import { RootStackParamList } from "App";
 import { ICON_SIZE_PX } from "config";
 
 const ITEMS_MARGIN_PX = 60;

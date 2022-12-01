@@ -1,14 +1,14 @@
 import React from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-import { RootStackParamList } from "../../App";
+import { RootStackParamList } from "interfaces/RootStackParamList";
 import Back from "components/Back";
 import BasicButton from "components/BasicButton";
 import { SettingsSection } from "components/Settings/styles";
 import SettingsHeader from "components/Settings/header";
 import SettingsItem from "components/Settings/item";
 import { ColumnCenterWrapper, ScreenContainer } from "styles/shared";
-import i18n from "../../i18n";
+import i18n from "config/i18n";
 
 type SettingsProps = NativeStackScreenProps<RootStackParamList, "settings">;
 

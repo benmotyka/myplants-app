@@ -34,8 +34,8 @@ import { useToastStore } from "store";
 import { ICON_SIZE_PX } from "config";
 import { deletePlant, editPlant } from "services/plant";
 import { useGetPlantDetailsFromCache } from "hooks/useGetPlantDetailsFromCache";
-import i18n from "../../i18n";
-import { RootStackParamList } from "../../App";
+import i18n from "config/i18n";
+import { RootStackParamList } from "interfaces/RootStackParamList";
 
 
 type EditPlantProps = NativeStackScreenProps<RootStackParamList, "editPlant">;

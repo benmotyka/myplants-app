@@ -6,7 +6,7 @@ import { ImageInfo } from "expo-image-picker";
 import { AnimatePresence, MotiView } from "moti";
 import { useTheme } from "styled-components/native";
 
-import { RootStackParamList } from "../../App";
+import { RootStackParamList } from "interfaces/RootStackParamList";
 import Back from "components/Back";
 import BasicTextInput from "components/BasicTextInput";
 import BasicImageInput from "components/BasicImageInput";
@@ -21,7 +21,7 @@ import {
 } from "styles/shared";
 import { ApiErrors } from "enums/api-errors";
 import { base64EncodeImage } from "util/images";
-import i18n from "../../i18n";
+import i18n from "config/i18n";
 import BasicCheckbox from "components/BasicCheckbox";
 import WateringReminderInput from "components/WateringReminderInput";
 import { useToastStore } from "store";

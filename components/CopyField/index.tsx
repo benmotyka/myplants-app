@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { MotiView, AnimatePresence } from "moti";
 import * as Clipboard from "expo-clipboard";
+import i18n from "config/i18n";
 import {
   ButtonWrapper,
   FieldContainer,
@@ -9,7 +10,6 @@ import {
   InfoWrapper,
 } from "./styles";
 
-import i18n from "../../i18n";
 
 const INFO_APPEAR_TIME_MS = 1000;
 

@@ -1,8 +1,8 @@
-import { AnimatePresence } from "moti";
 import React from "react";
+import { AnimatePresence } from "moti";
 import { ErrorWrapper, ErrorText } from "components/BasicTextInput/styles";
+import i18n from "config/i18n";
 import { Container, Wrapper, Input, Text, ErrorContainer } from "./styles";
-import i18n from "../../i18n";
 
 interface Props {
   numberValue?: number;

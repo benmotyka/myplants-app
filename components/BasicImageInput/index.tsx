@@ -8,7 +8,7 @@ import {
 } from "components/BasicImageInput/styles";
 import BasicModal from "components/BasicModal";
 import { ModalItem } from "components/BasicModal/styles";
-import i18n from "../../i18n";
+import i18n from "config/i18n";
 
 interface Props {
   buttonText: string;

@@ -5,7 +5,7 @@ import { View } from "react-native";
 import { useTheme } from "styled-components/native";
 import { AntDesign } from "@expo/vector-icons";
 
-import { RootStackParamList } from "../../App";
+import { RootStackParamList } from "interfaces/RootStackParamList";
 import Back from "components/Back";
 import BasicTextInput from "components/BasicTextInput";
 import BasicButton from "components/BasicButton";
@@ -20,7 +20,7 @@ import {
 import { ApiErrors } from "enums/api-errors";
 import { ImportPlantSchema } from "schemas/ImportPlant.schema";
 import { useToastStore } from "store";
-import i18n from "../../i18n";
+import i18n from "config/i18n";
 import { ICON_SIZE_PX } from "config";
 import BasicModal from "components/BasicModal";
 import { ModalItem } from "components/BasicModal/styles";

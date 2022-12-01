@@ -14,6 +14,7 @@ import * as Sentry from "sentry-expo";
 import { ThemeProvider } from "styled-components/native";
 
 import { sentryDsn } from "config/environment";
+import { RootStackParamList } from "interfaces/RootStackParamList";
 import HomeScreen from "screens/home";
 import AddPlantScreen from "screens/plants/add";
 import EditPlantScreen from "screens/plants/edit";
@@ -25,18 +26,7 @@ import SettingsAppScreen from "screens/settings/app";
 import ToastProvider from "providers/ToastProvider";
 import { darkTheme, lightTheme } from "styles/theme";
 import { useAppConfigStore } from "store";
-import "./i18n";
-
-export type RootStackParamList = {
-  home: undefined;
-  addPlant: undefined;
-  editPlant: { plantId: string };
-  plantHistory: { plantId: string };
-  importPlant: undefined;
-  settings: undefined;
-  settingsNotifications: undefined;
-  settingsApp: undefined;
-};
+import "config/i18n";
 
 Sentry.init({
   dsn: sentryDsn,

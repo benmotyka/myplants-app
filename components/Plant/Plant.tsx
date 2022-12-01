@@ -17,7 +17,7 @@ import {
 import { calculateDifferenceFromNow } from "util/date";
 import { useAppConfigStore, useToastStore } from "store";
 import { cancelWatering, waterPlant } from "services/watering";
-import i18n from "../../i18n";
+import i18n from "config/i18n";
 
 const MAX_SLIDER_VALUE = 1;
 const SLIDE_SUCCESS_VALUE_THRESHOLD = 0.9;

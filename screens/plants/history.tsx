@@ -28,6 +28,7 @@ import {
   InfoText,
   ButtonWrapper,
 } from "styles/screens/plantHistory.styles";
+import { RootStackParamList } from "interfaces/RootStackParamList";
 import { WateringData } from "interfaces/WateringData";
 import Loader from "components/Loader";
 import { formatToHour } from "util/date";
@@ -48,8 +49,7 @@ import { useToastStore } from "store";
 import { getImagesHistory, addImageToPlant } from "services/plant";
 import { getWateringHistory } from "services/watering";
 import { useGetPlantDetailsFromCache } from "hooks/useGetPlantDetailsFromCache";
-import { RootStackParamList } from "../../App";
-import i18n from "../../i18n";
+import i18n from "config/i18n";
 
 type PlantHistoryProps = NativeStackScreenProps<
   RootStackParamList,

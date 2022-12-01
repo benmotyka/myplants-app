@@ -5,7 +5,7 @@ import { useTheme } from "styled-components/native";
 
 import { useToastStore, ToastState } from "store";
 import { ToastCancelText, ToastText, ToastWrapper } from "./styles";
-import i18n from "../../i18n";
+import i18n from "config/i18n";
 
 type Props = Pick<ToastState, "text" | "type" | "onCancel">;
 
