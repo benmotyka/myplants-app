@@ -11,8 +11,9 @@ import HomeSettings from "components/HomeSettings";
 import { Plant } from "interfaces/Plant";
 import { LoaderWrapper, ScreenContainer } from "styles/shared";
 import Loader from "components/Loader";
-import { usePlantsStore } from "store";
+import { usePlantsStore, useToastStore } from "store";
 import { getPlants } from "services/plant";
+import i18n from "config/i18n";
 
 type HomeProps = NativeStackScreenProps<RootStackParamList, "home">;
 
@@ -21,13 +22,18 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
   const [allowScrolling, setAllowScrolling] = useState(true);
   const isFocused = useIsFocused();
 
+  const { t } = i18n;
   const setUserPlants = usePlantsStore((store) => store.setUserPlants);
+  const displayToast = useToastStore((state) => state.showToast);
 
   const getUserPlants = async () => {
     try {
       return await getPlants();
     } catch (error) {
-      throw new Error("error");
+      displayToast({ text: t("errors.general"), type: "error" });
+      return {
+        plants: [],
+      };
     }
   };
 

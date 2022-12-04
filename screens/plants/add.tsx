@@ -78,7 +78,6 @@ const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
         type: "success",
       });
     } catch (error) {
-      console.log(error);
       switch (error) {
         case ApiErrors.INVALID_FILE:
           return displayToast({

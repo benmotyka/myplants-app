@@ -59,7 +59,6 @@ const ImportPlant = ({ navigation }: ImportPlantProps): JSX.Element => {
       navigation.navigate("home");
       displayToast({ text: t("pages.plants.import.success"), type: "success" });
     } catch (error) {
-      console.log(error);
       switch (error) {
         case ApiErrors.PLANT_ALREADY_ADDED:
           return displayToast({

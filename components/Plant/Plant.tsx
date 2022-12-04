@@ -126,7 +126,6 @@ const Plant = ({
       setTimeFromLastWatering(calculateDifferenceFromNow(new Date()));
       setWatered(true);
     } catch (error) {
-      console.log(error);
       displayToast({ text: t("errors.general"), type: "error" });
     }
   };
@@ -159,7 +158,6 @@ const Plant = ({
       setWatered(false);
       setSliderValue(0);
     } catch (error) {
-      console.log(error);
       displayToast({ text: t("errors.general"), type: "error" });
     }
   };

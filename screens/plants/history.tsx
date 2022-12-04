@@ -86,7 +86,6 @@ const PlantHistory = ({
     try {
       return await getWateringHistory(plantId);
     } catch (error) {
-      console.log(error);
       switch (error) {
         default:
           return displayToast({ text: t("errors.general"), type: "error" });
@@ -98,7 +97,6 @@ const PlantHistory = ({
     try {
       return await getImagesHistory(plantId);
     } catch (error) {
-      console.log(error);
       switch (error) {
         default:
           return displayToast({ text: t("errors.general"), type: "error" });
@@ -123,7 +121,6 @@ const PlantHistory = ({
       });
       handleChangeSection("images");
     } catch (error) {
-      console.log(error);
       switch (error) {
         default:
           return displayToast({ text: t("errors.general"), type: "error" });

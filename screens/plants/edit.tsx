@@ -68,7 +68,6 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
         type: "success",
       });
     } catch (error) {
-      console.error(error);
       return displayToast({ text: t("errors.general"), type: "error" });
     } finally {
       navigation.navigate("home");
@@ -98,7 +97,6 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
       navigation.navigate("home");
       displayToast({ text: t("pages.plants.edit.success"), type: "success" });
     } catch (error) {
-      console.log(error);
       switch (error) {
         case ApiErrors.INVALID_FILE:
           return displayToast({

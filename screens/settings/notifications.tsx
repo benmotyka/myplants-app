@@ -35,7 +35,6 @@ const SettingsNotifications = ({
         pushNotificationsEnabled: isEnabled,
       });
     } catch (error) {
-      console.log(error);
       return displayToast({ text: t("errors.general"), type: "error" });
     }
   };
