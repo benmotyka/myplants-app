@@ -14,10 +14,12 @@ import Loader from "components/Loader";
 import { usePlantsStore, useToastStore } from "store";
 import { getPlants } from "services/plant";
 import i18n from "config/i18n";
+import { isNewUpdate } from "util/app";
 
 type HomeProps = NativeStackScreenProps<RootStackParamList, "home">;
 
 const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [dataSource, setDataSource] = useState<Plant[]>();
   const [allowScrolling, setAllowScrolling] = useState(true);
   const isFocused = useIsFocused();
@@ -45,22 +47,21 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
 
   useEffect(() => {
     if (!isFocused) return;
-    (async () => {
-      try {
-        const { plants } = await getUserPlants();
-        const sortedPlants = sortPlantsByCreatedAt(plants);
-        setUserPlants(sortedPlants);
-        setDataSource(sortedPlants);
-      } catch (error) {
-        console.error(error);
-      }
-    })();
+
+    getUserPlants().then(({ plants }) => {
+      const sortedPlants = sortPlantsByCreatedAt(plants);
+      setUserPlants(sortedPlants);
+      setDataSource(sortedPlants);
+    });
+
+    isNewUpdate().then((result) => setShowUpdateModal(result));
 
     // Workaround for devices with hardware back button
     const backHandler = BackHandler.addEventListener(
       "hardwareBackPress",
       () => true
     );
+
     return () => backHandler.remove();
   }, [isFocused]);
 
