@@ -68,7 +68,8 @@
         "manageTheme": "Zmień motyw",
         "darkTheme": "Ciemny",
         "lightTheme": "Jasny"
-      }
+      },
+      "appVersion": "Wersja aplikacji: {{version}}"
     }
   },
   "errors": {

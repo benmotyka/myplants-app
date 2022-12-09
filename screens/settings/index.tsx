@@ -8,7 +8,12 @@ import { SettingsSection } from "components/Settings/styles";
 import SettingsHeader from "components/Settings/header";
 import SettingsItem from "components/Settings/item";
 import { ColumnCenterWrapper, ScreenContainer } from "styles/shared";
+import {
+  AppVersionText,
+  AppVersionWrapper,
+} from "styles/screens/settings.styles";
 import i18n from "config/i18n";
+import { getCurrentAppVersion } from "util/app";
 
 type SettingsProps = NativeStackScreenProps<RootStackParamList, "settings">;
 
@@ -18,7 +23,7 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
   return (
     <ScreenContainer>
       <Back navigation={navigation} />
-      <ColumnCenterWrapper>
+      <ColumnCenterWrapper fullHeight>
         <SettingsSection>
           <SettingsHeader text={t("pages.settings.header")} />
           <SettingsItem>
@@ -38,6 +43,13 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
             />
           </SettingsItem>
         </SettingsSection>
+        <AppVersionWrapper>
+          <AppVersionText>
+            {t("pages.settings.appVersion", {
+              version: getCurrentAppVersion(),
+            })}
+          </AppVersionText>
+        </AppVersionWrapper>
       </ColumnCenterWrapper>
     </ScreenContainer>
   );
