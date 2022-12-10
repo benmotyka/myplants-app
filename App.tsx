@@ -43,7 +43,7 @@ export default function App() {
     AkayaKanadaka_400Regular,
   });
 
-  const appTheme = useAppConfigStore((state) => state.theme);
+  const appTheme = useAppConfigStore.persistent((state) => state.theme);
 
   if (!fontsLoaded) {
     return <AppLoading />;

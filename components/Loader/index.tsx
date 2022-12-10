@@ -4,7 +4,7 @@ import { ActivityIndicator } from "react-native";
 import { useAppConfigStore } from "store";
 
 const Loader = (): JSX.Element => {
-  const appTheme = useAppConfigStore((state) => state.theme);
+  const appTheme = useAppConfigStore.persistent((state) => state.theme);
 
   return (
     <ActivityIndicator

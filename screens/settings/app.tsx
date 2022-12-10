@@ -19,7 +19,7 @@ type SettingsAppProps = NativeStackScreenProps<
 const { t } = i18n;
 
 const SettingsApp = ({ navigation }: SettingsAppProps): JSX.Element => {
-  const appConfig = useAppConfigStore((state) => state);
+  const appConfig = useAppConfigStore.persistent((state) => state);
   const [theme, setTheme] = useState<AppTheme>(appConfig.theme);
 
   const handleSwitch = ({ theme }: { theme: AppTheme }) => {

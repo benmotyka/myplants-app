@@ -57,7 +57,7 @@ const Plant = ({
   const wateringRef = useRef<string>("");
   const displayToast = useToastStore((state) => state.showToast);
   const theme = useTheme();
-  const appTheme = useAppConfigStore((state) => state.theme);
+  const appTheme = useAppConfigStore.persistent((state) => state.theme);
 
   // This useEffect sets and clears intervals for changing Plant time. If plant was ever watered,
   // simply create a new interval, and destory old on return. If user waters this plant, this code

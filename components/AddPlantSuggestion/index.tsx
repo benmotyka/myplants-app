@@ -6,7 +6,7 @@ import i18n from "config/i18n";
 
 const AddPlantSuggestion = (): JSX.Element => {
   const { t } = i18n;
-  const appTheme = useAppConfigStore((state) => state.theme);
+  const appTheme = useAppConfigStore.persistent((state) => state.theme);
 
   return (
     <TutorialContainer>
