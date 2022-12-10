@@ -8,13 +8,16 @@ import PlantPreview from "components/Plant/Plant";
 import { numberOfColumns } from "components/Plant/styles";
 import AddPlantSuggestion from "components/AddPlantSuggestion";
 import HomeSettings from "components/HomeSettings";
+import BasicModal from "components/BasicModal";
+import { ModalHeader, ModalItem } from "components/BasicModal/styles";
+import BasicButton from "components/BasicButton";
 import { Plant } from "interfaces/Plant";
 import { LoaderWrapper, ScreenContainer } from "styles/shared";
 import Loader from "components/Loader";
 import { usePlantsStore, useToastStore } from "store";
 import { getPlants } from "services/plant";
 import i18n from "config/i18n";
-import { isNewUpdate } from "util/app";
+import { isNewUpdate, redirectToStore } from "util/app";
 
 type HomeProps = NativeStackScreenProps<RootStackParamList, "home">;
 
@@ -65,6 +68,11 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
     return () => backHandler.remove();
   }, [isFocused]);
 
+  const redirectToUpdate = () => {
+    redirectToStore()
+    setShowUpdateModal(false);
+  };
+
   return (
     <ScreenContainer>
       {dataSource ? (
@@ -98,6 +106,18 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
         </LoaderWrapper>
       )}
       <HomeSettings navigation={navigation} />
+      <BasicModal showModal={showUpdateModal} toggleModal={setShowUpdateModal}>
+        <ModalItem>
+          <ModalHeader>{t("pages.homepage.newUpdateHeader")}</ModalHeader>
+        </ModalItem>
+        <ModalItem>
+          <BasicButton
+            onPress={redirectToUpdate}
+            text={t("common.update")}
+            important
+          />
+        </ModalItem>
+      </BasicModal>
     </ScreenContainer>
   );
 };

@@ -1,5 +1,7 @@
 import { Platform } from "react-native";
 import VersionCheck from "react-native-version-check";
+import * as Linking from "expo-linking";
+import { googlePlayStoreUrl, appStoreUrl } from "config";
 
 export const getCurrentAppVersion = () => {
   switch (Platform.OS) {
@@ -34,5 +36,14 @@ export const isNewUpdate = async () => {
   } catch (error) {
     console.log(error);
     return false;
+  }
+};
+
+export const redirectToStore = () => {
+  switch (Platform.OS) {
+    case "ios":
+      return Linking.openURL(appStoreUrl);
+    default:
+      return Linking.openURL(googlePlayStoreUrl);
   }
 };

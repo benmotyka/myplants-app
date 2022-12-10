@@ -10,9 +10,13 @@
     "enable": "Włącz",
     "confirm": "Potwierdź",
     "copy": "Kopiuj",
-    "close": "Zamknij"
+    "close": "Zamknij",
+    "update": "Aktualizuj"
   },
   "pages": {
+    "homepage": {
+      "newUpdateHeader": "Dostępna nowa wersja aplikacji"
+    },
     "plants": {
       "add": {
         "plantNamePlaceholder": "Wpisz nazwę rośliny...",

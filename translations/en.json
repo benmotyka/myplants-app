@@ -10,9 +10,13 @@
     "enable": "Enable",
     "confirm": "Confirm",
     "copy": "Copy",
-    "close": "Close"
+    "close": "Close",
+    "update": "Update"
   },
   "pages": {
+    "homepage": {
+      "newUpdateHeader": "New update available"
+    },
     "plants": {
       "add": {
         "plantNamePlaceholder": "Enter your plant name...",
