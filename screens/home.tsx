@@ -14,7 +14,7 @@ import BasicButton from "components/BasicButton";
 import { Plant } from "interfaces/Plant";
 import { LoaderWrapper, ScreenContainer } from "styles/shared";
 import Loader from "components/Loader";
-import { usePlantsStore, useToastStore } from "store";
+import { usePlantsStore, useToastStore, useAppConfigStore } from "store";
 import { getPlants } from "services/plant";
 import i18n from "config/i18n";
 import { isNewUpdate, redirectToStore } from "util/app";
@@ -30,6 +30,7 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
   const { t } = i18n;
   const setUserPlants = usePlantsStore((store) => store.setUserPlants);
   const displayToast = useToastStore((state) => state.showToast);
+  const ephemeralAppConfig = useAppConfigStore.ephemeral((state) => state);
 
   const getUserPlants = async () => {
     try {
@@ -57,7 +58,9 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
       setDataSource(sortedPlants);
     });
 
-    isNewUpdate().then((result) => setShowUpdateModal(result));
+    if (!ephemeralAppConfig.isClosedUpdateModal) {
+      isNewUpdate().then((result) => setShowUpdateModal(result));
+    }
 
     // Workaround for devices with hardware back button
     const backHandler = BackHandler.addEventListener(
@@ -69,7 +72,12 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
   }, [isFocused]);
 
   const redirectToUpdate = () => {
-    redirectToStore()
+    redirectToStore();
+    setShowUpdateModal(false);
+  };
+
+  const onCloseUpdateModal = () => {
+    ephemeralAppConfig.setIsClosedUpdateModal(true);
     setShowUpdateModal(false);
   };
 
@@ -106,7 +114,11 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
         </LoaderWrapper>
       )}
       <HomeSettings navigation={navigation} />
-      <BasicModal showModal={showUpdateModal} toggleModal={setShowUpdateModal}>
+      <BasicModal
+        showModal={showUpdateModal}
+        toggleModal={setShowUpdateModal}
+        onClose={onCloseUpdateModal}
+      >
         <ModalItem>
           <ModalHeader>{t("pages.homepage.newUpdateHeader")}</ModalHeader>
         </ModalItem>
@@ -116,6 +128,9 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
             text={t("common.update")}
             important
           />
+        </ModalItem>
+        <ModalItem>
+          <BasicButton onPress={onCloseUpdateModal} text={t("common.cancel")} />
         </ModalItem>
       </BasicModal>
     </ScreenContainer>
