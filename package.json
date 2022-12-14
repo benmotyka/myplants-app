@@ -11,7 +11,8 @@
     "eject": "expo eject",
     "production:build": "eas build",
     "production:publish": "eas submit",
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint --fix"
   },
   "dependencies": {
     "@expo-google-fonts/akaya-kanadaka": "^0.2.2",
@@ -28,6 +29,7 @@
     "axios": "^0.27.2",
     "dayjs": "^1.11.4",
     "dotenv": "^16.0.2",
+    "eslint-plugin-simple-import-sort": "^8.0.0",
     "expo": "^46.0.0",
     "expo-app-loading": "~2.1.0",
     "expo-application": "~4.2.2",
@@ -75,8 +77,15 @@
     "@types/react-redux": "^7.1.24",
     "@types/react-test-renderer": "^18.0.0",
     "@types/uuid": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "^5.46.1",
+    "eslint": "^8.29.0",
+    "eslint-config-standard-with-typescript": "^24.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.6.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.31.11",
     "react-test-renderer": "^18.2.0",
-    "typescript": "^4.6.3"
+    "typescript": "^4.9.4"
   },
   "private": true
 }
