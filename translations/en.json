@@ -1,109 +1,109 @@
 {
-  "common": {
-    "submit": "Submit",
-    "name": "Name",
-    "description": "Description",
-    "delete": "Delete",
-    "cancel": "Cancel",
-    "plantName": "Plant name",
-    "disable": "Disable",
-    "enable": "Enable",
-    "confirm": "Confirm",
-    "copy": "Copy",
-    "close": "Close",
-    "update": "Update"
-  },
-  "pages": {
-    "homepage": {
-      "newUpdateHeader": "New update available"
+    "common": {
+        "submit": "Submit",
+        "name": "Name",
+        "description": "Description",
+        "delete": "Delete",
+        "cancel": "Cancel",
+        "plantName": "Plant name",
+        "disable": "Disable",
+        "enable": "Enable",
+        "confirm": "Confirm",
+        "copy": "Copy",
+        "close": "Close",
+        "update": "Update"
     },
-    "plants": {
-      "add": {
-        "plantNamePlaceholder": "Enter your plant name...",
-        "plantDescriptionPlaceholder": "Enter your plant description...",
-        "uploadPicture": "Upload picture",
-        "submit": "Add plant",
-        "success": "Plant added",
-        "remindWateringLabel": "Remind me of watering"
-      },
-      "edit": {
-        "editPicture": "Edit picture",
-        "plantNamePlaceholder": "Enter your plant name...",
-        "plantDescriptionPlaceholder": "Enter your plant description...",
-        "submit": "Submit changes",
-        "success": "Plant edited",
-        "plantDeletedSuccess": "Plant deleted",
-        "createdAt": "Created at {{date}}",
-        "deletePlantConfirmation": "Are you sure to delete this plant from your collection?",
-        "remindWateringLabel": "Remind me of watering"
-      },
-      "import": {
-        "description": "Every plant added to the app by any user has its own unique code. You can ask your friend for their plant code and then import it to your collection here. This way, you will be able to water it with together with them.",
-        "inputLabel": "Plant code",
-        "inputPlaceholder": "Enter plant code...",
-        "success": "Plant imported"
-      },
-      "history": {
-        "wateringHeader": "Watering history",
-        "imagesHeader": "Images history",
-        "addImageHeader": "Add image",
-        "plantNotWatered": "This plant has not been watered yet.",
-        "plantHasNoImages": "This plant has not any images history yet.",
-        "chooseImage": "Choose image",
-        "addImage": "Add image",
-        "success": "Image added",
-        "shareModal": {
-          "header": "Share plant",
-          "description": "Let your friend friend add this plant to their collection, so they can water it together with you."
+    "pages": {
+        "homepage": {
+            "newUpdateHeader": "New update available"
+        },
+        "plants": {
+            "add": {
+                "plantNamePlaceholder": "Enter your plant name...",
+                "plantDescriptionPlaceholder": "Enter your plant description...",
+                "uploadPicture": "Upload picture",
+                "submit": "Add plant",
+                "success": "Plant added",
+                "remindWateringLabel": "Remind me of watering"
+            },
+            "edit": {
+                "editPicture": "Edit picture",
+                "plantNamePlaceholder": "Enter your plant name...",
+                "plantDescriptionPlaceholder": "Enter your plant description...",
+                "submit": "Submit changes",
+                "success": "Plant edited",
+                "plantDeletedSuccess": "Plant deleted",
+                "createdAt": "Created at {{date}}",
+                "deletePlantConfirmation": "Are you sure to delete this plant from your collection?",
+                "remindWateringLabel": "Remind me of watering"
+            },
+            "import": {
+                "description": "Every plant added to the app by any user has its own unique code. You can ask your friend for their plant code and then import it to your collection here. This way, you will be able to water it with together with them.",
+                "inputLabel": "Plant code",
+                "inputPlaceholder": "Enter plant code...",
+                "success": "Plant imported"
+            },
+            "history": {
+                "wateringHeader": "Watering history",
+                "imagesHeader": "Images history",
+                "addImageHeader": "Add image",
+                "plantNotWatered": "This plant has not been watered yet.",
+                "plantHasNoImages": "This plant has not any images history yet.",
+                "chooseImage": "Choose image",
+                "addImage": "Add image",
+                "success": "Image added",
+                "shareModal": {
+                    "header": "Share plant",
+                    "description": "Let your friend friend add this plant to their collection, so they can water it together with you."
+                }
+            }
+        },
+        "settings": {
+            "header": "Settings",
+            "notificationsHeader": "Notifications",
+            "notifications": {
+                "manageHeader": "Manage notifications",
+                "manageDescription": "Notifications are {{state}}",
+                "notificationsEnabled": "enabled",
+                "notificationsDisabled": "disabled"
+            },
+            "appHeader": "App",
+            "app": {
+                "manageTheme": "Change theme",
+                "darkTheme": "Dark",
+                "lightTheme": "Light"
+            },
+            "appVersion": "App version: {{version}}"
         }
-      }
     },
-    "settings": {
-      "header": "Settings",
-      "notificationsHeader": "Notifications",
-      "notifications": {
-        "manageHeader": "Manage notifications",
-        "manageDescription": "Notifications are {{state}}",
-        "notificationsEnabled": "enabled",
-        "notificationsDisabled": "disabled"
-      },
-      "appHeader": "App",
-      "app": {
-        "manageTheme": "Change theme",
-        "darkTheme": "Dark",
-        "lightTheme": "Light"
-      },
-      "appVersion": "App version: {{version}}"
+    "errors": {
+        "required": "Required",
+        "general": "Something went wrong. Please try again later.",
+        "invalidFileType": "Invalid file type",
+        "fieldTooLong": "{{field}} too long. Maximum {{number}} characters.",
+        "valueMustBeNumber": "Value must be a number",
+        "minimumValueIs": "Minimum value is: {{value}}",
+        "maximumValueIs": "Maximum value is: {{value}}",
+        "plantAlreadyAdded": "Plant already exists in your collection",
+        "plantNotExists": "Plant not found"
+    },
+    "components": {
+        "basicImageInput": {
+            "takePhoto": "Take photo",
+            "chooseLibrary": "Choose from library"
+        },
+        "copyField": {
+            "successInfo": "Copied"
+        },
+        "addPlantSuggestion": "Add your first plant here",
+        "plant": {
+            "success": "Plant watered",
+            "wateringCanceled": "Watering canceled"
+        },
+        "wateringReminderInput": {
+            "every": "Every",
+            "daySingular": "day",
+            "dayPlurar": "days"
+        }
     }
-  },
-  "errors": {
-    "required": "Required",
-    "general": "Something went wrong. Please try again later.",
-    "invalidFileType": "Invalid file type",
-    "fieldTooLong": "{{field}} too long. Maximum {{number}} characters.",
-    "valueMustBeNumber": "Value must be a number",
-    "minimumValueIs": "Minimum value is: {{value}}",
-    "maximumValueIs": "Maximum value is: {{value}}",
-    "plantAlreadyAdded": "Plant already exists in your collection",
-    "plantNotExists": "Plant not found"
-  },
-  "components": {
-    "basicImageInput": {
-      "takePhoto": "Take photo",
-      "chooseLibrary": "Choose from library"
-    },
-    "copyField": {
-      "successInfo": "Copied"
-    },
-    "addPlantSuggestion": "Add your first plant here",
-    "plant": {
-      "success": "Plant watered",
-      "wateringCanceled": "Watering canceled"
-    },
-    "wateringReminderInput": {
-      "every": "Every",
-      "daySingular": "day",
-      "dayPlurar": "days"
-    }
-  }
 }

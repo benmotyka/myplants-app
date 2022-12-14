@@ -5,23 +5,23 @@ import { TutorialContainer, Image, ImageWrapper, TutorialText } from "./styles";
 import i18n from "config/i18n";
 
 const AddPlantSuggestion = (): JSX.Element => {
-  const { t } = i18n;
-  const appTheme = useAppConfigStore.persistent((state) => state.theme);
+    const { t } = i18n;
+    const appTheme = useAppConfigStore.persistent((state) => state.theme);
 
-  return (
-    <TutorialContainer>
-      <TutorialText>{t("components.addPlantSuggestion")}</TutorialText>
-      <ImageWrapper>
-        <Image
-          source={
-            appTheme === "dark"
-              ? require("../../assets/arrow-light.png")
-              : require("../../assets/arrow.png")
-          }
-        />
-      </ImageWrapper>
-    </TutorialContainer>
-  );
+    return (
+        <TutorialContainer>
+            <TutorialText>{t("components.addPlantSuggestion")}</TutorialText>
+            <ImageWrapper>
+                <Image
+                    source={
+                        appTheme === "dark"
+                            ? require("../../assets/arrow-light.png")
+                            : require("../../assets/arrow.png")
+                    }
+                />
+            </ImageWrapper>
+        </TutorialContainer>
+    );
 };
 
 export default AddPlantSuggestion;

@@ -5,9 +5,9 @@ import { RootSiblingParent } from "react-native-root-siblings";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import {
-  useFonts,
-  Inter_200ExtraLight,
-  Inter_300Light,
+    useFonts,
+    Inter_200ExtraLight,
+    Inter_300Light,
 } from "@expo-google-fonts/inter";
 import { AkayaKanadaka_400Regular } from "@expo-google-fonts/akaya-kanadaka";
 import * as Sentry from "sentry-expo";
@@ -29,66 +29,81 @@ import { useAppConfigStore } from "store";
 import "config/i18n";
 
 Sentry.init({
-  dsn: sentryDsn,
-  enableInExpoDevelopment: true,
-  debug: true,
+    dsn: sentryDsn,
+    enableInExpoDevelopment: true,
+    debug: true,
 });
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
-  const [fontsLoaded] = useFonts({
-    Inter_200ExtraLight,
-    Inter_300Light,
-    AkayaKanadaka_400Regular,
-  });
+    const [fontsLoaded] = useFonts({
+        Inter_200ExtraLight,
+        Inter_300Light,
+        AkayaKanadaka_400Regular,
+    });
 
-  const appTheme = useAppConfigStore.persistent((state) => state.theme);
+    const appTheme = useAppConfigStore.persistent((state) => state.theme);
 
-  if (!fontsLoaded) {
-    return <AppLoading />;
-  }
+    if (!fontsLoaded) {
+        return <AppLoading />;
+    }
 
-  return (
-    <ThemeProvider theme={appTheme === "dark" ? darkTheme : lightTheme}>
-      <RootSiblingParent>
-        <SafeAreaView>
-          {/* Workaround for devices with native StatusBar */}
-          <View style={{ paddingTop: NativeStatusBar.currentHeight }}>
-            <StatusBar />
-          </View>
-        </SafeAreaView>
-        <NavigationContainer>
-          <ToastProvider>
-            <Stack.Navigator
-              screenOptions={{
-                headerShown: false,
-              }}
-            >
-              <Stack.Screen
-                name="home"
-                component={HomeScreen}
-                options={{ gestureEnabled: false }}
-              />
+    return (
+        <ThemeProvider theme={appTheme === "dark" ? darkTheme : lightTheme}>
+            <RootSiblingParent>
+                <SafeAreaView>
+                    {/* Workaround for devices with native StatusBar */}
+                    <View style={{ paddingTop: NativeStatusBar.currentHeight }}>
+                        <StatusBar />
+                    </View>
+                </SafeAreaView>
+                <NavigationContainer>
+                    <ToastProvider>
+                        <Stack.Navigator
+                            screenOptions={{
+                                headerShown: false,
+                            }}
+                        >
+                            <Stack.Screen
+                                name="home"
+                                component={HomeScreen}
+                                options={{ gestureEnabled: false }}
+                            />
 
-              <Stack.Screen name="addPlant" component={AddPlantScreen} />
-              <Stack.Screen name="editPlant" component={EditPlantScreen} />
-              <Stack.Screen
-                name="plantHistory"
-                component={PlantHistoryScreen}
-              />
-              <Stack.Screen name="importPlant" component={ImportPlantScreen} />
+                            <Stack.Screen
+                                name="addPlant"
+                                component={AddPlantScreen}
+                            />
+                            <Stack.Screen
+                                name="editPlant"
+                                component={EditPlantScreen}
+                            />
+                            <Stack.Screen
+                                name="plantHistory"
+                                component={PlantHistoryScreen}
+                            />
+                            <Stack.Screen
+                                name="importPlant"
+                                component={ImportPlantScreen}
+                            />
 
-              <Stack.Screen name="settings" component={SettingsScreen} />
-              <Stack.Screen
-                name="settingsNotifications"
-                component={SettingsNotificationsScreen}
-              />
-              <Stack.Screen name="settingsApp" component={SettingsAppScreen} />
-            </Stack.Navigator>
-          </ToastProvider>
-        </NavigationContainer>
-      </RootSiblingParent>
-    </ThemeProvider>
-  );
+                            <Stack.Screen
+                                name="settings"
+                                component={SettingsScreen}
+                            />
+                            <Stack.Screen
+                                name="settingsNotifications"
+                                component={SettingsNotificationsScreen}
+                            />
+                            <Stack.Screen
+                                name="settingsApp"
+                                component={SettingsAppScreen}
+                            />
+                        </Stack.Navigator>
+                    </ToastProvider>
+                </NavigationContainer>
+            </RootSiblingParent>
+        </ThemeProvider>
+    );
 }

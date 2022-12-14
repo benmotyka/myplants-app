@@ -10,34 +10,38 @@ const MIN_WATERING_FREQUENCY_VALUE = 1;
 const MAX_WATERING_FREQUENCY_VALUE = 31;
 
 export const createAddPlantSchema = (isWateringReminderOn: boolean) =>
-  Yup.object().shape({
-    name: Yup.string()
-      .max(
-        MAX_PLANT_CHARACTERS,
-        t("errors.fieldTooLong", {
-          field: t("common.plantName"),
-          number: MAX_PLANT_CHARACTERS,
-        })
-      )
-      .required(t("errors.required")),
-    description: Yup.string().max(
-      MAX_DESCRIPTION_CHARACTERS,
-      t("errors.fieldTooLong", {
-        field: t("common.description"),
-        number: MAX_DESCRIPTION_CHARACTERS,
-      })
-    ),
-    ...(isWateringReminderOn && {
-      wateringReminderFrequency: Yup.number()
-        .required(t("errors.valueMustBeNumber"))
-        .typeError(t("errors.valueMustBeNumber"))
-        .min(
-          MIN_WATERING_FREQUENCY_VALUE,
-          t("errors.minimumValueIs", { value: MIN_WATERING_FREQUENCY_VALUE })
-        )
-        .max(
-          MAX_WATERING_FREQUENCY_VALUE,
-          t("errors.maximumValueIs", { value: MAX_WATERING_FREQUENCY_VALUE })
+    Yup.object().shape({
+        name: Yup.string()
+            .max(
+                MAX_PLANT_CHARACTERS,
+                t("errors.fieldTooLong", {
+                    field: t("common.plantName"),
+                    number: MAX_PLANT_CHARACTERS,
+                })
+            )
+            .required(t("errors.required")),
+        description: Yup.string().max(
+            MAX_DESCRIPTION_CHARACTERS,
+            t("errors.fieldTooLong", {
+                field: t("common.description"),
+                number: MAX_DESCRIPTION_CHARACTERS,
+            })
         ),
-    }),
-  });
+        ...(isWateringReminderOn && {
+            wateringReminderFrequency: Yup.number()
+                .required(t("errors.valueMustBeNumber"))
+                .typeError(t("errors.valueMustBeNumber"))
+                .min(
+                    MIN_WATERING_FREQUENCY_VALUE,
+                    t("errors.minimumValueIs", {
+                        value: MIN_WATERING_FREQUENCY_VALUE,
+                    })
+                )
+                .max(
+                    MAX_WATERING_FREQUENCY_VALUE,
+                    t("errors.maximumValueIs", {
+                        value: MAX_WATERING_FREQUENCY_VALUE,
+                    })
+                ),
+        }),
+    });

@@ -1,3 +1,3 @@
 export interface PlantImagesHistoryData {
-    [key: string]: string[]
+    [key: string]: string[];
 }

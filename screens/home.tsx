@@ -22,119 +22,131 @@ import { isNewUpdate, redirectToStore } from "util/app";
 type HomeProps = NativeStackScreenProps<RootStackParamList, "home">;
 
 const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
-  const [showUpdateModal, setShowUpdateModal] = useState(false);
-  const [dataSource, setDataSource] = useState<Plant[]>();
-  const [allowScrolling, setAllowScrolling] = useState(true);
-  const isFocused = useIsFocused();
+    const [showUpdateModal, setShowUpdateModal] = useState(false);
+    const [dataSource, setDataSource] = useState<Plant[]>();
+    const [allowScrolling, setAllowScrolling] = useState(true);
+    const isFocused = useIsFocused();
 
-  const { t } = i18n;
-  const setUserPlants = usePlantsStore((store) => store.setUserPlants);
-  const displayToast = useToastStore((state) => state.showToast);
-  const ephemeralAppConfig = useAppConfigStore.ephemeral((state) => state);
+    const { t } = i18n;
+    const setUserPlants = usePlantsStore((store) => store.setUserPlants);
+    const displayToast = useToastStore((state) => state.showToast);
+    const ephemeralAppConfig = useAppConfigStore.ephemeral((state) => state);
 
-  const getUserPlants = async () => {
-    try {
-      return await getPlants();
-    } catch (error) {
-      displayToast({ text: t("errors.general"), type: "error" });
-      return {
-        plants: [],
-      };
-    }
-  };
+    const getUserPlants = async () => {
+        try {
+            return await getPlants();
+        } catch (error) {
+            displayToast({ text: t("errors.general"), type: "error" });
+            return {
+                plants: [],
+            };
+        }
+    };
 
-  const sortPlantsByCreatedAt = (plants: Plant[]): Plant[] =>
-    plants.sort(
-      (a, b) =>
-        new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+    const sortPlantsByCreatedAt = (plants: Plant[]): Plant[] =>
+        plants.sort(
+            (a, b) =>
+                new Date(a.createdAt).getTime() -
+                new Date(b.createdAt).getTime()
+        );
+
+    useEffect(() => {
+        if (!isFocused) return;
+
+        getUserPlants().then(({ plants }) => {
+            const sortedPlants = sortPlantsByCreatedAt(plants);
+            setUserPlants(sortedPlants);
+            setDataSource(sortedPlants);
+        });
+
+        if (!ephemeralAppConfig.isClosedUpdateModal) {
+            isNewUpdate().then((result) => setShowUpdateModal(result));
+        }
+
+        // Workaround for devices with hardware back button
+        const backHandler = BackHandler.addEventListener(
+            "hardwareBackPress",
+            () => true
+        );
+
+        return () => backHandler.remove();
+    }, [isFocused]);
+
+    const redirectToUpdate = () => {
+        redirectToStore();
+        setShowUpdateModal(false);
+    };
+
+    const onCloseUpdateModal = () => {
+        ephemeralAppConfig.setIsClosedUpdateModal(true);
+        setShowUpdateModal(false);
+    };
+
+    return (
+        <ScreenContainer>
+            {dataSource ? (
+                <>
+                    <FlatList
+                        data={dataSource}
+                        renderItem={({ item }) => {
+                            return (
+                                <PlantPreview
+                                    id={item.id}
+                                    name={item.name}
+                                    imgSrc={item.imgSrc}
+                                    navigation={navigation}
+                                    onSlidingStart={() =>
+                                        setAllowScrolling(false)
+                                    }
+                                    onSlidingFinish={() =>
+                                        setAllowScrolling(true)
+                                    }
+                                    latestWatering={item.latestWatering}
+                                    reminderFrequency={
+                                        item.wateringReminderFrequency
+                                    }
+                                />
+                            );
+                        }}
+                        numColumns={numberOfColumns}
+                        keyExtractor={(item, index) => index.toString()}
+                        contentContainerStyle={{ paddingBottom: 100 }}
+                        scrollEnabled={allowScrolling}
+                    />
+                    {!dataSource.length ? <AddPlantSuggestion /> : null}
+                </>
+            ) : (
+                <LoaderWrapper>
+                    <Loader />
+                </LoaderWrapper>
+            )}
+            <HomeSettings navigation={navigation} />
+            <BasicModal
+                showModal={showUpdateModal}
+                toggleModal={setShowUpdateModal}
+                onClose={onCloseUpdateModal}
+            >
+                <ModalItem>
+                    <ModalHeader>
+                        {t("pages.homepage.newUpdateHeader")}
+                    </ModalHeader>
+                </ModalItem>
+                <ModalItem>
+                    <BasicButton
+                        onPress={redirectToUpdate}
+                        text={t("common.update")}
+                        important
+                    />
+                </ModalItem>
+                <ModalItem>
+                    <BasicButton
+                        onPress={onCloseUpdateModal}
+                        text={t("common.cancel")}
+                    />
+                </ModalItem>
+            </BasicModal>
+        </ScreenContainer>
     );
-
-  useEffect(() => {
-    if (!isFocused) return;
-
-    getUserPlants().then(({ plants }) => {
-      const sortedPlants = sortPlantsByCreatedAt(plants);
-      setUserPlants(sortedPlants);
-      setDataSource(sortedPlants);
-    });
-
-    if (!ephemeralAppConfig.isClosedUpdateModal) {
-      isNewUpdate().then((result) => setShowUpdateModal(result));
-    }
-
-    // Workaround for devices with hardware back button
-    const backHandler = BackHandler.addEventListener(
-      "hardwareBackPress",
-      () => true
-    );
-
-    return () => backHandler.remove();
-  }, [isFocused]);
-
-  const redirectToUpdate = () => {
-    redirectToStore();
-    setShowUpdateModal(false);
-  };
-
-  const onCloseUpdateModal = () => {
-    ephemeralAppConfig.setIsClosedUpdateModal(true);
-    setShowUpdateModal(false);
-  };
-
-  return (
-    <ScreenContainer>
-      {dataSource ? (
-        <>
-          <FlatList
-            data={dataSource}
-            renderItem={({ item }) => {
-              return (
-                <PlantPreview
-                  id={item.id}
-                  name={item.name}
-                  imgSrc={item.imgSrc}
-                  navigation={navigation}
-                  onSlidingStart={() => setAllowScrolling(false)}
-                  onSlidingFinish={() => setAllowScrolling(true)}
-                  latestWatering={item.latestWatering}
-                  reminderFrequency={item.wateringReminderFrequency}
-                />
-              );
-            }}
-            numColumns={numberOfColumns}
-            keyExtractor={(item, index) => index.toString()}
-            contentContainerStyle={{ paddingBottom: 100 }}
-            scrollEnabled={allowScrolling}
-          />
-          {!dataSource.length ? <AddPlantSuggestion /> : null}
-        </>
-      ) : (
-        <LoaderWrapper>
-          <Loader />
-        </LoaderWrapper>
-      )}
-      <HomeSettings navigation={navigation} />
-      <BasicModal
-        showModal={showUpdateModal}
-        toggleModal={setShowUpdateModal}
-        onClose={onCloseUpdateModal}
-      >
-        <ModalItem>
-          <ModalHeader>{t("pages.homepage.newUpdateHeader")}</ModalHeader>
-        </ModalItem>
-        <ModalItem>
-          <BasicButton
-            onPress={redirectToUpdate}
-            text={t("common.update")}
-            important
-          />
-        </ModalItem>
-        <ModalItem>
-          <BasicButton onPress={onCloseUpdateModal} text={t("common.cancel")} />
-        </ModalItem>
-      </BasicModal>
-    </ScreenContainer>
-  );
 };
 
 export default HomeScreen;

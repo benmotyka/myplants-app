@@ -1,109 +1,109 @@
 {
-  "common": {
-    "submit": "Prześlij",
-    "name": "Nazwa",
-    "description": "Opis",
-    "delete": "Usuń",
-    "cancel": "Anuluj",
-    "plantName": "Nazwa rośliny",
-    "disable": "Wyłącz",
-    "enable": "Włącz",
-    "confirm": "Potwierdź",
-    "copy": "Kopiuj",
-    "close": "Zamknij",
-    "update": "Aktualizuj"
-  },
-  "pages": {
-    "homepage": {
-      "newUpdateHeader": "Dostępna jest nowa wersja aplikacji"
+    "common": {
+        "submit": "Prześlij",
+        "name": "Nazwa",
+        "description": "Opis",
+        "delete": "Usuń",
+        "cancel": "Anuluj",
+        "plantName": "Nazwa rośliny",
+        "disable": "Wyłącz",
+        "enable": "Włącz",
+        "confirm": "Potwierdź",
+        "copy": "Kopiuj",
+        "close": "Zamknij",
+        "update": "Aktualizuj"
     },
-    "plants": {
-      "add": {
-        "plantNamePlaceholder": "Wpisz nazwę rośliny...",
-        "plantDescriptionPlaceholder": "Wpisz opis rośliny...",
-        "uploadPicture": "Dodaj zdjęcie",
-        "submit": "Dodaj roślinę",
-        "success": "Roślina dodana",
-        "remindWateringLabel": "Przypominaj o podlewaniu"
-      },
-      "edit": {
-        "editPicture": "Edytuj zdjęcie",
-        "plantNamePlaceholder": "Wpisz nazwę rośliny...",
-        "plantDescriptionPlaceholder": "Wpisz opis rośliny...",
-        "submit": "Prześlij zmiany",
-        "success": "Roślina zmieniona",
-        "plantDeletedSuccess": "Roślina usunięta",
-        "createdAt": "Utworzona {{date}}",
-        "deletePlantConfirmation": "Czy na pewno chcesz usunąć roślinę ze swojej kolekcji?",
-        "remindWateringLabel": "Przypominaj o podlewaniu"
-      },
-      "import": {
-        "description": "Każda roślina dodana do aplikacji przez dowolnego użytkownika ma własny, unikalny kod. Możesz poprosić znajomego o kod do jego rośliny, a następnie zaimportować ją tutaj do Twojej kolekcji. Tym sposobem, będziesz mógł podlewać ją razem z nim.",
-        "inputLabel": "Kod rośliny",
-        "inputPlaceholder": "Wpisz kod rośliny...",
-        "success": "Roślina zaimportowana"
-      },
-      "history": {
-        "wateringHeader": "Historia podlewania",
-        "imagesHeader": "Historia zdjęć",
-        "addImageHeader": "Dodaj zdjęcie",
-        "plantNotWatered": "Ta roślina nie została jeszcze podlana.",
-        "plantHasNoImages": "Ta roślina nie ma jeszcze zdjęć.",
-        "chooseImage": "Wybierz zdjęcie",
-        "addImage": "Dodaj zdjęcie",
-        "success": "Zdjęcie dodane",
-        "shareModal": {
-          "header": "Udostępnij roślinę",
-          "description": "Pozwól znajomemu dodać tą roślinę do jego kolekcji, aby mógł ją podlewać razem z Tobą."
+    "pages": {
+        "homepage": {
+            "newUpdateHeader": "Dostępna jest nowa wersja aplikacji"
+        },
+        "plants": {
+            "add": {
+                "plantNamePlaceholder": "Wpisz nazwę rośliny...",
+                "plantDescriptionPlaceholder": "Wpisz opis rośliny...",
+                "uploadPicture": "Dodaj zdjęcie",
+                "submit": "Dodaj roślinę",
+                "success": "Roślina dodana",
+                "remindWateringLabel": "Przypominaj o podlewaniu"
+            },
+            "edit": {
+                "editPicture": "Edytuj zdjęcie",
+                "plantNamePlaceholder": "Wpisz nazwę rośliny...",
+                "plantDescriptionPlaceholder": "Wpisz opis rośliny...",
+                "submit": "Prześlij zmiany",
+                "success": "Roślina zmieniona",
+                "plantDeletedSuccess": "Roślina usunięta",
+                "createdAt": "Utworzona {{date}}",
+                "deletePlantConfirmation": "Czy na pewno chcesz usunąć roślinę ze swojej kolekcji?",
+                "remindWateringLabel": "Przypominaj o podlewaniu"
+            },
+            "import": {
+                "description": "Każda roślina dodana do aplikacji przez dowolnego użytkownika ma własny, unikalny kod. Możesz poprosić znajomego o kod do jego rośliny, a następnie zaimportować ją tutaj do Twojej kolekcji. Tym sposobem, będziesz mógł podlewać ją razem z nim.",
+                "inputLabel": "Kod rośliny",
+                "inputPlaceholder": "Wpisz kod rośliny...",
+                "success": "Roślina zaimportowana"
+            },
+            "history": {
+                "wateringHeader": "Historia podlewania",
+                "imagesHeader": "Historia zdjęć",
+                "addImageHeader": "Dodaj zdjęcie",
+                "plantNotWatered": "Ta roślina nie została jeszcze podlana.",
+                "plantHasNoImages": "Ta roślina nie ma jeszcze zdjęć.",
+                "chooseImage": "Wybierz zdjęcie",
+                "addImage": "Dodaj zdjęcie",
+                "success": "Zdjęcie dodane",
+                "shareModal": {
+                    "header": "Udostępnij roślinę",
+                    "description": "Pozwól znajomemu dodać tą roślinę do jego kolekcji, aby mógł ją podlewać razem z Tobą."
+                }
+            }
+        },
+        "settings": {
+            "header": "Ustawienia",
+            "notificationsHeader": "Powiadomienia",
+            "notifications": {
+                "manageHeader": "Zarządzaj powiadomieniami",
+                "manageDescription": "Powiadomienia są {{state}}",
+                "notificationsEnabled": "włączone",
+                "notificationsDisabled": "wyłączone"
+            },
+            "appHeader": "Aplikacja",
+            "app": {
+                "manageTheme": "Zmień motyw",
+                "darkTheme": "Ciemny",
+                "lightTheme": "Jasny"
+            },
+            "appVersion": "Wersja aplikacji: {{version}}"
         }
-      }
     },
-    "settings": {
-      "header": "Ustawienia",
-      "notificationsHeader": "Powiadomienia",
-      "notifications": {
-        "manageHeader": "Zarządzaj powiadomieniami",
-        "manageDescription": "Powiadomienia są {{state}}",
-        "notificationsEnabled": "włączone",
-        "notificationsDisabled": "wyłączone"
-      },
-      "appHeader": "Aplikacja",
-      "app": {
-        "manageTheme": "Zmień motyw",
-        "darkTheme": "Ciemny",
-        "lightTheme": "Jasny"
-      },
-      "appVersion": "Wersja aplikacji: {{version}}"
+    "errors": {
+        "required": "Pole wymagane",
+        "general": "Coś poszło nie tak. Spróbuj ponownie później",
+        "invalidFileType": "Błędny plik",
+        "fieldTooLong": "{{field}} musi mieć maksymalnie {{number}} liter.",
+        "valueMustBeNumber": "Wartość musi być liczbą",
+        "minimumValueIs": "Minimalna wartość to: {{value}}",
+        "maximumValueIs": "Maksymalna wartość to: {{value}}",
+        "plantAlreadyAdded": "Roślina już istnieje w Twojej kolekcji",
+        "plantNotExists": "Roślina nie istnieje"
+    },
+    "components": {
+        "basicImageInput": {
+            "takePhoto": "Zrób zdjęcie",
+            "chooseLibrary": "Wybierz z galerii"
+        },
+        "copyField": {
+            "successInfo": "Skopiowano"
+        },
+        "addPlantSuggestion": "Dodaj swoją pierwszą roślinę",
+        "plant": {
+            "success": "Roślina podlana",
+            "wateringCanceled": "Podlanie anulowane"
+        },
+        "wateringReminderInput": {
+            "every": "Co",
+            "daySingular": "dzień",
+            "dayPlurar": "dni"
+        }
     }
-  },
-  "errors": {
-    "required": "Pole wymagane",
-    "general": "Coś poszło nie tak. Spróbuj ponownie później",
-    "invalidFileType": "Błędny plik",
-    "fieldTooLong": "{{field}} musi mieć maksymalnie {{number}} liter.",
-    "valueMustBeNumber": "Wartość musi być liczbą",
-    "minimumValueIs": "Minimalna wartość to: {{value}}",
-    "maximumValueIs": "Maksymalna wartość to: {{value}}",
-    "plantAlreadyAdded": "Roślina już istnieje w Twojej kolekcji",
-    "plantNotExists": "Roślina nie istnieje"
-  },
-  "components": {
-    "basicImageInput": {
-      "takePhoto": "Zrób zdjęcie",
-      "chooseLibrary": "Wybierz z galerii"
-    },
-    "copyField": {
-      "successInfo": "Skopiowano"
-    },
-    "addPlantSuggestion": "Dodaj swoją pierwszą roślinę",
-    "plant": {
-      "success": "Roślina podlana",
-      "wateringCanceled": "Podlanie anulowane"
-    },
-    "wateringReminderInput": {
-      "every": "Co",
-      "daySingular": "dzień",
-      "dayPlurar": "dni"
-    }
-  }
 }

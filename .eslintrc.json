@@ -15,13 +15,8 @@
     ],
     "overrides": [
         {
-            "extends": [
-                "xo-typescript"
-            ],
-            "files": [
-                "*.ts",
-                "*.tsx"
-            ]
+            "extends": ["xo-typescript"],
+            "files": ["*.ts", "*.tsx"]
         }
     ],
     "parserOptions": {
@@ -31,10 +26,6 @@
             "tsx": true
         }
     },
-    "plugins": [
-        "react",
-        "react-native"
-    ],
-    "rules": {
-    }
+    "plugins": ["react", "react-native"],
+    "rules": {}
 }

@@ -4,7 +4,7 @@ export interface Plant {
     id: string;
     name: string;
     description?: string;
-    imgSrc?: string;    
+    imgSrc?: string;
     createdAt: string;
     shareId: string;
     latestWatering: Watering;

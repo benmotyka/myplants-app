@@ -1,20 +1,20 @@
 import { DefaultTheme } from "styled-components/native";
 
 declare module "styled-components/native" {
-  export interface DefaultTheme {
-    primary: string;
-    primaryLight: string;
-    warning: string;
-    success: string;
-    white: string;
-  
-    text: string;
-    textLight: string;
-    background: string;
-    backgroundLight: string;
-    neutral: string;
-    neutralLight: string;
-  }
+    export interface DefaultTheme {
+        primary: string;
+        primaryLight: string;
+        warning: string;
+        success: string;
+        white: string;
+
+        text: string;
+        textLight: string;
+        background: string;
+        backgroundLight: string;
+        neutral: string;
+        neutralLight: string;
+    }
 }
 
 const themeCommon = {
@@ -23,7 +23,7 @@ const themeCommon = {
     warning: "#FF503D",
     success: "#76BA99",
     white: "#fff",
-  };
+};
 
 export const darkTheme: DefaultTheme = {
     ...themeCommon,
@@ -36,11 +36,11 @@ export const darkTheme: DefaultTheme = {
 };
 
 export const lightTheme: DefaultTheme = {
-  ...themeCommon,
-  text: "#000",
-  textLight: "#413F42",
-  background: "#EEEEEE",
-  backgroundLight: "#fff",
-  neutral: "#D0C9C0",
-  neutralLight: "#e3e3e3",
+    ...themeCommon,
+    text: "#000",
+    textLight: "#413F42",
+    background: "#EEEEEE",
+    backgroundLight: "#fff",
+    neutral: "#D0C9C0",
+    neutralLight: "#e3e3e3",
 };

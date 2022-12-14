@@ -1,3 +1,3 @@
 export interface WateringData {
-    [key: string]: string[]
+    [key: string]: string[];
 }

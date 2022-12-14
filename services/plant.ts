@@ -3,80 +3,80 @@ import { Plant } from "interfaces/Plant";
 import { PlantImagesHistoryData } from "interfaces/PlantImagesHistoryData";
 
 export const getPlants = async () => {
-  const result = await plantsApi.get<{ plants: Plant[] }>(`/plants`);
+    const result = await plantsApi.get<{ plants: Plant[] }>(`/plants`);
 
-  return result.data;
+    return result.data;
 };
 
 interface AddPlant {
-  name: string;
-  description?: string;
-  image?: string | null;
-  wateringReminderFrequency?: number;
+    name: string;
+    description?: string;
+    image?: string | null;
+    wateringReminderFrequency?: number;
 }
 
 export const addPlant = async ({
-  name,
-  description,
-  image,
-  wateringReminderFrequency,
-}: AddPlant) => {
-  return await plantsApi.post("/plants", {
     name,
     description,
-    imageSrc: image,
+    image,
     wateringReminderFrequency,
-  });
+}: AddPlant) => {
+    return await plantsApi.post("/plants", {
+        name,
+        description,
+        imageSrc: image,
+        wateringReminderFrequency,
+    });
 };
 
 interface EditPlant {
-  id: string;
-  name: string;
-  description?: string;
-  image?: string | null;
-  wateringReminderFrequency?: number;
+    id: string;
+    name: string;
+    description?: string;
+    image?: string | null;
+    wateringReminderFrequency?: number;
 }
 
 export const editPlant = async ({
-  id,
-  name,
-  description,
-  image,
-  wateringReminderFrequency,
-}: EditPlant) => {
-  return await plantsApi.put(`/plants`, {
     id,
     name,
     description,
-    imageSrc: image,
+    image,
     wateringReminderFrequency,
-  });
+}: EditPlant) => {
+    return await plantsApi.put(`/plants`, {
+        id,
+        name,
+        description,
+        imageSrc: image,
+        wateringReminderFrequency,
+    });
 };
 
 export const importPlant = async (shareId: string) => {
-  return await plantsApi.post("/plants/import", {
-    shareId,
-  });
+    return await plantsApi.post("/plants/import", {
+        shareId,
+    });
 };
 
 export const getImagesHistory = async (plantId: string) => {
-  const { data } = await plantsApi.get<{
-    imagesData: PlantImagesHistoryData;
-  }>(`plants/history/images/${plantId}`);
+    const { data } = await plantsApi.get<{
+        imagesData: PlantImagesHistoryData;
+    }>(`plants/history/images/${plantId}`);
 
-  return data;
+    return data;
 };
 
 export const addImageToPlant = async (
-  plantId: string,
-  image?: string | null
+    plantId: string,
+    image?: string | null
 ) => {
-  return await plantsApi.post("/plants/images", {
-    plantId,
-    image,
-  });
+    return await plantsApi.post("/plants/images", {
+        plantId,
+        image,
+    });
 };
 
 export const deletePlant = async (plantId: string) => {
-  return await plantsApi.delete(`/plants/${plantId}`);
+    return await plantsApi.delete(`/plants/${plantId}`);
 };
