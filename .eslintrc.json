@@ -9,9 +9,7 @@
         "airbnb-typescript",
         "airbnb/hooks",
         "xo",
-        "prettier",
-        "prettier/@typescript-eslint",
-        "prettier/react"
+        "prettier"
     ],
     "overrides": [
         {
@@ -20,6 +18,7 @@
         }
     ],
     "parserOptions": {
+        "project": ["./tsconfig.json"],
         "ecmaVersion": "latest",
         "sourceType": "module",
         "ecmaFeatures": {

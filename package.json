@@ -71,6 +71,7 @@
     "devDependencies": {
         "@babel/core": "^7.18.6",
         "@expo/webpack-config": "^0.17.0",
+        "@react-native-community/eslint-config": "^3.2.0",
         "@types/jest": "^29.2.3",
         "@types/react": "~18.0.0",
         "@types/react-native": "~0.69.1",
@@ -81,6 +82,7 @@
         "@typescript-eslint/eslint-plugin": "^5.46.1",
         "@typescript-eslint/parser": "^5.46.1",
         "eslint": "^8.29.0",
+        "eslint-config-airbnb": "^19.0.4",
         "eslint-config-airbnb-typescript": "^17.0.0",
         "eslint-config-prettier": "^8.5.0",
         "eslint-config-standard-with-typescript": "^24.0.0",
@@ -91,6 +93,7 @@
         "eslint-plugin-n": "^15.6.0",
         "eslint-plugin-promise": "^6.1.1",
         "eslint-plugin-react": "^7.31.11",
+        "eslint-plugin-react-hooks": "^4.6.0",
         "eslint-plugin-react-native": "^4.0.0",
         "prettier": "^2.8.1",
         "react-test-renderer": "^18.2.0",
