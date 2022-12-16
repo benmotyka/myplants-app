@@ -53,6 +53,7 @@ interface AppConfigEphemeralState {
 interface AppConfigPersistentState {
     theme: AppTheme;
     setTheme: (theme: AppTheme) => void;
+    isRateAppModalShown: boolean;
 }
 
 type AppConfigPersist = (
@@ -67,6 +68,7 @@ export const useAppConfigStore = {
                 theme:
                     Appearance.getColorScheme() === "dark" ? "dark" : "light",
                 setTheme: (theme) => set({ theme }),
+                isRateAppModalShown: false,
             }),
             {
                 name: "app-config-storage",

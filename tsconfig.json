@@ -16,7 +16,8 @@
             "enums/*": ["enums/*"],
             "providers/*": ["providers/*"],
             "services/*": ["services/*"],
-            "hooks/*": ["hooks/*"]
+            "hooks/*": ["hooks/*"],
+            "modals/*": ["modals/*"]
         }
     }
 }

@@ -20,6 +20,7 @@ module.exports = function (api) {
                         providers: "./providers",
                         services: "./services",
                         hooks: "./hooks",
+                        modals: "./modals"
                     },
                 },
             ],
