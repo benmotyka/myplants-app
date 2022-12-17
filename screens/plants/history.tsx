@@ -33,14 +33,6 @@ import { WateringData } from "interfaces/WateringData";
 import Loader from "components/Loader";
 import { formatToHour } from "util/date";
 import { ICON_SIZE_PX } from "config";
-import BasicModal from "components/BasicModal";
-import {
-    ModalDescription,
-    ModalHeader,
-    ModalItem,
-    ModalImage,
-} from "components/BasicModal/styles";
-import CopyField from "components/CopyField";
 import { PlantImagesHistoryData } from "interfaces/PlantImagesHistoryData";
 import BasicImageInput from "components/BasicImageInput";
 import BasicButton from "components/BasicButton";
@@ -50,6 +42,8 @@ import { getImagesHistory, addImageToPlant } from "services/plant";
 import { getWateringHistory } from "services/watering";
 import { useGetPlantDetailsFromCache } from "hooks/useGetPlantDetailsFromCache";
 import i18n from "config/i18n";
+import SharePlantModal from "modals/SharePlant";
+import PlantImageModal from "modals/PlantImage";
 
 type PlantHistoryProps = NativeStackScreenProps<
     RootStackParamList,
@@ -325,30 +319,18 @@ const PlantHistory = ({
                     ) : null}
                 </ColumnCenterWrapper>
             </ScreenContainer>
-            <BasicModal
-                showModal={showShareModal}
-                toggleModal={setShowShareModal}
-            >
-                <ModalItem>
-                    <ModalHeader>
-                        {t("pages.plants.history.shareModal.header")}
-                    </ModalHeader>
-                    <ModalDescription>
-                        {t("pages.plants.history.shareModal.description")}
-                    </ModalDescription>
-                </ModalItem>
-                <ModalItem>
-                    {selectedPlant ? (
-                        <CopyField value={selectedPlant.shareId} />
-                    ) : null}
-                </ModalItem>
-            </BasicModal>
-            <BasicModal
+            {selectedPlant ? (
+                <SharePlantModal
+                    shareId={selectedPlant.shareId}
+                    showModal={showShareModal}
+                    toggleModal={setShowShareModal}
+                />
+            ) : null}
+            <PlantImageModal
                 showModal={!!showImageModal}
                 toggleModal={setShowImageModal}
-            >
-                <ModalImage source={{ uri: showImageModal }} />
-            </BasicModal>
+                imageUri={showImageModal as string}
+            />
         </>
     );
 };

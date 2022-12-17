@@ -4,7 +4,7 @@ import { ModalImage } from "components/BasicModal/styles";
 
 interface Props {
     showModal: boolean;
-    toggleModal: (state: boolean) => void;
+    toggleModal: (imageUri: string | boolean) => void;
     imageUri: string;
 }
 
