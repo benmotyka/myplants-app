@@ -54,6 +54,7 @@ interface AppConfigPersistentState {
     theme: AppTheme;
     setTheme: (theme: AppTheme) => void;
     isRateAppModalShown: boolean;
+    setRateAppModalShown: (state: boolean) => void;
 }
 
 type AppConfigPersist = (
@@ -69,6 +70,8 @@ export const useAppConfigStore = {
                     Appearance.getColorScheme() === "dark" ? "dark" : "light",
                 setTheme: (theme) => set({ theme }),
                 isRateAppModalShown: false,
+                setRateAppModalShown: (state) =>
+                    set({ isRateAppModalShown: state }),
             }),
             {
                 name: "app-config-storage",

@@ -47,3 +47,13 @@ export const redirectToStore = () => {
             return Linking.openURL(googlePlayStoreUrl);
     }
 };
+
+export const shouldShowRateAppModal = (plantsAmount: number) => {
+    // If user has more than PLANTS_AMOUNT_THRESHOLD plant, 
+    // there's chance they they will see the 'Rate App' modal
+    const CHANCE_THRESHOLD = 5; // %
+    const PLANTS_AMOUNT_THRESHOLD = 1;
+    if (plantsAmount < PLANTS_AMOUNT_THRESHOLD) return false;
+
+    return Math.random() * 100 < CHANCE_THRESHOLD;
+};

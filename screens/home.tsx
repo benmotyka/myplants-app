@@ -14,13 +14,15 @@ import Loader from "components/Loader";
 import { usePlantsStore, useToastStore, useAppConfigStore } from "store";
 import { getPlants } from "services/plant";
 import i18n from "config/i18n";
-import { isNewUpdate } from "util/app";
+import { isNewUpdate, shouldShowRateAppModal } from "util/app";
 import NewUpdateModal from "modals/NewUpdate";
+import RateAppModal from "modals/RateApp";
 
 type HomeProps = NativeStackScreenProps<RootStackParamList, "home">;
 
 const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
     const [showUpdateModal, setShowUpdateModal] = useState(false);
+    const [showRateAppModal, setShowRateAppModal] = useState(false);
     const [dataSource, setDataSource] = useState<Plant[]>();
     const [allowScrolling, setAllowScrolling] = useState(true);
     const isFocused = useIsFocused();
@@ -29,6 +31,9 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
     const setUserPlants = usePlantsStore((store) => store.setUserPlants);
     const displayToast = useToastStore((state) => state.showToast);
     const ephemeralAppConfig = useAppConfigStore.ephemeral((state) => state);
+    const { isRateAppModalShown } = useAppConfigStore.persistent(
+        (state) => state
+    );
 
     const getUserPlants = async () => {
         try {
@@ -55,6 +60,8 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
             const sortedPlants = sortPlantsByCreatedAt(plants);
             setUserPlants(sortedPlants);
             setDataSource(sortedPlants);
+            if (!isRateAppModalShown)
+                setShowRateAppModal(shouldShowRateAppModal(plants.length));
         });
 
         if (!ephemeralAppConfig.isClosedUpdateModal) {
@@ -118,6 +125,10 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
                 showModal={showUpdateModal}
                 toggleModal={setShowUpdateModal}
                 onClose={onCloseUpdateModal}
+            />
+            <RateAppModal
+                showModal={showRateAppModal}
+                toggleModal={setShowRateAppModal}
             />
         </ScreenContainer>
     );
