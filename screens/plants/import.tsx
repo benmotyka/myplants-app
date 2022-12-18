@@ -12,7 +12,6 @@ import BasicButton from "components/BasicButton";
 import Loader from "components/Loader";
 import {
     ColumnCenterWrapper,
-    Description,
     IconContainer,
     InputsWrapper,
     KeyboardScreen,
@@ -22,9 +21,8 @@ import { ImportPlantSchema } from "schemas/ImportPlant.schema";
 import { useToastStore } from "store";
 import i18n from "config/i18n";
 import { ICON_SIZE_PX } from "config";
-import BasicModal from "components/BasicModal";
-import { ModalItem } from "components/BasicModal/styles";
 import { importPlant } from "services/plant";
+import ImportPlantHelpModal from "modals/ImportPlantHelp";
 
 type ImportPlantProps = NativeStackScreenProps<
     RootStackParamList,
@@ -159,22 +157,10 @@ const ImportPlant = ({ navigation }: ImportPlantProps): JSX.Element => {
                     )}
                 </ColumnCenterWrapper>
             </KeyboardScreen>
-            <BasicModal
+            <ImportPlantHelpModal
                 showModal={showHelpModal}
                 toggleModal={setShowHelpModal}
-            >
-                <ModalItem>
-                    <Description>
-                        {t("pages.plants.import.description")}
-                    </Description>
-                </ModalItem>
-                <ModalItem>
-                    <BasicButton
-                        onPress={() => setShowHelpModal(false)}
-                        text={t("common.close")}
-                    />
-                </ModalItem>
-            </BasicModal>
+            />
         </>
     );
 };

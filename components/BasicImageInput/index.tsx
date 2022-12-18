@@ -3,9 +3,8 @@ import * as ImagePicker from "expo-image-picker";
 
 import BasicButton from "components/BasicButton";
 import { InputWrapper, InputImage } from "components/BasicImageInput/styles";
-import BasicModal from "components/BasicModal";
-import { ModalItem } from "components/BasicModal/styles";
 import i18n from "config/i18n";
+import AddPhotoSourceModal from "modals/AddPhotoSource";
 
 interface Props {
     buttonText: string;
@@ -69,22 +68,12 @@ const BasicImageInput = ({
                     text={buttonText}
                 />
             </InputWrapper>
-            {showModal ? (
-                <BasicModal showModal={showModal} toggleModal={setShowModal}>
-                    <ModalItem>
-                        <BasicButton
-                            onPress={handleTakePhoto}
-                            text={t("components.basicImageInput.takePhoto")}
-                        />
-                    </ModalItem>
-                    <ModalItem>
-                        <BasicButton
-                            onPress={handlePickImage}
-                            text={t("components.basicImageInput.chooseLibrary")}
-                        />
-                    </ModalItem>
-                </BasicModal>
-            ) : null}
+            <AddPhotoSourceModal
+                showModal={showModal}
+                toggleModal={setShowModal}
+                handleTakePhoto={handleTakePhoto}
+                handlePickImage={handlePickImage}
+            />
         </>
     );
 };

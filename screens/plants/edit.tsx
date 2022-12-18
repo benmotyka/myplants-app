@@ -7,12 +7,10 @@ import { View } from "react-native";
 import { useTheme } from "styled-components/native";
 
 import Back from "components/Back";
-import BasicModal from "components/BasicModal";
 import BasicTextInput from "components/BasicTextInput";
 import BasicImageInput from "components/BasicImageInput";
 import BasicButton from "components/BasicButton";
 import Loader from "components/Loader";
-import { ModalHeader, ModalItem } from "components/BasicModal/styles";
 import { createEditPlantSchema } from "schemas/EditPlant.schema";
 import {
     ColumnCenterWrapper,
@@ -33,6 +31,7 @@ import { deletePlant, editPlant } from "services/plant";
 import { useGetPlantDetailsFromCache } from "hooks/useGetPlantDetailsFromCache";
 import i18n from "config/i18n";
 import { RootStackParamList } from "interfaces/RootStackParamList";
+import DeletePlantConfirmationModal from "modals/DeletePlantConfirmation";
 
 type EditPlantProps = NativeStackScreenProps<RootStackParamList, "editPlant">;
 
@@ -275,28 +274,11 @@ const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
                     )}
                 </ColumnCenterWrapper>
             </KeyboardScreen>
-            <BasicModal showModal={showModal} toggleModal={setShowModal}>
-                <ModalItem>
-                    <ModalHeader>
-                        {t("pages.plants.edit.deletePlantConfirmation")}
-                    </ModalHeader>
-                </ModalItem>
-                <ModalItem>
-                    <BasicButton
-                        onPress={handleDelete}
-                        text={t("common.delete")}
-                        warning={true}
-                    />
-                </ModalItem>
-                <ModalItem>
-                    <BasicButton
-                        onPress={() => {
-                            setShowModal(false);
-                        }}
-                        text={t("common.cancel")}
-                    />
-                </ModalItem>
-            </BasicModal>
+            <DeletePlantConfirmationModal
+                showModal={showModal}
+                toggleModal={setShowModal}
+                handleDelete={handleDelete}
+            />
         </>
     );
 };

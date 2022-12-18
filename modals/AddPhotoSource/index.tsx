@@ -3,31 +3,38 @@ import BasicModal from "components/BasicModal";
 import { ModalItem } from "components/BasicModal/styles";
 import BasicButton from "components/BasicButton";
 import i18n from "config/i18n";
-import { Description } from "styles/shared";
 
 interface Props {
     showModal: boolean;
     toggleModal: (state: boolean) => void;
+    handleTakePhoto: () => void;
+    handlePickImage: () => void;
 }
 
-const ImportPlantHelpModal = ({ showModal, toggleModal }: Props) => {
+const AddPhotoSourceModal = ({
+    showModal,
+    toggleModal,
+    handleTakePhoto,
+    handlePickImage,
+}: Props) => {
     const { t } = i18n;
 
     return (
         <BasicModal showModal={showModal} toggleModal={toggleModal}>
             <ModalItem>
-                <Description>
-                    {t("pages.plants.import.description")}
-                </Description>
+                <BasicButton
+                    onPress={handleTakePhoto}
+                    text={t("components.basicImageInput.takePhoto")}
+                />
             </ModalItem>
             <ModalItem>
                 <BasicButton
-                    onPress={() => toggleModal(false)}
-                    text={t("common.close")}
+                    onPress={handlePickImage}
+                    text={t("components.basicImageInput.chooseLibrary")}
                 />
             </ModalItem>
         </BasicModal>
     );
 };
 
-export default ImportPlantHelpModal;
+export default AddPhotoSourceModal;

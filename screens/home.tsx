@@ -8,16 +8,14 @@ import PlantPreview from "components/Plant/Plant";
 import { numberOfColumns } from "components/Plant/styles";
 import AddPlantSuggestion from "components/AddPlantSuggestion";
 import HomeSettings from "components/HomeSettings";
-import BasicModal from "components/BasicModal";
-import { ModalHeader, ModalItem } from "components/BasicModal/styles";
-import BasicButton from "components/BasicButton";
 import { Plant } from "interfaces/Plant";
 import { LoaderWrapper, ScreenContainer } from "styles/shared";
 import Loader from "components/Loader";
 import { usePlantsStore, useToastStore, useAppConfigStore } from "store";
 import { getPlants } from "services/plant";
 import i18n from "config/i18n";
-import { isNewUpdate, redirectToStore } from "util/app";
+import { isNewUpdate } from "util/app";
+import NewUpdateModal from "modals/NewUpdate";
 
 type HomeProps = NativeStackScreenProps<RootStackParamList, "home">;
 
@@ -72,11 +70,6 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
         return () => backHandler.remove();
     }, [isFocused]);
 
-    const redirectToUpdate = () => {
-        redirectToStore();
-        setShowUpdateModal(false);
-    };
-
     const onCloseUpdateModal = () => {
         ephemeralAppConfig.setIsClosedUpdateModal(true);
         setShowUpdateModal(false);
@@ -121,30 +114,11 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
                 </LoaderWrapper>
             )}
             <HomeSettings navigation={navigation} />
-            <BasicModal
+            <NewUpdateModal
                 showModal={showUpdateModal}
                 toggleModal={setShowUpdateModal}
                 onClose={onCloseUpdateModal}
-            >
-                <ModalItem>
-                    <ModalHeader>
-                        {t("pages.homepage.newUpdateHeader")}
-                    </ModalHeader>
-                </ModalItem>
-                <ModalItem>
-                    <BasicButton
-                        onPress={redirectToUpdate}
-                        text={t("common.update")}
-                        important
-                    />
-                </ModalItem>
-                <ModalItem>
-                    <BasicButton
-                        onPress={onCloseUpdateModal}
-                        text={t("common.cancel")}
-                    />
-                </ModalItem>
-            </BasicModal>
+            />
         </ScreenContainer>
     );
 };
