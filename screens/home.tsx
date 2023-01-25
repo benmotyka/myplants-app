@@ -64,9 +64,9 @@ const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
                 setShowRateAppModal(shouldShowRateAppModal(plants.length));
         });
 
-        if (!ephemeralAppConfig.isClosedUpdateModal) {
-            isNewUpdate().then((result) => setShowUpdateModal(result));
-        }
+        // if (!ephemeralAppConfig.isClosedUpdateModal) {
+        //     isNewUpdate().then((result) => setShowUpdateModal(result));
+        // }
 
         // Workaround for devices with hardware back button
         const backHandler = BackHandler.addEventListener(

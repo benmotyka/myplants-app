@@ -1,5 +1,3 @@
-import { StatusBar } from "expo-status-bar";
-import { SafeAreaView, View, StatusBar as NativeStatusBar } from "react-native";
 import AppLoading from "expo-app-loading";
 import { RootSiblingParent } from "react-native-root-siblings";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -14,6 +12,7 @@ import * as Sentry from "sentry-expo";
 import { ThemeProvider } from "styled-components/native";
 
 import { sentryDsn } from "config/environment";
+import StatusBar from "components/StatusBar";
 import { RootStackParamList } from "interfaces/RootStackParamList";
 import HomeScreen from "screens/home";
 import AddPlantScreen from "screens/plants/add";
@@ -52,12 +51,7 @@ export default function App() {
     return (
         <ThemeProvider theme={appTheme === "dark" ? darkTheme : lightTheme}>
             <RootSiblingParent>
-                <SafeAreaView>
-                    {/* Workaround for devices with native StatusBar */}
-                    <View style={{ paddingTop: NativeStatusBar.currentHeight }}>
-                        <StatusBar />
-                    </View>
-                </SafeAreaView>
+                <StatusBar />
                 <NavigationContainer>
                     <ToastProvider>
                         <Stack.Navigator
