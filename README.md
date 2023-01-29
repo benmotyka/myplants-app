@@ -29,6 +29,7 @@
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#deployment">Deployment</a></li>
       </ul>
     </li>
     <li><a href="#contributing">Contributing</a></li>
@@ -72,9 +73,10 @@ My Plants is a free and open source mobile app that helps to manage watering of 
 
 ### Installation
 
-1. Clone this repo
+1. Clone and enter this repo
    ```sh
    git clone https://github.com/benmotyka/my-plants_app.git
+   cd my-plants_app/
    ```
 2. Install NPM packages
    ```sh
@@ -99,7 +101,30 @@ My Plants is a free and open source mobile app that helps to manage watering of 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- CONTRIBUTING -->
+### Deployment
+
+1. Add `google-services.json` file to `keys/`
+2. Convert key to base64-encoded string: 
+   ```sh
+   base64 keys/google-services.json
+   ```
+3. Create eas secret:
+   ```sh
+   eas secret:create
+   
+   key=GOOGLE_SERVICES_BASE64
+   value=<base64_encoded_string>
+   ```
+4. Increase versionCode in `app.config.js`
+5. Build project
+   ```sh
+   npm run deploy:build
+   ```
+6. Pubish project
+   ```sh
+   npm run deploy:publish  
+   ```
+7. Create new release on `https://play.google.com/console`
 
 ## Contributing
 

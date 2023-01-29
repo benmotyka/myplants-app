@@ -5,15 +5,12 @@
     "scripts": {
         "start": "expo start",
         "start:tunnel": "expo start --tunnel",
-        "android": "expo start --android",
-        "ios": "expo start --ios",
-        "web": "expo start --web",
-        "eject": "expo eject",
-        "production:build": "eas build",
-        "production:publish": "eas submit",
+        "deploy:build": "eas build",
+        "deploy:publish": "eas submit",
         "test": "jest",
         "lint": "tsc --noEmit && eslint --ext .js,.jsx,.ts,.tsx ./",
-        "prettier:write": "npx prettier --write **/*.{js,jsx,ts,tsx,json} && npx prettier --write *.{js,jsx,ts,tsx,json}"
+        "prettier:write": "npx prettier --write **/*.{js,jsx,ts,tsx,json} && npx prettier --write *.{js,jsx,ts,tsx,json}",
+        "eas-build-pre-install": "echo $GOOGLE_SERVICES_BASE64 | base64 --decode > keys/google-services.json"
     },
     "dependencies": {
         "@expo-google-fonts/akaya-kanadaka": "^0.2.2",

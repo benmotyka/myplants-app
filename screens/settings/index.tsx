@@ -13,7 +13,8 @@ import {
     AppVersionWrapper,
 } from "styles/screens/settings.styles";
 import i18n from "config/i18n";
-import { getCurrentAppVersion } from "util/app";
+
+const TEMPORARY_APP_VERSION_MOCK = "1.53b";
 
 type SettingsProps = NativeStackScreenProps<RootStackParamList, "settings">;
 
@@ -46,7 +47,7 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
                 <AppVersionWrapper>
                     <AppVersionText>
                         {t("pages.settings.appVersion", {
-                            version: getCurrentAppVersion(),
+                            version: TEMPORARY_APP_VERSION_MOCK,
                         })}
                     </AppVersionText>
                 </AppVersionWrapper>

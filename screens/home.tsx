@@ -14,7 +14,7 @@ import Loader from "components/Loader";
 import { usePlantsStore, useToastStore, useAppConfigStore } from "store";
 import { getPlants } from "services/plant";
 import i18n from "config/i18n";
-import { isNewUpdate, shouldShowRateAppModal } from "util/app";
+import { shouldShowRateAppModal } from "util/app";
 import NewUpdateModal from "modals/NewUpdate";
 import RateAppModal from "modals/RateApp";
 

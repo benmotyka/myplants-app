@@ -14,3 +14,5 @@ web-build/
 keys/*
 
 !/**/.gitkeep
+
+google-services.json
