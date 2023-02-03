@@ -11,7 +11,8 @@
         "confirm": "Potwierdź",
         "copy": "Kopiuj",
         "close": "Zamknij",
-        "update": "Aktualizuj"
+        "update": "Aktualizuj",
+        "rate": "Oceń"
     },
     "pages": {
         "homepage": {
@@ -104,6 +105,9 @@
             "every": "Co",
             "daySingular": "dzień",
             "dayPlurar": "dni"
+        },
+        "rateAppModal": {
+            "header": "Podoba Ci się aplikacja? Oceń ją w sklepie, aby inni mogli ją zobaczyć"
         }
     }
 }

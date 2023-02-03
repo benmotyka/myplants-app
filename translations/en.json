@@ -11,7 +11,8 @@
         "confirm": "Confirm",
         "copy": "Copy",
         "close": "Close",
-        "update": "Update"
+        "update": "Update",
+        "rate": "Rate"
     },
     "pages": {
         "homepage": {
@@ -104,6 +105,9 @@
             "every": "Every",
             "daySingular": "day",
             "dayPlurar": "days"
+        },
+        "rateAppModal": {
+            "header": "Are you enjoying the app? Rate it on the store, so other people can see it"
         }
     }
 }

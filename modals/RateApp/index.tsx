@@ -24,7 +24,20 @@ const RateAppModal = ({ showModal, toggleModal }: Props) => {
     return (
         <BasicModal showModal={showModal} toggleModal={toggleModal}>
             <ModalItem>
-                <ModalHeader>rate ap pls</ModalHeader>
+                <ModalHeader>{t("components.rateAppModal.header")}</ModalHeader>
+            </ModalItem>
+            <ModalItem>
+                <BasicButton
+                    onPress={redirectToStore}
+                    text={t("common.rate")}
+                    important
+                />
+            </ModalItem>
+            <ModalItem>
+                <BasicButton
+                    onPress={() => toggleModal(false)}
+                    text={t("common.close")}
+                />
             </ModalItem>
         </BasicModal>
     );

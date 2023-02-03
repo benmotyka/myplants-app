@@ -142,7 +142,6 @@ const PlantHistory = ({
                 setActiveSection("watering");
                 break;
             case "images":
-                // TODO: determine how to calculate 'center' of scrollview instead of arbitrary value
                 scrollViewRef.current?.scrollTo({ x: 130 });
                 setActiveSection("images");
                 break;
