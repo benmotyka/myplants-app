@@ -38,12 +38,15 @@ export const ModalItem = styled.View`
     margin: 15px;
 `;
 
-export const ModalDescription = styled.Text`
+export const ModalDescription = styled.Text<{
+    textCenter?: boolean;
+}>`
     font-size: 15px;
     font-family: "Inter_300Light";
     opacity: 0.6;
     margin-top: 10px;
     color: ${({ theme }) => theme.text};
+    text-align: ${(props) => (props.textCenter ? "center" : "left")};
 `;
 
 export const ModalImage = styled.Image`

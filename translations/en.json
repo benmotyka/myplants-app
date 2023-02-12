@@ -108,6 +108,10 @@
         },
         "rateAppModal": {
             "header": "Are you enjoying the app? Rate it on the store, so other people can see it"
+        },
+        "noConnectionModal": {
+            "header": "No connection",
+            "description": "Please check your network connection and try again"
         }
     }
 }

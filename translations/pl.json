@@ -108,6 +108,10 @@
         },
         "rateAppModal": {
             "header": "Podoba Ci się aplikacja? Oceń ją w sklepie, aby inni mogli ją zobaczyć"
+        },
+        "noConnectionModal": {
+            "header": "Brak połączenia",
+            "description": "Sprawdź połączenie z Internetem i spróbuj ponownie"
         }
     }
 }
