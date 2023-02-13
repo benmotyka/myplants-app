@@ -19,6 +19,7 @@
         "@expo/vector-icons": "^13.0.0",
         "@miblanchard/react-native-slider": "^2.1.0",
         "@react-native-async-storage/async-storage": "~1.17.3",
+        "@react-native-community/netinfo": "^9.3.7",
         "@react-navigation/native": "^6.0.10",
         "@react-navigation/native-stack": "^6.6.2",
         "@sentry/react-native": "4.2.2",
