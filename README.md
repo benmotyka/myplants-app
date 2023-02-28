@@ -73,7 +73,7 @@ My Plants is a free and open source mobile app that helps to manage watering of 
 
 ### Installation
 
-1. Clone and enter this repo
+1. Clone this repo and enter project
    ```sh
    git clone https://github.com/benmotyka/my-plants_app.git
    cd my-plants_app/
