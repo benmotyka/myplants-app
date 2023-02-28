@@ -40,7 +40,18 @@ const Settings = ({ navigation }: SettingsProps): JSX.Element => {
                             onPress={() => {
                                 navigation.navigate("settingsApp");
                             }}
-                            text={t("pages.settings.appHeader")}
+                            text={t("pages.settings.app.header")}
+                        />
+                    </SettingsItem>
+                </SettingsSection>
+                <SettingsSection>
+                    <SettingsHeader text={t("pages.settings.contact")} />
+                    <SettingsItem>
+                        <BasicButton
+                            onPress={() => {
+                                navigation.navigate("settingsContactReportBug");
+                            }}
+                            text={t("pages.settings.reportBug.header")}
                         />
                     </SettingsItem>
                 </SettingsSection>

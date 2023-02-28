@@ -68,11 +68,15 @@
                 "notificationsEnabled": "włączone",
                 "notificationsDisabled": "wyłączone"
             },
-            "appHeader": "Aplikacja",
             "app": {
+                "header": "Aplikacja",
                 "manageTheme": "Zmień motyw",
                 "darkTheme": "Ciemny",
                 "lightTheme": "Jasny"
+            },
+            "contact": "Kontakt",
+            "reportBug": {
+                "header": "Zgłoś błąd"
             },
             "appVersion": "Wersja aplikacji: {{version}}"
         }
