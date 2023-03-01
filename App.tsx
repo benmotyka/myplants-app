@@ -22,6 +22,7 @@ import SettingsScreen from "screens/settings";
 import ImportPlantScreen from "screens/plants/import";
 import SettingsNotificationsScreen from "screens/settings/notifications";
 import SettingsAppScreen from "screens/settings/app";
+import SettingsContactReportBug from "screens/settings/contact/reportBug";
 import ToastProvider from "providers/ToastProvider";
 import { darkTheme, lightTheme } from "styles/theme";
 import { useAppConfigStore } from "store";
@@ -94,6 +95,10 @@ export default function App() {
                             <Stack.Screen
                                 name="settingsApp"
                                 component={SettingsAppScreen}
+                            />
+                            <Stack.Screen
+                                name="settingsContactReportBug"
+                                component={SettingsContactReportBug}
                             />
                         </Stack.Navigator>
                     </ToastProvider>

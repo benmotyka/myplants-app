@@ -45,7 +45,7 @@ import i18n from "config/i18n";
 import SharePlantModal from "modals/SharePlant";
 import PlantImageModal from "modals/PlantImage";
 
-type PlantHistoryProps = NativeStackScreenProps<
+type Props = NativeStackScreenProps<
     RootStackParamList,
     "plantHistory"
 >;
@@ -57,7 +57,7 @@ type Sections = "watering" | "images" | "addImage";
 const PlantHistory = ({
     route,
     navigation,
-}: PlantHistoryProps): JSX.Element => {
+}: Props): JSX.Element => {
     const plantId = route.params.plantId;
 
     const [loading, setLoading] = useState(false);

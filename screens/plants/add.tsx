@@ -27,7 +27,7 @@ import WateringReminderInput from "components/WateringReminderInput";
 import { useToastStore } from "store";
 import { addPlant } from "services/plant";
 
-type AddPlantProps = NativeStackScreenProps<RootStackParamList, "addPlant">;
+type Props = NativeStackScreenProps<RootStackParamList, "addPlant">;
 
 interface AddPlantForm {
     name: string;
@@ -38,7 +38,7 @@ interface AddPlantForm {
 
 const { t } = i18n;
 
-const AddPlant = ({ navigation }: AddPlantProps): JSX.Element => {
+const AddPlant = ({ navigation }: Props): JSX.Element => {
     const [loading, setLoading] = useState(false);
     const [isRemindersChecked, setRemindersChecked] = useState(false);
     const [image, setImage] = useState<ImageInfo>();

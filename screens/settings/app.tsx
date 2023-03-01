@@ -8,14 +8,11 @@ import i18n from "config/i18n";
 import BasicSwitch from "components/BasicSwitch";
 import { AppTheme, useAppConfigStore } from "store";
 
-type SettingsAppProps = NativeStackScreenProps<
-    RootStackParamList,
-    "settingsApp"
->;
+type Props = NativeStackScreenProps<RootStackParamList, "settingsApp">;
 
 const { t } = i18n;
 
-const SettingsApp = ({ navigation }: SettingsAppProps): JSX.Element => {
+const SettingsApp = ({ navigation }: Props): JSX.Element => {
     const appConfig = useAppConfigStore.persistent((state) => state);
     const [theme, setTheme] = useState<AppTheme>(appConfig.theme);
 

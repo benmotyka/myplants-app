@@ -18,9 +18,9 @@ import { shouldShowRateAppModal } from "util/app";
 import NewUpdateModal from "modals/NewUpdate";
 import RateAppModal from "modals/RateApp";
 
-type HomeProps = NativeStackScreenProps<RootStackParamList, "home">;
+type Props = NativeStackScreenProps<RootStackParamList, "home">;
 
-const HomeScreen = ({ navigation }: HomeProps): JSX.Element => {
+const HomeScreen = ({ navigation }: Props): JSX.Element => {
     const [showUpdateModal, setShowUpdateModal] = useState(false);
     const [showRateAppModal, setShowRateAppModal] = useState(false);
     const [dataSource, setDataSource] = useState<Plant[]>();

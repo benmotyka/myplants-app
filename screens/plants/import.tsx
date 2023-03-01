@@ -24,7 +24,7 @@ import { ICON_SIZE_PX } from "config";
 import { importPlant } from "services/plant";
 import ImportPlantHelpModal from "modals/ImportPlantHelp";
 
-type ImportPlantProps = NativeStackScreenProps<
+type Props = NativeStackScreenProps<
     RootStackParamList,
     "importPlant"
 >;
@@ -35,7 +35,7 @@ interface ImportPlantForm {
 
 const { t } = i18n;
 
-const ImportPlant = ({ navigation }: ImportPlantProps): JSX.Element => {
+const ImportPlant = ({ navigation }: Props): JSX.Element => {
     const [showHelpModal, setShowHelpModal] = useState(false);
     const [loading, setLoading] = useState(false);
     const displayToast = useToastStore((state) => state.showToast);

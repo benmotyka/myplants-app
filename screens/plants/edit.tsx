@@ -33,7 +33,7 @@ import i18n from "config/i18n";
 import { RootStackParamList } from "interfaces/RootStackParamList";
 import DeletePlantConfirmationModal from "modals/DeletePlantConfirmation";
 
-type EditPlantProps = NativeStackScreenProps<RootStackParamList, "editPlant">;
+type Props = NativeStackScreenProps<RootStackParamList, "editPlant">;
 
 interface EditPlantForm {
     name: string;
@@ -44,7 +44,7 @@ interface EditPlantForm {
 
 const { t } = i18n;
 
-const EditPlant = ({ route, navigation }: EditPlantProps): JSX.Element => {
+const EditPlant = ({ route, navigation }: Props): JSX.Element => {
     const plantId = route.params.plantId;
     const [loading, setLoading] = useState(false);
     const [image, setImage] = useState<ImageInfo>();

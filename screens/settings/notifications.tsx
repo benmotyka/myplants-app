@@ -13,16 +13,14 @@ import BasicSwitch from "components/BasicSwitch";
 import { useToastStore } from "store";
 import { updateUserSettings } from "services/user";
 
-type SettingsNotificationsProps = NativeStackScreenProps<
+type Props = NativeStackScreenProps<
     RootStackParamList,
     "settingsNotifications"
 >;
 
 const { t } = i18n;
 
-const SettingsNotifications = ({
-    navigation,
-}: SettingsNotificationsProps): JSX.Element => {
+const SettingsNotifications = ({ navigation }: Props): JSX.Element => {
     const [isAllowNotificationsEnabled, setAllowNotificationsEnabled] =
         useState(false);
     const displayToast = useToastStore((state) => state.showToast);

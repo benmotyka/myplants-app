@@ -16,11 +16,11 @@ import i18n from "config/i18n";
 
 const TEMPORARY_APP_VERSION_MOCK = "1.53b";
 
-type SettingsProps = NativeStackScreenProps<RootStackParamList, "settings">;
+type Props = NativeStackScreenProps<RootStackParamList, "settings">;
 
 const { t } = i18n;
 
-const Settings = ({ navigation }: SettingsProps): JSX.Element => {
+const Settings = ({ navigation }: Props): JSX.Element => {
     return (
         <ScreenContainer>
             <Back navigation={navigation} />

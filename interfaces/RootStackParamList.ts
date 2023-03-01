@@ -7,4 +7,5 @@ export type RootStackParamList = {
     settings: undefined;
     settingsNotifications: undefined;
     settingsApp: undefined;
+    settingsContactReportBug: undefined;
 };
