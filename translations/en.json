@@ -76,7 +76,11 @@
             },
             "contact": "Contact",
             "reportBug": {
-                "header": "Report bug"
+                "header": "Report bug",
+                "emailLabel": "Email (optional)",
+                "descriptionLabel": "Description",
+                "descriptionPlaceholder": "When I clicked on my plant...",
+                "success": "Report sent"
             },
             "appVersion": "App version: {{version}}"
         }
@@ -90,7 +94,8 @@
         "minimumValueIs": "Minimum value is: {{value}}",
         "maximumValueIs": "Maximum value is: {{value}}",
         "plantAlreadyAdded": "Plant already exists in your collection",
-        "plantNotExists": "Plant not found"
+        "plantNotExists": "Plant not found",
+        "emailOptional": "Must be valid email or empty field"
     },
     "components": {
         "basicImageInput": {

@@ -76,7 +76,11 @@
             },
             "contact": "Kontakt",
             "reportBug": {
-                "header": "Zgłoś błąd"
+                "header": "Zgłoś błąd",
+                "emailLabel": "Email (opcjonalne)",
+                "descriptionLabel": "Opis błędu",
+                "descriptionPlaceholder": "Podczas dodawania rośliny...",
+                "success": "Zgłoszenie wysłane"
             },
             "appVersion": "Wersja aplikacji: {{version}}"
         }
@@ -90,7 +94,8 @@
         "minimumValueIs": "Minimalna wartość to: {{value}}",
         "maximumValueIs": "Maksymalna wartość to: {{value}}",
         "plantAlreadyAdded": "Roślina już istnieje w Twojej kolekcji",
-        "plantNotExists": "Roślina nie istnieje"
+        "plantNotExists": "Roślina nie istnieje",
+        "emailOptional": "Podaj poprawny e-mail lub zostaw puste"
     },
     "components": {
         "basicImageInput": {
