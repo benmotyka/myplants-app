@@ -80,3 +80,16 @@ export const addImageToPlant = async (
 export const deletePlant = async (plantId: string) => {
     return await plantsApi.delete(`/plants/${plantId}`);
 };
+
+export const reportBug = async ({
+    description,
+    email,
+}: {
+    description: string;
+    email?: string;
+}) => {
+    return await plantsApi.post<void>("/user/bug-report", {
+        description,
+        email,
+    });
+};

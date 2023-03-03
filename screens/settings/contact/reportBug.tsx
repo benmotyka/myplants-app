@@ -17,6 +17,7 @@ import { View } from "react-native";
 import BasicButton from "components/BasicButton";
 import { useToastStore } from "store/index";
 import Loader from "components/Loader";
+import { reportBug } from "services/plant";
 
 type Props = NativeStackScreenProps<
     RootStackParamList,
@@ -46,9 +47,7 @@ const ReportBug = ({ navigation }: Props): JSX.Element => {
     ) => {
         try {
             setLoading(true);
-            // Fake timeout
-            await new Promise((resolve) => setTimeout(resolve, 2000));
-            // TODO: Send email
+            await reportBug(values);
             resetForm();
             navigation.navigate("home");
             displayToast({
