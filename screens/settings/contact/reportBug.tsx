@@ -5,9 +5,10 @@ import { RootStackParamList } from "interfaces/RootStackParamList";
 import Back from "components/Back";
 import {
     ColumnCenterWrapper,
-    ScreenContainer,
+    KeyboardScreen,
     InputsWrapper,
     LoaderWrapper,
+    IconContainer,
 } from "styles/shared";
 import i18n from "config/i18n";
 import BasicTextInput from "components/BasicTextInput";
@@ -17,7 +18,11 @@ import { View } from "react-native";
 import BasicButton from "components/BasicButton";
 import { useToastStore } from "store/index";
 import Loader from "components/Loader";
+import { ICON_SIZE_PX } from "config";
 import { reportBug } from "services/plant";
+import { AntDesign } from "@expo/vector-icons";
+import { useTheme } from "styled-components/native";
+import ReportBugHelpModal from "modals/ReportBugHelp";
 
 type Props = NativeStackScreenProps<
     RootStackParamList,
@@ -34,8 +39,10 @@ interface ReportBugForm {
 }
 
 const ReportBug = ({ navigation }: Props): JSX.Element => {
+    const [showHelpModal, setShowHelpModal] = useState(false);
     const [loading, setLoading] = useState(false);
     const displayToast = useToastStore((state) => state.showToast);
+    const theme = useTheme();
 
     const handleSubmit = async (
         values: ReportBugForm,
@@ -64,69 +71,97 @@ const ReportBug = ({ navigation }: Props): JSX.Element => {
         }
     };
     return (
-        <ScreenContainer>
-            <ColumnCenterWrapper>
-                <Back navigation={navigation} />
-                {loading ? (
-                    <LoaderWrapper>
-                        <Loader />
-                    </LoaderWrapper>
-                ) : (
-                    <Formik
-                        initialValues={{ email: "", description: "" }}
-                        validationSchema={ReportBugSchema}
-                        onSubmit={handleSubmit}
+        <>
+            <KeyboardScreen
+                contentContainerStyle={{ paddingBottom: 50 }}
+                resetScrollToCoords={{ x: 0, y: 0 }}
+                scrollEnabled={true}
+                bounces={false}
+                style={{
+                    backgroundColor: theme.background,
+                }}
+            >
+                <ColumnCenterWrapper>
+                    <Back navigation={navigation} />
+                    <IconContainer
+                        style={{ top: 20, right: 20 }}
+                        onPress={() => {
+                            setShowHelpModal(true);
+                        }}
                     >
-                        {({
-                            handleChange,
-                            handleBlur,
-                            handleSubmit,
-                            values,
-                            errors,
-                        }) => (
-                            <InputsWrapper>
-                                <BasicTextInput
-                                    value={values.email}
-                                    label={t(
-                                        "pages.settings.reportBug.emailLabel"
-                                    )}
-                                    onChangeText={handleChange("email")}
-                                    onBlur={handleBlur("email")}
-                                    error={errors.email}
-                                />
-                                <BasicTextInput
-                                    value={values.description}
-                                    label={t(
-                                        "pages.settings.reportBug.descriptionLabel"
-                                    )}
-                                    placeholder={t(
-                                        "pages.settings.reportBug.descriptionPlaceholder"
-                                    )}
-                                    onChangeText={handleChange("description")}
-                                    onBlur={handleBlur("description")}
-                                    error={errors.description}
-                                    textarea
-                                />
-                                <View style={{ marginVertical: 30 }}>
-                                    <BasicButton
-                                        onPress={
-                                            handleSubmit as (
-                                                values: unknown
-                                            ) => void
-                                        }
-                                        text={t("common.submit")}
-                                        disabled={
-                                            values.description.length <
-                                            MIN_DESCRIPTION_LENGTH
-                                        }
+                        <AntDesign
+                            name="question"
+                            size={ICON_SIZE_PX}
+                            color={theme.textLight}
+                        />
+                    </IconContainer>
+                    {loading ? (
+                        <LoaderWrapper>
+                            <Loader />
+                        </LoaderWrapper>
+                    ) : (
+                        <Formik
+                            initialValues={{ email: "", description: "" }}
+                            validationSchema={ReportBugSchema}
+                            onSubmit={handleSubmit}
+                        >
+                            {({
+                                handleChange,
+                                handleBlur,
+                                handleSubmit,
+                                values,
+                                errors,
+                            }) => (
+                                <InputsWrapper>
+                                    <BasicTextInput
+                                        value={values.email}
+                                        label={t(
+                                            "pages.settings.reportBug.emailLabel"
+                                        )}
+                                        onChangeText={handleChange("email")}
+                                        onBlur={handleBlur("email")}
+                                        error={errors.email}
                                     />
-                                </View>
-                            </InputsWrapper>
-                        )}
-                    </Formik>
-                )}
-            </ColumnCenterWrapper>
-        </ScreenContainer>
+                                    <BasicTextInput
+                                        value={values.description}
+                                        label={t(
+                                            "pages.settings.reportBug.descriptionLabel"
+                                        )}
+                                        placeholder={t(
+                                            "pages.settings.reportBug.descriptionPlaceholder"
+                                        )}
+                                        onChangeText={handleChange(
+                                            "description"
+                                        )}
+                                        onBlur={handleBlur("description")}
+                                        error={errors.description}
+                                        textarea
+                                    />
+                                    <View style={{ marginVertical: 30 }}>
+                                        <BasicButton
+                                            onPress={
+                                                handleSubmit as (
+                                                    values: unknown
+                                                ) => void
+                                            }
+                                            text={t("common.submit")}
+                                            disabled={
+                                                values.description.length <
+                                                MIN_DESCRIPTION_LENGTH
+                                            }
+                                        />
+                                    </View>
+                                </InputsWrapper>
+                            )}
+                        </Formik>
+                    )}
+                </ColumnCenterWrapper>
+            </KeyboardScreen>
+            <ReportBugHelpModal
+                showModal={showHelpModal}
+                toggleModal={setShowHelpModal}
+            />
+        </>
     );
 };
 
