@@ -77,6 +77,7 @@
             "contact": "Kontakt",
             "reportBug": {
                 "header": "Zgłoś błąd",
+                "description": "Jeśli napotkasz jakiekolwiek problemy z aplikacją lub masz jakieś sugestie, nie wahaj się skontaktować z naszym zespołem. Doceniamy Twoją opinię i zawsze staramy się doskonalić nasze usługi.",
                 "emailLabel": "Email (opcjonalne)",
                 "descriptionLabel": "Opis błędu",
                 "descriptionPlaceholder": "Podczas dodawania rośliny...",

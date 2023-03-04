@@ -77,6 +77,7 @@
             "contact": "Contact",
             "reportBug": {
                 "header": "Report bug",
+                "description": "If you encounter any issues with the app or if you have any suggestions, please don't hesitate to reach out to our team. We appreciate your feedback and are always striving to improve our services.",
                 "emailLabel": "Email (optional)",
                 "descriptionLabel": "Description",
                 "descriptionPlaceholder": "When I clicked on my plant...",
