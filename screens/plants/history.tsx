@@ -10,9 +10,9 @@ import Back from "components/Back";
 import {
     ColumnCenterWrapper,
     ScreenContainer,
-    IconContainer,
     ScrollableHeader,
     LoaderWrapper,
+    HelperButton,
 } from "styles/shared";
 import {
     ItemDateHeader,
@@ -166,8 +166,7 @@ const PlantHistory = ({
         <>
             <ScreenContainer>
                 <Back navigation={navigation} />
-                <IconContainer
-                    style={{ top: 20, right: 20 }}
+                <HelperButton
                     onPress={() => {
                         setShowShareModal(true);
                     }}
@@ -177,7 +176,7 @@ const PlantHistory = ({
                         size={ICON_SIZE_PX}
                         color={theme.textLight}
                     />
-                </IconContainer>
+                </HelperButton>
                 <ColumnCenterWrapper fullHeight>
                     <ScrollableHeader
                         ref={scrollViewRef}

@@ -9,6 +9,7 @@ import {
     InputsWrapper,
     LoaderWrapper,
     IconContainer,
+    HelperButton,
 } from "styles/shared";
 import i18n from "config/i18n";
 import BasicTextInput from "components/BasicTextInput";
@@ -83,8 +84,7 @@ const ReportBug = ({ navigation }: Props): JSX.Element => {
             >
                 <ColumnCenterWrapper>
                     <Back navigation={navigation} />
-                    <IconContainer
-                        style={{ top: 20, right: 20 }}
+                    <HelperButton
                         onPress={() => {
                             setShowHelpModal(true);
                         }}
@@ -94,7 +94,7 @@ const ReportBug = ({ navigation }: Props): JSX.Element => {
                             size={ICON_SIZE_PX}
                             color={theme.textLight}
                         />
-                    </IconContainer>
+                    </HelperButton>
                     {loading ? (
                         <LoaderWrapper>
                             <Loader />

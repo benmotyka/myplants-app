@@ -2,15 +2,22 @@ import React from "react";
 import { ActivityIndicator } from "react-native";
 
 import { useAppConfigStore } from "store";
+import { Wrapper } from "./styles";
 
-const Loader = (): JSX.Element => {
+interface Props {
+    topMargin?: boolean;
+}
+
+const Loader = ({ topMargin }: Props): JSX.Element => {
     const appTheme = useAppConfigStore.persistent((state) => state.theme);
 
     return (
-        <ActivityIndicator
-            size="large"
-            color={appTheme === "dark" ? "white" : "black"}
-        />
+        <Wrapper topMargin={topMargin}>
+            <ActivityIndicator
+                size="large"
+                color={appTheme === "dark" ? "white" : "black"}
+            />
+        </Wrapper>
     );
 };
 

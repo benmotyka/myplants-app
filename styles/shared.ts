@@ -88,3 +88,8 @@ export const ScrollableHeader = styled.ScrollView`
     margin-bottom: 10px;
     margin: 0 30px;
 `;
+
+export const HelperButton = styled(IconContainer)`
+    top: 20;
+    right: 20;
+`;

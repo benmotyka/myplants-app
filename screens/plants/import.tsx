@@ -12,7 +12,7 @@ import BasicButton from "components/BasicButton";
 import Loader from "components/Loader";
 import {
     ColumnCenterWrapper,
-    IconContainer,
+    HelperButton,
     InputsWrapper,
     KeyboardScreen,
 } from "styles/shared";
@@ -95,8 +95,7 @@ const ImportPlant = ({ navigation }: Props): JSX.Element => {
             >
                 <ColumnCenterWrapper>
                     <Back navigation={navigation} />
-                    <IconContainer
-                        style={{ top: 20, right: 20 }}
+                    <HelperButton
                         onPress={() => {
                             setShowHelpModal(true);
                         }}
@@ -106,7 +105,7 @@ const ImportPlant = ({ navigation }: Props): JSX.Element => {
                             size={ICON_SIZE_PX}
                             color={theme.textLight}
                         />
-                    </IconContainer>
+                    </HelperButton>
                     {!loading ? (
                         <Formik
                             initialValues={{
