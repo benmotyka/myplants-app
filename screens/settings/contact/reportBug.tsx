@@ -7,8 +7,6 @@ import {
     ColumnCenterWrapper,
     KeyboardScreen,
     InputsWrapper,
-    LoaderWrapper,
-    IconContainer,
     HelperButton,
 } from "styles/shared";
 import i18n from "config/i18n";
@@ -24,6 +22,7 @@ import { reportBug } from "services/plant";
 import { AntDesign } from "@expo/vector-icons";
 import { useTheme } from "styled-components/native";
 import ReportBugHelpModal from "modals/ReportBugHelp";
+import { ApiErrors } from "enums/api-errors";
 
 type Props = NativeStackScreenProps<
     RootStackParamList,
@@ -63,10 +62,18 @@ const ReportBug = ({ navigation }: Props): JSX.Element => {
                 type: "success",
             });
         } catch (error) {
-            return displayToast({
-                text: t("errors.general"),
-                type: "error",
-            });
+            switch (error) {
+                case ApiErrors.TOO_MANY_BUG_REPORTS:
+                    return displayToast({
+                        text: t("errors.tooManyBugReports"),
+                        type: "error",
+                    });
+                default:
+                    return displayToast({
+                        text: t("errors.general"),
+                        type: "error",
+                    });
+            }
         } finally {
             setLoading(false);
         }
@@ -96,9 +103,7 @@ const ReportBug = ({ navigation }: Props): JSX.Element => {
                         />
                     </HelperButton>
                     {loading ? (
-                        <LoaderWrapper>
-                            <Loader />
-                        </LoaderWrapper>
+                        <Loader topMargin />
                     ) : (
                         <Formik
                             initialValues={{ email: "", description: "" }}

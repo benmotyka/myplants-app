@@ -65,10 +65,6 @@ export const SmallHeaderWrapper = styled.View`
     margin-bottom: 10px;
 `;
 
-export const LoaderWrapper = styled.View`
-    margin-top: 100px;
-`;
-
 export const Description = styled.Text`
     font-size: 15px;
     font-family: "Inter_300Light";

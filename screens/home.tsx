@@ -9,7 +9,7 @@ import { numberOfColumns } from "components/Plant/styles";
 import AddPlantSuggestion from "components/AddPlantSuggestion";
 import HomeSettings from "components/HomeSettings";
 import { Plant } from "interfaces/Plant";
-import { LoaderWrapper, ScreenContainer } from "styles/shared";
+import { ScreenContainer } from "styles/shared";
 import Loader from "components/Loader";
 import { usePlantsStore, useToastStore, useAppConfigStore } from "store";
 import { getPlants } from "services/plant";
@@ -116,9 +116,7 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
                     {!dataSource.length ? <AddPlantSuggestion /> : null}
                 </>
             ) : (
-                <LoaderWrapper>
-                    <Loader />
-                </LoaderWrapper>
+                <Loader topMargin />
             )}
             <HomeSettings navigation={navigation} />
             <NewUpdateModal

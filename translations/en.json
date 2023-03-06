@@ -96,7 +96,8 @@
         "maximumValueIs": "Maximum value is: {{value}}",
         "plantAlreadyAdded": "Plant already exists in your collection",
         "plantNotExists": "Plant not found",
-        "emailOptional": "Must be valid email or empty field"
+        "emailOptional": "Must be valid email or empty field",
+        "tooManyBugReports": "Too many bug reports. Please try again later."
     },
     "components": {
         "basicImageInput": {

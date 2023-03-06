@@ -11,7 +11,6 @@ import {
     ColumnCenterWrapper,
     ScreenContainer,
     ScrollableHeader,
-    LoaderWrapper,
     HelperButton,
 } from "styles/shared";
 import {
@@ -45,19 +44,13 @@ import i18n from "config/i18n";
 import SharePlantModal from "modals/SharePlant";
 import PlantImageModal from "modals/PlantImage";
 
-type Props = NativeStackScreenProps<
-    RootStackParamList,
-    "plantHistory"
->;
+type Props = NativeStackScreenProps<RootStackParamList, "plantHistory">;
 
 const { t } = i18n;
 
 type Sections = "watering" | "images" | "addImage";
 
-const PlantHistory = ({
-    route,
-    navigation,
-}: Props): JSX.Element => {
+const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
     const plantId = route.params.plantId;
 
     const [loading, setLoading] = useState(false);
@@ -289,9 +282,7 @@ const PlantHistory = ({
                     {activeSection === "addImage" ? (
                         <SectionContainer key={"addImage"}>
                             {loading ? (
-                                <LoaderWrapper>
-                                    <Loader />
-                                </LoaderWrapper>
+                                <Loader topMargin />
                             ) : (
                                 <>
                                     <BasicImageInput

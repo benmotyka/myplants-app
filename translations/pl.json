@@ -96,7 +96,8 @@
         "maximumValueIs": "Maksymalna wartość to: {{value}}",
         "plantAlreadyAdded": "Roślina już istnieje w Twojej kolekcji",
         "plantNotExists": "Roślina nie istnieje",
-        "emailOptional": "Podaj poprawny e-mail lub zostaw puste"
+        "emailOptional": "Podaj poprawny e-mail lub zostaw puste",
+        "tooManyBugReports": "Zbyt wiele zgłoszeń. Spróbuj ponownie później"
     },
     "components": {
         "basicImageInput": {
