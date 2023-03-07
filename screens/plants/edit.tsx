@@ -269,7 +269,7 @@ const EditPlant = ({ route, navigation }: Props): JSX.Element => {
                             )}
                         </Formik>
                     ) : (
-                        <Loader />
+                        <Loader topMargin />
                     )}
                 </ColumnCenterWrapper>
             </KeyboardScreen>

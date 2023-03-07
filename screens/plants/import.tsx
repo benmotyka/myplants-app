@@ -152,7 +152,7 @@ const ImportPlant = ({ navigation }: Props): JSX.Element => {
                             )}
                         </Formik>
                     ) : (
-                        <Loader />
+                        <Loader topMargin />
                     )}
                 </ColumnCenterWrapper>
             </KeyboardScreen>

@@ -205,7 +205,7 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
                     {activeSection === "watering" ? (
                         <SectionContainer key={"wateringHistory"}>
                             {!wateringData ? (
-                                <Loader />
+                                <Loader topMargin/>
                             ) : !Object.keys(wateringData).length ? (
                                 <InfoText>
                                     {t("pages.plants.history.plantNotWatered")}
@@ -237,7 +237,7 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
                     {activeSection === "images" ? (
                         <SectionContainer key={"imagesHistory"}>
                             {!plantImagesHistoryData ? (
-                                <Loader />
+                                <Loader topMargin />
                             ) : !Object.keys(plantImagesHistoryData).length ? (
                                 <InfoText>
                                     {t("pages.plants.history.plantHasNoImages")}
