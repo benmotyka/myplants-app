@@ -53,6 +53,7 @@
                 "chooseImage": "Wybierz zdjęcie",
                 "addImage": "Dodaj zdjęcie",
                 "success": "Zdjęcie dodane",
+                "deleteImageConfirmation": "Czy na pewno chcesz usunąć zdjęcie?",
                 "shareModal": {
                     "header": "Udostępnij roślinę",
                     "description": "Pozwól znajomemu dodać tą roślinę do jego kolekcji, aby mógł ją podlewać razem z Tobą."

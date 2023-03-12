@@ -53,6 +53,7 @@
                 "chooseImage": "Choose image",
                 "addImage": "Add image",
                 "success": "Image added",
+                "deleteImageConfirmation": "Are you sure to delete this image?",
                 "shareModal": {
                     "header": "Share plant",
                     "description": "Let your friend friend add this plant to their collection, so they can water it together with you."
