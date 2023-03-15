@@ -40,7 +40,7 @@ export const Image = styled.Image`
 
 export const SmallImage = styled.Image`
     width: 10px;
-    height: 15px;
+    height: 17px;
     margin-right: 3px;
 `;
 export const Body = styled.View`
@@ -62,6 +62,14 @@ export const ItemsWrapper = styled.View`
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
+`;
+
+export const TimeWrapper = styled.View`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    column-gap: 5px;
 `;
 
 export const Text = styled.Text`
