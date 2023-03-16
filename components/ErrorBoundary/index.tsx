@@ -1,6 +1,7 @@
 import React from "react";
 import Sentry from "@sentry/react-native";
-import { View } from "react-native";
+import { ExplosionImage, Wrapper } from "./styles";
+import { Description, SmallHeader } from "styles/shared";
 
 interface Props {
     children: React.ReactNode;
@@ -20,16 +21,24 @@ class ErrorBoundary extends React.Component<Props, State> {
         return { hasError: true };
     }
 
-    componentDidCatch(error: unknown, errorInfo: unknown) {
-        Sentry.captureException(error);
-    }
+    // componentDidCatch(error: unknown, errorInfo: unknown) {
+    //     Sentry.captureException(error);
+    // }
 
     render() {
         const { hasError } = this.state;
         const { children } = this.props;
 
         if (hasError) {
-            return <View></View>;
+            return (
+                <Wrapper>
+                    <ExplosionImage
+                        source={require("../../assets/explosion.png")}
+                    />
+                    <SmallHeader>Something went wrong.</SmallHeader>
+                    <Description>Please try to restart the app.</Description>
+                </Wrapper>
+            );
         }
         return children;
     }

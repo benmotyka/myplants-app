@@ -124,6 +124,10 @@
         "noConnectionModal": {
             "header": "No connection",
             "description": "Please check your network connection and try again"
+        },
+        "errorBoundary": {
+            "header": "Something went wrong",
+            "description": "Please try to restart the app"
         }
     }
 }

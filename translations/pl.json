@@ -124,6 +124,10 @@
         "noConnectionModal": {
             "header": "Brak połączenia",
             "description": "Sprawdź połączenie z Internetem i spróbuj ponownie"
+        },
+        "errorBoundary": {
+            "header": "Coś poszło nie tak",
+            "description": "Zretartuj aplikację i spróbuj ponownie"
         }
     }
 }
