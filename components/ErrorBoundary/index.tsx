@@ -1,7 +1,8 @@
 import React from "react";
 import Sentry from "@sentry/react-native";
-import { ExplosionImage, Wrapper } from "./styles";
 import { Description, SmallHeader } from "styles/shared";
+import i18n from "config/i18n";
+import { ExplosionImage, Wrapper } from "./styles";
 
 interface Props {
     children: React.ReactNode;
@@ -28,6 +29,7 @@ class ErrorBoundary extends React.Component<Props, State> {
     render() {
         const { hasError } = this.state;
         const { children } = this.props;
+        const { t } = i18n;
 
         if (hasError) {
             return (
@@ -35,8 +37,8 @@ class ErrorBoundary extends React.Component<Props, State> {
                     <ExplosionImage
                         source={require("../../assets/explosion.png")}
                     />
-                    <SmallHeader>Something went wrong.</SmallHeader>
-                    <Description>Please try to restart the app.</Description>
+                    <SmallHeader>{t('components.errorBoundary.header')}</SmallHeader>
+                    <Description>{t('components.errorBoundary.description')}</Description>
                 </Wrapper>
             );
         }
