@@ -5,20 +5,20 @@ import BasicButton from "components/BasicButton";
 import i18n from "config/i18n";
 
 interface Props {
-    // plantId: string;
+    attachmentId?: string;
     showModal: boolean;
     toggleModal: (state: boolean) => void;
 }
 
 const DeleteAttachmentConfirmationModal = ({
-    // plantId,
+    attachmentId,
     showModal,
     toggleModal,
 }: Props) => {
     const { t } = i18n;
 
     const handleDelete = () => {
-        // TODO: add logic
+        console.log(attachmentId);
     };
 
     return (

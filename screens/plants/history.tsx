@@ -32,7 +32,7 @@ import { WateringData } from "interfaces/WateringData";
 import Loader from "components/Loader";
 import { formatToHour } from "util/date";
 import { ICON_SIZE_PX } from "config";
-import { PlantImagesHistoryData } from "interfaces/PlantImagesHistoryData";
+import { ImageData, PlantImagesHistoryData } from "interfaces/PlantImagesHistoryData";
 import BasicImageInput from "components/BasicImageInput";
 import BasicButton from "components/BasicButton";
 import { base64EncodeImage } from "util/images";
@@ -56,9 +56,7 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
     const [loading, setLoading] = useState(false);
     const [activeSection, setActiveSection] = useState<Sections>("watering");
     const [showShareModal, setShowShareModal] = useState(false);
-    const [showImageModal, setShowImageModal] = useState<boolean | string>(
-        false
-    );
+    const [showImageModalDetails, setShowImageModalDetails] = useState<ImageData | null>(null);
     const [wateringData, setWateringData] = useState<WateringData>();
     const [plantImagesHistoryData, setPlantImagesHistoryData] =
         useState<PlantImagesHistoryData>();
@@ -255,19 +253,17 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
                                                     false
                                                 }
                                             >
-                                                {images.map((image, index) => (
+                                                {images.map((image) => (
                                                     <TouchableOpacity
-                                                        key={image}
+                                                        key={image.id}
                                                         onPress={() =>
-                                                            setShowImageModal(
-                                                                image
-                                                            )
+                                                            setShowImageModalDetails(image)
                                                         }
                                                     >
                                                         <HistoryImage
                                                             resizeMode="contain"
                                                             source={{
-                                                                uri: image,
+                                                                uri: image.url,
                                                             }}
                                                         />
                                                     </TouchableOpacity>
@@ -316,9 +312,9 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
                 />
             ) : null}
             <PlantImageModal
-                showModal={!!showImageModal}
-                toggleModal={setShowImageModal}
-                imageUri={showImageModal as string}
+                showModal={!!showImageModalDetails}
+                toggleModal={setShowImageModalDetails}
+                selectedImage={showImageModalDetails}
             />
         </>
     );
