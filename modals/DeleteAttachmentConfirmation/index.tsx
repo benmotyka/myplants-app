@@ -8,19 +8,16 @@ interface Props {
     attachmentId?: string;
     showModal: boolean;
     toggleModal: (state: boolean) => void;
+    handleDelete: () => void;
 }
 
+const { t } = i18n;
+
 const DeleteAttachmentConfirmationModal = ({
-    attachmentId,
+    handleDelete,
     showModal,
     toggleModal,
 }: Props) => {
-    const { t } = i18n;
-
-    const handleDelete = () => {
-        console.log(attachmentId);
-    };
-
     return (
         <BasicModal showModal={showModal} toggleModal={toggleModal}>
             <ModalItem>

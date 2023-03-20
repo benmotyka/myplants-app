@@ -32,7 +32,10 @@ import { WateringData } from "interfaces/WateringData";
 import Loader from "components/Loader";
 import { formatToHour } from "util/date";
 import { ICON_SIZE_PX } from "config";
-import { ImageData, PlantImagesHistoryData } from "interfaces/PlantImagesHistoryData";
+import {
+    ImageData,
+    PlantImagesHistoryData,
+} from "interfaces/PlantImagesHistoryData";
 import BasicImageInput from "components/BasicImageInput";
 import BasicButton from "components/BasicButton";
 import { base64EncodeImage } from "util/images";
@@ -56,7 +59,8 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
     const [loading, setLoading] = useState(false);
     const [activeSection, setActiveSection] = useState<Sections>("watering");
     const [showShareModal, setShowShareModal] = useState(false);
-    const [showImageModalDetails, setShowImageModalDetails] = useState<ImageData | null>(null);
+    const [showImageModalDetails, setShowImageModalDetails] =
+        useState<ImageData | null>(null);
     const [wateringData, setWateringData] = useState<WateringData>();
     const [plantImagesHistoryData, setPlantImagesHistoryData] =
         useState<PlantImagesHistoryData>();
@@ -71,7 +75,8 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
 
     const getPlantWateringHistory = async () => {
         try {
-            return await getWateringHistory(plantId);
+            const result = await getWateringHistory(plantId);
+            setWateringData(result?.waterings);
         } catch (error) {
             switch (error) {
                 default:
@@ -85,7 +90,8 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
 
     const getPlantImagesHistory = async () => {
         try {
-            return await getImagesHistory(plantId);
+            const result = await getImagesHistory(plantId);
+            setPlantImagesHistoryData(result?.imagesData);
         } catch (error) {
             switch (error) {
                 default:
@@ -104,8 +110,7 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
 
             await addImageToPlant(plantId, base64EncodedImage);
 
-            const result = await getPlantImagesHistory();
-            setPlantImagesHistoryData(result?.imagesData);
+            await getPlantImagesHistory();
             setImage(null);
 
             displayToast({
@@ -146,10 +151,8 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
     useEffect(() => {
         if (!isFocused) return;
         (async () => {
-            const plantWaterings = await getPlantWateringHistory();
-            setWateringData(plantWaterings?.waterings);
-            const plantImages = await getPlantImagesHistory();
-            setPlantImagesHistoryData(plantImages?.imagesData);
+            getPlantWateringHistory();
+            getPlantImagesHistory();
         })();
     }, [isFocused]);
 
@@ -203,7 +206,7 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
                     {activeSection === "watering" ? (
                         <SectionContainer key={"wateringHistory"}>
                             {!wateringData ? (
-                                <Loader topMargin/>
+                                <Loader topMargin />
                             ) : !Object.keys(wateringData).length ? (
                                 <InfoText>
                                     {t("pages.plants.history.plantNotWatered")}
@@ -257,7 +260,9 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
                                                     <TouchableOpacity
                                                         key={image.id}
                                                         onPress={() =>
-                                                            setShowImageModalDetails(image)
+                                                            setShowImageModalDetails(
+                                                                image
+                                                            )
                                                         }
                                                     >
                                                         <HistoryImage
@@ -315,6 +320,7 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
                 showModal={!!showImageModalDetails}
                 toggleModal={setShowImageModalDetails}
                 selectedImage={showImageModalDetails}
+                refetchPlantImagesHistory={getPlantImagesHistory}
             />
         </>
     );

@@ -77,6 +77,10 @@ export const addImageToPlant = async (
     });
 };
 
+export const deleteImageFromPlant = async (imageId: string) => {
+    return await plantsApi.delete(`/plants/images/${imageId}`);
+};
+
 export const deletePlant = async (plantId: string) => {
     return await plantsApi.delete(`/plants/${plantId}`);
 };

@@ -7,17 +7,46 @@ import { MaterialIcons } from "@expo/vector-icons";
 import DeleteAttachmentConfirmationModal from "modals/DeleteAttachmentConfirmation";
 import { ImageData } from "interfaces/PlantImagesHistoryData";
 import { DeleteButtonWrapper } from "./styles";
+import i18n from "config/i18n";
+import { useToastStore } from "store/index";
+import { deleteImageFromPlant } from "services/plant";
 
 interface Props {
     showModal: boolean;
     toggleModal: Dispatch<SetStateAction<ImageData | null>>;
     selectedImage: ImageData | null;
+    refetchPlantImagesHistory: () => Promise<void>;
 }
 
-const PlantImageModal = ({ showModal, toggleModal, selectedImage }: Props) => {
+const { t } = i18n;
+
+const PlantImageModal = ({
+    showModal,
+    toggleModal,
+    selectedImage,
+    refetchPlantImagesHistory,
+}: Props) => {
     const theme = useTheme();
+    const displayToast = useToastStore((state) => state.showToast);
+
     const [showDeleteConfirmationModal, setShowDeleteConfirmationModal] =
         useState(false);
+
+    const handleDelete = async () => {
+        try {
+            await deleteImageFromPlant(selectedImage?.id as string);
+            displayToast({
+                text: t("pages.plants.history.imageDeleted"),
+                type: "success",
+            });
+            await refetchPlantImagesHistory();
+        } catch (error) {
+            displayToast({ text: t("errors.general"), type: "error" });
+        } finally {
+            toggleModal(null);
+            setShowDeleteConfirmationModal(false);
+        }
+    };
 
     return (
         <>
@@ -36,6 +65,7 @@ const PlantImageModal = ({ showModal, toggleModal, selectedImage }: Props) => {
                 showModal={showDeleteConfirmationModal}
                 toggleModal={setShowDeleteConfirmationModal}
                 attachmentId={selectedImage?.id}
+                handleDelete={handleDelete}
             />
         </>
     );

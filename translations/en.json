@@ -53,6 +53,7 @@
                 "chooseImage": "Choose image",
                 "addImage": "Add image",
                 "success": "Image added",
+                "imageDeleted": "Image deleted",
                 "deleteImageConfirmation": "Are you sure to delete this image?",
                 "shareModal": {
                     "header": "Share plant",
