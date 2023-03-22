@@ -4,7 +4,7 @@ import { useIsFocused } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
 import { RootStackParamList } from "interfaces/RootStackParamList";
-import PlantPreview from "components/Plant/Plant";
+import PlantPreview from "components/Plant";
 import { numberOfColumns } from "components/Plant/styles";
 import AddPlantSuggestion from "components/AddPlantSuggestion";
 import HomeSettings from "components/HomeSettings";

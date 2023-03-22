@@ -3,9 +3,9 @@ import { Plant } from "interfaces/Plant";
 import { PlantImagesHistoryData } from "interfaces/PlantImagesHistoryData";
 
 export const getPlants = async () => {
-    const result = await plantsApi.get<{ plants: Plant[] }>(`/plants`);
+    const { data } = await plantsApi.get<{ plants: Plant[] }>(`/plants`);
 
-    return result.data;
+    return data;
 };
 
 interface AddPlant {

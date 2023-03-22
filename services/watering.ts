@@ -10,11 +10,11 @@ export const getWateringHistory = async (plantId: string) => {
 };
 
 export const cancelWatering = async (wateringId: string) => {
-    return await plantsApi.delete(`/watering/${wateringId}`);
+    return await plantsApi.delete<void>(`/watering/${wateringId}`);
 };
 
 export const waterPlant = async (plantId: string) => {
-    const { data } = await plantsApi.post(`/watering`, {
+    const { data } = await plantsApi.post<{ id: string }>(`/watering`, {
         plantId,
     });
 
