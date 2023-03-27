@@ -16,7 +16,7 @@
   "jest": {
     "preset": "jest-expo",
     "transformIgnorePatterns": [
-      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|expo-app-loading|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg)"
+      "node_modules/(?!((jest-)?react-native|@react-native(-community)?)|expo(nent)?|@expo(nent)?/.*|expo-app-loading|@expo-google-fonts/.*|react-navigation|@react-navigation/.*|@unimodules/.*|unimodules|sentry-expo|native-base|react-native-svg|moti|@miblanchard/react-native-slider)"
     ]
   },
   "dependencies": {
@@ -55,7 +55,7 @@
     "jest": "^26.6.3",
     "jest-expo": "^47.0.1",
     "moti": "^0.18.0",
-    "react": "18.0.0",
+    "react": "^18.0.0",
     "react-dom": "18.0.0",
     "react-native": "0.69.5",
     "react-native-get-random-values": "~1.8.0",
@@ -101,7 +101,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-native": "^4.0.0",
     "prettier": "^2.8.1",
-    "react-test-renderer": "^18.2.0",
+    "react-test-renderer": "^18.0.0",
     "typescript": "^4.9.4"
   }
 }
