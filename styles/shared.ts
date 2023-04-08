@@ -65,10 +65,6 @@ export const SmallHeaderWrapper = styled.View`
     margin-bottom: 10px;
 `;
 
-export const LoaderWrapper = styled.View`
-    margin-top: 100px;
-`;
-
 export const Description = styled.Text`
     font-size: 15px;
     font-family: "Inter_300Light";
@@ -87,4 +83,9 @@ export const ModalAnimationWrapper = styled(MotiView)`
 export const ScrollableHeader = styled.ScrollView`
     margin-bottom: 10px;
     margin: 0 30px;
+`;
+
+export const HelperButton = styled(IconContainer)`
+    top: 20;
+    right: 20;
 `;

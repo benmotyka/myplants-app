@@ -1,5 +1,5 @@
 import { Appearance } from "react-native";
-import create, { StateCreator } from "zustand";
+import { StateCreator, create } from "zustand";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { persist, PersistOptions } from "zustand/middleware";
 

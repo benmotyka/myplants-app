@@ -53,6 +53,8 @@
                 "chooseImage": "Choose image",
                 "addImage": "Add image",
                 "success": "Image added",
+                "imageDeleted": "Image deleted",
+                "deleteImageConfirmation": "Are you sure to delete this image?",
                 "shareModal": {
                     "header": "Share plant",
                     "description": "Let your friend friend add this plant to their collection, so they can water it together with you."
@@ -96,7 +98,8 @@
         "maximumValueIs": "Maximum value is: {{value}}",
         "plantAlreadyAdded": "Plant already exists in your collection",
         "plantNotExists": "Plant not found",
-        "emailOptional": "Must be valid email or empty field"
+        "emailOptional": "Must be valid email or empty field",
+        "tooManyBugReports": "Too many bug reports. Please try again later."
     },
     "components": {
         "basicImageInput": {
@@ -122,6 +125,10 @@
         "noConnectionModal": {
             "header": "No connection",
             "description": "Please check your network connection and try again"
+        },
+        "errorBoundary": {
+            "header": "Something went wrong",
+            "description": "Please try to restart the app"
         }
     }
 }

@@ -13,6 +13,7 @@ import { ThemeProvider } from "styled-components/native";
 
 import { sentryDsn } from "config/environment";
 import StatusBar from "components/StatusBar";
+import ErrorBoundary from "components/ErrorBoundary";
 import { RootStackParamList } from "interfaces/RootStackParamList";
 import HomeScreen from "screens/home";
 import AddPlantScreen from "screens/plants/add";
@@ -55,52 +56,54 @@ export default function App() {
                 <StatusBar />
                 <NavigationContainer>
                     <ToastProvider>
-                        <Stack.Navigator
-                            screenOptions={{
-                                headerShown: false,
-                                animation: "fade_from_bottom",
-                            }}
-                        >
-                            <Stack.Screen
-                                name="home"
-                                component={HomeScreen}
-                                options={{ gestureEnabled: false }}
-                            />
+                        <ErrorBoundary>
+                            <Stack.Navigator
+                                screenOptions={{
+                                    headerShown: false,
+                                    animation: "fade_from_bottom",
+                                }}
+                            >
+                                <Stack.Screen
+                                    name="home"
+                                    component={HomeScreen}
+                                    options={{ gestureEnabled: false }}
+                                />
 
-                            <Stack.Screen
-                                name="addPlant"
-                                component={AddPlantScreen}
-                            />
-                            <Stack.Screen
-                                name="editPlant"
-                                component={EditPlantScreen}
-                            />
-                            <Stack.Screen
-                                name="plantHistory"
-                                component={PlantHistoryScreen}
-                            />
-                            <Stack.Screen
-                                name="importPlant"
-                                component={ImportPlantScreen}
-                            />
+                                <Stack.Screen
+                                    name="addPlant"
+                                    component={AddPlantScreen}
+                                />
+                                <Stack.Screen
+                                    name="editPlant"
+                                    component={EditPlantScreen}
+                                />
+                                <Stack.Screen
+                                    name="plantHistory"
+                                    component={PlantHistoryScreen}
+                                />
+                                <Stack.Screen
+                                    name="importPlant"
+                                    component={ImportPlantScreen}
+                                />
 
-                            <Stack.Screen
-                                name="settings"
-                                component={SettingsScreen}
-                            />
-                            <Stack.Screen
-                                name="settingsNotifications"
-                                component={SettingsNotificationsScreen}
-                            />
-                            <Stack.Screen
-                                name="settingsApp"
-                                component={SettingsAppScreen}
-                            />
-                            <Stack.Screen
-                                name="settingsContactReportBug"
-                                component={SettingsContactReportBug}
-                            />
-                        </Stack.Navigator>
+                                <Stack.Screen
+                                    name="settings"
+                                    component={SettingsScreen}
+                                />
+                                <Stack.Screen
+                                    name="settingsNotifications"
+                                    component={SettingsNotificationsScreen}
+                                />
+                                <Stack.Screen
+                                    name="settingsApp"
+                                    component={SettingsAppScreen}
+                                />
+                                <Stack.Screen
+                                    name="settingsContactReportBug"
+                                    component={SettingsContactReportBug}
+                                />
+                            </Stack.Navigator>
+                        </ErrorBoundary>
                     </ToastProvider>
                 </NavigationContainer>
             </RootSiblingParent>

@@ -17,7 +17,6 @@ import {
     KeyboardScreen,
     ColumnCenterWrapper,
     InputsWrapper,
-    LoaderWrapper,
 } from "styles/shared";
 import { ApiErrors } from "enums/api-errors";
 import { base64EncodeImage } from "util/images";
@@ -127,9 +126,7 @@ const AddPlant = ({ navigation }: Props): JSX.Element => {
                         errors,
                     }) =>
                         loading ? (
-                            <LoaderWrapper>
-                                <Loader />
-                            </LoaderWrapper>
+                            <Loader topMargin />
                         ) : (
                             <InputsWrapper>
                                 <BasicImageInput

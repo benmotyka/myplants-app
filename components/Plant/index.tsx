@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { TouchableHighlight, View } from "react-native";
 import { Slider } from "@miblanchard/react-native-slider";
+import { MotiView } from "moti";
 import { useIsFocused } from "@react-navigation/native";
 import { useTheme } from "styled-components/native";
 import { Navigation } from "interfaces/Navigation";
@@ -13,6 +14,7 @@ import {
     Container,
     ItemsWrapper,
     SmallImage,
+    TimeWrapper,
 } from "components/Plant/styles";
 import { calculateDifferenceFromNow } from "util/date";
 import { useAppConfigStore, useToastStore } from "store";
@@ -200,17 +202,26 @@ const Plant = ({
                         </Header>
                         <ItemsWrapper>
                             {latestWatering || watered ? (
-                                <>
-                                    <SmallImage
-                                        resizeMode="contain"
-                                        source={
-                                            appTheme === "dark"
-                                                ? require("../../assets/hourglass-light.png")
-                                                : require("../../assets/hourglass.png")
-                                        }
-                                    />
+                                <TimeWrapper>
                                     <Header>{timeFromLastWatering}</Header>
-                                </>
+                                    <MotiView
+                                        from={{
+                                            rotate: "0deg",
+                                        }}
+                                        animate={{
+                                            rotate: watered ? "360deg" : "0deg",
+                                        }}
+                                    >
+                                        <SmallImage
+                                            resizeMode="contain"
+                                            source={
+                                                appTheme === "dark"
+                                                    ? require("../../assets/hourglass-light.png")
+                                                    : require("../../assets/hourglass.png")
+                                            }
+                                        />
+                                    </MotiView>
+                                </TimeWrapper>
                             ) : null}
                         </ItemsWrapper>
                     </ItemsWrapper>

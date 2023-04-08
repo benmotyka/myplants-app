@@ -15,9 +15,9 @@ import { createEditPlantSchema } from "schemas/EditPlant.schema";
 import {
     ColumnCenterWrapper,
     InputsWrapper,
-    IconContainer,
     Description,
     KeyboardScreen,
+    HelperButton,
 } from "styles/shared";
 import { formatToHourDateAndYear } from "util/date";
 import { ApiErrors } from "enums/api-errors";
@@ -143,8 +143,7 @@ const EditPlant = ({ route, navigation }: Props): JSX.Element => {
             >
                 <ColumnCenterWrapper>
                     <Back navigation={navigation} />
-                    <IconContainer
-                        style={{ top: 20, right: 20 }}
+                    <HelperButton
                         onPress={() => {
                             setShowModal(true);
                         }}
@@ -154,7 +153,7 @@ const EditPlant = ({ route, navigation }: Props): JSX.Element => {
                             size={ICON_SIZE_PX}
                             color={theme.warning}
                         />
-                    </IconContainer>
+                    </HelperButton>
                     {selectedPlant && !loading ? (
                         <Formik
                             initialValues={{
@@ -270,7 +269,7 @@ const EditPlant = ({ route, navigation }: Props): JSX.Element => {
                             )}
                         </Formik>
                     ) : (
-                        <Loader />
+                        <Loader topMargin />
                     )}
                 </ColumnCenterWrapper>
             </KeyboardScreen>

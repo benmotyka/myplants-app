@@ -1,5 +1,5 @@
 import React, { ReactElement, useState } from "react";
-import { AnimatePresence } from "moti";
+import { AnimatePresence, MotiView } from "moti";
 import { MaterialIcons, Feather, Entypo } from "@expo/vector-icons";
 import { useTheme } from "styled-components/native";
 
@@ -63,14 +63,20 @@ const HomeSettings = ({ navigation }: Props): JSX.Element => {
     return (
         <>
             <IconWrapper onPress={() => setShowMenu(!showMenu)}>
-                <MaterialIcons
-                    style={{
-                        transform: [{ rotate: showMenu ? "180deg" : "0deg" }],
+                <MotiView
+                    from={{
+                        rotate: "0deg",
                     }}
-                    name="keyboard-arrow-up"
-                    size={ICON_SIZE_PX}
-                    color={theme.textLight}
-                />
+                    animate={{
+                        rotate: showMenu ? "180deg" : "0deg",
+                    }}
+                >
+                    <MaterialIcons
+                        name="keyboard-arrow-up"
+                        size={ICON_SIZE_PX}
+                        color={theme.textLight}
+                    />
+                </MotiView>
             </IconWrapper>
             <AnimatePresence>
                 {showMenu ? (

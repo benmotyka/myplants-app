@@ -53,6 +53,8 @@
                 "chooseImage": "Wybierz zdjęcie",
                 "addImage": "Dodaj zdjęcie",
                 "success": "Zdjęcie dodane",
+                "imageDeleted": "Zdjęcie usunięte",
+                "deleteImageConfirmation": "Czy na pewno chcesz usunąć zdjęcie?",
                 "shareModal": {
                     "header": "Udostępnij roślinę",
                     "description": "Pozwól znajomemu dodać tą roślinę do jego kolekcji, aby mógł ją podlewać razem z Tobą."
@@ -96,7 +98,8 @@
         "maximumValueIs": "Maksymalna wartość to: {{value}}",
         "plantAlreadyAdded": "Roślina już istnieje w Twojej kolekcji",
         "plantNotExists": "Roślina nie istnieje",
-        "emailOptional": "Podaj poprawny e-mail lub zostaw puste"
+        "emailOptional": "Podaj poprawny e-mail lub zostaw puste",
+        "tooManyBugReports": "Zbyt wiele zgłoszeń. Spróbuj ponownie później"
     },
     "components": {
         "basicImageInput": {
@@ -122,6 +125,10 @@
         "noConnectionModal": {
             "header": "Brak połączenia",
             "description": "Sprawdź połączenie z Internetem i spróbuj ponownie"
+        },
+        "errorBoundary": {
+            "header": "Coś poszło nie tak",
+            "description": "Zretartuj aplikację i spróbuj ponownie"
         }
     }
 }

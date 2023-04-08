@@ -10,9 +10,8 @@ import Back from "components/Back";
 import {
     ColumnCenterWrapper,
     ScreenContainer,
-    IconContainer,
     ScrollableHeader,
-    LoaderWrapper,
+    HelperButton,
 } from "styles/shared";
 import {
     ItemDateHeader,
@@ -33,7 +32,10 @@ import { WateringData } from "interfaces/WateringData";
 import Loader from "components/Loader";
 import { formatToHour } from "util/date";
 import { ICON_SIZE_PX } from "config";
-import { PlantImagesHistoryData } from "interfaces/PlantImagesHistoryData";
+import {
+    ImageData,
+    PlantImagesHistoryData,
+} from "interfaces/PlantImagesHistoryData";
 import BasicImageInput from "components/BasicImageInput";
 import BasicButton from "components/BasicButton";
 import { base64EncodeImage } from "util/images";
@@ -45,27 +47,20 @@ import i18n from "config/i18n";
 import SharePlantModal from "modals/SharePlant";
 import PlantImageModal from "modals/PlantImage";
 
-type Props = NativeStackScreenProps<
-    RootStackParamList,
-    "plantHistory"
->;
+type Props = NativeStackScreenProps<RootStackParamList, "plantHistory">;
 
 const { t } = i18n;
 
 type Sections = "watering" | "images" | "addImage";
 
-const PlantHistory = ({
-    route,
-    navigation,
-}: Props): JSX.Element => {
+const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
     const plantId = route.params.plantId;
 
     const [loading, setLoading] = useState(false);
     const [activeSection, setActiveSection] = useState<Sections>("watering");
     const [showShareModal, setShowShareModal] = useState(false);
-    const [showImageModal, setShowImageModal] = useState<boolean | string>(
-        false
-    );
+    const [showImageModalDetails, setShowImageModalDetails] =
+        useState<ImageData | null>(null);
     const [wateringData, setWateringData] = useState<WateringData>();
     const [plantImagesHistoryData, setPlantImagesHistoryData] =
         useState<PlantImagesHistoryData>();
@@ -80,7 +75,8 @@ const PlantHistory = ({
 
     const getPlantWateringHistory = async () => {
         try {
-            return await getWateringHistory(plantId);
+            const result = await getWateringHistory(plantId);
+            setWateringData(result?.waterings);
         } catch (error) {
             switch (error) {
                 default:
@@ -94,7 +90,8 @@ const PlantHistory = ({
 
     const getPlantImagesHistory = async () => {
         try {
-            return await getImagesHistory(plantId);
+            const result = await getImagesHistory(plantId);
+            setPlantImagesHistoryData(result?.imagesData);
         } catch (error) {
             switch (error) {
                 default:
@@ -113,8 +110,7 @@ const PlantHistory = ({
 
             await addImageToPlant(plantId, base64EncodedImage);
 
-            const result = await getPlantImagesHistory();
-            setPlantImagesHistoryData(result?.imagesData);
+            await getPlantImagesHistory();
             setImage(null);
 
             displayToast({
@@ -155,10 +151,8 @@ const PlantHistory = ({
     useEffect(() => {
         if (!isFocused) return;
         (async () => {
-            const plantWaterings = await getPlantWateringHistory();
-            setWateringData(plantWaterings?.waterings);
-            const plantImages = await getPlantImagesHistory();
-            setPlantImagesHistoryData(plantImages?.imagesData);
+            getPlantWateringHistory();
+            getPlantImagesHistory();
         })();
     }, [isFocused]);
 
@@ -166,8 +160,7 @@ const PlantHistory = ({
         <>
             <ScreenContainer>
                 <Back navigation={navigation} />
-                <IconContainer
-                    style={{ top: 20, right: 20 }}
+                <HelperButton
                     onPress={() => {
                         setShowShareModal(true);
                     }}
@@ -177,7 +170,7 @@ const PlantHistory = ({
                         size={ICON_SIZE_PX}
                         color={theme.textLight}
                     />
-                </IconContainer>
+                </HelperButton>
                 <ColumnCenterWrapper fullHeight>
                     <ScrollableHeader
                         ref={scrollViewRef}
@@ -213,7 +206,7 @@ const PlantHistory = ({
                     {activeSection === "watering" ? (
                         <SectionContainer key={"wateringHistory"}>
                             {!wateringData ? (
-                                <Loader />
+                                <Loader topMargin />
                             ) : !Object.keys(wateringData).length ? (
                                 <InfoText>
                                     {t("pages.plants.history.plantNotWatered")}
@@ -245,7 +238,7 @@ const PlantHistory = ({
                     {activeSection === "images" ? (
                         <SectionContainer key={"imagesHistory"}>
                             {!plantImagesHistoryData ? (
-                                <Loader />
+                                <Loader topMargin />
                             ) : !Object.keys(plantImagesHistoryData).length ? (
                                 <InfoText>
                                     {t("pages.plants.history.plantHasNoImages")}
@@ -263,11 +256,11 @@ const PlantHistory = ({
                                                     false
                                                 }
                                             >
-                                                {images.map((image, index) => (
+                                                {images.map((image) => (
                                                     <TouchableOpacity
-                                                        key={image}
+                                                        key={image.id}
                                                         onPress={() =>
-                                                            setShowImageModal(
+                                                            setShowImageModalDetails(
                                                                 image
                                                             )
                                                         }
@@ -275,7 +268,7 @@ const PlantHistory = ({
                                                         <HistoryImage
                                                             resizeMode="contain"
                                                             source={{
-                                                                uri: image,
+                                                                uri: image.url,
                                                             }}
                                                         />
                                                     </TouchableOpacity>
@@ -290,9 +283,7 @@ const PlantHistory = ({
                     {activeSection === "addImage" ? (
                         <SectionContainer key={"addImage"}>
                             {loading ? (
-                                <LoaderWrapper>
-                                    <Loader />
-                                </LoaderWrapper>
+                                <Loader topMargin />
                             ) : (
                                 <>
                                     <BasicImageInput
@@ -326,9 +317,10 @@ const PlantHistory = ({
                 />
             ) : null}
             <PlantImageModal
-                showModal={!!showImageModal}
-                toggleModal={setShowImageModal}
-                imageUri={showImageModal as string}
+                showModal={!!showImageModalDetails}
+                toggleModal={setShowImageModalDetails}
+                selectedImage={showImageModalDetails}
+                refetchPlantImagesHistory={getPlantImagesHistory}
             />
         </>
     );
