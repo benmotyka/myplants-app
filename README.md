@@ -47,13 +47,14 @@ My Plants is a free and open source mobile app that helps to manage watering of 
 <details>
 	<summary>View screenshots</summary>
 
-![Homepage](readme/screenshots/1.png)
-![Plant watered](readme/screenshots/2.png)
-![Add plant](readme/screenshots/3.png)
-![Edit plant](readme/screenshots/4.png)
-![Watering history](readme/screenshots/5.png)
-![Share plant](readme/screenshots/6.png)
-<img src="readme/screenshots/1.png" width="360" height="800"/>
+<p align="center">
+  <img src="readme/screenshots/1.png" width="360" height="800"/>
+  <img src="readme/screenshots/2.png" width="360" height="800"/>
+  <img src="readme/screenshots/3.png" width="360" height="800"/>
+  <img src="readme/screenshots/4.png" width="360" height="800"/>
+  <img src="readme/screenshots/5.png" width="360" height="800"/>
+  <img src="readme/screenshots/6.png" width="360" height="800"/>
+</p>
 
 </details>
 
