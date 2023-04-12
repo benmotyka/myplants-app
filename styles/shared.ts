@@ -86,6 +86,6 @@ export const ScrollableHeader = styled.ScrollView`
 `;
 
 export const HelperButton = styled(IconContainer)`
-    top: 20;
-    right: 20;
+    top: 20px;
+    right: 20px;
 `;

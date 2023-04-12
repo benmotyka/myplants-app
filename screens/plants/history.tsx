@@ -67,7 +67,7 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
     const [image, setImage] = useState<ImageInfo | null>();
     const theme = useTheme();
 
-    const scrollViewRef = useRef<ScrollView & HTMLElement>();
+    const scrollViewRef = useRef<ScrollView & HTMLElement>(null);
     const displayToast = useToastStore((state) => state.showToast);
     const isFocused = useIsFocused();
 
@@ -151,8 +151,10 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
     useEffect(() => {
         if (!isFocused) return;
         (async () => {
-            getPlantWateringHistory();
-            getPlantImagesHistory();
+            await Promise.all([
+                getPlantWateringHistory(),
+                getPlantImagesHistory(),
+            ]);
         })();
     }, [isFocused]);
 
@@ -265,12 +267,14 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
                                                             )
                                                         }
                                                     >
-                                                        <HistoryImage
-                                                            resizeMode="contain"
-                                                            source={{
-                                                                uri: image.url,
-                                                            }}
-                                                        />
+                                                        {image.url ? (
+                                                            <HistoryImage
+                                                                resizeMode="contain"
+                                                                source={{
+                                                                    uri: image.url,
+                                                                }}
+                                                            />
+                                                        ) : null}
                                                     </TouchableOpacity>
                                                 ))}
                                             </ScrollableImagesContainer>
