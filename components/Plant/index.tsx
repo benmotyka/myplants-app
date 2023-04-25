@@ -95,7 +95,6 @@ const Plant = ({
     // the default value.
     useEffect(() => {
         if (!watered) return;
-
         setWatered(false);
         setSliderValue(0);
     }, [isFocused]);
@@ -210,6 +209,9 @@ const Plant = ({
                                         }}
                                         animate={{
                                             rotate: watered ? "360deg" : "0deg",
+                                        }}
+                                        style={{
+                                            marginLeft: 3
                                         }}
                                     >
                                         <SmallImage

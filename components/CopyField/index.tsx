@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { MotiView, AnimatePresence } from "moti";
 import * as Clipboard from "expo-clipboard";
 import i18n from "config/i18n";
 import {
@@ -7,7 +6,7 @@ import {
     FieldContainer,
     FieldValue,
     Info,
-    InfoWrapper,
+    SuccessIcon,
 } from "./styles";
 
 const INFO_APPEAR_TIME_MS = 1000;
@@ -29,33 +28,19 @@ const CopyField = ({ value }: Props): JSX.Element => {
     };
 
     return (
-        <>
-            <FieldContainer>
-                <FieldValue>{value}</FieldValue>
-                <ButtonWrapper onPress={onClick}>
+        <FieldContainer>
+            <FieldValue>{value}</FieldValue>
+            <ButtonWrapper onPress={onClick}>
+                {copied ? (
+                    <SuccessIcon
+                        resizeMode="contain"
+                        source={require("../../assets/success.png")}
+                    />
+                ) : (
                     <Info>{t("common.copy")}</Info>
-                </ButtonWrapper>
-            </FieldContainer>
-            <InfoWrapper>
-                <AnimatePresence>
-                    {copied ? (
-                        <MotiView
-                            from={{
-                                opacity: 0,
-                            }}
-                            animate={{
-                                opacity: 1,
-                            }}
-                            exit={{
-                                opacity: 0,
-                            }}
-                        >
-                            <Info>{t("components.copyField.successInfo")}</Info>
-                        </MotiView>
-                    ) : null}
-                </AnimatePresence>
-            </InfoWrapper>
-        </>
+                )}
+            </ButtonWrapper>
+        </FieldContainer>
     );
 };
 

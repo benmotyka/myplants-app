@@ -31,15 +31,16 @@ export const ButtonWrapper = styled.TouchableOpacity`
     borderBottomRightRadius: 5px;
 `;
 
-export const InfoWrapper = styled.View`
-    height: 25px;
-`;
-
 export const Info = styled.Text`
     font-family: "Inter_300Light";
-    font-size: 15px;
+    font-size: 14px;
     opacity: 0.6;
     text-align: center;
     padding: 5px 0;
     color: ${({ theme }) => theme.text};
 `;
+
+export const SuccessIcon = styled.Image`
+    width: 20px;
+    height: 20px;
+`

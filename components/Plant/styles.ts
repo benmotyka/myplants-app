@@ -39,7 +39,7 @@ export const Image = styled.Image`
 `;
 
 export const SmallImage = styled.Image`
-    width: 10px;
+    width: 9px;
     height: 17px;
     margin-right: 3px;
 `;
@@ -67,9 +67,7 @@ export const ItemsWrapper = styled.View`
 export const TimeWrapper = styled.View`
     display: flex;
     align-items: center;
-    justify-content: center;
     flex-direction: row;
-    column-gap: 5px;
 `;
 
 export const Text = styled.Text`

@@ -106,9 +106,6 @@
             "takePhoto": "Take photo",
             "chooseLibrary": "Choose from library"
         },
-        "copyField": {
-            "successInfo": "Copied"
-        },
         "addPlantSuggestion": "Add your first plant here",
         "plant": {
             "success": "Plant watered",
