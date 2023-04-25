@@ -50,6 +50,7 @@ interface AppConfigEphemeralState {
     isClosedUpdateModal: boolean;
     setIsClosedUpdateModal: (value: boolean) => void;
 }
+
 interface AppConfigPersistentState {
     theme: AppTheme;
     setTheme: (theme: AppTheme) => void;

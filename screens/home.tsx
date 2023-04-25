@@ -24,7 +24,6 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
     const [showUpdateModal, setShowUpdateModal] = useState(false);
     const [showRateAppModal, setShowRateAppModal] = useState(false);
     const [dataSource, setDataSource] = useState<Plant[]>();
-    const [allowScrolling, setAllowScrolling] = useState(true);
     const isFocused = useIsFocused();
 
     const { t } = i18n;
@@ -95,12 +94,6 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
                                     name={item.name}
                                     imgSrc={item.imgSrc}
                                     navigation={navigation}
-                                    onSlidingStart={() =>
-                                        setAllowScrolling(false)
-                                    }
-                                    onSlidingFinish={() =>
-                                        setAllowScrolling(true)
-                                    }
                                     latestWatering={item.latestWatering}
                                     reminderFrequency={
                                         item.wateringReminderFrequency
@@ -111,7 +104,6 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
                         numColumns={numberOfColumns}
                         keyExtractor={(item, index) => index.toString()}
                         contentContainerStyle={{ paddingBottom: 100 }}
-                        scrollEnabled={allowScrolling}
                     />
                     {!dataSource.length ? <AddPlantSuggestion /> : null}
                 </>

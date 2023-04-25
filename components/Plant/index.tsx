@@ -30,8 +30,6 @@ interface Props extends Navigation {
     id: string;
     name: string;
     imgSrc?: string;
-    onSlidingStart: () => void;
-    onSlidingFinish: () => void;
     latestWatering?: Watering;
     reminderFrequency?: number;
 }
@@ -41,8 +39,6 @@ const Plant = ({
     name,
     imgSrc,
     navigation,
-    onSlidingStart,
-    onSlidingFinish,
     latestWatering,
     reminderFrequency,
 }: Props): JSX.Element => {
@@ -120,7 +116,6 @@ const Plant = ({
         value: number | number[]
     ): Promise<void> => {
         const currentValue = typeof value !== "number" ? value[0] : value;
-        onSlidingFinish();
         setSliderValue(currentValue as number);
         if (currentValue < SLIDE_SUCCESS_VALUE_THRESHOLD * MAX_SLIDER_VALUE)
             return;
@@ -241,7 +236,6 @@ const Plant = ({
                                 trackStyle={{ opacity: 0.2 }}
                                 trackClickable={false}
                                 maximumValue={MAX_SLIDER_VALUE}
-                                onSlidingStart={onSlidingStart}
                             />
                         )}
                     </View>
