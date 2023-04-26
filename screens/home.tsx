@@ -84,7 +84,9 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
     return (
         <ScreenContainer>
             {dataSource ? (
-                <>
+                !dataSource.length ? (
+                    <AddPlantSuggestion />
+                ) : (
                     <FlatList
                         data={dataSource}
                         renderItem={({ item }) => {
@@ -105,8 +107,7 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
                         keyExtractor={(item, index) => index.toString()}
                         contentContainerStyle={{ paddingBottom: 100 }}
                     />
-                    {!dataSource.length ? <AddPlantSuggestion /> : null}
-                </>
+                )
             ) : (
                 <Loader topMargin />
             )}

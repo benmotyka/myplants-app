@@ -1,9 +1,8 @@
 import React, { ReactElement, useState } from "react";
 import { AnimatePresence, MotiView } from "moti";
-import { MaterialIcons, Feather, Entypo } from "@expo/vector-icons";
+import { MaterialIcons, Feather, Entypo, AntDesign } from "@expo/vector-icons";
 import { useTheme } from "styled-components/native";
 
-import { RootStackParamList } from "interfaces/RootStackParamList";
 import { IconWrapper, MenuContainer } from "components/HomeSettings/styles";
 import { Navigation } from "interfaces/Navigation";
 import { ModalAnimationWrapper } from "styles/shared";
@@ -17,7 +16,7 @@ interface Props extends Navigation {}
 interface SettingsItem {
     name: string;
     icon: ReactElement;
-    href: keyof RootStackParamList;
+    onClick: () => void;
 }
 
 const HomeSettings = ({ navigation }: Props): JSX.Element => {
@@ -34,9 +33,10 @@ const HomeSettings = ({ navigation }: Props): JSX.Element => {
                     color={theme.textLight}
                 />
             ),
-            href: "addPlant",
+            onClick: () => {
+                navigation.navigate("addPlant");
+            },
         },
-
         {
             name: "importPlant",
             icon: (
@@ -46,7 +46,9 @@ const HomeSettings = ({ navigation }: Props): JSX.Element => {
                     color={theme.textLight}
                 />
             ),
-            href: "importPlant",
+            onClick: () => {
+                navigation.navigate("importPlant");
+            },
         },
         {
             name: "appSettings",
@@ -57,7 +59,22 @@ const HomeSettings = ({ navigation }: Props): JSX.Element => {
                     color={theme.textLight}
                 />
             ),
-            href: "settings",
+            onClick: () => {
+                navigation.navigate("settings");
+            },
+        },
+        {
+            name: "help",
+            icon: (
+                <AntDesign
+                    name="question"
+                    size={ICON_SIZE_PX}
+                    color={theme.textLight}
+                />
+            ),
+            onClick: () => {
+                console.log("open help modal");
+            },
         },
     ];
     return (
@@ -104,7 +121,7 @@ const HomeSettings = ({ navigation }: Props): JSX.Element => {
                                             (index + 1) * ITEMS_MARGIN_PX,
                                     }}
                                     onPress={() => {
-                                        navigation.navigate(item.href as never);
+                                        item.onClick();
                                         setShowMenu(false);
                                     }}
                                 >
