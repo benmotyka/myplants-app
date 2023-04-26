@@ -85,3 +85,13 @@ export const useAppConfigStore = {
         setIsClosedUpdateModal: (value) => set({ isClosedUpdateModal: value }),
     })),
 };
+
+interface ModalsState {
+    isHelpModalOpen: boolean;
+    setHelpModalState: (state: boolean) => void;
+}
+
+export const useModalsStore = create<ModalsState>((set) => ({
+    isHelpModalOpen: false,
+    setHelpModalState: (state) => set({ isHelpModalOpen: state }),
+}));

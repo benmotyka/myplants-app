@@ -7,13 +7,12 @@ import { IconWrapper, MenuContainer } from "components/HomeSettings/styles";
 import { Navigation } from "interfaces/Navigation";
 import { ModalAnimationWrapper } from "styles/shared";
 import { ICON_SIZE_PX } from "config";
+import { useModalsStore, usePlantsStore } from "store";
 
 const ITEMS_MARGIN_PX = 60;
 const ITEMS_OFFSET_PX = 20;
 
-interface Props extends Navigation {
-    plantsCount: number;
-}
+interface Props extends Navigation {}
 
 interface SettingsItem {
     name: string;
@@ -22,9 +21,11 @@ interface SettingsItem {
     hidden?: boolean;
 }
 
-const HomeSettings = ({ navigation, plantsCount }: Props): JSX.Element => {
+const HomeSettings = ({ navigation }: Props): JSX.Element => {
     const [showMenu, setShowMenu] = useState(false);
     const theme = useTheme();
+    const userPlants = usePlantsStore((store) => store.userPlants);
+    const setHelpModalState = useModalsStore((state) => state.setHelpModalState);
 
     const settingsItems: SettingsItem[] = [
         {
@@ -76,9 +77,9 @@ const HomeSettings = ({ navigation, plantsCount }: Props): JSX.Element => {
                 />
             ),
             onClick: () => {
-                console.log("open help modal");
+                setHelpModalState(true)
             },
-            hidden: !plantsCount,
+            hidden: !userPlants.length,
         },
     ];
     return (
@@ -116,22 +117,24 @@ const HomeSettings = ({ navigation, plantsCount }: Props): JSX.Element => {
                             onPress={() => setShowMenu(false)}
                             activeOpacity={1}
                         >
-                            {settingsItems.filter(item => !item.hidden).map((item, index) => (
-                                <IconWrapper
-                                    key={item.name}
-                                    style={{
-                                        bottom:
-                                            ITEMS_OFFSET_PX +
-                                            (index + 1) * ITEMS_MARGIN_PX,
-                                    }}
-                                    onPress={() => {
-                                        item.onClick();
-                                        setShowMenu(false);
-                                    }}
-                                >
-                                    {item.icon}
-                                </IconWrapper>
-                            ))}
+                            {settingsItems
+                                .filter((item) => !item.hidden)
+                                .map((item, index) => (
+                                    <IconWrapper
+                                        key={item.name}
+                                        style={{
+                                            bottom:
+                                                ITEMS_OFFSET_PX +
+                                                (index + 1) * ITEMS_MARGIN_PX,
+                                        }}
+                                        onPress={() => {
+                                            item.onClick();
+                                            setShowMenu(false);
+                                        }}
+                                    >
+                                        {item.icon}
+                                    </IconWrapper>
+                                ))}
                         </MenuContainer>
                     </ModalAnimationWrapper>
                 ) : null}
