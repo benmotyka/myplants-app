@@ -11,15 +11,18 @@ import { ICON_SIZE_PX } from "config";
 const ITEMS_MARGIN_PX = 60;
 const ITEMS_OFFSET_PX = 20;
 
-interface Props extends Navigation {}
+interface Props extends Navigation {
+    plantsCount: number;
+}
 
 interface SettingsItem {
     name: string;
     icon: ReactElement;
     onClick: () => void;
+    hidden?: boolean;
 }
 
-const HomeSettings = ({ navigation }: Props): JSX.Element => {
+const HomeSettings = ({ navigation, plantsCount }: Props): JSX.Element => {
     const [showMenu, setShowMenu] = useState(false);
     const theme = useTheme();
 
@@ -75,6 +78,7 @@ const HomeSettings = ({ navigation }: Props): JSX.Element => {
             onClick: () => {
                 console.log("open help modal");
             },
+            hidden: !plantsCount,
         },
     ];
     return (
@@ -112,7 +116,7 @@ const HomeSettings = ({ navigation }: Props): JSX.Element => {
                             onPress={() => setShowMenu(false)}
                             activeOpacity={1}
                         >
-                            {settingsItems.map((item, index) => (
+                            {settingsItems.filter(item => !item.hidden).map((item, index) => (
                                 <IconWrapper
                                     key={item.name}
                                     style={{

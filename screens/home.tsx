@@ -111,7 +111,10 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
             ) : (
                 <Loader topMargin />
             )}
-            <HomeSettings navigation={navigation} />
+            <HomeSettings
+                navigation={navigation}
+                plantsCount={dataSource ? dataSource.length : 0}
+            />
             <NewUpdateModal
                 showModal={showUpdateModal}
                 toggleModal={setShowUpdateModal}
