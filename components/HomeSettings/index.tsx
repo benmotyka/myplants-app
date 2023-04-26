@@ -3,9 +3,9 @@ import { AnimatePresence, MotiView } from "moti";
 import { MaterialIcons, Feather, Entypo, AntDesign } from "@expo/vector-icons";
 import { useTheme } from "styled-components/native";
 
-import { IconWrapper, MenuContainer } from "components/HomeSettings/styles";
+import { IconWrapper } from "components/HomeSettings/styles";
 import { Navigation } from "interfaces/Navigation";
-import { ModalAnimationWrapper } from "styles/shared";
+import { DarkScreenOverlay, ModalAnimationWrapper } from "styles/shared";
 import { ICON_SIZE_PX } from "config";
 import { useModalsStore, usePlantsStore } from "store";
 
@@ -25,7 +25,9 @@ const HomeSettings = ({ navigation }: Props): JSX.Element => {
     const [showMenu, setShowMenu] = useState(false);
     const theme = useTheme();
     const userPlants = usePlantsStore((store) => store.userPlants);
-    const setHelpModalState = useModalsStore((state) => state.setHelpModalState);
+    const setHelpModalState = useModalsStore(
+        (state) => state.setHelpModalState
+    );
 
     const settingsItems: SettingsItem[] = [
         {
@@ -77,7 +79,7 @@ const HomeSettings = ({ navigation }: Props): JSX.Element => {
                 />
             ),
             onClick: () => {
-                setHelpModalState(true)
+                setHelpModalState(true);
             },
             hidden: !userPlants.length,
         },
@@ -113,7 +115,7 @@ const HomeSettings = ({ navigation }: Props): JSX.Element => {
                             opacity: 0,
                         }}
                     >
-                        <MenuContainer
+                        <DarkScreenOverlay
                             onPress={() => setShowMenu(false)}
                             activeOpacity={1}
                         >
@@ -135,7 +137,7 @@ const HomeSettings = ({ navigation }: Props): JSX.Element => {
                                         {item.icon}
                                     </IconWrapper>
                                 ))}
-                        </MenuContainer>
+                        </DarkScreenOverlay>
                     </ModalAnimationWrapper>
                 ) : null}
             </AnimatePresence>

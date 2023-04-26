@@ -11,12 +11,13 @@ import HomeSettings from "components/HomeSettings";
 import { Plant } from "interfaces/Plant";
 import { ScreenContainer } from "styles/shared";
 import Loader from "components/Loader";
-import { usePlantsStore, useToastStore, useAppConfigStore } from "store";
+import { usePlantsStore, useToastStore, useAppConfigStore, useModalsStore } from "store";
 import { getPlants } from "services/plant";
 import i18n from "config/i18n";
 import { shouldShowRateAppModal } from "util/app";
 import NewUpdateModal from "modals/NewUpdate";
 import RateAppModal from "modals/RateApp";
+import HelpModal from "modals/HelpModal";
 
 type Props = NativeStackScreenProps<RootStackParamList, "home">;
 
@@ -29,6 +30,7 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
     const { t } = i18n;
     const setUserPlants = usePlantsStore((store) => store.setUserPlants);
     const displayToast = useToastStore((state) => state.showToast);
+    const isHelpModalOpen = useModalsStore((state) => state.isHelpModalOpen);
     const ephemeralAppConfig = useAppConfigStore.ephemeral((state) => state);
     const { isRateAppModalShown } = useAppConfigStore.persistent(
         (state) => state
@@ -111,10 +113,7 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
             ) : (
                 <Loader topMargin />
             )}
-            <HomeSettings
-                navigation={navigation}
-                plantsCount={dataSource ? dataSource.length : 0}
-            />
+            <HomeSettings navigation={navigation} />
             <NewUpdateModal
                 showModal={showUpdateModal}
                 toggleModal={setShowUpdateModal}
@@ -124,6 +123,7 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
                 showModal={showRateAppModal}
                 toggleModal={setShowRateAppModal}
             />
+            {isHelpModalOpen ?  <HelpModal /> : null}
         </ScreenContainer>
     );
 };
