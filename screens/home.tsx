@@ -17,7 +17,7 @@ import i18n from "config/i18n";
 import { shouldShowRateAppModal } from "util/app";
 import NewUpdateModal from "modals/NewUpdate";
 import RateAppModal from "modals/RateApp";
-import HelpModal from "modals/HelpModal";
+import HelpModal from "modals/Help";
 
 type Props = NativeStackScreenProps<RootStackParamList, "home">;
 

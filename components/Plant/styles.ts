@@ -3,12 +3,12 @@ import styled from "styled-components/native";
 import { screenWidth } from "styles/shared";
 
 const MAX_PLANT_WIDTH = 240;
-export const numberOfColumns = Math.round(screenWidth / MAX_PLANT_WIDTH);
 
-const PLANT_WIDTH_PERCENTAGE = numberOfColumns === 2 ? "50%" : "33%";
+export const numberOfColumns = Math.round(screenWidth / MAX_PLANT_WIDTH);
+export const plantWidthPercentage = numberOfColumns === 2 ? "50%" : "33%";
 
 export const Container = styled.View`
-    width: ${PLANT_WIDTH_PERCENTAGE};
+    width: ${plantWidthPercentage};
     height: 250px;
     padding: 5px;
 `;
