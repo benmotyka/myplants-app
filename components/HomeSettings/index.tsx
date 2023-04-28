@@ -2,7 +2,6 @@ import React, { ReactElement, useState } from "react";
 import { AnimatePresence, MotiView } from "moti";
 import { MaterialIcons, Feather, Entypo, AntDesign } from "@expo/vector-icons";
 import { useTheme } from "styled-components/native";
-
 import { IconWrapper } from "components/HomeSettings/styles";
 import { Navigation } from "interfaces/Navigation";
 import { DarkScreenOverlay, ModalAnimationWrapper } from "styles/shared";
@@ -60,7 +59,7 @@ const HomeSettings = ({ navigation }: Props): JSX.Element => {
             name: "appSettings",
             icon: (
                 <MaterialIcons
-                    name="settings"
+                    name="app-settings-alt"
                     size={ICON_SIZE_PX}
                     color={theme.textLight}
                 />

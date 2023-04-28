@@ -25,7 +25,7 @@ export const TutorialText = styled.Text`
   right: 10px;
   bottom: 125px;
 
-  font-family: 'AkayaKanadaka_400Regular'
+  font-family: 'AkayaKanadaka_400Regular';
   font-size: 26px;
   color: ${({ theme }) => theme.neutral};
   opacity: 0.8;
