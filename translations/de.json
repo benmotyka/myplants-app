@@ -1,0 +1,136 @@
+{
+    "common": {
+        "submit": "Absenden",
+        "name": "Name",
+        "description": "Beschreibung",
+        "delete": "Löschen",
+        "cancel": "Abbrechen",
+        "plantName": "Pflanzenname",
+        "disable": "Deaktivieren",
+        "enable": "Aktivieren",
+        "confirm": "Bestätigen",
+        "copy": "Kopieren",
+        "close": "Schließen",
+        "update": "Aktualisieren",
+        "rate": "Bewerten"
+    },
+    "pages": {
+        "homepage": {
+            "newUpdateHeader": "Neues Update verfügbar"
+        },
+        "plants": {
+            "add": {
+                "plantNamePlaceholder": "Geben Sie Ihren Pflanzennamen ein...",
+                "plantDescriptionPlaceholder": "Geben Sie Ihre Pflanzenbeschreibung ein...",
+                "uploadPicture": "Bild hochladen",
+                "submit": "Pflanze hinzufügen",
+                "success": "Pflanze hinzugefügt",
+                "remindWateringLabel": "Erinnern Sie mich ans Gießen"
+            },
+            "edit": {
+                "editPicture": "Bild bearbeiten",
+                "plantNamePlaceholder": "Geben Sie Ihren Pflanzennamen ein...",
+                "plantDescriptionPlaceholder": "Geben Sie Ihre Pflanzenbeschreibung ein...",
+                "submit": "Änderungen absenden",
+                "success": "Pflanze bearbeitet",
+                "plantDeletedSuccess": "Pflanze gelöscht",
+                "createdAt": "Erstellt am {{date}}",
+                "deletePlantConfirmation": "Sind Sie sicher, dass Sie diese Pflanze aus Ihrer Sammlung löschen möchten?",
+                "remindWateringLabel": "Erinnern Sie mich ans Gießen"
+            },
+            "import": {
+                "description": "Jede von einem Benutzer zur App hinzugefügte Pflanze hat ihren eigenen eindeutigen Code. Sie können Ihren Freund nach ihrem Pflanzencode fragen und ihn dann hier in Ihre Sammlung importieren. Auf diese Weise können Sie es zusammen mit ihnen bewässern.",
+                "inputLabel": "Pflanzencode",
+                "inputPlaceholder": "Pflanzencode eingeben...",
+                "success": "Pflanze importiert"
+            },
+            "history": {
+                "wateringHeader": "Bewässerungsverlauf",
+                "imagesHeader": "Bildverlauf",
+                "addImageHeader": "Bild hinzufügen",
+                "plantNotWatered": "Diese Pflanze wurde noch nicht bewässert.",
+                "plantHasNoImages": "Diese Pflanze hat noch keine Bildhistorie.",
+                "chooseImage": "Bild auswählen",
+                "addImage": "Bild hinzufügen",
+                "success": "Bild hinzugefügt",
+                "imageDeleted": "Bild gelöscht",
+                "deleteImageConfirmation": "Sind Sie sicher, dass Sie dieses Bild löschen möchten?",
+                "shareModal": {
+                    "header": "Pflanze teilen",
+                    "description": "Lassen Sie Ihren Freund diese Pflanze zu ihrer Sammlung hinzufügen, damit sie zusammen mit Ihnen bewässert werden kann."
+                }
+            }
+        },
+        "settings": {
+            "header": "Einstellungen",
+            "notificationsHeader": "Benachrichtigungen",
+            "notifications": {
+                "manageHeader": "Benachrichtigungen verwalten",
+                "manageDescription": "Benachrichtigungen sind {{state}}",
+                "notificationsEnabled": "aktiviert",
+                "notificationsDisabled": "deaktiviert"
+            },
+            "app": {
+                "header": "App",
+                "manageTheme": "Thema ändern",
+                "darkTheme": "Dunkel",
+                "lightTheme": "Hell"
+            },
+            "contact": "Kontakt",
+            "reportBug": {
+                "header": "Fehler melden",
+                "description": "Wenn Sie Probleme mit der App haben oder Verbesserungsvorschläge haben, zögern Sie nicht, sich an unser Team zu wenden. Wir schätzen Ihre Meinung und sind immer bestrebt, unsere Dienstleistungen zu verbessern.",
+                "emailLabel": "E-Mail (optional)",
+                "descriptionLabel": "Fehlerbeschreibung",
+                "descriptionPlaceholder": "Beim Hinzufügen einer Pflanze...",
+                "success": "Meldung gesendet"
+            },
+            "appVersion": "App-Version: {{version}}"
+        }
+    },
+    "errors": {
+        "required": "Dieses Feld ist erforderlich",
+        "general": "Etwas ist schiefgelaufen. Bitte versuchen Sie es später erneut",
+        "invalidFileType": "Ungültiger Dateityp",
+        "fieldTooLong": "{{field}} darf höchstens {{number}} Buchstaben enthalten.",
+        "valueMustBeNumber": "Der Wert muss eine Zahl sein",
+        "minimumValueIs": "Der minimale Wert beträgt: {{value}}",
+        "maximumValueIs": "Der maximale Wert beträgt: {{value}}",
+        "plantAlreadyAdded": "Die Pflanze befindet sich bereits in Ihrer Sammlung",
+        "plantNotExists": "Die Pflanze existiert nicht",
+        "emailOptional": "Geben Sie eine gültige E-Mail-Adresse an oder lassen Sie das Feld leer",
+        "tooManyBugReports": "Zu viele Meldungen. Bitte versuchen Sie es später erneut"
+    },
+    "components": {
+        "basicImageInput": {
+            "takePhoto": "Foto aufnehmen",
+            "chooseLibrary": "Aus Galerie auswählen"
+        },
+        "addPlantSuggestion": "Fügen Sie Ihre erste Pflanze hinzu",
+        "plant": {
+            "success": "Pflanze gegossen",
+            "wateringCanceled": "Bewässerung abgebrochen"
+        },
+        "wateringReminderInput": {
+            "every": "Jeden",
+            "daySingular": "Tag",
+            "dayPlurar": "Tage"
+        },
+        "rateAppModal": {
+            "header": "Gefällt Ihnen die App? Bitte bewerten Sie sie im Store, damit andere sie sehen können"
+        },
+        "noConnectionModal": {
+            "header": "Keine Verbindung",
+            "description": "Überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut"
+        },
+        "helpModal": {
+            "slider": "Schieben Sie den Regler, um die Pflanze als gegossen zu markieren",
+            "history": "Tippen Sie auf die Pflanze, um die Bewässerungs- und Fotohistorie anzuzeigen",
+            "edit": "Halten Sie die Pflanze gedrückt, um ihre Details zu bearbeiten"
+        },
+        "errorBoundary": {
+            "header": "Etwas ist schief gelaufen",
+            "description": "Starten Sie die Anwendung neu und versuchen Sie es erneut"
+        }
+    }
+}
