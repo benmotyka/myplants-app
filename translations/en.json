@@ -123,6 +123,11 @@
             "header": "No connection",
             "description": "Please check your network connection and try again"
         },
+        "helpModal": {
+            "slider": "Move slider to mark plant as watered",
+            "history": "Tap plant to view watering and photo history",
+            "edit": "Hold plant to edit its details"
+        },
         "errorBoundary": {
             "header": "Something went wrong",
             "description": "Please try to restart the app"

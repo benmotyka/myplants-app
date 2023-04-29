@@ -5,6 +5,7 @@ import { MotiView } from "moti";
 import { ModalAnimationWrapper } from "styles/shared";
 import { useTheme } from "styled-components/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import i18n from "config/i18n";
 import {
     ScreenOverlay,
     PlantContainer,
@@ -31,10 +32,10 @@ const TapIcon = ({ paddingTop }: { paddingTop?: number }): JSX.Element => {
 };
 
 const HelpModal = (): JSX.Element => {
+    const { t } = i18n;
     const [step, setStep] = useState(0);
     const [sliderWidth, setSliderWidth] = useState(0);
     const ref = useRef<View>(null);
-
     const modalsStore = useModalsStore((state) => state);
 
     useEffect(() => {
@@ -69,7 +70,7 @@ const HelpModal = (): JSX.Element => {
                 </MotiView>
             </SliderContainer>
             <TextWrapper>
-                <Text>Move the slider to mark your plant as watered</Text>
+                <Text>{t("components.helpModal.slider")}</Text>
             </TextWrapper>
         </>,
         <>
@@ -86,9 +87,7 @@ const HelpModal = (): JSX.Element => {
                 </MotiView>
             </PlantContainer>
             <TextWrapper>
-                <Text>
-                    Tap your plant to see the watering history or add images
-                </Text>
+                <Text>{t("components.helpModal.history")}</Text>
             </TextWrapper>
         </>,
         <>
@@ -108,7 +107,7 @@ const HelpModal = (): JSX.Element => {
                 </MotiView>
             </PlantContainer>
             <TextWrapper>
-                <Text>Hold it to edit its details</Text>
+                <Text>{t("components.helpModal.edit")}</Text>
             </TextWrapper>
         </>,
     ];

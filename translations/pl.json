@@ -123,6 +123,11 @@
             "header": "Brak połączenia",
             "description": "Sprawdź połączenie z Internetem i spróbuj ponownie"
         },
+        "helpModal": {
+            "slider": "Przesuń suwak, aby oznaczyć roślinę jako podlaną",
+            "history": "Kliknij na roślinę, aby zobaczyć historię podlewania i zdjęć",
+            "edit": "Przytrzymaj roślinę, aby edytować jej szczegóły"
+        },
         "errorBoundary": {
             "header": "Coś poszło nie tak",
             "description": "Zretartuj aplikację i spróbuj ponownie"
