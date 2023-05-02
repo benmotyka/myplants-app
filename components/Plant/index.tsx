@@ -194,33 +194,31 @@ const Plant = ({
                                 ? `${name.slice(0, MAX_HEADER_CHARACTERS)}...`
                                 : name}
                         </Header>
-                        <ItemsWrapper>
-                            {latestWatering || watered ? (
-                                <TimeWrapper>
-                                    <Header>{timeFromLastWatering}</Header>
-                                    <MotiView
-                                        from={{
-                                            rotate: "0deg",
-                                        }}
-                                        animate={{
-                                            rotate: watered ? "360deg" : "0deg",
-                                        }}
-                                        style={{
-                                            marginLeft: 3
-                                        }}
-                                    >
-                                        <SmallImage
-                                            resizeMode="contain"
-                                            source={
-                                                appTheme === "dark"
-                                                    ? require("../../assets/hourglass-light.png")
-                                                    : require("../../assets/hourglass.png")
-                                            }
-                                        />
-                                    </MotiView>
-                                </TimeWrapper>
-                            ) : null}
-                        </ItemsWrapper>
+                        {latestWatering || watered ? (
+                            <TimeWrapper>
+                                <Header>{timeFromLastWatering}</Header>
+                                <MotiView
+                                    from={{
+                                        rotate: "0deg",
+                                    }}
+                                    animate={{
+                                        rotate: watered ? "360deg" : "0deg",
+                                    }}
+                                    style={{
+                                        marginLeft: 3,
+                                    }}
+                                >
+                                    <SmallImage
+                                        resizeMode="contain"
+                                        source={
+                                            appTheme === "dark"
+                                                ? require("../../assets/hourglass-light.png")
+                                                : require("../../assets/hourglass.png")
+                                        }
+                                    />
+                                </MotiView>
+                            </TimeWrapper>
+                        ) : null}
                     </ItemsWrapper>
                     <View style={{ marginTop: "auto" }}>
                         {watered ? null : (

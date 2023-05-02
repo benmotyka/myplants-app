@@ -1,17 +1,19 @@
 import { Platform } from "react-native";
-import VersionCheck from "react-native-version-check";
+// @ts-ignore
+import VersionCheck from "react-native-version-check-expo";
 import * as Linking from "expo-linking";
 import { googlePlayStoreUrl, appStoreUrl } from "config";
 
-// const getCurrentAppVersion = () => {
-//     switch (Platform.OS) {
-//         case "ios":
-//         case "android":
-//             return VersionCheck.getCurrentVersion();
-//         default:
-//             return "1.2.3";
-//     }
-// };
+export const getCurrentAppVersion = () => {
+    try {
+        if (["ios", "android"].includes(Platform.OS)) {
+            return VersionCheck.getCurrentVersion();
+        }
+    } catch (error) {
+        console.log(error);
+    }
+    return "1.2.3";
+};
 
 // const getLatestAppVersion = async () => {
 //     switch (Platform.OS) {
@@ -49,7 +51,7 @@ export const redirectToStore = () => {
 };
 
 export const shouldShowRateAppModal = (plantsAmount: number) => {
-    // If user has more than PLANTS_AMOUNT_THRESHOLD plant, 
+    // If user has more than PLANTS_AMOUNT_THRESHOLD plant,
     // there's chance they they will see the 'Rate App' modal
     const CHANCE_THRESHOLD = 5; // %
     const PLANTS_AMOUNT_THRESHOLD = 1;
