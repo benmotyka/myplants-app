@@ -11,10 +11,15 @@ import HomeSettings from "components/HomeSettings";
 import { Plant } from "interfaces/Plant";
 import { ScreenContainer } from "styles/shared";
 import Loader from "components/Loader";
-import { usePlantsStore, useToastStore, useAppConfigStore, useModalsStore } from "store";
+import {
+    usePlantsStore,
+    useToastStore,
+    useAppConfigStore,
+    useModalsStore,
+} from "store";
 import { getPlants } from "services/plant";
 import i18n from "config/i18n";
-import { shouldShowRateAppModal } from "util/app";
+import { isNewUpdate, shouldShowRateAppModal } from "util/app";
 import NewUpdateModal from "modals/NewUpdate";
 import RateAppModal from "modals/RateApp";
 import HelpModal from "modals/Help";
@@ -65,9 +70,9 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
                 setShowRateAppModal(shouldShowRateAppModal(plants.length));
         });
 
-        // if (!ephemeralAppConfig.isClosedUpdateModal) {
-        //     isNewUpdate().then((result) => setShowUpdateModal(result));
-        // }
+        if (!ephemeralAppConfig.isClosedUpdateModal) {
+            isNewUpdate().then((result) => setShowUpdateModal(!!result));
+        }
 
         // Workaround for devices with hardware back button
         const backHandler = BackHandler.addEventListener(
@@ -123,7 +128,7 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
                 showModal={showRateAppModal}
                 toggleModal={setShowRateAppModal}
             />
-            {isHelpModalOpen ?  <HelpModal /> : null}
+            {isHelpModalOpen ? <HelpModal /> : null}
         </ScreenContainer>
     );
 };

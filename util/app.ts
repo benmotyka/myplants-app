@@ -12,34 +12,32 @@ export const getCurrentAppVersion = () => {
     } catch (error) {
         console.log(error);
     }
-    return "1.2.3";
 };
 
-// const getLatestAppVersion = async () => {
-//     switch (Platform.OS) {
-//         case "ios":
-//             return await VersionCheck.getLatestVersion({
-//                 provider: "appStore",
-//             });
-//         case "android":
-//             return await VersionCheck.getLatestVersion({
-//                 provider: "playStore",
-//             });
-//         default:
-//             return "1.2.3";
-//     }
-// };
+const getLatestAppVersion = async () => {
+    try {
+        switch (Platform.OS) {
+            case "ios":
+                return await VersionCheck.getLatestVersion({
+                    provider: "appStore",
+                });
+            case "android":
+                return await VersionCheck.getLatestVersion({
+                    provider: "playStore",
+                });
+        }
+    } catch (error) {
+        console.log(error);
+    }
+};
 
-// const isNewUpdate = async () => {
-//     try {
-//         const currentVersion = getCurrentAppVersion();
-//         const latestVersion = await getLatestAppVersion();
-//         return latestVersion !== currentVersion;
-//     } catch (error) {
-//         console.log(error);
-//         return false;
-//     }
-// };
+export const isNewUpdate = async () => {
+    const currentVersion = getCurrentAppVersion();
+    const latestVersion = await getLatestAppVersion();
+    if (currentVersion && latestVersion) {
+        return latestVersion !== currentVersion;
+    }
+};
 
 export const redirectToStore = () => {
     switch (Platform.OS) {
