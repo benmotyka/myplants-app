@@ -4,7 +4,7 @@ import {
     basicAuthUsername,
     basicAuthPassword,
 } from "config/environment";
-import { getDeviceId } from "util/device";
+import { getDeviceId } from "utils/device";
 
 const plantsApi = axios.create({
     baseURL: apiUrl,

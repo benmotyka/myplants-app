@@ -19,7 +19,7 @@ import {
     InputsWrapper,
 } from "styles/shared";
 import { ApiErrors } from "enums/api-errors";
-import { base64EncodeImage } from "util/images";
+import { base64EncodeImage } from "utils/images";
 import i18n from "config/i18n";
 import BasicCheckbox from "components/BasicCheckbox";
 import WateringReminderInput from "components/WateringReminderInput";

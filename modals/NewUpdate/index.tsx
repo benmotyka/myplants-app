@@ -3,7 +3,7 @@ import BasicModal from "components/BasicModal";
 import { ModalHeader, ModalItem } from "components/BasicModal/styles";
 import BasicButton from "components/BasicButton";
 import i18n from "config/i18n";
-import { redirectToStore } from "util/app";
+import { redirectToStore } from "utils";
 
 interface Props {
     showModal: boolean;

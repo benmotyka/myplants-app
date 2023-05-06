@@ -15,7 +15,7 @@ module.exports = function (api) {
                         screens: "./screens",
                         store: "./store",
                         styles: "./styles",
-                        util: "./util",
+                        utils: "./utils",
                         enums: "./enums",
                         providers: "./providers",
                         services: "./services",

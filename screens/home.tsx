@@ -19,7 +19,7 @@ import {
 } from "store";
 import { getPlants } from "services/plant";
 import i18n from "config/i18n";
-import { isNewUpdate, shouldShowRateAppModal } from "util/app";
+import { isNewUpdate, shouldShowRateAppModal } from "utils";
 import NewUpdateModal from "modals/NewUpdate";
 import RateAppModal from "modals/RateApp";
 import HelpModal from "modals/Help";

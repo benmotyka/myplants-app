@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import BasicModal from "components/BasicModal";
 import { ModalHeader, ModalItem } from "components/BasicModal/styles";
 import BasicButton from "components/BasicButton";
-import { redirectToStore } from "util/app";
+import { redirectToStore } from "utils";
 import i18n from "config/i18n";
 import { useAppConfigStore } from "store";
 

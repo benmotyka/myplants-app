@@ -16,7 +16,7 @@ import {
     SmallImage,
     TimeWrapper,
 } from "components/Plant/styles";
-import { calculateDifferenceFromNow } from "util/date";
+import { calculateDifferenceFromNow } from "utils/date";
 import { useAppConfigStore, useToastStore } from "store";
 import { cancelWatering, waterPlant } from "services/watering";
 import i18n from "config/i18n";

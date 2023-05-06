@@ -13,7 +13,7 @@ import {
     AppVersionWrapper,
 } from "styles/screens/settings.styles";
 import i18n from "config/i18n";
-import { getCurrentAppVersion } from "util/app";
+import { getCurrentAppVersion } from "utils";
 
 type Props = NativeStackScreenProps<RootStackParamList, "settings">;
 

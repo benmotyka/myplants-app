@@ -1,8 +1,13 @@
+// import Sentry from "@sentry/react-native";
 import { Platform } from "react-native";
 // @ts-ignore
 import VersionCheck from "react-native-version-check-expo";
 import * as Linking from "expo-linking";
 import { googlePlayStoreUrl, appStoreUrl } from "config";
+
+// export const handleError = (error: unknown) => {
+//     Sentry.captureException(error);
+// };
 
 export const getCurrentAppVersion = () => {
     try {

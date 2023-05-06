@@ -30,7 +30,7 @@ import {
 import { RootStackParamList } from "interfaces/RootStackParamList";
 import { WateringData } from "interfaces/WateringData";
 import Loader from "components/Loader";
-import { formatToHour } from "util/date";
+import { formatToHour } from "utils/date";
 import { ICON_SIZE_PX } from "config";
 import {
     ImageData,
@@ -38,7 +38,7 @@ import {
 } from "interfaces/PlantImagesHistoryData";
 import BasicImageInput from "components/BasicImageInput";
 import BasicButton from "components/BasicButton";
-import { base64EncodeImage } from "util/images";
+import { base64EncodeImage } from "utils/images";
 import { useToastStore } from "store";
 import { getImagesHistory, addImageToPlant } from "services/plant";
 import { getWateringHistory } from "services/watering";

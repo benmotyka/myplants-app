@@ -19,9 +19,9 @@ import {
     KeyboardScreen,
     HelperButton,
 } from "styles/shared";
-import { formatToHourDateAndYear } from "util/date";
+import { formatToHourDateAndYear } from "utils/date";
 import { ApiErrors } from "enums/api-errors";
-import { base64EncodeImage } from "util/images";
+import { base64EncodeImage } from "utils/images";
 import BasicCheckbox from "components/BasicCheckbox";
 import { AnimatePresence, MotiView } from "moti";
 import WateringReminderInput from "components/WateringReminderInput";
