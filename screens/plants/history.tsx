@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { useIsFocused } from "@react-navigation/core";
 import { ImageInfo } from "expo-image-picker";
-import { ScrollView, TouchableOpacity } from "react-native";
+import { ScrollView, TouchableOpacity, View } from "react-native";
 import { Entypo } from "@expo/vector-icons";
 import { useTheme } from "styled-components/native";
 
@@ -18,7 +18,6 @@ import {
     ActionText,
     ItemWrapper,
     HistoryIcon,
-    ItemContainer,
     SectionContainer,
     SectionHeader,
     HistoryImage,
@@ -216,7 +215,7 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
                             ) : (
                                 Object.entries(wateringData).map(
                                     ([day, hours]) => (
-                                        <ItemContainer key={day}>
+                                        <View key={day}>
                                             <ItemDateHeader>
                                                 {day}
                                             </ItemDateHeader>
@@ -231,7 +230,7 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
                                                     </ActionText>
                                                 </ItemWrapper>
                                             ))}
-                                        </ItemContainer>
+                                        </View>
                                     )
                                 )
                             )}
@@ -248,7 +247,7 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
                             ) : (
                                 Object.entries(plantImagesHistoryData).map(
                                     ([day, images]) => (
-                                        <ItemContainer key={day}>
+                                        <View key={day}>
                                             <ItemDateHeader>
                                                 {day}
                                             </ItemDateHeader>
@@ -278,7 +277,7 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
                                                     </TouchableOpacity>
                                                 ))}
                                             </ScrollableImagesContainer>
-                                        </ItemContainer>
+                                        </View>
                                     )
                                 )
                             )}

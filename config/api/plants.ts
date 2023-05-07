@@ -1,18 +1,10 @@
 import axios from "axios";
-import {
-    apiUrl,
-    basicAuthUsername,
-    basicAuthPassword,
-} from "config/environment";
+import { apiUrl } from "config/environment";
 import { getDeviceId } from "utils/device";
 
 const plantsApi = axios.create({
     baseURL: apiUrl,
     timeout: 10000,
-    // auth: {
-    // username: basicAuthUsername,
-    // password: basicAuthPassword
-    // }
 });
 
 plantsApi.interceptors.request.use(async (config) => {

@@ -105,8 +105,6 @@ My Plants is a free and open source mobile app that helps to manage watering of 
    SENTRY_ORGANIZATION=<sentry_organization>
    SENTRY_PROJECT=<sentry_project_name>
    SENTRY_AUTHTOKEN=<sentry_authorization_token>
-   BASIC_AUTH_USERNAME=<basicauth_username>
-   BASIC_AUTH_USERNAME=<basicauth_password>
    ```
 5. Run app
    ```sh

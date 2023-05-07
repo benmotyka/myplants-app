@@ -35,8 +35,6 @@ export const HistoryImage = styled.Image`
     border-radius: 5px;
 `;
 
-export const ItemContainer = styled.View``;
-
 export const SectionContainer = styled.ScrollView`
     width: 100%;
     display: flex;

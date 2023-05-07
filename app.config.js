@@ -36,8 +36,6 @@ module.exports = {
     extra: {
         apiUrl: process.env.API_URL,
         sentryDsn: process.env.SENTRY_DSN,
-        basicAuthUsername: process.env.BASIC_AUTH_USERNAME,
-        basicAuthPassword: process.env.BASIC_AUTH_PASSWORD,
         eas: {
             projectId: "9b57b4b7-39d0-474c-9ffb-3f5d617bcabd",
         },
