@@ -1,5 +1,5 @@
 import plantsApi from "config/api/plants";
-import { WateringData } from "interfaces/WateringData";
+import { WateringData } from "interfaces";
 
 export const getWateringHistory = async (plantId: string) => {
     const { data } = await plantsApi.get<{ waterings: WateringData }>(

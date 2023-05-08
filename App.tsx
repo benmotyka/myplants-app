@@ -14,7 +14,7 @@ import { ThemeProvider } from "styled-components/native";
 import { sentryDsn } from "config/environment";
 import StatusBar from "components/StatusBar";
 import ErrorBoundary from "components/ErrorBoundary";
-import { RootStackParamList } from "interfaces/RootStackParamList";
+import { RootStackParamList } from "interfaces";
 import HomeScreen from "screens/home";
 import AddPlantScreen from "screens/plants/add";
 import EditPlantScreen from "screens/plants/edit";

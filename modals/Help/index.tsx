@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useRef, useState } from "react";
 import { View } from "react-native";
-import { useModalsStore } from "store/index";
+import { useModalsStore } from "store";
 import { MotiView } from "moti";
 import { ModalAnimationWrapper } from "styles/shared";
 import { useTheme } from "styled-components/native";

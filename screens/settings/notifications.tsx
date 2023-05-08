@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-import { RootStackParamList } from "interfaces/RootStackParamList";
+import { RootStackParamList } from "interfaces";
 import Back from "components/Back";
 import {
     ColumnCenterWrapper,

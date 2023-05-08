@@ -30,7 +30,7 @@ import { ICON_SIZE_PX } from "config";
 import { deletePlant, editPlant } from "services/plant";
 import { useGetPlantDetailsFromCache } from "hooks/useGetPlantDetailsFromCache";
 import i18n from "config/i18n";
-import { RootStackParamList } from "interfaces/RootStackParamList";
+import { RootStackParamList } from "interfaces";
 import DeletePlantConfirmationModal from "modals/DeletePlantConfirmation";
 
 type Props = NativeStackScreenProps<RootStackParamList, "editPlant">;

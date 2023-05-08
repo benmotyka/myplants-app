@@ -3,7 +3,7 @@ import { AnimatePresence, MotiView } from "moti";
 import { MaterialIcons, Feather, Entypo, AntDesign } from "@expo/vector-icons";
 import { useTheme } from "styled-components/native";
 import { IconWrapper } from "components/HomeSettings/styles";
-import { Navigation } from "interfaces/Navigation";
+import { Navigation } from "interfaces";
 import { DarkScreenOverlay, ModalAnimationWrapper } from "styles/shared";
 import { ICON_SIZE_PX } from "config";
 import { useModalsStore, usePlantsStore } from "store";

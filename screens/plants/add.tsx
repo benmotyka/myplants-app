@@ -6,7 +6,7 @@ import { ImageInfo } from "expo-image-picker";
 import { AnimatePresence, MotiView } from "moti";
 import { useTheme } from "styled-components/native";
 
-import { RootStackParamList } from "interfaces/RootStackParamList";
+import { RootStackParamList } from "interfaces";
 import Back from "components/Back";
 import BasicTextInput from "components/BasicTextInput";
 import BasicImageInput from "components/BasicImageInput";

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-import { RootStackParamList } from "interfaces/RootStackParamList";
+import { RootStackParamList } from "interfaces";
 import Back from "components/Back";
 import {
     ColumnCenterWrapper,
@@ -15,7 +15,7 @@ import { Formik, FormikHelpers } from "formik";
 import { ReportBugSchema } from "schemas/ReportBug.schema";
 import { View } from "react-native";
 import BasicButton from "components/BasicButton";
-import { useToastStore } from "store/index";
+import { useToastStore } from "store";
 import Loader from "components/Loader";
 import { ICON_SIZE_PX } from "config";
 import { reportBug } from "services/plant";

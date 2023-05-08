@@ -4,7 +4,7 @@ import { useTheme } from "styled-components/native";
 
 import { IconWrapper } from "./styles";
 import { ICON_SIZE_PX } from "config";
-import { Navigation } from "interfaces/Navigation";
+import { Navigation } from "interfaces";
 
 interface Props extends Navigation {}
 

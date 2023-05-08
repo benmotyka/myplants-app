@@ -5,11 +5,11 @@ import { useTheme } from "styled-components/native";
 import { ICON_SIZE_PX } from "config";
 import { MaterialIcons } from "@expo/vector-icons";
 import DeleteAttachmentConfirmationModal from "modals/DeleteAttachmentConfirmation";
-import { ImageData } from "interfaces/PlantImagesHistoryData";
-import { DeleteButtonWrapper } from "./styles";
+import { ImageData } from "interfaces";
 import i18n from "config/i18n";
-import { useToastStore } from "store/index";
+import { useToastStore } from "store";
 import { deleteImageFromPlant } from "services/plant";
+import { DeleteButtonWrapper } from "./styles";
 
 interface Props {
     showModal: boolean;

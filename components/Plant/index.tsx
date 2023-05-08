@@ -4,8 +4,7 @@ import { Slider } from "@miblanchard/react-native-slider";
 import { MotiView } from "moti";
 import { useIsFocused } from "@react-navigation/native";
 import { useTheme } from "styled-components/native";
-import { Navigation } from "interfaces/Navigation";
-import { Watering } from "interfaces/Watering";
+import { Navigation, Watering } from "interfaces";
 import {
     Body,
     Header,

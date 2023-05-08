@@ -5,7 +5,7 @@ import { View } from "react-native";
 import { useTheme } from "styled-components/native";
 import { AntDesign } from "@expo/vector-icons";
 
-import { RootStackParamList } from "interfaces/RootStackParamList";
+import { RootStackParamList } from "interfaces";
 import Back from "components/Back";
 import BasicTextInput from "components/BasicTextInput";
 import BasicButton from "components/BasicButton";

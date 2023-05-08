@@ -26,15 +26,15 @@ import {
     InfoText,
     ButtonWrapper,
 } from "styles/screens/plantHistory.styles";
-import { RootStackParamList } from "interfaces/RootStackParamList";
-import { WateringData } from "interfaces/WateringData";
+import {
+    RootStackParamList,
+    WateringData,
+    ImageData,
+    PlantImagesHistoryData,
+} from "interfaces";
 import Loader from "components/Loader";
 import { formatToHour } from "utils/date";
 import { ICON_SIZE_PX } from "config";
-import {
-    ImageData,
-    PlantImagesHistoryData,
-} from "interfaces/PlantImagesHistoryData";
 import BasicImageInput from "components/BasicImageInput";
 import BasicButton from "components/BasicButton";
 import { base64EncodeImage } from "utils/images";

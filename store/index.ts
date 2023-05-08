@@ -2,8 +2,8 @@ import { Appearance } from "react-native";
 import { StateCreator, create } from "zustand";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { persist, PersistOptions } from "zustand/middleware";
+import { Plant } from "interfaces";
 
-import { Plant } from "interfaces/Plant";
 
 type ToastTypes = "error" | "success" | "info";
 

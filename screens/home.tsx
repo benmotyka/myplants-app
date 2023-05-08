@@ -3,12 +3,12 @@ import { FlatList, BackHandler } from "react-native";
 import { useIsFocused } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-import { RootStackParamList } from "interfaces/RootStackParamList";
+import { RootStackParamList } from "interfaces";
 import PlantPreview from "components/Plant";
 import { numberOfColumns } from "components/Plant/styles";
 import AddPlantSuggestion from "components/AddPlantSuggestion";
 import HomeSettings from "components/HomeSettings";
-import { Plant } from "interfaces/Plant";
+import { Plant } from "interfaces";
 import { ScreenContainer } from "styles/shared";
 import Loader from "components/Loader";
 import {

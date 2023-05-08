@@ -1,6 +1,5 @@
 import plantsApi from "config/api/plants";
-import { Plant } from "interfaces/Plant";
-import { PlantImagesHistoryData } from "interfaces/PlantImagesHistoryData";
+import { Plant, PlantImagesHistoryData } from "interfaces";
 
 export const getPlants = async () => {
     const { data } = await plantsApi.get<{ plants: Plant[] }>(`/plants`);

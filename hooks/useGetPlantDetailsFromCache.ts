@@ -1,4 +1,4 @@
-import { Plant } from "interfaces/Plant";
+import { Plant } from "interfaces";
 import { useEffect, useState } from "react";
 import { usePlantsStore } from "store";
 
