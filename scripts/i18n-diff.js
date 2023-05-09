@@ -1,33 +1,51 @@
 // Script that compares the i18n translation files and outputs the differences
 
-const MAIN_LANGUAGE = "en";
 const fs = require("fs");
+const MAIN_FILE = "en.json";
+
+let mainLanguageItems;
+const mainLanguageKeys = [];
 
 try {
-    const files = fs.readdirSync(__dirname + "/../translations");
+    const file = fs.readFileSync(__dirname + `/../translations/${MAIN_FILE}`);
+    mainLanguageItems = flattenObject(JSON.parse(file));
+    mainLanguageKeys.push(...Object.keys(mainLanguageItems));
+} catch (error) {
+    console.log("Error reading main file: " + error);
+    process.exit(1);
+}
 
-    const items = {};
+try {
+    const files = fs
+        .readdirSync(__dirname + "/../translations")
+        .filter((file) => file !== MAIN_FILE);
     for (const file of files) {
         const data = fs.readFileSync(__dirname + `/../translations/${file}`);
-        items[file] = JSON.parse(data);
+        const items = flattenObject(JSON.parse(data));
+        const difference = mainLanguageKeys.filter(
+            (key) => !Object.keys(items).includes(key)
+        );
+        if (!difference.length) continue;
+        difference.forEach((item) => {
+            console.log(`Translation: "${item}" missing in ${file}`);
+        });
     }
-    console.log(flattenObject(items));
 } catch (error) {
-    console.log(error);
+    console.log("Error in checking other languages: " + error);
 }
 
 function flattenObject(ob) {
     const toReturn = {};
 
-    for (var i in ob) {
+    for (const i in ob) {
         if (!ob.hasOwnProperty(i)) continue;
 
-        if ((typeof ob[i]) == 'object' && ob[i] !== null) {
+        if (typeof ob[i] == "object" && ob[i] !== null) {
             const flatObject = flattenObject(ob[i]);
             for (const x in flatObject) {
                 if (!flatObject.hasOwnProperty(x)) continue;
 
-                toReturn[i + '.' + x] = flatObject[x];
+                toReturn[i + "." + x] = flatObject[x];
             }
         } else {
             toReturn[i] = ob[i];
