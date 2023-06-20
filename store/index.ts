@@ -44,6 +44,24 @@ export const usePlantsStore = create<UserPlantsState>((set) => ({
     setUserPlants: (userPlants) => set({ userPlants }),
 }));
 
+type PlantsPersist = (
+    config: StateCreator<UserPlantsState>,
+    options: PersistOptions<UserPlantsState>
+ ) => StateCreator<UserPlantsState>;
+
+export const usePlantsPersistentStore = create<UserPlantsState>(
+        (persist as unknown as PlantsPersist)(
+            (set) => ({
+                userPlants: [],
+                setUserPlants: (userPlants) => set({ userPlants }),
+            }),
+            {
+                name: "user-plants-storage",    
+                getStorage: () => AsyncStorage,
+            }
+        )
+    );
+
 export type AppTheme = "light" | "dark";
 
 interface AppConfigEphemeralState {
