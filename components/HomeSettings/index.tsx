@@ -6,7 +6,7 @@ import { IconWrapper } from "components/HomeSettings/styles";
 import { Navigation } from "interfaces";
 import { DarkScreenOverlay, ModalAnimationWrapper } from "styles/shared";
 import { ICON_SIZE_PX } from "config";
-import { useModalsStore, usePlantsStore } from "store";
+import { useModalsStore, usePlantsPersistentStore } from "store";
 
 const ITEMS_MARGIN_PX = 60;
 const ITEMS_OFFSET_PX = 20;
@@ -23,7 +23,7 @@ interface SettingsItem {
 const HomeSettings = ({ navigation }: Props): JSX.Element => {
     const [showMenu, setShowMenu] = useState(false);
     const theme = useTheme();
-    const userPlants = usePlantsStore((store) => store.userPlants);
+    const userPlants = usePlantsPersistentStore((state) => state.userPlants);
     const setHelpModalState = useModalsStore(
         (state) => state.setHelpModalState
     );

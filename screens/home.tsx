@@ -11,7 +11,6 @@ import HomeSettings from "components/HomeSettings";
 import { Plant } from "interfaces";
 import { ScreenContainer } from "styles/shared";
 import {
-  usePlantsStore,
   useToastStore,
   useAppConfigStore,
   useModalsStore,
@@ -29,7 +28,6 @@ type Props = NativeStackScreenProps<RootStackParamList, "home">;
 const HomeScreen = ({ navigation }: Props): JSX.Element => {
   const { t } = i18n;
   const persistentPlantsStore = usePlantsPersistentStore((state) => state);
-  const setUserPlants = usePlantsStore((store) => store.setUserPlants);
   const displayToast = useToastStore((state) => state.showToast);
   const isHelpModalOpen = useModalsStore((state) => state.isHelpModalOpen);
   const ephemeralAppConfig = useAppConfigStore.ephemeral((state) => state);
@@ -45,21 +43,13 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
     (state) => state
   );
 
-  const sortPlantsByCreatedAt = (plants: Plant[]): Plant[] =>
-    plants.sort(
-      (a, b) =>
-        new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
-    );
-
   useEffect(() => {
     if (!isFocused) return;
 
     getPlants()
       .then(({ plants }) => {
-        const sortedPlants = sortPlantsByCreatedAt(plants);
-        persistentPlantsStore.setUserPlants(sortedPlants);
-        setUserPlants(sortedPlants);
-        setDataSource(sortedPlants);
+        persistentPlantsStore.setUserPlants(plants);
+        setDataSource(plants);
         if (!isRateAppModalShown)
           setShowRateAppModal(shouldShowRateAppModal(plants.length));
       })
