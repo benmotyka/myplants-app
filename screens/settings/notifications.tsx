@@ -25,7 +25,7 @@ const SettingsNotifications = ({ navigation }: Props): JSX.Element => {
         useState(false);
     const displayToast = useToastStore((state) => state.showToast);
 
-    const handleSwitch = async ({ isEnabled }: { isEnabled: boolean }) => {
+    const handleSwitch = async (isEnabled: boolean) => {
         if (isEnabled === isAllowNotificationsEnabled) return;
 
         try {
@@ -46,11 +46,11 @@ const SettingsNotifications = ({ navigation }: Props): JSX.Element => {
                     leftItemLabel={t("common.disable")}
                     rightItemLabel={t("common.enable")}
                     onClickLeftItem={() => {
-                        handleSwitch({ isEnabled: false });
+                        handleSwitch(false);
                         setAllowNotificationsEnabled(false);
                     }}
                     onClickRightItem={() => {
-                        handleSwitch({ isEnabled: true });
+                        handleSwitch(true);
                         setAllowNotificationsEnabled(true);
                     }}
                     activeItem={isAllowNotificationsEnabled ? "right" : "left"}

@@ -62,14 +62,13 @@ const EditPlant = ({ route, navigation }: Props): JSX.Element => {
     const handleDelete = async () => {
         try {
             await deletePlant(plantId);
+            navigation.navigate("home");
             displayToast({
                 text: t("pages.plants.edit.plantDeletedSuccess"),
                 type: "success",
             });
         } catch (error) {
             return displayToast({ text: t("errors.general"), type: "error" });
-        } finally {
-            navigation.navigate("home");
         }
     };
 

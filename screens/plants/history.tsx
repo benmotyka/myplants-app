@@ -130,7 +130,7 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
         }
     };
 
-    const handleChangeSection = useCallback(async (section: Sections) => {
+    const handleChangeSection = useCallback((section: Sections) => {
         switch (section) {
             case "watering":
                 scrollViewRef.current?.scrollTo({ x: 0 });

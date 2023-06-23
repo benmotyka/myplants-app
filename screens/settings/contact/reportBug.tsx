@@ -46,16 +46,12 @@ const ReportBug = ({ navigation }: Props): JSX.Element => {
 
     const handleSubmit = async (
         values: ReportBugForm,
-        {
-            resetForm,
-        }: {
-            resetForm: FormikHelpers<ReportBugForm>["resetForm"];
-        }
+        formikHelpers: FormikHelpers<ReportBugForm>
     ) => {
         try {
             setLoading(true);
             await reportBug(values);
-            resetForm();
+            formikHelpers.resetForm();
             navigation.navigate("home");
             displayToast({
                 text: t("pages.settings.reportBug.success"),

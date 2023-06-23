@@ -46,11 +46,7 @@ const AddPlant = ({ navigation }: Props): JSX.Element => {
 
     const onSubmit = async (
         values: AddPlantForm,
-        {
-            resetForm,
-        }: {
-            resetForm: FormikHelpers<AddPlantForm>["resetForm"];
-        }
+        formikHelpers: FormikHelpers<AddPlantForm>
     ) => {
         try {
             setLoading(true);
@@ -70,7 +66,7 @@ const AddPlant = ({ navigation }: Props): JSX.Element => {
                     wateringReminderFrequency,
                 }),
             });
-            resetForm();
+            formikHelpers.resetForm();
             navigation.navigate("home");
             displayToast({
                 text: t("pages.plants.add.success"),

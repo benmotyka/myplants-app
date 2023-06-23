@@ -43,17 +43,13 @@ const ImportPlant = ({ navigation }: Props): JSX.Element => {
 
     const onSubmit = async (
         values: ImportPlantForm,
-        {
-            resetForm,
-        }: {
-            resetForm: FormikHelpers<ImportPlantForm>["resetForm"];
-        }
+        formikHelpers: FormikHelpers<ImportPlantForm>
     ) => {
         try {
             setLoading(true);
 
             await importPlant(values.plantShareId);
-            resetForm();
+            formikHelpers.resetForm();
             navigation.navigate("home");
             displayToast({
                 text: t("pages.plants.import.success"),
