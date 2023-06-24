@@ -10,7 +10,7 @@ import {
 import { AkayaKanadaka_400Regular } from "@expo-google-fonts/akaya-kanadaka";
 import * as Sentry from "sentry-expo";
 import { ThemeProvider } from "styled-components/native";
-
+import * as Notifications from 'expo-notifications';
 import { sentryDsn } from "config/environment";
 import StatusBar from "components/StatusBar";
 import ErrorBoundary from "components/ErrorBoundary";
@@ -34,6 +34,14 @@ Sentry.init({
     enableInExpoDevelopment: true,
     debug: true,
 });
+
+Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowAlert: true,
+      shouldPlaySound: false,
+      shouldSetBadge: false,
+    }),
+  });
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

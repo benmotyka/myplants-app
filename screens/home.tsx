@@ -22,6 +22,7 @@ import { isNewUpdate, shouldShowRateAppModal } from "utils";
 import NewUpdateModal from "modals/NewUpdate";
 import RateAppModal from "modals/RateApp";
 import HelpModal from "modals/Help";
+import { useNotifications } from "hooks/useNotifications";
 
 type Props = NativeStackScreenProps<RootStackParamList, "home">;
 
@@ -31,7 +32,7 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
   const displayToast = useToastStore((state) => state.showToast);
   const isHelpModalOpen = useModalsStore((state) => state.isHelpModalOpen);
   const ephemeralAppConfig = useAppConfigStore.ephemeral((state) => state);
-
+  const { expoPushToken } = useNotifications();
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [showRateAppModal, setShowRateAppModal] = useState(false);
   const [dataSource, setDataSource] = useState<Plant[]>(
