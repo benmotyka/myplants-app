@@ -11,3 +11,7 @@ export const updateUserSettings = async ({
         pushNotificationsEnabled,
     });
 };
+
+export const upsertPushNotificationsToken = async (token: string) => {
+    return await plantsApi.put("/user/notifications", token)
+}
