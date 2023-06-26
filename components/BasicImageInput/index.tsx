@@ -9,7 +9,7 @@ import AddPhotoSourceModal from "modals/AddPhotoSource";
 interface Props {
     buttonText: string;
     image?: ImagePicker.ImageInfo | { uri: string | undefined } | null;
-    setImage: (...args: any[]) => void;
+    setImage: React.Dispatch<React.SetStateAction<any>>;
 }
 
 const BasicImageInput = ({

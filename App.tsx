@@ -54,11 +54,7 @@ export default function App() {
 
     const appTheme = useAppConfigStore.persistent((state) => state.theme);
 
-    if (!fontsLoaded) {
-        return <AppLoading />;
-    }
-
-    return (
+    return fontsLoaded ? (
         <ThemeProvider theme={appTheme === "dark" ? darkTheme : lightTheme}>
             <RootSiblingParent>
                 <StatusBar />
@@ -116,5 +112,5 @@ export default function App() {
                 </NavigationContainer>
             </RootSiblingParent>
         </ThemeProvider>
-    );
+    ) : <AppLoading />;
 }
