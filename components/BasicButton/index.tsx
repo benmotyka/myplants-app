@@ -4,7 +4,7 @@ import { ButtonWrapper, ButtonText } from "./styles";
 
 interface Props {
     text: string;
-    onPress: (...args: any[]) => void;
+    onPress: () => void;
     warning?: boolean;
     important?: boolean;
     disabled?: boolean;

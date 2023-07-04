@@ -136,11 +136,7 @@ const ImportPlant = ({ navigation }: Props): JSX.Element => {
                                     />
                                     <View style={{ marginVertical: 30 }}>
                                         <BasicButton
-                                            onPress={
-                                                handleSubmit as (
-                                                    values: unknown
-                                                ) => void
-                                            }
+                                            onPress={handleSubmit}
                                             text={t("common.confirm")}
                                         />
                                     </View>

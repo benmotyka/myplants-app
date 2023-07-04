@@ -193,11 +193,7 @@ const AddPlant = ({ navigation }: Props): JSX.Element => {
                                 </AnimatePresence>
                                 <View style={{ marginTop: 30 }}>
                                     <BasicButton
-                                        onPress={
-                                            handleSubmit as (
-                                                values: unknown
-                                            ) => void
-                                        }
+                                        onPress={handleSubmit}
                                         text={t("pages.plants.add.submit")}
                                     />
                                 </View>
