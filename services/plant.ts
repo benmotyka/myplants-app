@@ -1,11 +1,8 @@
 import plantsApi from "config/api/plants";
 import { Plant, PlantImagesHistoryData } from "interfaces";
-import * as Localization from "expo-localization";
 
 export const getPlants = async () => {
-  const { data } = await plantsApi.get<{ plants: Plant[] }>(`/plants`, {
-    headers: { locale: Localization.locale },
-  });
+  const { data } = await plantsApi.get<{ plants: Plant[] }>(`/plants`);
 
   return data;
 };

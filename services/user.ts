@@ -1,17 +1,23 @@
 import plantsApi from "config/api/plants";
 
 interface UpdateUserSettings {
-    pushNotificationsEnabled: boolean;
+  pushNotificationsEnabled: boolean;
 }
 
 export const updateUserSettings = async ({
-    pushNotificationsEnabled,
+  pushNotificationsEnabled,
 }: UpdateUserSettings) => {
-    return await plantsApi.put("/user/settings", {
-        pushNotificationsEnabled,
-    });
+  return await plantsApi.put("/user/settings", {
+    pushNotificationsEnabled,
+  });
 };
 
-export const upsertPushNotificationsToken = async (token: string) => {
-    return await plantsApi.put("/user/notifications", token)
+interface UpdateUserInfo {
+  deviceLanguage: string;
+  pushNotificationToken?: string;
+  deviceInfo: string | null;
 }
+
+export const updateUserInfo = async (payload: UpdateUserInfo) => {
+  return await plantsApi.put("/user/info", payload);
+};

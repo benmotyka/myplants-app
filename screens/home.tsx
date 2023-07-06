@@ -22,6 +22,9 @@ import NewUpdateModal from "modals/NewUpdate";
 import RateAppModal from "modals/RateApp";
 import HelpModal from "modals/Help";
 import { useNotifications } from "hooks/useNotifications";
+import { updateUserInfo } from "services/user";
+import * as Localization from "expo-localization";
+import * as Device from "expo-device";
 
 type Props = NativeStackScreenProps<RootStackParamList, "home">;
 
@@ -66,6 +69,14 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
       "hardwareBackPress",
       () => true
     );
+
+    updateUserInfo({
+      deviceLanguage: Localization.locale,
+      pushNotificationToken: expoPushToken,
+      deviceInfo: Device.modelName,
+    }).catch((error) => {
+      console.error(error);
+    });
 
     return () => backHandler.remove();
   }, [isFocused]);

@@ -20,7 +20,7 @@ const registerForPushNotificationsAsync = async () => {
     token = (await Notifications.getExpoPushTokenAsync()).data;
     console.log(token);
   } else {
-      console.error("Must use physical device for Push Notifications");
+    console.error("Must use physical device for Push Notifications");
   }
 
   if (Platform.OS === "android") {
@@ -36,12 +36,13 @@ const registerForPushNotificationsAsync = async () => {
 };
 
 export const useNotifications = () => {
-  const [expoPushToken, setExpoPushToken] = useState<string | undefined>('');
+  const [expoPushToken, setExpoPushToken] = useState<string | undefined>("");
   const notificationListener = useRef<Subscription>();
   const responseListener = useRef<Subscription>();
 
   useEffect(() => {
     registerForPushNotificationsAsync().then((token) =>
+      // TODO: add check if web
       setExpoPushToken(token)
     );
 
