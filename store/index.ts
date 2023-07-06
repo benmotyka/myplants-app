@@ -2,7 +2,7 @@ import { Appearance } from "react-native";
 import { StateCreator, create } from "zustand";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { persist, PersistOptions } from "zustand/middleware";
-import { Plant } from "interfaces";
+import { Plant, UserInfo } from "interfaces";
 
 type ToastTypes = "error" | "success" | "info";
 
@@ -51,6 +51,37 @@ export const usePlantsPersistentStore = create<UserPlantsState>(
     }),
     {
       name: "user-plants-storage",
+      getStorage: () => AsyncStorage,
+    }
+  )
+);
+
+interface UserInfoState {
+  data: UserInfo;
+  setUserInfo: ({
+    deviceInfo,
+    deviceLanguage,
+    pushNotificationToken,
+  }: UserInfo) => void;
+}
+
+type UserInfoPersist = (
+  config: StateCreator<UserInfoState>,
+  options: PersistOptions<UserInfoState>
+) => StateCreator<UserInfoState>;
+
+export const useUserInfoPersistentStore = create<UserInfoState>(
+  (persist as unknown as UserInfoPersist)(
+    (set) => ({
+      data: {
+        deviceInfo: "",
+        deviceLanguage: "",
+        pushNotificationToken: "",
+      },
+      setUserInfo: (data) => set({ data }),
+    }),
+    {
+      name: "user-info-storage",
       getStorage: () => AsyncStorage,
     }
   )

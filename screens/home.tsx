@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FlatList, BackHandler } from "react-native";
 import { useIsFocused } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "interfaces";
+import { RootStackParamList, UserInfo } from "interfaces";
 import PlantPreview from "components/Plant";
 import { numberOfColumns } from "components/Plant/styles";
 import AddPlantSuggestion from "components/AddPlantSuggestion";
@@ -14,6 +14,7 @@ import {
   useAppConfigStore,
   useModalsStore,
   usePlantsPersistentStore,
+  useUserInfoPersistentStore,
 } from "store";
 import { getPlants } from "services/plant";
 import i18n from "config/i18n";
@@ -41,7 +42,7 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
     persistentPlantsStore.userPlants
   );
   const isFocused = useIsFocused();
-
+  const { setUserInfo } = useUserInfoPersistentStore((state) => state);
   const { isRateAppModalShown } = useAppConfigStore.persistent(
     (state) => state
   );
@@ -70,13 +71,15 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
       () => true
     );
 
-    updateUserInfo({
+    const userInfo: UserInfo = {
       deviceLanguage: Localization.locale,
-      pushNotificationToken: expoPushToken,
-      deviceInfo: Device.modelName,
-    }).catch((error) => {
-      console.error(error);
-    });
+      pushNotificationToken: expoPushToken || "",
+      deviceInfo: Device.modelName || "UNKNOWN",
+    };
+    
+    updateUserInfo(userInfo)
+      .then(() => setUserInfo(userInfo))
+      .catch((error) => console.error(error));
 
     return () => backHandler.remove();
   }, [isFocused]);
