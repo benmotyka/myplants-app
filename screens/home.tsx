@@ -42,7 +42,9 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
     persistentPlantsStore.userPlants
   );
   const isFocused = useIsFocused();
-  const { setUserInfo } = useUserInfoPersistentStore((state) => state);
+  const { setUserInfo, data: cachedUserInfo } = useUserInfoPersistentStore(
+    (state) => state
+  );
   const { isRateAppModalShown } = useAppConfigStore.persistent(
     (state) => state
   );
@@ -76,10 +78,13 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
       pushNotificationToken: expoPushToken || "",
       deviceInfo: Device.modelName || "UNKNOWN",
     };
-    
-    updateUserInfo(userInfo)
-      .then(() => setUserInfo(userInfo))
-      .catch((error) => console.error(error));
+
+    // Check if user info has changed and if it has, update it in the database and cache
+    if (JSON.stringify(cachedUserInfo) !== JSON.stringify(userInfo)) {
+      updateUserInfo(userInfo)
+        .then(() => setUserInfo(userInfo))
+        .catch((error) => console.error(error));
+    }
 
     return () => backHandler.remove();
   }, [isFocused]);
