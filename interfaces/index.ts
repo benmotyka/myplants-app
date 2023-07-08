@@ -57,6 +57,6 @@ export interface WateringData {
 
 export interface UserInfo {
     deviceLanguage: string;
-    pushNotificationToken: string;
+    pushNotificationToken?: string;
     deviceInfo: string;
 }

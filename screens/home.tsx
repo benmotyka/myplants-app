@@ -57,7 +57,7 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
         persistentPlantsStore.setUserPlants(plants);
         setDataSource(plants);
         if (!isRateAppModalShown)
-          setShowRateAppModal(shouldShowRateAppModal(plants.length));
+          setShowRateAppModal(!!shouldShowRateAppModal(plants.length));
       })
       .catch(() => {
         displayToast({ text: t("errors.general"), type: "error" });
@@ -75,7 +75,7 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
 
     const userInfo: UserInfo = {
       deviceLanguage: Localization.locale,
-      pushNotificationToken: expoPushToken || "",
+      pushNotificationToken: expoPushToken,
       deviceInfo: Device.modelName || "UNKNOWN",
     };
 
