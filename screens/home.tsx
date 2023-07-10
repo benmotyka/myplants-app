@@ -7,7 +7,6 @@ import PlantPreview from "components/Plant";
 import { numberOfColumns } from "components/Plant/styles";
 import AddPlantSuggestion from "components/AddPlantSuggestion";
 import HomeSettings from "components/HomeSettings";
-import { Plant } from "interfaces";
 import { ScreenContainer } from "styles/shared";
 import {
   useToastStore,
@@ -22,7 +21,7 @@ import { isNewUpdate, shouldShowRateAppModal } from "utils";
 import NewUpdateModal from "modals/NewUpdate";
 import RateAppModal from "modals/RateApp";
 import HelpModal from "modals/Help";
-import { useNotifications } from "hooks/useNotifications";
+import { registerForPushNotificationsAsync } from "hooks/useNotifications";
 import { updateUserInfo } from "services/user";
 import * as Localization from "expo-localization";
 import * as Device from "expo-device";
@@ -35,10 +34,9 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
   const displayToast = useToastStore((state) => state.showToast);
   const isHelpModalOpen = useModalsStore((state) => state.isHelpModalOpen);
   const ephemeralAppConfig = useAppConfigStore.ephemeral((state) => state);
-  const { expoPushToken } = useNotifications();
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [showRateAppModal, setShowRateAppModal] = useState(false);
-  const [dataSource, setDataSource] = useState<Plant[]>(
+  const [dataSource, setDataSource] = useState(
     persistentPlantsStore.userPlants
   );
   const isFocused = useIsFocused();
@@ -74,17 +72,23 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
     );
 
     const userInfo: UserInfo = {
-      deviceLanguage: Localization.locale,
-      pushNotificationToken: expoPushToken,
+      deviceLanguage: Localization.locale || "UNKNOWN",
       deviceInfo: Device.modelName || "UNKNOWN",
     };
 
-    // Check if user info has changed and if it has, update it in the database and cache
-    if (JSON.stringify(cachedUserInfo) !== JSON.stringify(userInfo)) {
-      updateUserInfo(userInfo)
-        .then(() => setUserInfo(userInfo))
-        .catch((error) => console.error(error));
-    }
+    registerForPushNotificationsAsync()
+      .then((expoPushToken) => {
+        userInfo.pushNotificationToken = expoPushToken;
+      })
+      .catch((error) => console.error(error))
+      .finally(() => {
+        // Check if user info has changed and if it has, update it in the database and cache
+        if (JSON.stringify(cachedUserInfo) !== JSON.stringify(userInfo)) {
+          updateUserInfo(userInfo)
+            .then(() => setUserInfo(userInfo))
+            .catch((error) => console.error(error));
+        }
+      });
 
     return () => backHandler.remove();
   }, [isFocused]);

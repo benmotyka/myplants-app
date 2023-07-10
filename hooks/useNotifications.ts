@@ -4,8 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import { Platform } from "react-native";
 import { Subscription } from "expo-modules-core";
 
-const registerForPushNotificationsAsync = async () => {
+export const registerForPushNotificationsAsync = async () => {
   let token;
+
+  if (Platform.OS === "web") {
+    return "web";
+  }
+
   if (Device.isDevice) {
     const { status: existingStatus } =
       await Notifications.getPermissionsAsync();
@@ -35,37 +40,37 @@ const registerForPushNotificationsAsync = async () => {
   return token;
 };
 
-export const useNotifications = () => {
-  const [expoPushToken, setExpoPushToken] = useState<string | undefined>("");
-  const notificationListener = useRef<Subscription>();
-  const responseListener = useRef<Subscription>();
+// export const useNotifications = () => {
+//   const [expoPushToken, setExpoPushToken] = useState<string | undefined>("");
+//   const notificationListener = useRef<Subscription>();
+//   const responseListener = useRef<Subscription>();
 
-  useEffect(() => {
-    registerForPushNotificationsAsync().then((token) =>
-      // TODO: add check if web
-      setExpoPushToken(token)
-    );
+//   useEffect(() => {
+//     registerForPushNotificationsAsync().then((token) =>
+//       // TODO: add check if web
+//       setExpoPushToken(token)
+//     );
 
-    notificationListener.current =
-      Notifications.addNotificationReceivedListener((notification) => {
-        // setNotification(notification);
-        console.log(notification);
-      });
+//     notificationListener.current =
+//       Notifications.addNotificationReceivedListener((notification) => {
+//         // setNotification(notification);
+//         console.log(notification);
+//       });
 
-    responseListener.current =
-      Notifications.addNotificationResponseReceivedListener((response) => {
-        console.log(response);
-      });
+//     responseListener.current =
+//       Notifications.addNotificationResponseReceivedListener((response) => {
+//         console.log(response);
+//       });
 
-    return () => {
-      notificationListener.current &&
-        Notifications.removeNotificationSubscription(
-          notificationListener.current
-        );
-      responseListener.current &&
-        Notifications.removeNotificationSubscription(responseListener.current);
-    };
-  }, []);
+//     return () => {
+//       notificationListener.current &&
+//         Notifications.removeNotificationSubscription(
+//           notificationListener.current
+//         );
+//       responseListener.current &&
+//         Notifications.removeNotificationSubscription(responseListener.current);
+//     };
+//   }, []);
 
-  return { expoPushToken };
-};
+//   return { expoPushToken };
+// };
