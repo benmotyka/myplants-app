@@ -32,7 +32,7 @@ module.exports = {
     web: {
         favicon: "./assets/icon.png",
     },
-    plugins: ["sentry-expo"],
+    plugins: ["sentry-expo", "expo-localization"],
     extra: {
         apiUrl: process.env.API_URL,
         sentryDsn: process.env.SENTRY_DSN,
