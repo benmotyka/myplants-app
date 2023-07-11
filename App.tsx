@@ -43,6 +43,13 @@ Notifications.setNotificationHandler({
     }),
   });
 
+
+// Workaround for errors in SDK 48
+if (typeof window !== 'undefined') {
+    // @ts-ignore
+    window._frameTimestamp = null;
+}
+
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
