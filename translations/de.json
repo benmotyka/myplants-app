@@ -90,7 +90,8 @@
     },
     "errors": {
         "required": "Dieses Feld ist erforderlich",
-        "general": "Etwas ist schiefgelaufen. Bitte versuchen Sie es später erneut",
+        "general": "Etwas ist schiefgelaufen.",
+        "generalDescription": "Bitte versuchen Sie es später erneut.",
         "invalidFileType": "Ungültiger Dateityp",
         "fieldTooLong": "{{field}} darf höchstens {{number}} Buchstaben enthalten.",
         "valueMustBeNumber": "Der Wert muss eine Zahl sein",

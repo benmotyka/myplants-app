@@ -16,9 +16,10 @@ import {
     TimeWrapper,
 } from "components/Plant/styles";
 import { calculateDifferenceFromNow } from "utils/date";
-import { useAppConfigStore, useToastStore } from "store";
+import { useAppConfigStore } from "store";
 import { cancelWatering, waterPlant } from "services/watering";
 import i18n from "config/i18n";
+import { showToast } from "utils/index";
 
 const MAX_SLIDER_VALUE = 1;
 const SLIDE_SUCCESS_VALUE_THRESHOLD = 0.9;
@@ -54,7 +55,6 @@ const Plant = ({
     const { t } = i18n;
     const isFocused = useIsFocused();
     const wateringRef = useRef<string>("");
-    const displayToast = useToastStore((state) => state.showToast);
     const theme = useTheme();
     const appTheme = useAppConfigStore.persistent((state) => state.theme);
 
@@ -122,15 +122,19 @@ const Plant = ({
         try {
             wateringRef.current = await waterPlant(id);
 
-            displayToast({
-                text: t("components.plant.success"),
-                type: "success",
-                onCancel: onCancelToast,
-            });
+            showToast({
+                text1: t("components.plant.success"),
+                type: "success"
+                // @TODO: add on cancel
+            })
             setTimeFromLastWatering(calculateDifferenceFromNow(new Date()));
             setWatered(true);
         } catch (error) {
-            displayToast({ text: t("errors.general"), type: "error" });
+            showToast({
+                text1: t("errors.general"),
+                text2: t("errors.generalDescription"),
+                type: "error",
+            })
         }
     };
 
@@ -154,15 +158,19 @@ const Plant = ({
                     ? calculateDifferenceFromNow(latestWatering.createdAt)
                     : null
             );
-            displayToast({
-                text: t("components.plant.wateringCanceled"),
-                type: "info",
-            });
-
+            showToast({
+                text1: t("components.plant.wateringCanceled"),
+                type: "info"
+                // @TODO: add on cancel
+            })
             setWatered(false);
             setSliderValue(0);
         } catch (error) {
-            displayToast({ text: t("errors.general"), type: "error" });
+            showToast({
+                text1: t("errors.general"),
+                text2: t("errors.generalDescription"),
+                type: "error",
+            })
         }
     };
 

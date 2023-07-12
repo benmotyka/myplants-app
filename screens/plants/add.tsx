@@ -23,8 +23,8 @@ import { base64EncodeImage } from "utils/images";
 import i18n from "config/i18n";
 import BasicCheckbox from "components/BasicCheckbox";
 import WateringReminderInput from "components/WateringReminderInput";
-import { useToastStore } from "store";
 import { addPlant } from "services/plant";
+import { showToast } from "utils/index";
 
 type Props = NativeStackScreenProps<RootStackParamList, "addPlant">;
 
@@ -41,7 +41,6 @@ const AddPlant = ({ navigation }: Props): JSX.Element => {
     const [loading, setLoading] = useState(false);
     const [isRemindersChecked, setRemindersChecked] = useState(false);
     const [image, setImage] = useState<ImageInfo>();
-    const displayToast = useToastStore((state) => state.showToast);
     const theme = useTheme();
 
     const onSubmit = async (
@@ -68,22 +67,22 @@ const AddPlant = ({ navigation }: Props): JSX.Element => {
             });
             formikHelpers.resetForm();
             navigation.navigate("home");
-            displayToast({
-                text: t("pages.plants.add.success"),
+            showToast({
+                text1: t("pages.plants.add.success"),
                 type: "success",
-            });
+            })
         } catch (error) {
             switch (error) {
                 case ApiErrors.INVALID_FILE:
-                    return displayToast({
-                        text: t("errors.invalidFileType"),
+                    return showToast({
+                        text1: t("errors.invalidFileType"),
                         type: "error",
-                    });
+                    })
                 default:
-                    return displayToast({
-                        text: t("errors.general"),
+                    return showToast({
+                        text1: t("errors.general"),
                         type: "error",
-                    });
+                    })
             }
         } finally {
             setLoading(false);

@@ -90,7 +90,8 @@
     },
     "errors": {
         "required": "Required",
-        "general": "Something went wrong. Please try again later.",
+        "general": "Something went wrong.",
+        "generalDescription": "Please try again later.",
         "invalidFileType": "Invalid file type",
         "fieldTooLong": "{{field}} too long. Maximum {{number}} characters.",
         "valueMustBeNumber": "Value must be a number",

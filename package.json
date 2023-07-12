@@ -64,6 +64,7 @@
     "react-native-root-siblings": "^4.1.1",
     "react-native-safe-area-context": "4.5.0",
     "react-native-screens": "~3.20.0",
+    "react-native-toast-message": "^2.1.6",
     "react-native-version-check-expo": "^3.4.7",
     "react-native-web": "~0.18.7",
     "sentry-expo": "~6.2.0",

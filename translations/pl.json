@@ -90,7 +90,8 @@
     },
     "errors": {
         "required": "Pole wymagane",
-        "general": "Coś poszło nie tak. Spróbuj ponownie później",
+        "general": "Coś poszło nie tak.",
+        "generalDescription": "Spróbuj ponownie później.",
         "invalidFileType": "Błędny plik",
         "fieldTooLong": "{{field}} musi mieć maksymalnie {{number}} liter.",
         "valueMustBeNumber": "Wartość musi być liczbą",

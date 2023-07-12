@@ -1,9 +1,9 @@
-// import Sentry from "@sentry/react-native";
 import { Platform } from "react-native";
 // @ts-ignore
 import VersionCheck from "react-native-version-check-expo";
 import * as Linking from "expo-linking";
 import { googlePlayStoreUrl, appStoreUrl } from "config";
+import Toast, { BaseToast } from "react-native-toast-message";
 
 // export const handleError = (error: unknown) => {
 //     Sentry.captureException(error);
@@ -61,4 +61,21 @@ export const shouldShowRateAppModal = (plantsAmount: number) => {
   if (plantsAmount < PLANTS_AMOUNT_THRESHOLD) return;
 
   return Math.random() * 100 < CHANCE_THRESHOLD;
+};
+
+export const showToast = ({
+  text1,
+  text2,
+  type,
+}: {
+  text1: string;
+  type: "success" | "error" | "info";
+  text2?: string;
+}) => {
+  Toast.show({
+    type,
+    text1,
+    text2,
+    visibilityTime: 2000,
+  });
 };
