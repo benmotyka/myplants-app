@@ -2,6 +2,7 @@ import AppLoading from "expo-app-loading";
 import Toast, {
   BaseToast,
   ErrorToast,
+  InfoToast,
   ToastProps,
 } from "react-native-toast-message";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -68,9 +69,11 @@ export default function App() {
     success: (props: ToastProps) => (
       <BaseToast
         {...props}
-        
         style={{ borderLeftColor: "green" }}
-        contentContainerStyle={{ backgroundColor: currentTheme.success }}
+        contentContainerStyle={{
+          backgroundColor: currentTheme.success,
+          minHeight: 50,
+        }}
         text1Style={{
           fontSize: 20,
           fontWeight: "400",
@@ -82,65 +85,83 @@ export default function App() {
       <ErrorToast
         {...props}
         style={{ borderLeftColor: currentTheme.warning }}
-        contentContainerStyle={{ paddingHorizontal: 10, backgroundColor: currentTheme.warning, opacity: 0.8 }}
+        contentContainerStyle={{
+          paddingHorizontal: 10,
+          backgroundColor: currentTheme.warning,
+          opacity: 0.8,
+          minHeight: 50,
+        }}
         text1Style={{
           fontSize: 18,
           color: currentTheme.white,
         }}
         text2Style={{
-            fontSize: 16,
-            color: currentTheme.white,
-            marginTop: 5,
+          fontSize: 16,
+          color: currentTheme.white,
+          marginTop: 5,
         }}
-        
+        onPress={() => {
+          alert(1);
+        }}
+      />
+    ),
+    info: (props: ToastProps) => (
+      <InfoToast
+        {...props}
+        style={{ borderLeftColor: currentTheme.primary }}
+        contentContainerStyle={{
+          paddingHorizontal: 10,
+          backgroundColor: currentTheme.primaryLight,
+          minHeight: 50,
+        }}
+        text1Style={{
+          fontSize: 18,
+          color: currentTheme.white,
+        }}
+        text2Style={{
+          fontSize: 16,
+          color: currentTheme.white,
+          marginTop: 5,
+        }}
       />
     ),
   };
 
   return fontsLoaded ? (
     <ThemeProvider theme={currentTheme}>
-        <StatusBar />
-        <NavigationContainer>
-            <ErrorBoundary>
-              <Stack.Navigator
-                screenOptions={{
-                  headerShown: false,
-                  animation: "fade_from_bottom",
-                }}
-              >
-                <Stack.Screen
-                  name="home"
-                  component={HomeScreen}
-                  options={{ gestureEnabled: false }}
-                />
+      <StatusBar />
+      <NavigationContainer>
+        <ErrorBoundary>
+          <Stack.Navigator
+            screenOptions={{
+              headerShown: false,
+              animation: "fade_from_bottom",
+            }}
+          >
+            <Stack.Screen
+              name="home"
+              component={HomeScreen}
+              options={{ gestureEnabled: false }}
+            />
 
-                <Stack.Screen name="addPlant" component={AddPlantScreen} />
-                <Stack.Screen name="editPlant" component={EditPlantScreen} />
-                <Stack.Screen
-                  name="plantHistory"
-                  component={PlantHistoryScreen}
-                />
-                <Stack.Screen
-                  name="importPlant"
-                  component={ImportPlantScreen}
-                />
+            <Stack.Screen name="addPlant" component={AddPlantScreen} />
+            <Stack.Screen name="editPlant" component={EditPlantScreen} />
+            <Stack.Screen name="plantHistory" component={PlantHistoryScreen} />
+            <Stack.Screen name="importPlant" component={ImportPlantScreen} />
 
-                <Stack.Screen name="settings" component={SettingsScreen} />
-                <Stack.Screen
-                  name="settingsNotifications"
-                  component={SettingsNotificationsScreen}
-                />
-                <Stack.Screen
-                  name="settingsApp"
-                  component={SettingsAppScreen}
-                />
-                <Stack.Screen
-                  name="settingsContactReportBug"
-                  component={SettingsContactReportBug}
-                />
-              </Stack.Navigator>
-            </ErrorBoundary>
-        </NavigationContainer>
+            <Stack.Screen name="settings" component={SettingsScreen} />
+            <Stack.Screen
+              name="settingsNotifications"
+              component={SettingsNotificationsScreen}
+            />
+            <Stack.Screen name="settingsApp" component={SettingsAppScreen} />
+            <Stack.Screen
+              name="settingsContactReportBug"
+              component={SettingsContactReportBug}
+            />
+          </Stack.Navigator>
+        </ErrorBoundary>
+      </NavigationContainer>
       <Toast config={toastConfig} />
     </ThemeProvider>
   ) : (

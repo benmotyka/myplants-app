@@ -9,7 +9,7 @@ import { ImageData } from "interfaces";
 import i18n from "config/i18n";
 import { deleteImageFromPlant } from "services/plant";
 import { DeleteButtonWrapper } from "./styles";
-import { showToast } from "utils/index";
+import { showToast } from "utils/toast";
 
 interface Props {
     showModal: boolean;

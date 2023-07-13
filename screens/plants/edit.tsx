@@ -31,7 +31,7 @@ import { useGetPlantDetailsFromCache } from "hooks/useGetPlantDetailsFromCache";
 import i18n from "config/i18n";
 import { RootStackParamList } from "interfaces";
 import DeletePlantConfirmationModal from "modals/DeletePlantConfirmation";
-import { showToast } from "utils";
+import { showToast } from "utils/toast";
 
 type Props = NativeStackScreenProps<RootStackParamList, "editPlant">;
 

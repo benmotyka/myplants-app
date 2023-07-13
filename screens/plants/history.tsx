@@ -44,7 +44,7 @@ import { useGetPlantDetailsFromCache } from "hooks/useGetPlantDetailsFromCache";
 import i18n from "config/i18n";
 import SharePlantModal from "modals/SharePlant";
 import PlantImageModal from "modals/PlantImage";
-import { showToast } from "utils/index";
+import { showToast } from "utils/toast";
 
 type Props = NativeStackScreenProps<RootStackParamList, "plantHistory">;
 

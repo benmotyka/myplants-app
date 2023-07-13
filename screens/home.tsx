@@ -16,7 +16,7 @@ import {
 } from "store";
 import { getPlants } from "services/plant";
 import i18n from "config/i18n";
-import { isNewUpdate, shouldShowRateAppModal, showToast } from "utils";
+import { isNewUpdate, shouldShowRateAppModal } from "utils";
 import NewUpdateModal from "modals/NewUpdate";
 import RateAppModal from "modals/RateApp";
 import HelpModal from "modals/Help";
@@ -24,6 +24,7 @@ import { registerForPushNotificationsAsync } from "hooks/useNotifications";
 import { updateUserInfo } from "services/user";
 import * as Localization from "expo-localization";
 import * as Device from "expo-device";
+import { showToast } from "utils/toast";
 
 type Props = NativeStackScreenProps<RootStackParamList, "home">;
 

@@ -23,7 +23,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { useTheme } from "styled-components/native";
 import ReportBugHelpModal from "modals/ReportBugHelp";
 import { ApiErrors } from "enums/api-errors";
-import { showToast } from "utils";
+import { showToast } from "utils/toast";
 
 type Props = NativeStackScreenProps<
   RootStackParamList,

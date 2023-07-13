@@ -23,7 +23,7 @@ import i18n from "config/i18n";
 import { ICON_SIZE_PX } from "config";
 import { importPlant } from "services/plant";
 import ImportPlantHelpModal from "modals/ImportPlantHelp";
-import { showToast } from "utils";
+import { showToast } from "utils/toast";
 
 type Props = NativeStackScreenProps<
     RootStackParamList,

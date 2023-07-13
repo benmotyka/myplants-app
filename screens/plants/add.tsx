@@ -24,7 +24,7 @@ import i18n from "config/i18n";
 import BasicCheckbox from "components/BasicCheckbox";
 import WateringReminderInput from "components/WateringReminderInput";
 import { addPlant } from "services/plant";
-import { showToast } from "utils/index";
+import { showToast } from "utils/toast";
 
 type Props = NativeStackScreenProps<RootStackParamList, "addPlant">;
 
