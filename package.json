@@ -61,7 +61,6 @@
     "react-native-get-random-values": "~1.8.0",
     "react-native-keyboard-aware-scroll-view": "^0.9.5",
     "react-native-reanimated": "~2.14.4",
-    "react-native-root-siblings": "^4.1.1",
     "react-native-safe-area-context": "4.5.0",
     "react-native-screens": "~3.20.0",
     "react-native-toast-message": "^2.1.6",

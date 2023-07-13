@@ -25,13 +25,13 @@ import { base64EncodeImage } from "utils/images";
 import BasicCheckbox from "components/BasicCheckbox";
 import { AnimatePresence, MotiView } from "moti";
 import WateringReminderInput from "components/WateringReminderInput";
-import { useToastStore } from "store";
 import { ICON_SIZE_PX } from "config";
 import { deletePlant, editPlant } from "services/plant";
 import { useGetPlantDetailsFromCache } from "hooks/useGetPlantDetailsFromCache";
 import i18n from "config/i18n";
 import { RootStackParamList } from "interfaces";
 import DeletePlantConfirmationModal from "modals/DeletePlantConfirmation";
+import { showToast } from "utils";
 
 type Props = NativeStackScreenProps<RootStackParamList, "editPlant">;
 
@@ -51,8 +51,6 @@ const EditPlant = ({ route, navigation }: Props): JSX.Element => {
   const [showModal, setShowModal] = useState(false);
   const theme = useTheme();
 
-  const displayToast = useToastStore((state) => state.showToast);
-
   const {
     isReminderChecked,
     plant: selectedPlant,
@@ -63,12 +61,16 @@ const EditPlant = ({ route, navigation }: Props): JSX.Element => {
     try {
       await deletePlant(plantId);
       navigation.navigate("home");
-      displayToast({
-        text: t("pages.plants.edit.plantDeletedSuccess"),
+      showToast({
+        text1: t("pages.plants.edit.plantDeletedSuccess"),
         type: "success",
       });
     } catch (error) {
-      return displayToast({ text: t("errors.general"), type: "error" });
+      return showToast({
+        text1: t("errors.general"),
+        text2: t("errors.generalDescription"),
+        type: "error",
+      });
     }
   };
 
@@ -93,20 +95,20 @@ const EditPlant = ({ route, navigation }: Props): JSX.Element => {
         }),
       });
       navigation.navigate("home");
-      displayToast({
-        text: t("pages.plants.edit.success"),
+      showToast({
+        text1: t("pages.plants.edit.success"),
         type: "success",
       });
     } catch (error) {
       switch (error) {
         case ApiErrors.INVALID_FILE:
-          return displayToast({
-            text: t("errors.invalidFileType"),
+          return showToast({
+            text1: t("errors.invalidFileType"),
             type: "error",
           });
         default:
-          return displayToast({
-            text: t("errors.general"),
+          return showToast({
+            text1: t("errors.general"),
             type: "error",
           });
       }

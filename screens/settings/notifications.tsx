@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-
 import { RootStackParamList } from "interfaces";
 import Back from "components/Back";
 import {
@@ -10,8 +9,8 @@ import {
 } from "styles/shared";
 import i18n from "config/i18n";
 import BasicSwitch from "components/BasicSwitch";
-import { useToastStore } from "store";
 import { updateUserSettings } from "services/user";
+import { showToast } from "utils";
 
 type Props = NativeStackScreenProps<
     RootStackParamList,
@@ -23,7 +22,6 @@ const { t } = i18n;
 const SettingsNotifications = ({ navigation }: Props): JSX.Element => {
     const [isAllowNotificationsEnabled, setAllowNotificationsEnabled] =
         useState(false);
-    const displayToast = useToastStore((state) => state.showToast);
 
     const handleSwitch = async (isEnabled: boolean) => {
         if (isEnabled === isAllowNotificationsEnabled) return;
@@ -33,7 +31,11 @@ const SettingsNotifications = ({ navigation }: Props): JSX.Element => {
                 pushNotificationsEnabled: isEnabled,
             });
         } catch (error) {
-            return displayToast({ text: t("errors.general"), type: "error" });
+            return showToast({
+                text1: t("errors.general"),
+                text2: t("errors.generalDescription"),
+                type: "error",
+              });
         }
     };
 

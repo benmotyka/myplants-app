@@ -4,7 +4,6 @@ import Toast, {
   ErrorToast,
   ToastProps,
 } from "react-native-toast-message";
-import { RootSiblingParent } from "react-native-root-siblings";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import {
@@ -100,7 +99,6 @@ export default function App() {
 
   return fontsLoaded ? (
     <ThemeProvider theme={currentTheme}>
-      <RootSiblingParent>
         <StatusBar />
         <NavigationContainer>
             <ErrorBoundary>
@@ -143,7 +141,6 @@ export default function App() {
               </Stack.Navigator>
             </ErrorBoundary>
         </NavigationContainer>
-      </RootSiblingParent>
       <Toast config={toastConfig} />
     </ThemeProvider>
   ) : (

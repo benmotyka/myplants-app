@@ -9,7 +9,6 @@ import AddPlantSuggestion from "components/AddPlantSuggestion";
 import HomeSettings from "components/HomeSettings";
 import { ScreenContainer } from "styles/shared";
 import {
-  useToastStore,
   useAppConfigStore,
   useModalsStore,
   usePlantsPersistentStore,
@@ -17,7 +16,7 @@ import {
 } from "store";
 import { getPlants } from "services/plant";
 import i18n from "config/i18n";
-import { isNewUpdate, shouldShowRateAppModal } from "utils";
+import { isNewUpdate, shouldShowRateAppModal, showToast } from "utils";
 import NewUpdateModal from "modals/NewUpdate";
 import RateAppModal from "modals/RateApp";
 import HelpModal from "modals/Help";
@@ -31,7 +30,6 @@ type Props = NativeStackScreenProps<RootStackParamList, "home">;
 const HomeScreen = ({ navigation }: Props): JSX.Element => {
   const { t } = i18n;
   const persistentPlantsStore = usePlantsPersistentStore((state) => state);
-  const displayToast = useToastStore((state) => state.showToast);
   const isHelpModalOpen = useModalsStore((state) => state.isHelpModalOpen);
   const ephemeralAppConfig = useAppConfigStore.ephemeral((state) => state);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
@@ -58,7 +56,11 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
           setShowRateAppModal(!!shouldShowRateAppModal(plants.length));
       })
       .catch(() => {
-        displayToast({ text: t("errors.general"), type: "error" });
+        showToast({
+          text1: t("errors.general"),
+          text2: t("errors.generalDescription"),
+          type: "error",
+        });
       });
 
     if (!ephemeralAppConfig.isClosedUpdateModal) {

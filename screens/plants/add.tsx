@@ -79,10 +79,11 @@ const AddPlant = ({ navigation }: Props): JSX.Element => {
                         type: "error",
                     })
                 default:
-                    return showToast({
+                    showToast({
                         text1: t("errors.general"),
+                        text2: t("errors.generalDescription"),
                         type: "error",
-                    })
+                      });
             }
         } finally {
             setLoading(false);

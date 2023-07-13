@@ -38,13 +38,13 @@ import { ICON_SIZE_PX } from "config";
 import BasicImageInput from "components/BasicImageInput";
 import BasicButton from "components/BasicButton";
 import { base64EncodeImage } from "utils/images";
-import { useToastStore } from "store";
 import { getImagesHistory, addImageToPlant } from "services/plant";
 import { getWateringHistory } from "services/watering";
 import { useGetPlantDetailsFromCache } from "hooks/useGetPlantDetailsFromCache";
 import i18n from "config/i18n";
 import SharePlantModal from "modals/SharePlant";
 import PlantImageModal from "modals/PlantImage";
+import { showToast } from "utils/index";
 
 type Props = NativeStackScreenProps<RootStackParamList, "plantHistory">;
 
@@ -67,7 +67,6 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
     const theme = useTheme();
 
     const scrollViewRef = useRef<ScrollView & HTMLElement>(null);
-    const displayToast = useToastStore((state) => state.showToast);
     const isFocused = useIsFocused();
 
     const { plant: selectedPlant } = useGetPlantDetailsFromCache(plantId);
@@ -79,8 +78,9 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
         } catch (error) {
             switch (error) {
                 default:
-                    return displayToast({
-                        text: t("errors.general"),
+                    return showToast({
+                        text1: t("errors.general"),
+                        text2: t("errors.generalDescription"),
                         type: "error",
                     });
             }
@@ -94,8 +94,9 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
         } catch (error) {
             switch (error) {
                 default:
-                    return displayToast({
-                        text: t("errors.general"),
+                    return showToast({
+                        text1: t("errors.general"),
+                        text2: t("errors.generalDescription"),
                         type: "error",
                     });
             }
@@ -112,16 +113,17 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
             await getPlantImagesHistory();
             setImage(null);
 
-            displayToast({
-                text: t("pages.plants.history.success"),
+            showToast({
+                text1: t("pages.plants.history.success"),
                 type: "success",
             });
             handleChangeSection("images");
         } catch (error) {
             switch (error) {
                 default:
-                    return displayToast({
-                        text: t("errors.general"),
+                    return showToast({
+                        text1: t("errors.general"),
+                        text2: t("errors.generalDescription"),
                         type: "error",
                     });
             }
