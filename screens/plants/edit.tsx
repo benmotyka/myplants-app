@@ -109,6 +109,7 @@ const EditPlant = ({ route, navigation }: Props): JSX.Element => {
         default:
           return showToast({
             text1: t("errors.general"),
+            text2: t("errors.generalDescription"),
             type: "error",
           });
       }
