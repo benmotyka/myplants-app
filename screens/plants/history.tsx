@@ -66,7 +66,7 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
     const [image, setImage] = useState<ImageInfo | null>();
     const theme = useTheme();
 
-    const scrollViewRef = useRef<ScrollView & HTMLElement>(null);
+    const scrollViewRef = useRef<ScrollView>(null);
     const isFocused = useIsFocused();
 
     const { plant: selectedPlant } = useGetPlantDetailsFromCache(plantId);
@@ -176,6 +176,7 @@ const PlantHistory = ({ route, navigation }: Props): JSX.Element => {
                 </HelperButton>
                 <ColumnCenterWrapper fullHeight>
                     <ScrollableHeader
+                        // @ts-ignore
                         ref={scrollViewRef}
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}

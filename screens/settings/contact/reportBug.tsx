@@ -15,7 +15,6 @@ import { Formik, FormikHelpers } from "formik";
 import { ReportBugSchema } from "schemas/ReportBug.schema";
 import { View } from "react-native";
 import BasicButton from "components/BasicButton";
-import { useToastStore } from "store";
 import Loader from "components/Loader";
 import { ICON_SIZE_PX } from "config";
 import { reportBug } from "services/plant";

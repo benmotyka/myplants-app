@@ -18,12 +18,11 @@ import {
 } from "styles/shared";
 import { ApiErrors } from "enums/api-errors";
 import { ImportPlantSchema } from "schemas/ImportPlant.schema";
-import { useToastStore } from "store";
-import i18n from "config/i18n";
 import { ICON_SIZE_PX } from "config";
 import { importPlant } from "services/plant";
 import ImportPlantHelpModal from "modals/ImportPlantHelp";
 import { showToast } from "utils/toast";
+import i18n from "config/i18n";
 
 type Props = NativeStackScreenProps<
     RootStackParamList,
@@ -39,7 +38,6 @@ const { t } = i18n;
 const ImportPlant = ({ navigation }: Props): JSX.Element => {
     const [showHelpModal, setShowHelpModal] = useState(false);
     const [loading, setLoading] = useState(false);
-    const displayToast = useToastStore((state) => state.showToast);
     const theme = useTheme();
 
     const onSubmit = async (
