@@ -18,11 +18,11 @@ import {
 } from "styles/shared";
 import { ApiErrors } from "enums/api-errors";
 import { ImportPlantSchema } from "schemas/ImportPlant.schema";
-import { useToastStore } from "store";
-import i18n from "config/i18n";
 import { ICON_SIZE_PX } from "config";
 import { importPlant } from "services/plant";
 import ImportPlantHelpModal from "modals/ImportPlantHelp";
+import { showToast } from "utils/toast";
+import i18n from "config/i18n";
 
 type Props = NativeStackScreenProps<
     RootStackParamList,
@@ -38,7 +38,6 @@ const { t } = i18n;
 const ImportPlant = ({ navigation }: Props): JSX.Element => {
     const [showHelpModal, setShowHelpModal] = useState(false);
     const [loading, setLoading] = useState(false);
-    const displayToast = useToastStore((state) => state.showToast);
     const theme = useTheme();
 
     const onSubmit = async (
@@ -51,25 +50,26 @@ const ImportPlant = ({ navigation }: Props): JSX.Element => {
             await importPlant(values.plantShareId);
             formikHelpers.resetForm();
             navigation.navigate("home");
-            displayToast({
-                text: t("pages.plants.import.success"),
+            showToast({
+                text1: t("pages.plants.import.success"),
                 type: "success",
             });
         } catch (error) {
             switch (error) {
                 case ApiErrors.PLANT_ALREADY_ADDED:
-                    return displayToast({
-                        text: t("errors.plantAlreadyAdded"),
+                    return showToast({
+                        text1: t("errors.plantAlreadyAdded"),
                         type: "info",
                     });
                 case ApiErrors.INVALID_PLANT:
-                    return displayToast({
-                        text: t("errors.plantNotExists"),
+                    return showToast({
+                        text1: t("errors.plantNotExists"),
                         type: "error",
                     });
                 default:
-                    return displayToast({
-                        text: t("errors.general"),
+                    return showToast({
+                        text1: t("errors.general"),
+                        text2: t("errors.generalDescription"),
                         type: "error",
                     });
             }

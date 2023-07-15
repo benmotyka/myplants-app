@@ -1,4 +1,3 @@
-// import Sentry from "@sentry/react-native";
 import { Platform } from "react-native";
 // @ts-ignore
 import VersionCheck from "react-native-version-check-expo";

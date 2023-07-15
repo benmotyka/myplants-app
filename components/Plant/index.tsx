@@ -14,11 +14,14 @@ import {
     ItemsWrapper,
     SmallImage,
     TimeWrapper,
+    ResetImage,
+    ResetImageWrapper,
 } from "components/Plant/styles";
 import { calculateDifferenceFromNow } from "utils/date";
-import { useAppConfigStore, useToastStore } from "store";
+import { useAppConfigStore } from "store";
 import { cancelWatering, waterPlant } from "services/watering";
 import i18n from "config/i18n";
+import { showToast } from "utils/toast";
 
 const MAX_SLIDER_VALUE = 1;
 const SLIDE_SUCCESS_VALUE_THRESHOLD = 0.9;
@@ -54,7 +57,6 @@ const Plant = ({
     const { t } = i18n;
     const isFocused = useIsFocused();
     const wateringRef = useRef<string>("");
-    const displayToast = useToastStore((state) => state.showToast);
     const theme = useTheme();
     const appTheme = useAppConfigStore.persistent((state) => state.theme);
 
@@ -122,15 +124,18 @@ const Plant = ({
         try {
             wateringRef.current = await waterPlant(id);
 
-            displayToast({
-                text: t("components.plant.success"),
-                type: "success",
-                onCancel: onCancelToast,
-            });
+            showToast({
+                text1: t("components.plant.success"),
+                type: "success"
+            })
             setTimeFromLastWatering(calculateDifferenceFromNow(new Date()));
             setWatered(true);
         } catch (error) {
-            displayToast({ text: t("errors.general"), type: "error" });
+            showToast({
+                text1: t("errors.general"),
+                text2: t("errors.generalDescription"),
+                type: "error",
+            })
         }
     };
 
@@ -146,7 +151,7 @@ const Plant = ({
         });
     };
 
-    const onCancelToast = async () => {
+    const onCancelWatering = async () => {
         try {
             await cancelWatering(wateringRef.current);
             setTimeFromLastWatering(
@@ -154,91 +159,116 @@ const Plant = ({
                     ? calculateDifferenceFromNow(latestWatering.createdAt)
                     : null
             );
-            displayToast({
-                text: t("components.plant.wateringCanceled"),
-                type: "info",
-            });
-
+            showToast({
+                text1: t("components.plant.wateringCanceled"),
+                type: "info"
+            })
             setWatered(false);
             setSliderValue(0);
         } catch (error) {
-            displayToast({ text: t("errors.general"), type: "error" });
+            showToast({
+                text1: t("errors.general"),
+                text2: t("errors.generalDescription"),
+                type: "error",
+            })
         }
     };
 
     return (
-        <Container>
-            <Wrapper showWateringReminder={showWateringReminder}>
-                <TouchableHighlight
-                    onLongPress={onLongPress}
-                    onPress={onPress}
-                    delayLongPress={750}
-                    underlayColor="rgba(0,0,0,0.05)"
-                    style={{ width: "100%", height: "100%", borderRadius: 10 }}
-                >
-                    <Image
-                        resizeMode="cover"
-                        source={
-                            imgSrc
-                                ? { uri: imgSrc as string }
-                                : require("../../assets/plants/default_plant.jpg")
-                        }
+      <Container>
+        <Wrapper showWateringReminder={showWateringReminder}>
+          <TouchableHighlight
+            onLongPress={onLongPress}
+            onPress={onPress}
+            delayLongPress={750}
+            underlayColor="rgba(0,0,0,0.05)"
+            style={{ width: "100%", height: "100%", borderRadius: 10 }}
+          >
+            <Image
+              resizeMode="cover"
+              source={
+                imgSrc
+                  ? { uri: imgSrc as string }
+                  : require("../../assets/plants/default_plant.jpg")
+              }
+            />
+          </TouchableHighlight>
+          <Body>
+            <ItemsWrapper>
+              <Header>
+                {name.length > MAX_HEADER_CHARACTERS
+                  ? `${name.slice(0, MAX_HEADER_CHARACTERS)}...`
+                  : name}
+              </Header>
+              {latestWatering || watered ? (
+                <TimeWrapper>
+                  <Header>{timeFromLastWatering}</Header>
+                  <MotiView
+                    from={{
+                      rotate: "0deg",
+                    }}
+                    animate={{
+                      rotate: watered ? "360deg" : "0deg",
+                    }}
+                    style={{
+                      marginLeft: 3,
+                    }}
+                  >
+                    <SmallImage
+                      resizeMode="contain"
+                      source={
+                        appTheme === "dark"
+                          ? require("../../assets/hourglass-light.png")
+                          : require("../../assets/hourglass.png")
+                      }
                     />
-                </TouchableHighlight>
-
-                <Body>
-                    <ItemsWrapper>
-                        <Header>
-                            {name.length > MAX_HEADER_CHARACTERS
-                                ? `${name.slice(0, MAX_HEADER_CHARACTERS)}...`
-                                : name}
-                        </Header>
-                        {latestWatering || watered ? (
-                            <TimeWrapper>
-                                <Header>{timeFromLastWatering}</Header>
-                                <MotiView
-                                    from={{
-                                        rotate: "0deg",
-                                    }}
-                                    animate={{
-                                        rotate: watered ? "360deg" : "0deg",
-                                    }}
-                                    style={{
-                                        marginLeft: 3,
-                                    }}
-                                >
-                                    <SmallImage
-                                        resizeMode="contain"
-                                        source={
-                                            appTheme === "dark"
-                                                ? require("../../assets/hourglass-light.png")
-                                                : require("../../assets/hourglass.png")
-                                        }
-                                    />
-                                </MotiView>
-                            </TimeWrapper>
-                        ) : null}
-                    </ItemsWrapper>
-                    <View style={{ marginTop: "auto" }}>
-                        {watered ? null : (
-                            <Slider
-                                value={sliderValue}
-                                onSlidingComplete={onSlidingComplete}
-                                thumbStyle={{
-                                    backgroundColor: theme.primaryLight,
-                                    borderRadius: 3,
-                                    width: 35,
-                                    height: 25,
-                                }}
-                                trackStyle={{ opacity: 0.2 }}
-                                trackClickable={false}
-                                maximumValue={MAX_SLIDER_VALUE}
-                            />
-                        )}
-                    </View>
-                </Body>
-            </Wrapper>
-        </Container>
+                  </MotiView>
+                </TimeWrapper>
+              ) : null}
+            </ItemsWrapper>
+            <View style={{ marginTop: "auto" }}>
+              {watered ? (
+                <ResetImageWrapper onPress={onCancelWatering}>
+                  <MotiView
+                    from={{
+                      opacity: "0",
+                    }}
+                    animate={{
+                      opacity: "1",
+                    }}
+                    style={{
+                      margin: "0 5px 5px auto",
+                    }}
+                  >
+                    <ResetImage
+                      resizeMode="contain"
+                      source={
+                        appTheme === "dark"
+                          ? require("../../assets/reset-light.png")
+                          : require("../../assets/reset.png")
+                      }
+                    />
+                  </MotiView>
+                </ResetImageWrapper>
+              ) : (
+                <Slider
+                  value={sliderValue}
+                  onSlidingComplete={onSlidingComplete}
+                  thumbStyle={{
+                    backgroundColor: theme.primaryLight,
+                    borderRadius: 3,
+                    width: 35,
+                    height: 25,
+                  }}
+                  trackStyle={{ opacity: 0.2 }}
+                  trackClickable={false}
+                  maximumValue={MAX_SLIDER_VALUE}
+                />
+              )}
+            </View>
+          </Body>
+        </Wrapper>
+      </Container>
     );
 };
 

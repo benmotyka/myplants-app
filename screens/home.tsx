@@ -9,7 +9,6 @@ import AddPlantSuggestion from "components/AddPlantSuggestion";
 import HomeSettings from "components/HomeSettings";
 import { ScreenContainer } from "styles/shared";
 import {
-  useToastStore,
   useAppConfigStore,
   useModalsStore,
   usePlantsPersistentStore,
@@ -25,13 +24,13 @@ import { registerForPushNotificationsAsync } from "hooks/useNotifications";
 import { updateUserInfo } from "services/user";
 import * as Localization from "expo-localization";
 import * as Device from "expo-device";
+import { showToast } from "utils/toast";
 
 type Props = NativeStackScreenProps<RootStackParamList, "home">;
 
 const HomeScreen = ({ navigation }: Props): JSX.Element => {
   const { t } = i18n;
   const persistentPlantsStore = usePlantsPersistentStore((state) => state);
-  const displayToast = useToastStore((state) => state.showToast);
   const isHelpModalOpen = useModalsStore((state) => state.isHelpModalOpen);
   const ephemeralAppConfig = useAppConfigStore.ephemeral((state) => state);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
@@ -58,7 +57,11 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
           setShowRateAppModal(!!shouldShowRateAppModal(plants.length));
       })
       .catch(() => {
-        displayToast({ text: t("errors.general"), type: "error" });
+        showToast({
+          text1: t("errors.general"),
+          text2: t("errors.generalDescription"),
+          type: "error",
+        });
       });
 
     if (!ephemeralAppConfig.isClosedUpdateModal) {

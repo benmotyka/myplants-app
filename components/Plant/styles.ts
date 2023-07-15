@@ -43,6 +43,17 @@ export const SmallImage = styled.Image`
     height: 17px;
     margin-right: 3px;
 `;
+
+export const ResetImageWrapper = styled.TouchableOpacity`
+    margin: 0 5px 5px auto;
+`
+
+export const ResetImage = styled.Image`
+    width: 25px;
+    height: 25px;
+    rotate: 180deg;
+`;
+
 export const Body = styled.View`
     position: absolute;
     height: 30%;

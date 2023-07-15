@@ -28,17 +28,13 @@ const Settings = ({ navigation }: Props): JSX.Element => {
                     <SettingsHeader text={t("pages.settings.header")} />
                     <SettingsItem>
                         <BasicButton
-                            onPress={() => {
-                                navigation.navigate("settingsNotifications");
-                            }}
+                            onPress={() => navigation.navigate("settingsNotifications")}
                             text={t("pages.settings.notificationsHeader")}
                         />
                     </SettingsItem>
                     <SettingsItem>
                         <BasicButton
-                            onPress={() => {
-                                navigation.navigate("settingsApp");
-                            }}
+                            onPress={() => navigation.navigate("settingsApp")}
                             text={t("pages.settings.app.header")}
                         />
                     </SettingsItem>
@@ -47,9 +43,7 @@ const Settings = ({ navigation }: Props): JSX.Element => {
                     <SettingsHeader text={t("pages.settings.contact")} />
                     <SettingsItem>
                         <BasicButton
-                            onPress={() => {
-                                navigation.navigate("settingsContactReportBug");
-                            }}
+                            onPress={() => navigation.navigate("settingsContactReportBug")}
                             text={t("pages.settings.reportBug.header")}
                         />
                     </SettingsItem>

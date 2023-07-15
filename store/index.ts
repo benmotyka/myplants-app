@@ -4,35 +4,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { persist, PersistOptions } from "zustand/middleware";
 import { Plant, UserInfo } from "interfaces";
 
-type ToastTypes = "error" | "success" | "info";
-
-export interface ToastState {
-  text: string;
-  type: ToastTypes;
-  isToastShown: boolean;
-  onCancel: (() => void) | null;
-  showToast: ({
-    text,
-    type,
-    onCancel,
-  }: {
-    text: string;
-    type: ToastTypes;
-    onCancel?: () => void;
-  }) => void;
-  hideToast: () => void;
-}
-
-export const useToastStore = create<ToastState>((set) => ({
-  text: "",
-  type: "info",
-  isToastShown: false,
-  onCancel: null,
-  showToast: ({ text, type, onCancel }) =>
-    set({ text, type, onCancel, isToastShown: true }),
-  hideToast: () => set({ text: "", isToastShown: false }),
-}));
-
 interface UserPlantsState {
   userPlants: Plant[];
   setUserPlants: (plants: Plant[]) => void;

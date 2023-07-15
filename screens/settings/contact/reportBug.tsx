@@ -15,7 +15,6 @@ import { Formik, FormikHelpers } from "formik";
 import { ReportBugSchema } from "schemas/ReportBug.schema";
 import { View } from "react-native";
 import BasicButton from "components/BasicButton";
-import { useToastStore } from "store";
 import Loader from "components/Loader";
 import { ICON_SIZE_PX } from "config";
 import { reportBug } from "services/plant";
@@ -23,6 +22,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { useTheme } from "styled-components/native";
 import ReportBugHelpModal from "modals/ReportBugHelp";
 import { ApiErrors } from "enums/api-errors";
+import { showToast } from "utils/toast";
 
 type Props = NativeStackScreenProps<
   RootStackParamList,
@@ -41,7 +41,6 @@ interface ReportBugForm {
 const ReportBug = ({ navigation }: Props): JSX.Element => {
   const [showHelpModal, setShowHelpModal] = useState(false);
   const [loading, setLoading] = useState(false);
-  const displayToast = useToastStore((state) => state.showToast);
   const theme = useTheme();
 
   const handleSubmit = async (
@@ -53,20 +52,21 @@ const ReportBug = ({ navigation }: Props): JSX.Element => {
       await reportBug(values);
       formikHelpers.resetForm();
       navigation.navigate("home");
-      displayToast({
-        text: t("pages.settings.reportBug.success"),
+      showToast({
+        text1: t("pages.settings.reportBug.success"),
         type: "success",
       });
     } catch (error) {
       switch (error) {
         case ApiErrors.TOO_MANY_BUG_REPORTS:
-          return displayToast({
-            text: t("errors.tooManyBugReports"),
+          return showToast({
+            text1: t("errors.tooManyBugReports"),
             type: "error",
           });
         default:
-          return displayToast({
-            text: t("errors.general"),
+          return showToast({
+            text1: t("errors.general"),
+            text2: t("errors.generalDescription"),
             type: "error",
           });
       }

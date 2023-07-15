@@ -7,9 +7,9 @@ import { MaterialIcons } from "@expo/vector-icons";
 import DeleteAttachmentConfirmationModal from "modals/DeleteAttachmentConfirmation";
 import { ImageData } from "interfaces";
 import i18n from "config/i18n";
-import { useToastStore } from "store";
 import { deleteImageFromPlant } from "services/plant";
 import { DeleteButtonWrapper } from "./styles";
+import { showToast } from "utils/toast";
 
 interface Props {
     showModal: boolean;
@@ -27,7 +27,6 @@ const PlantImageModal = ({
     refetchPlantImagesHistory,
 }: Props) => {
     const theme = useTheme();
-    const displayToast = useToastStore((state) => state.showToast);
 
     const [showDeleteConfirmationModal, setShowDeleteConfirmationModal] =
         useState(false);
@@ -35,13 +34,17 @@ const PlantImageModal = ({
     const handleDelete = async () => {
         try {
             await deleteImageFromPlant(selectedImage?.id as string);
-            displayToast({
-                text: t("pages.plants.history.imageDeleted"),
+            showToast({
+                text1: t("pages.plants.history.imageDeleted"),
                 type: "success",
-            });
+            })
             await refetchPlantImagesHistory();
         } catch (error) {
-            displayToast({ text: t("errors.general"), type: "error" });
+            showToast({
+                text1: t("errors.general"),
+                text2: t("errors.generalDescription"),
+                type: "error",
+            })
         } finally {
             toggleModal(null);
             setShowDeleteConfirmationModal(false);

@@ -90,16 +90,17 @@
     },
     "errors": {
         "required": "Dieses Feld ist erforderlich",
-        "general": "Etwas ist schiefgelaufen. Bitte versuchen Sie es später erneut",
+        "general": "Etwas ist schiefgelaufen",
+        "generalDescription": "Bitte versuchen Sie es später erneut",
         "invalidFileType": "Ungültiger Dateityp",
-        "fieldTooLong": "{{field}} darf höchstens {{number}} Buchstaben enthalten.",
+        "fieldTooLong": "{{field}} darf höchstens {{number}} Buchstaben enthalten",
         "valueMustBeNumber": "Der Wert muss eine Zahl sein",
         "minimumValueIs": "Der minimale Wert beträgt: {{value}}",
         "maximumValueIs": "Der maximale Wert beträgt: {{value}}",
         "plantAlreadyAdded": "Die Pflanze befindet sich bereits in Ihrer Sammlung",
         "plantNotExists": "Die Pflanze existiert nicht",
         "emailOptional": "Geben Sie eine gültige E-Mail-Adresse an oder lassen Sie das Feld leer",
-        "tooManyBugReports": "Zu viele Meldungen. Bitte versuchen Sie es später erneut"
+        "tooManyBugReports": "Zu viele Meldungen"
     },
     "components": {
         "basicImageInput": {
