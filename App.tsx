@@ -1,10 +1,5 @@
 import AppLoading from "expo-app-loading";
-import Toast, {
-  BaseToast,
-  ErrorToast,
-  InfoToast,
-  ToastProps,
-} from "react-native-toast-message";
+import Toast, { ToastProps } from "react-native-toast-message";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
 import {
@@ -32,6 +27,11 @@ import SettingsContactReportBug from "screens/settings/contact/reportBug";
 import { darkTheme, lightTheme } from "styles/theme";
 import { useAppConfigStore } from "store";
 import "config/i18n";
+import {
+  Success as SuccessToast,
+  Error as ErrorToast,
+  Info as InfoToast,
+} from "components/Toast";
 
 Sentry.init({
   dsn: sentryDsn,
@@ -66,65 +66,9 @@ export default function App() {
   const currentTheme = appTheme === "dark" ? darkTheme : lightTheme;
 
   const toastConfig = {
-    success: (props: ToastProps) => (
-      <BaseToast
-        {...props}
-        style={{ borderLeftColor: "green" }}
-        contentContainerStyle={{
-          backgroundColor: currentTheme.success,
-          minHeight: 50,
-        }}
-        text1Style={{
-          fontSize: 20,
-          fontWeight: "400",
-          color: currentTheme.white,
-        }}
-      />
-    ),
-    error: (props: ToastProps) => (
-      <ErrorToast
-        {...props}
-        style={{ borderLeftColor: currentTheme.warning }}
-        contentContainerStyle={{
-          paddingHorizontal: 10,
-          backgroundColor: currentTheme.warning,
-          opacity: 0.8,
-          minHeight: 50,
-        }}
-        text1Style={{
-          fontSize: 18,
-          color: currentTheme.white,
-        }}
-        text2Style={{
-          fontSize: 16,
-          color: currentTheme.white,
-          marginTop: 5,
-        }}
-        onPress={() => {
-          alert(1);
-        }}
-      />
-    ),
-    info: (props: ToastProps) => (
-      <InfoToast
-        {...props}
-        style={{ borderLeftColor: currentTheme.primary }}
-        contentContainerStyle={{
-          paddingHorizontal: 10,
-          backgroundColor: currentTheme.primaryLight,
-          minHeight: 50,
-        }}
-        text1Style={{
-          fontSize: 18,
-          color: currentTheme.white,
-        }}
-        text2Style={{
-          fontSize: 16,
-          color: currentTheme.white,
-          marginTop: 5,
-        }}
-      />
-    ),
+    success: (props: ToastProps) => <SuccessToast {...props} />,
+    info: (props: ToastProps) => <InfoToast {...props} />,
+    error: (props: ToastProps) => <ErrorToast {...props} />,
   };
 
   return fontsLoaded ? (

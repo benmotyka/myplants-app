@@ -90,17 +90,17 @@
     },
     "errors": {
         "required": "Pole wymagane",
-        "general": "Coś poszło nie tak.",
-        "generalDescription": "Spróbuj ponownie później.",
+        "general": "Coś poszło nie tak",
+        "generalDescription": "Spróbuj ponownie później",
         "invalidFileType": "Błędny plik",
-        "fieldTooLong": "{{field}} musi mieć maksymalnie {{number}} liter.",
+        "fieldTooLong": "{{field}} musi mieć maksymalnie {{number}} liter",
         "valueMustBeNumber": "Wartość musi być liczbą",
         "minimumValueIs": "Minimalna wartość to: {{value}}",
         "maximumValueIs": "Maksymalna wartość to: {{value}}",
         "plantAlreadyAdded": "Roślina już istnieje w Twojej kolekcji",
         "plantNotExists": "Roślina nie istnieje",
         "emailOptional": "Podaj poprawny e-mail lub zostaw puste",
-        "tooManyBugReports": "Zbyt wiele zgłoszeń. Spróbuj ponownie później"
+        "tooManyBugReports": "Zbyt wiele zgłoszeń"
     },
     "components": {
         "basicImageInput": {

@@ -127,7 +127,6 @@ const Plant = ({
             showToast({
                 text1: t("components.plant.success"),
                 type: "success"
-                // @TODO: add on cancel
             })
             setTimeFromLastWatering(calculateDifferenceFromNow(new Date()));
             setWatered(true);

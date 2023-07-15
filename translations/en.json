@@ -90,17 +90,17 @@
     },
     "errors": {
         "required": "Required",
-        "general": "Something went wrong.",
-        "generalDescription": "Please try again later.",
+        "general": "Something went wrong",
+        "generalDescription": "Please try again later",
         "invalidFileType": "Invalid file type",
-        "fieldTooLong": "{{field}} too long. Maximum {{number}} characters.",
+        "fieldTooLong": "{{field}} too long. Maximum {{number}} characters",
         "valueMustBeNumber": "Value must be a number",
         "minimumValueIs": "Minimum value is: {{value}}",
         "maximumValueIs": "Maximum value is: {{value}}",
         "plantAlreadyAdded": "Plant already exists in your collection",
         "plantNotExists": "Plant not found",
         "emailOptional": "Must be valid email or empty field",
-        "tooManyBugReports": "Too many bug reports. Please try again later."
+        "tooManyBugReports": "Too many bug reports"
     },
     "components": {
         "basicImageInput": {
