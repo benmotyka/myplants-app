@@ -31,7 +31,7 @@ const BasicImageInput = ({
             type: "image",
         });
 
-        if (!result.cancelled) {
+        if (!result.canceled) {
             setImage(result);
         }
         setShowModal(false);
@@ -47,7 +47,7 @@ const BasicImageInput = ({
             base64: true,
         });
 
-        if (!result.cancelled) {
+        if (!result.canceled) {
             setImage(result);
         }
         setShowModal(false);

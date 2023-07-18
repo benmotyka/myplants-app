@@ -108,18 +108,16 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
       ) : (
         <FlatList
           data={dataSource}
-          renderItem={({ item }) => {
-            return (
-              <PlantPreview
-                id={item.id}
-                name={item.name}
-                imgSrc={item.imgSrc}
-                navigation={navigation}
-                latestWatering={item.latestWatering}
-                reminderFrequency={item.wateringReminderFrequency}
-              />
-            );
-          }}
+          renderItem={({ item }) => (
+            <PlantPreview
+              id={item.id}
+              name={item.name}
+              imgSrc={item.imgSrc}
+              navigation={navigation}
+              latestWatering={item.latestWatering}
+              reminderFrequency={item.wateringReminderFrequency}
+            />
+          )}
           numColumns={numberOfColumns}
           keyExtractor={(item, index) => index.toString()}
           contentContainerStyle={{ paddingBottom: 100 }}
