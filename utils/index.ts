@@ -13,6 +13,7 @@ export const getCurrentAppVersion = () => {
     if (["ios", "android"].includes(Platform.OS)) {
       return VersionCheck.getCurrentVersion();
     }
+    return "1.2.4";
   } catch (error) {
     console.log(error);
   }
@@ -57,7 +58,7 @@ export const shouldShowRateAppModal = (plantsAmount: number) => {
   // there's chance they they will see the 'Rate App' modal
   const CHANCE_THRESHOLD = 5; // %
   const PLANTS_AMOUNT_THRESHOLD = 1;
-  if (plantsAmount < PLANTS_AMOUNT_THRESHOLD) return;
-
-  return Math.random() * 100 < CHANCE_THRESHOLD;
+  if (plantsAmount > PLANTS_AMOUNT_THRESHOLD) {
+    return Math.random() * 100 < CHANCE_THRESHOLD;
+  };
 };

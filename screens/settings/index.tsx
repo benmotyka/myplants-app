@@ -51,7 +51,7 @@ const Settings = ({ navigation }: Props): JSX.Element => {
                 <AppVersionWrapper>
                     <AppVersionText>
                         {t("pages.settings.appVersion", {
-                            version: getCurrentAppVersion(),
+                            version: getCurrentAppVersion() || "1.2.3",
                         })}
                     </AppVersionText>
                 </AppVersionWrapper>

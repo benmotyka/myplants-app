@@ -56,7 +56,7 @@ const Plant = ({
 
     const { t } = i18n;
     const isFocused = useIsFocused();
-    const wateringRef = useRef<string>("");
+    const wateringRef = useRef("");
     const theme = useTheme();
     const appTheme = useAppConfigStore.persistent((state) => state.theme);
 
