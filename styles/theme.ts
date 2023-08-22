@@ -19,7 +19,7 @@ declare module "styled-components/native" {
 
 const themeCommon = {
     primary: "#3AB0FF",
-    primaryLight: "#89d2ff",
+    primaryLight: "#73c3f5",
     warning: "#FF503D",
     success: "#76BA99",
     white: "#fff",

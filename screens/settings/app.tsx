@@ -13,34 +13,34 @@ type Props = NativeStackScreenProps<RootStackParamList, "settingsApp">;
 const { t } = i18n;
 
 const SettingsApp = ({ navigation }: Props): JSX.Element => {
-    const appConfig = useAppConfigStore.persistent((state) => state);
-    const [theme, setTheme] = useState<AppTheme>(appConfig.theme);
+  const appConfig = useAppConfigStore.persistent((state) => state);
+  const [theme, setTheme] = useState<AppTheme>(appConfig.theme);
 
-    const handleSwitch = ({ theme }: { theme: AppTheme }) => {
-        appConfig.setTheme(theme);
-    };
+  const handleSwitch = ({ theme }: { theme: AppTheme }) => {
+    appConfig.setTheme(theme);
+  };
 
-    return (
-        <ScreenContainer>
-            <ColumnCenterWrapper>
-                <Back navigation={navigation} />
-                <BasicSwitch
-                    label={t("pages.settings.app.manageTheme")}
-                    leftItemLabel={t("pages.settings.app.lightTheme")}
-                    rightItemLabel={t("pages.settings.app.darkTheme")}
-                    onClickLeftItem={() => {
-                        handleSwitch({ theme: "light" });
-                        setTheme("light");
-                    }}
-                    onClickRightItem={() => {
-                        handleSwitch({ theme: "dark" });
-                        setTheme("dark");
-                    }}
-                    activeItem={theme === "light" ? "left" : "right"}
-                />
-            </ColumnCenterWrapper>
-        </ScreenContainer>
-    );
+  return (
+    <ScreenContainer>
+      <ColumnCenterWrapper>
+        <Back navigation={navigation} />
+        <BasicSwitch
+          label={t("pages.settings.app.manageTheme")}
+          leftItemLabel={t("pages.settings.app.lightTheme")}
+          rightItemLabel={t("pages.settings.app.darkTheme")}
+          onClickLeftItem={() => {
+            handleSwitch({ theme: "light" });
+            setTheme("light");
+          }}
+          onClickRightItem={() => {
+            handleSwitch({ theme: "dark" });
+            setTheme("dark");
+          }}
+          activeItem={theme === "light" ? "left" : "right"}
+        />
+      </ColumnCenterWrapper>
+    </ScreenContainer>
+  );
 };
 
 export default SettingsApp;
