@@ -236,9 +236,6 @@ const Plant = ({
                     animate={{
                       opacity: "1",
                     }}
-                    style={{
-                      margin: "0 5px 5px auto",
-                    }}
                   >
                     <ResetImage
                       resizeMode="contain"

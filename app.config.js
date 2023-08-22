@@ -27,7 +27,7 @@ module.exports = {
         },
         package: "com.benmotyka.myplants",
         googleServicesFile: "./keys/google-services.json",
-        versionCode: 20,
+        versionCode: 21,
     },
     web: {
         favicon: "./assets/icon.png",
