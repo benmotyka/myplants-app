@@ -19,7 +19,8 @@ export const createAddPlantSchema = (isWateringReminderOn: boolean) =>
                     number: MAX_PLANT_CHARACTERS,
                 })
             )
-            .required(t("errors.required")),
+            .required(t("errors.required"))
+            .matches(/^(?!\s+$).*/, t("errors.required")),
         description: Yup.string().max(
             MAX_DESCRIPTION_CHARACTERS,
             t("errors.fieldTooLong", {
