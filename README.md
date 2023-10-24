@@ -164,7 +164,6 @@ Project Link: [https://github.com/benmotyka/my-plants_app](https://github.com/be
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-* [My Plants Website](https://github.com/benmotyka/my-plants_front)
 * [My Plants Server App](https://github.com/benmotyka/my-plants_api)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
