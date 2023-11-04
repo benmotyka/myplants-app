@@ -97,7 +97,7 @@ My Plants is a free and open source mobile app that helps to manage watering of 
    npm install
    ```
 3. Run server (please refer to [https://github.com/benmotyka/my-plants_api](https://github.com/benmotyka/my-plants_api)) for more details
-4. Create `.env` file and enter:
+4. Create `.env` file and enter (see .env.example):
    ```
    API_URL=<my-plants_server_url> // eg: http://localhost:3000
 
@@ -127,7 +127,7 @@ My Plants is a free and open source mobile app that helps to manage watering of 
    key=GOOGLE_SERVICES_BASE64
    value=<base64_encoded_string>
    ```
-4. Increase versionCode in `app.config.js`
+4. Increment versionCode in `app.config.js` by 1
 5. Build project
    ```sh
    npm run deploy:build
