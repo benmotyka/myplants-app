@@ -86,7 +86,9 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
       .catch((error) => console.error(error))
       .finally(() => {
         // Check if user info has changed and if it has, update it in the database and cache
-        if (JSON.stringify(cachedUserInfo) !== JSON.stringify(userInfo)) {
+        // if (JSON.stringify(cachedUserInfo) !== JSON.stringify(userInfo)) {
+        // Temporiarly update ALL users
+        if (true) {
           updateUserInfo(userInfo)
             .then(() => setUserInfo(userInfo))
             .catch((error) => console.error(error));
