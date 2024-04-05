@@ -82,7 +82,6 @@ My Plants is a free and open source mobile app that helps to manage watering of 
 ### Prerequisites
 
 - [Node.js](https://nodejs.org/en/download/)
-- [My Plants Server](https://github.com/benmotyka/my-plants_api)
 - [Sentry](https://sentry.io/)
 
 ### Installation
@@ -96,7 +95,7 @@ My Plants is a free and open source mobile app that helps to manage watering of 
    ```sh
    npm install
    ```
-3. Run server (please refer to [https://github.com/benmotyka/my-plants_api](https://github.com/benmotyka/my-plants_api)) for more details
+3. Start My Plants server
 4. Create `.env` file and enter (see .env.example):
    ```
    API_URL=<my-plants_server_url> // eg: http://localhost:3000
@@ -161,9 +160,3 @@ Project Link: [https://github.com/benmotyka/my-plants_app](https://github.com/be
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* [My Plants Server App](https://github.com/benmotyka/my-plants_api)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
