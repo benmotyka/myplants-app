@@ -1,4 +1,3 @@
-import AppLoading from "expo-app-loading";
 import Toast, { ToastProps } from "react-native-toast-message";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationContainer } from "@react-navigation/native";
@@ -109,6 +108,7 @@ export default function App() {
       <Toast config={toastConfig} />
     </ThemeProvider>
   ) : (
-    <AppLoading />
+    // TODO: Add loading screen
+    null
   );
 }
