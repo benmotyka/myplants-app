@@ -3,7 +3,7 @@ import "dotenv/config";
 module.exports = {
     name: "Moje Rośliny",
     slug: "myplants",
-    version: "1.2.9",
+    version: "1.3.0",
     privacy: "public",
     scheme: "com.benmotyka.myplants",
     description:
@@ -27,7 +27,8 @@ module.exports = {
         },
         package: "com.benmotyka.myplants",
         googleServicesFile: "./keys/google-services.json",
-        versionCode: 21,
+        useNextNotificationsApi: true,
+        versionCode: 23,
     },
     web: {
         favicon: "./assets/icon.png",

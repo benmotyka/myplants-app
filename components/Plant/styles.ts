@@ -51,7 +51,7 @@ export const ResetImageWrapper = styled.TouchableOpacity`
 export const ResetImage = styled.Image`
     width: 25px;
     height: 25px;
-    rotate: 180deg;
+    transform: rotate(180deg);
 `;
 
 export const Body = styled.View`
