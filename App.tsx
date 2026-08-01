@@ -7,7 +7,7 @@ import {
   Inter_300Light,
 } from "@expo-google-fonts/inter";
 import { AkayaKanadaka_400Regular } from "@expo-google-fonts/akaya-kanadaka";
-import * as Sentry from "sentry-expo";
+import * as Sentry from "@sentry/react-native";
 import { ThemeProvider } from "styled-components/native";
 import * as Notifications from "expo-notifications";
 import { sentryDsn } from "config/environment";
@@ -34,7 +34,6 @@ import {
 
 Sentry.init({
   dsn: sentryDsn,
-  enableInExpoDevelopment: true,
   debug: true,
 });
 
