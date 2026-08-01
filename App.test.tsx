@@ -12,7 +12,7 @@ jest.mock("@expo-google-fonts/inter", () => {
     };
 });
 
-jest.mock("sentry-expo", () => {
+jest.mock("@sentry/react-native", () => {
     return {
         init: () => {},
     };

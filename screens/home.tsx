@@ -75,7 +75,7 @@ const HomeScreen = ({ navigation }: Props): JSX.Element => {
     );
 
     const userInfo: UserInfo = {
-      deviceLanguage: Localization.locale || "UNKNOWN",
+      deviceLanguage: Localization.getLocales()[0]?.languageTag || "UNKNOWN",
       deviceInfo: Device.modelName || "UNKNOWN",
     };
 

@@ -16,3 +16,6 @@ keys/*
 !/**/.gitkeep
 
 google-services.json
+credentials.json
+*-firebase-adminsdk-*.json
+.DS_Store

@@ -101,7 +101,7 @@ const AddPlant = ({ navigation }: Props): JSX.Element => {
         >
             <ColumnCenterWrapper>
                 <Back navigation={navigation} />
-                <Formik
+                <Formik<AddPlantForm>
                     initialValues={{
                         name: "",
                         description: "",

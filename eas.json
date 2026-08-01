@@ -20,6 +20,11 @@
         }
     },
     "submit": {
-        "production": {}
+        "production": {
+            "android": {
+                "serviceAccountKeyPath": "./plants-359313-firebase-adminsdk-pz4z0-3317d39ca5.json",
+                "track": "internal"
+            }
+        }
     }
 }

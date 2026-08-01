@@ -16,6 +16,7 @@ module.exports = {
         fallbackToCacheTimeout: 0,
     },
     assetBundlePatterns: ["**/*"],
+    newArchEnabled: false,
     ios: {
         supportsTablet: true,
         bundleIdentifier: "com.benmotyka.myplants",
@@ -34,13 +35,22 @@ module.exports = {
         favicon: "./assets/icon.png",
     },
     plugins: [
-        "sentry-expo", 
+        "expo-secure-store",
+        "expo-font",
         "expo-localization",
         [
             "expo-notifications",
             {
             "icon": "./assets/icons/adaptive.png",
             "color": "#ffffff",
+            }
+        ],
+        [
+            "@sentry/react-native",
+            {
+                organization: process.env.SENTRY_ORGANIZATION,
+                project: process.env.SENTRY_PROJECT,
+                url: "https://sentry.io/",
             }
         ]
     ],
@@ -50,17 +60,5 @@ module.exports = {
         eas: {
             projectId: "9b57b4b7-39d0-474c-9ffb-3f5d617bcabd",
         },
-    },
-    hooks: {
-        postPublish: [
-            {
-                file: "sentry-expo/upload-sourcemaps",
-                config: {
-                    organization: process.env.SENTRY_ORGANIZATION,
-                    project: process.env.SENTRY_PROJECT,
-                    authToken: process.env.SENTRY_AUTHTOKEN,
-                },
-            },
-        ],
     },
 };
