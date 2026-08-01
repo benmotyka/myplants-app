@@ -62,6 +62,7 @@ const HelpModal = (): JSX.Element => {
                             { value: 2, delay: 1000, damping: 100 },
                         ],
                     }}
+                    // @ts-expect-error moti's TransitionProp union type mis-resolves this valid shape after the reanimated bump
                     transition={{
                         loop: true,
                     }}
@@ -79,6 +80,7 @@ const HelpModal = (): JSX.Element => {
                     animate={{
                         scale: [{ value: 0.8, delay: 1000 }, 1],
                     }}
+                    // @ts-expect-error moti's TransitionProp union type mis-resolves this valid shape after the reanimated bump
                     transition={{
                         loop: true,
                     }}
@@ -99,6 +101,7 @@ const HelpModal = (): JSX.Element => {
                             { value: 1, delay: 1000 },
                         ],
                     }}
+                    // @ts-expect-error moti's TransitionProp union type mis-resolves this valid shape after the reanimated bump
                     transition={{
                         loop: true,
                     }}
