@@ -34,6 +34,8 @@ module.exports = {
         favicon: "./assets/icon.png",
     },
     plugins: [
+        "expo-secure-store",
+        "expo-font",
         "expo-localization",
         [
             "expo-notifications",

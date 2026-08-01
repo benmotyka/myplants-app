@@ -1,5 +1,6 @@
 import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
+import Constants from "expo-constants";
 import { useEffect, useRef, useState } from "react";
 import { Platform } from "react-native";
 import { Subscription } from "expo-modules-core";
@@ -22,7 +23,12 @@ export const registerForPushNotificationsAsync = async () => {
     if (finalStatus !== "granted") {
       console.error("Failed to get push token for push notification!");
     }
-    token = (await Notifications.getExpoPushTokenAsync()).data;
+    const projectId = Constants.expoConfig?.extra?.eas?.projectId;
+    token = (
+      await Notifications.getExpoPushTokenAsync(
+        projectId ? { projectId } : undefined,
+      )
+    ).data;
     console.log(token);
   } else {
     console.error("Must use physical device for Push Notifications");
