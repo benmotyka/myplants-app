@@ -16,6 +16,7 @@ module.exports = {
         fallbackToCacheTimeout: 0,
     },
     assetBundlePatterns: ["**/*"],
+    newArchEnabled: false,
     ios: {
         supportsTablet: true,
         bundleIdentifier: "com.benmotyka.myplants",
@@ -45,7 +46,7 @@ module.exports = {
             }
         ],
         [
-            "@sentry/react-native/expo",
+            "@sentry/react-native",
             {
                 organization: process.env.SENTRY_ORGANIZATION,
                 project: process.env.SENTRY_PROJECT,

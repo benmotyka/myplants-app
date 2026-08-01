@@ -3,7 +3,6 @@ import * as Notifications from "expo-notifications";
 import Constants from "expo-constants";
 import { useEffect, useRef, useState } from "react";
 import { Platform } from "react-native";
-import { Subscription } from "expo-modules-core";
 
 export const registerForPushNotificationsAsync = async () => {
   let token;
