@@ -10,7 +10,7 @@ i18n.translations = {
     de,
 };
 
-i18n.locale = Localization.locale;
+i18n.locale = Localization.getLocales()[0]?.languageTag;
 
 i18n.fallbacks = true;
 

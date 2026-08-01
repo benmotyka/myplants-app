@@ -1,0 +1,26 @@
+diff --git a/node_modules/styled-components/native/dist/styled-components.native.cjs.js b/node_modules/styled-components/native/dist/styled-components.native.cjs.js
+index b8229f9..011ca0e 100644
+--- a/node_modules/styled-components/native/dist/styled-components.native.cjs.js
++++ b/node_modules/styled-components/native/dist/styled-components.native.cjs.js
+@@ -156,7 +156,7 @@ var SC_ATTR_ACTIVE = 'active';
+ var SC_ATTR_VERSION = 'data-styled-version';
+ var SC_VERSION = "5.3.11";
+ var SPLITTER = '/*!sc*/\n';
+-var IS_BROWSER = typeof window !== 'undefined' && 'HTMLElement' in window;
++var IS_BROWSER = typeof window !== 'undefined' && 'HTMLElement' in window && typeof document !== 'undefined';
+ var DISABLE_SPEEDY = Boolean(typeof SC_DISABLE_SPEEDY === 'boolean' ? SC_DISABLE_SPEEDY : typeof process !== 'undefined' && typeof process.env !== 'undefined' ? typeof process.env.REACT_APP_SC_DISABLE_SPEEDY !== 'undefined' && process.env.REACT_APP_SC_DISABLE_SPEEDY !== '' ? process.env.REACT_APP_SC_DISABLE_SPEEDY === 'false' ? false : process.env.REACT_APP_SC_DISABLE_SPEEDY : typeof process.env.SC_DISABLE_SPEEDY !== 'undefined' && process.env.SC_DISABLE_SPEEDY !== '' ? process.env.SC_DISABLE_SPEEDY === 'false' ? false : process.env.SC_DISABLE_SPEEDY : process.env.NODE_ENV !== 'production' : false); // Shared empty execution context when generating static styles
+ 
+ //      
+diff --git a/node_modules/styled-components/native/dist/styled-components.native.esm.js b/node_modules/styled-components/native/dist/styled-components.native.esm.js
+index d9c326a..aa325c5 100644
+--- a/node_modules/styled-components/native/dist/styled-components.native.esm.js
++++ b/node_modules/styled-components/native/dist/styled-components.native.esm.js
+@@ -149,7 +149,7 @@ var SC_ATTR_ACTIVE = 'active';
+ var SC_ATTR_VERSION = 'data-styled-version';
+ var SC_VERSION = "5.3.11";
+ var SPLITTER = '/*!sc*/\n';
+-var IS_BROWSER = typeof window !== 'undefined' && 'HTMLElement' in window;
++var IS_BROWSER = typeof window !== 'undefined' && 'HTMLElement' in window && typeof document !== 'undefined';
+ var DISABLE_SPEEDY = Boolean(typeof SC_DISABLE_SPEEDY === 'boolean' ? SC_DISABLE_SPEEDY : typeof process !== 'undefined' && typeof process.env !== 'undefined' ? typeof process.env.REACT_APP_SC_DISABLE_SPEEDY !== 'undefined' && process.env.REACT_APP_SC_DISABLE_SPEEDY !== '' ? process.env.REACT_APP_SC_DISABLE_SPEEDY === 'false' ? false : process.env.REACT_APP_SC_DISABLE_SPEEDY : typeof process.env.SC_DISABLE_SPEEDY !== 'undefined' && process.env.SC_DISABLE_SPEEDY !== '' ? process.env.SC_DISABLE_SPEEDY === 'false' ? false : process.env.SC_DISABLE_SPEEDY : process.env.NODE_ENV !== 'production' : false); // Shared empty execution context when generating static styles
+ 
+ //      
